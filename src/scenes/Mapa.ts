@@ -7,7 +7,7 @@ import { narrador } from '../narrador';
 import { fale } from '../narracoes';
 import { desenharPersonagem } from '../personagem';
 import { ativo, salvar, type Perfil } from '../storage';
-import { balao, botao, botaoOuvir, figura, fundo, hud, irPara, textoEmPainel, toque } from '../ui';
+import { balao, botao, botaoOuvir, figura, fundo, hud, irPara, textoEmPainel, titulo, toque } from '../ui';
 import type { Missao as MissaoDef } from '../types';
 
 const W = CONFIG.LARGURA;
@@ -37,6 +37,8 @@ export class Mapa extends Phaser.Scene {
     fundo(this, 0xbde8ff, 'bg_mapa_mundos');
     // veu claro: o cenario do mapa e bonito, mas briga com os cartoes
     this.add.rectangle(W / 2, CONFIG.ALTURA / 2, W, CONFIG.ALTURA, 0xffffff, 0.34).setDepth(-8);
+    // faixa do cabecalho: a lista rola por baixo e nao embola com o saldo
+    this.add.rectangle(W / 2, 140, W, 280, 0xffffff, 0.82).setDepth(45);
     hud(this, this.p, 96);
     botaoOuvir(this, W - 76, 214);
 
@@ -212,9 +214,36 @@ export class Mapa extends Phaser.Scene {
       this.aviso('Sem fichas. Faça uma missão para ganhar mais!');
       return;
     }
+    if (jogos.length === 1) {
+      this.jogar(jogos[0].id);
+      return;
+    }
+    this.escolherJogo(jogos);
+  }
+
+  /** Com mais de um jogo aberto, a crianca escolhe qual quer. */
+  private escolherJogo(jogos: MiniGame[]) {
+    const capa = this.add.container(0, 0).setDepth(80);
+    capa.add(this.add.rectangle(W / 2, CONFIG.ALTURA / 2, W, CONFIG.ALTURA, 0x12263a, 0.9));
+    capa.add(titulo(this, 'Qual jogo?', 260));
+    jogos.forEach((j, i) => {
+      capa.add(
+        botao(this, W / 2, 480 + i * 170, j.nome, () => this.jogar(j.id), {
+          icone: j.icone,
+          largura: 560,
+          cor: 0x7ddc8a,
+        }),
+      );
+    });
+    capa.add(
+      botao(this, W / 2, 480 + jogos.length * 170, 'Agora não', () => capa.destroy(), { largura: 560 }),
+    );
+  }
+
+  private jogar(id: string) {
     gastarFicha(this.p);
     salvar(this.p);
-    irPara(this, 'MiniGame', { id: jogos[0].id });
+    irPara(this, 'MiniGame', { id });
   }
 
   private aviso(texto: string) {

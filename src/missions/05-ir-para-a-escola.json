@@ -1,0 +1,96 @@
+{
+  "id": "05",
+  "mundo": 2,
+  "titulo": "Ir para a escola",
+  "icone": "🎒",
+  "cenario": "bg_quarto_manha",
+  "narracao_intro": "{nome}, a escola está esperando! Vamos arrumar a mochila?",
+  "audio_intro": "m05_intro",
+  "mostrar": {
+    "narracao": "Caderno, lápis, lanche e garrafinha. Tudo dentro da mochila!",
+    "audio": "m05_mostrar",
+    "icone": "🎒"
+  },
+  "etapas": [
+    {
+      "tipo": "arrastar_para_alvo",
+      "narracao": "Coloque tudo dentro da mochila.",
+      "audio": "m05_e1",
+      "alvo": {
+        "icone": "🎒",
+        "x": 360,
+        "y": 950
+      },
+      "itens": [
+        {
+          "icone": "📓",
+          "x": 150,
+          "y": 600
+        },
+        {
+          "icone": "✏️",
+          "x": 300,
+          "y": 560
+        },
+        {
+          "icone": "🍎",
+          "img": "m01_maca",
+          "x": 450,
+          "y": 560
+        },
+        {
+          "icone": "🧃",
+          "x": 600,
+          "y": 600
+        }
+      ]
+    },
+    {
+      "tipo": "sequencia_ordenada",
+      "narracao": "Agora na ordem: vestir o uniforme, calçar o tênis e pegar a mochila.",
+      "audio": "m05_e2",
+      "consequencia": "Ainda não é esse. Olhe de novo!",
+      "itens": [
+        {
+          "icone": "👕",
+          "x": 170,
+          "y": 780,
+          "texto": "Uniforme"
+        },
+        {
+          "icone": "👟",
+          "x": 360,
+          "y": 780,
+          "texto": "Tênis"
+        },
+        {
+          "icone": "🎒",
+          "x": 550,
+          "y": 780,
+          "texto": "Mochila"
+        }
+      ]
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "👋",
+      "img": "adulto",
+      "texto": "Dar tchau para o adulto"
+    },
+    "cena_errada": {
+      "icone": "🚪",
+      "img": "m04_porta",
+      "texto": "Sair sem avisar"
+    },
+    "explicacao": "Avisar quem cuida de você deixa todo mundo tranquilo.",
+    "audio": "m05_pnp"
+  },
+  "frase_reforco": "Mochila pronta, dia começou!",
+  "audio_reforco": "m05_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

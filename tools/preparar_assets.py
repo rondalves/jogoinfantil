@@ -61,6 +61,66 @@ FOLHAS = {
         256,
         None,
     ),
+    "m06_rua": (
+        ["m06_sinal_vermelho", "m06_sinal_verde", "m06_faixa", "m06_carro", "m06_bola", "m06_mao_dada"],
+        256,
+        None,
+    ),
+    "m07_sala_aula": (
+        ["m07_carteira", "m07_lousa", "m07_mao_levantada", "m07_balao", "m07_silencio", "m07_atividade"],
+        256,
+        None,
+    ),
+    "m08_esperar": (
+        [
+            "m08_ampulheta",
+            "m08_relogio",
+            "m08_respirar",
+            None,
+            "m08_cantar",
+            None,
+            None,
+            None,
+            None,
+            None,
+            "m08_fila_menino",
+            None,
+            "m08_fila_menina",
+            None,
+            "m08_olhar",
+            None,
+        ],
+        256,
+        None,
+    ),
+    "m09_palavras_magicas": (
+        ["m09_varinha", "m09_balao", "m09_pedir", "m09_obrigado", "m09_licenca", None, None],
+        256,
+        None,
+    ),
+    "m10_amigos": (
+        [
+            "m10_sozinho",
+            "m10_oferecer",
+            "m10_dividir",
+            "m10_caiu",
+            "m10_ajudar",
+            None,
+            None,
+            None,
+            None,
+            None,
+            "m10_coracao",
+        ],
+        256,
+        None,
+    ),
+    "m11_monstrinho_sentimentos": (
+        ["m11_feliz", "m11_triste", "m11_respirar", "m11_bravo", "m11_medo", "m11_abraco"],
+        256,
+        None,
+    ),
+    "personagens_dentista_colegas": (["dentista", "colega_menino", "colegas", "colega_menina"], 320, None),
     "m02_cama": (
         ["m02_cama_bagunca", "m02_cama_arrumada", "m02_lencol", "m02_cobertor", "m02_travesseiro"],
         320,
@@ -128,6 +188,7 @@ FOLHAS = {
 # aqui comeria a grama e a agua das ilustracoes.
 FOLHAS_OPACAS = {
     "mg1_pistas": (["pista_quintal", "pista_parque", "pista_praia"], 3, 1, 420),
+    "mg2_cenario_escalada": (["bg_escalada"], 1, 1, 1280),
 }
 
 # Cenarios: viram JPG do tamanho da tela (nao tem fundo verde).
@@ -203,9 +264,10 @@ def recortar(rgba, caixa, tam):
 
 
 def gravar(im, nome):
+    """PNG de paleta: arte chapada fica ~6x menor sem diferenca visivel."""
     os.makedirs(DESTINO, exist_ok=True)
     caminho = os.path.join(DESTINO, nome + ".png")
-    im.save(caminho, optimize=True)
+    im.convert("RGBA").quantize(colors=160, method=Image.FASTOCTREE).save(caminho, optimize=True)
     return caminho
 
 

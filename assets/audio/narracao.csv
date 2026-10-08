@@ -22,6 +22,9 @@ tut_1.mp3;Este é o mapa. Cada mundo é uma hora do seu dia.;Tutorial, passo 1
 tut_2.mp3;Toque numa missão para começar. A raposinha vai te ajudar!;Tutorial, passo 2
 tut_3.mp3;Fazendo com capricho você ganha estrelas.;Tutorial, passo 3
 tut_4.mp3;As moedas viram fichas, e com as fichas você joga!;Tutorial, passo 4
+mg2_como_jogar.mp3;Toque no próximo degrau para subir. Se tiver pedra, toque de novo para pular!;Escalada, começo
+mg2_pedra.mp3;Tem uma pedra no caminho. Toque de novo para pular!;Escalada, ao achar uma pedra
+mg2_fim.mp3;Você chegou lá em cima! Que escalada!;Escalada, fim
 letra_a.mp3;A;Teclado do nome
 letra_b.mp3;B;Teclado do nome
 letra_c.mp3;C;Teclado do nome
@@ -82,4 +85,65 @@ m04_erro2.mp3;Porta só adulto abre. Chame alguém!;Missao 04 - Casa segura: eta
 m04_pnp.mp3;O que pode?;Missao 04 - Casa segura: pode ou nao pode
 m04_pnp_explica.mp3;Achou perigo? Não mexe: chama um adulto na hora!;Missao 04 - Casa segura: explicacao do pode ou nao pode
 m04_reforco.mp3;Perigo? Chame um adulto!;Missao 04 - Casa segura: frase de reforco
+m05_intro.mp3;{nome}, a escola está esperando! Vamos arrumar a mochila?;Missao 05 - Ir para a escola: abertura
+m05_mostrar.mp3;Caderno, lápis, lanche e garrafinha. Tudo dentro da mochila!;Missao 05 - Ir para a escola: o personagem mostra
+m05_e1.mp3;Coloque tudo dentro da mochila.;Missao 05 - Ir para a escola: etapa 1 (arrastar_para_alvo)
+m05_e2.mp3;Agora na ordem: vestir o uniforme, calçar o tênis e pegar a mochila.;Missao 05 - Ir para a escola: etapa 2 (sequencia_ordenada)
+m05_erro2.mp3;Ainda não é esse. Olhe de novo!;Missao 05 - Ir para a escola: etapa 2, quando erra
+m05_pnp.mp3;O que pode?;Missao 05 - Ir para a escola: pode ou nao pode
+m05_pnp_explica.mp3;Avisar quem cuida de você deixa todo mundo tranquilo.;Missao 05 - Ir para a escola: explicacao do pode ou nao pode
+m05_reforco.mp3;Mochila pronta, dia começou!;Missao 05 - Ir para a escola: frase de reforco
+m06_intro.mp3;{nome}, a rua pede atenção. Vamos atravessar do jeito certo?;Missao 06 - Rua segura: abertura
+m06_mostrar.mp3;Mão dada, esperar o vermelho, verde caminha, e sempre na faixa!;Missao 06 - Rua segura: o personagem mostra
+m06_e1.mp3;Toque na ordem certa para atravessar.;Missao 06 - Rua segura: etapa 1 (sequencia_ordenada)
+m06_erro1.mp3;Calma! Esse vem depois. Tente outro.;Missao 06 - Rua segura: etapa 1, quando erra
+m06_e2.mp3;A bola foi parar na rua. O que fazer?;Missao 06 - Rua segura: etapa 2 (escolher_entre_opcoes)
+m06_erro2.mp3;Rua não é lugar de correr. Chame um adulto!;Missao 06 - Rua segura: etapa 2, quando erra
+m06_pnp.mp3;O que pode?;Missao 06 - Rua segura: pode ou nao pode
+m06_pnp_explica.mp3;A faixa é o caminho seguro. A bola a gente pede ajuda para pegar.;Missao 06 - Rua segura: explicacao do pode ou nao pode
+m06_reforco.mp3;Vermelho espera, verde caminha!;Missao 06 - Rua segura: frase de reforco
+m07_intro.mp3;Começou a aula, {nome}! Vamos ver como se faz?;Missao 07 - Ouvir a professora: abertura
+m07_mostrar.mp3;Sentar, ouvir, levantar a mão para falar e fazer a atividade.;Missao 07 - Ouvir a professora: o personagem mostra
+m07_e1.mp3;Toque na ordem: sentar, ouvir, levantar a mão e fazer a atividade.;Missao 07 - Ouvir a professora: etapa 1 (sequencia_ordenada)
+m07_erro1.mp3;Esse é o próximo? Olhe mais uma vez!;Missao 07 - Ouvir a professora: etapa 1, quando erra
+m07_e2.mp3;Você tem uma dúvida. Como pergunta?;Missao 07 - Ouvir a professora: etapa 2 (escolher_entre_opcoes)
+m07_erro2.mp3;Gritando ninguém escuta. Levante a mao!;Missao 07 - Ouvir a professora: etapa 2, quando erra
+m07_pnp.mp3;O que pode?;Missao 07 - Ouvir a professora: pode ou nao pode
+m07_pnp_explica.mp3;Com a mão levantada a professora vê você e todo mundo escuta.;Missao 07 - Ouvir a professora: explicacao do pode ou nao pode
+m07_reforco.mp3;Quem escuta, aprende!;Missao 07 - Ouvir a professora: frase de reforco
+m08_intro.mp3;Às vezes a gente precisa esperar, {nome}. E dá para esperar bem!;Missao 08 - Saber esperar: abertura
+m08_mostrar.mp3;Enquanto espera, dá para respirar, cantar baixinho ou olhar em volta.;Missao 08 - Saber esperar: o personagem mostra
+m08_e1.mp3;Toque nos três jeitos de esperar bem.;Missao 08 - Saber esperar: etapa 1 (tocar)
+m08_e2.mp3;A fila está andando. Segure a ampulheta e espere a areia cair.;Missao 08 - Saber esperar: etapa 2 (segurar_com_timer)
+m08_erro2.mp3;Ainda não acabou. Vamos esperar juntos!;Missao 08 - Saber esperar: etapa 2, quando erra
+m08_pnp.mp3;O que pode?;Missao 08 - Saber esperar: pode ou nao pode
+m08_pnp_explica.mp3;Esperar é difícil, mas passa. Quem espera bem chega na vez dele.;Missao 08 - Saber esperar: explicacao do pode ou nao pode
+m08_reforco.mp3;Esperar também é ser forte!;Missao 08 - Saber esperar: frase de reforco
+m09_intro.mp3;{nome}, tem palavras que fazem mágica de verdade. Quer ver?;Missao 09 - Palavras mágicas: abertura
+m09_mostrar.mp3;Por favor, muito obrigado, com licença e desculpa. São as palavras mágicas!;Missao 09 - Palavras mágicas: o personagem mostra
+m09_e1.mp3;Voce quer o brinquedo do colega. O que fala?;Missao 09 - Palavras mágicas: etapa 1 (escolher_entre_opcoes)
+m09_erro1.mp3;Com por favor fica muito mais fácil!;Missao 09 - Palavras mágicas: etapa 1, quando erra
+m09_e2.mp3;Ganhou um presente. O que fala?;Missao 09 - Palavras mágicas: etapa 2 (escolher_entre_opcoes)
+m09_erro2.mp3;Quem agradece deixa o outro feliz!;Missao 09 - Palavras mágicas: etapa 2, quando erra
+m09_pnp.mp3;O que pode?;Missao 09 - Palavras mágicas: pode ou nao pode
+m09_pnp_explica.mp3;Com licença abre caminho sem machucar ninguém.;Missao 09 - Palavras mágicas: explicacao do pode ou nao pode
+m09_reforco.mp3;Palavra mágica abre portas!;Missao 09 - Palavras mágicas: frase de reforco
+m10_intro.mp3;{nome}, ser amigo é fazer o outro se sentir bem. Vamos treinar?;Missao 10 - Amigos e gentileza: abertura
+m10_mostrar.mp3;Convidar quem está sozinho, dividir o brinquedo e ajudar quem caiu.;Missao 10 - Amigos e gentileza: o personagem mostra
+m10_e1.mp3;Toque nas três gentilezas.;Missao 10 - Amigos e gentileza: etapa 1 (tocar)
+m10_e2.mp3;Um colega está sozinho no banco. O que fazer?;Missao 10 - Amigos e gentileza: etapa 2 (escolher_entre_opcoes)
+m10_erro2.mp3;Ninguém gosta de ficar sozinho. Chame para brincar!;Missao 10 - Amigos e gentileza: etapa 2, quando erra
+m10_pnp.mp3;O que pode?;Missao 10 - Amigos e gentileza: pode ou nao pode
+m10_pnp_explica.mp3;Bater machuca. Conversar resolve.;Missao 10 - Amigos e gentileza: explicacao do pode ou nao pode
+m10_reforco.mp3;Amigo bom é amigo gentil!;Missao 10 - Amigos e gentileza: frase de reforco
+m11_intro.mp3;Olha o monstrinho, {nome}! Ele sente tudo que a gente sente.;Missao 11 - Monstro dos sentimentos: abertura
+m11_mostrar.mp3;Feliz, triste, bravo, com medo. Todo sentimento pode aparecer.;Missao 11 - Monstro dos sentimentos: o personagem mostra
+m11_e1.mp3;Toque no monstrinho que está bravo.;Missao 11 - Monstro dos sentimentos: etapa 1 (tocar)
+m11_erro1.mp3;Esse está com outro sentimento. Procure o bravo!;Missao 11 - Monstro dos sentimentos: etapa 1, quando erra
+m11_e2.mp3;Quando a raiva vem, a gente respira. Sopre três vezes bem devagar.;Missao 11 - Monstro dos sentimentos: etapa 2 (respirar)
+m11_e3.mp3;A raiva passou um pouco. E agora?;Missao 11 - Monstro dos sentimentos: etapa 3 (escolher_entre_opcoes)
+m11_erro3.mp3;Bater não faz a raiva passar. Falar faz!;Missao 11 - Monstro dos sentimentos: etapa 3, quando erra
+m11_pnp.mp3;O que pode?;Missao 11 - Monstro dos sentimentos: pode ou nao pode
+m11_pnp_explica.mp3;Sentir raiva pode. Bater não pode. Respire e fale o que sentiu.;Missao 11 - Monstro dos sentimentos: explicacao do pode ou nao pode
+m11_reforco.mp3;Todo sentimento é normal. Eu sei o que fazer com ele.;Missao 11 - Monstro dos sentimentos: frase de reforco
 musica_timer.mp3;(musica instrumental de 30 s em loop);Timer da escovacao e da lavagem das maos

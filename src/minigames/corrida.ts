@@ -202,6 +202,21 @@ export const corrida: MiniGame = {
   id: 'corrida',
   mundo: 1,
   nome: 'Corrida de Kart',
+  tituloFim: 'Que corrida!',
+  fraseFim: 'mg1_fim',
+  iconePonto: 'mg1_moeda',
+  arte: [
+    'mg1_kart',
+    'mg1_moeda',
+    'mg1_cone',
+    'mg1_poca',
+    'mg1_presente',
+    'mg1_chegada',
+    'mg1_rival',
+    'pista_quintal',
+    'pista_parque',
+    'pista_praia',
+  ],
   icone: '\u{1F3CE}\u{FE0F}',
   iniciar(cena, personagem, dificuldade) {
     return new Promise<ResultadoMiniGame>((resolve) => {

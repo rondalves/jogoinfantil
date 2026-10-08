@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { IMAGENS } from '../assets';
+import { IMAGENS_BASE } from '../assets';
 import { CONFIG } from '../config';
 import { listar } from '../storage';
 import { TEMA } from '../theme';
@@ -46,8 +46,8 @@ export class Boot extends Phaser.Scene {
       barra.fillRoundedRect(W / 2 - 214, 1036, Math.max(24, 428 * v), 24, 12);
     });
 
-    // carrega so o que existe de verdade em /assets/img (ver ASSETS.md)
-    for (const [chave, url] of Object.entries(IMAGENS)) this.load.image(chave, url);
+    // so o essencial: missao e mini game carregam a arte deles na hora
+    for (const [chave, url] of Object.entries(IMAGENS_BASE)) this.load.image(chave, url);
     this.load.on('loaderror', (f: Phaser.Loader.File) => console.warn('imagem nao carregou:', f.key));
   }
 

@@ -1,0 +1,96 @@
+{
+  "id": "06",
+  "mundo": 2,
+  "titulo": "Rua segura",
+  "icone": "🚦",
+  "cenario": "bg_escola_entrada",
+  "narracao_intro": "{nome}, a rua pede atenção. Vamos atravessar do jeito certo?",
+  "audio_intro": "m06_intro",
+  "mostrar": {
+    "narracao": "Mão dada, esperar o vermelho, verde caminha, e sempre na faixa!",
+    "audio": "m06_mostrar",
+    "icone": "🚦"
+  },
+  "etapas": [
+    {
+      "tipo": "sequencia_ordenada",
+      "narracao": "Toque na ordem certa para atravessar.",
+      "audio": "m06_e1",
+      "consequencia": "Calma! Esse vem depois. Tente outro.",
+      "itens": [
+        {
+          "icone": "🤝",
+          "img": "m06_mao_dada",
+          "x": 170,
+          "y": 620,
+          "texto": "Dar a mão"
+        },
+        {
+          "icone": "🔴",
+          "img": "m06_sinal_vermelho",
+          "x": 550,
+          "y": 620,
+          "texto": "Esperar"
+        },
+        {
+          "icone": "🟢",
+          "img": "m06_sinal_verde",
+          "x": 170,
+          "y": 900,
+          "texto": "Verde"
+        },
+        {
+          "icone": "🚸",
+          "img": "m06_faixa",
+          "x": 550,
+          "y": 900,
+          "texto": "Na faixa"
+        }
+      ]
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "A bola foi parar na rua. O que fazer?",
+      "audio": "m06_e2",
+      "itens": [
+        {
+          "icone": "🙋",
+          "img": "adulto",
+          "texto": "Chamar um adulto",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "⚽",
+          "img": "m06_bola",
+          "texto": "Correr atrás",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "consequencia": "Rua não é lugar de correr. Chame um adulto!"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🚸",
+      "img": "m06_faixa",
+      "texto": "Atravessar na faixa"
+    },
+    "cena_errada": {
+      "icone": "⚽",
+      "img": "m06_bola",
+      "texto": "Correr atrás da bola"
+    },
+    "explicacao": "A faixa é o caminho seguro. A bola a gente pede ajuda para pegar.",
+    "audio": "m06_pnp"
+  },
+  "frase_reforco": "Vermelho espera, verde caminha!",
+  "audio_reforco": "m06_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

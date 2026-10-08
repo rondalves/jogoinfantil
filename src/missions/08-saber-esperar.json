@@ -1,0 +1,78 @@
+{
+  "id": "08",
+  "mundo": 2,
+  "titulo": "Saber esperar",
+  "icone": "⏳",
+  "cenario": "bg_sala_aula",
+  "narracao_intro": "Às vezes a gente precisa esperar, {nome}. E dá para esperar bem!",
+  "audio_intro": "m08_intro",
+  "mostrar": {
+    "narracao": "Enquanto espera, dá para respirar, cantar baixinho ou olhar em volta.",
+    "audio": "m08_mostrar",
+    "icone": "⏳"
+  },
+  "etapas": [
+    {
+      "tipo": "tocar",
+      "narracao": "Toque nos três jeitos de esperar bem.",
+      "audio": "m08_e1",
+      "alvos": [
+        {
+          "icone": "🌬️",
+          "img": "m08_respirar",
+          "x": 170,
+          "y": 760,
+          "texto": "Respirar"
+        },
+        {
+          "icone": "🎵",
+          "img": "m08_cantar",
+          "x": 360,
+          "y": 760,
+          "texto": "Cantar baixinho"
+        },
+        {
+          "icone": "👀",
+          "img": "m08_olhar",
+          "x": 550,
+          "y": 760,
+          "texto": "Olhar em volta"
+        }
+      ]
+    },
+    {
+      "tipo": "segurar_com_timer",
+      "narracao": "A fila está andando. Segure a ampulheta e espere a areia cair.",
+      "audio": "m08_e2",
+      "segundos": 15,
+      "consequencia": "Ainda não acabou. Vamos esperar juntos!",
+      "alvo": {
+        "icone": "⏳",
+        "img": "m08_ampulheta",
+        "x": 360,
+        "y": 820
+      }
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🧍",
+      "img": "m08_fila_menina",
+      "texto": "Esperar a sua vez"
+    },
+    "cena_errada": {
+      "icone": "🗯️",
+      "img": "m07_balao",
+      "texto": "Reclamar gritando"
+    },
+    "explicacao": "Esperar é difícil, mas passa. Quem espera bem chega na vez dele.",
+    "audio": "m08_pnp"
+  },
+  "frase_reforco": "Esperar também é ser forte!",
+  "audio_reforco": "m08_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

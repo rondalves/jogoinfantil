@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { CONFIG } from '../config';
+import { Esfrega } from '../etapasLogica';
 import { narrador } from '../narrador';
 import { fale } from '../narracoes';
 import type { Etapa, Item } from '../types';
@@ -146,8 +147,7 @@ const esfregar: Handler = (c, e) => {
   const contador = painelContador.list[1] as Phaser.GameObjects.Text;
   c.camada.add(painelContador);
 
-  let distancia = 0;
-  let limpos = 0;
+  const esfrega = new Esfrega(total);
   const concluir = () => {
     timer.destruir();
     certo(c, alvo.x, alvo.y);
@@ -158,15 +158,13 @@ const esfregar: Handler = (c, e) => {
 
   c.cena.input.on('pointermove', (p: Phaser.Input.Pointer) => {
     if (!p.isDown) return;
-    distancia += Phaser.Math.Distance.Between(p.x, p.y, p.prevPosition.x, p.prevPosition.y);
-    if (distancia < 140 || limpos >= total) return;
-    distancia = 0;
-    const s = sujeiras[limpos];
-    limpos += 1;
-    nota(660 + limpos * 40);
+    const anterior = esfrega.limpos;
+    if (!esfrega.mover(p.x - p.prevPosition.x, p.y - p.prevPosition.y)) return;
+    const s = sujeiras[anterior];
+    nota(660 + esfrega.limpos * 40);
     c.cena.tweens.add({ targets: s, alpha: 0, scale: 0.2, duration: 260 });
-    contador.setText(limpos >= total ? 'Limpinho!' : `Esfregue! Faltam ${total - limpos}`);
-    if (limpos >= total) concluir();
+    contador.setText(esfrega.completo ? 'Limpinho!' : `Esfregue! Faltam ${esfrega.faltam}`);
+    if (esfrega.completo) concluir();
   });
 };
 
@@ -207,15 +205,18 @@ const sequencia: Handler = (c, e) => {
   const itens = e.itens ?? [];
   let proximo = 0;
   itens.forEach((it, i) => {
+    const base = c.cena.add.graphics();
+    base.fillStyle(0xffffff, 0.86);
+    base.fillRoundedRect(it.x - 82, it.y - 82, 164, 164, 26);
+    c.camada.add(base);
     const f = figura(c.cena, it.x, it.y, it.img, it.icone, 130);
     c.camada.add(f);
-    const num = c.cena.add.text(it.x, it.y + 95, '', { fontSize: '44px', color: '#2b8a3e' }).setOrigin(0.5);
+    const num = c.cena.add
+      .text(it.x + 66, it.y - 66, '', { fontSize: '44px', color: '#2b8a3e', fontStyle: 'bold' })
+      .setOrigin(0.5)
+      .setStroke('#ffffff', 8);
     c.camada.add(num);
-    if (it.texto) {
-      c.camada.add(
-        c.cena.add.text(it.x, it.y - 100, it.texto, { fontSize: '32px', color: '#2b3a4a' }).setOrigin(0.5),
-      );
-    }
+    if (it.texto) c.camada.add(textoEmPainel(c.cena, it.x, it.y + 124, it.texto, 26, 190));
     toque(f, () => {
       if (i !== proximo) {
         tremer(c.cena, f);

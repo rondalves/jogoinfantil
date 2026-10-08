@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { carregar } from '../assets';
 import { CONFIG } from '../config';
 import { bonusMundo, concluirMissao, gastarFicha, podeJogar } from '../economia';
 import { miniGameDoMundo } from '../minigames';
@@ -52,16 +53,38 @@ export class Missao extends Phaser.Scene {
     this.indice = 0;
   }
 
+  /** Toda arte que esta missao usa, para carregar antes de comecar. */
+  private arte(): (string | undefined)[] {
+    const d = this.def;
+    const das = (itens?: { img?: string }[]) => (itens ?? []).map((i) => i.img);
+    return [
+      d.cenario,
+      d.pode_ou_nao_pode.cena_certa.img,
+      d.pode_ou_nao_pode.cena_errada.img,
+      ...d.etapas.flatMap((e) => [
+        e.cenario,
+        e.alvo?.img,
+        ...das(e.alvos),
+        ...das(e.itens),
+        ...(e.sujeiras ?? []),
+      ]),
+    ];
+  }
+
   create() {
     this.perfil = ativo()!;
     narrador.setNome(this.perfil.nome);
     fundo(this, 0xfff2e0);
-    this.cenario();
     this.barra = hud(this, this.perfil, 96, W / 2, 0.5);
     botaoOuvir(this);
     botaoVoltar(this, 'Mapa');
     this.camada = this.add.container(0, 0);
-    this.intro();
+    const espera = textoEmPainel(this, W / 2, 600, 'Preparando...', 40);
+    carregar(this, this.arte(), () => {
+      espera.destroy();
+      this.cenario();
+      this.intro();
+    });
   }
 
   /** Troca o cenario de fundo: o da etapa, ou o da missao. */

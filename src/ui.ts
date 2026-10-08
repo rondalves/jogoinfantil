@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { AUDIOS } from './assets';
 import { CONFIG } from './config';
 import { estrelasTotais } from './economia';
+import { Cronometro } from './etapasLogica';
 import { narrador } from './narrador';
 import type { Perfil } from './storage';
 import { TEMA } from './theme';
@@ -289,8 +290,7 @@ export class TimerMusical {
   private rotulo: Phaser.GameObjects.Text;
   private evento: Phaser.Time.TimerEvent;
   private musica?: HTMLAudioElement;
-  private passados = 0;
-  private pausado = false;
+  private relogio: Cronometro;
   private ultimaNota = -1;
 
   constructor(
@@ -301,6 +301,7 @@ export class TimerMusical {
     private onFim: () => void,
     private raio = 92,
   ) {
+    this.relogio = new Cronometro(segundos);
     this.g = cena.add.graphics();
     this.rotulo = cena.add
       .text(x, y, '', { fontSize: '44px', color: '#ffffff', fontStyle: 'bold' })
@@ -318,29 +319,29 @@ export class TimerMusical {
   }
 
   get progresso() {
-    return Math.min(1, this.passados / this.segundos);
+    return this.relogio.progresso;
   }
 
   pausar() {
-    this.pausado = true;
+    this.relogio.pausar();
     this.musica?.pause();
   }
 
   retomar() {
-    this.pausado = false;
+    this.relogio.retomar();
     this.musica?.play().catch(() => undefined);
   }
 
   private tique() {
-    if (this.pausado) return;
-    this.passados += 0.1;
-    const s = Math.floor(this.passados);
+    if (!this.relogio.ativo) return;
+    const fechou = this.relogio.avancar(0.1);
+    const s = Math.floor(this.relogio.progresso * this.segundos);
     if (s % 5 === 0 && s !== this.ultimaNota) {
       this.ultimaNota = s;
       nota(ESCALA[(s / 5) % ESCALA.length]);
     }
     this.desenhar();
-    if (this.passados >= this.segundos) {
+    if (fechou) {
       nota(1047);
       this.destruir();
       this.onFim();
@@ -348,7 +349,7 @@ export class TimerMusical {
   }
 
   private desenhar() {
-    const falta = Math.max(0, Math.ceil(this.segundos - this.passados));
+    const falta = this.relogio.faltam;
     this.rotulo.setText(`${Math.floor(falta / 60)}:${String(falta % 60).padStart(2, '0')}`);
     this.g.clear();
     this.g.fillStyle(0x12263a, 0.42); // disco escuro: o anel some em cenario claro

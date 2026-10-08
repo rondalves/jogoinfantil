@@ -1,0 +1,87 @@
+{
+  "id": "10",
+  "mundo": 2,
+  "titulo": "Amigos e gentileza",
+  "icone": "💗",
+  "cenario": "bg_escola_entrada",
+  "narracao_intro": "{nome}, ser amigo é fazer o outro se sentir bem. Vamos treinar?",
+  "audio_intro": "m10_intro",
+  "mostrar": {
+    "narracao": "Convidar quem está sozinho, dividir o brinquedo e ajudar quem caiu.",
+    "audio": "m10_mostrar",
+    "icone": "💗"
+  },
+  "etapas": [
+    {
+      "tipo": "tocar",
+      "narracao": "Toque nas três gentilezas.",
+      "audio": "m10_e1",
+      "alvos": [
+        {
+          "icone": "🤗",
+          "img": "m10_oferecer",
+          "x": 170,
+          "y": 760,
+          "texto": "Convidar para brincar"
+        },
+        {
+          "icone": "🧸",
+          "img": "m10_dividir",
+          "x": 360,
+          "y": 760,
+          "texto": "Dividir"
+        },
+        {
+          "icone": "🤝",
+          "img": "m10_ajudar",
+          "x": 550,
+          "y": 760,
+          "texto": "Ajudar quem caiu"
+        }
+      ]
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "Um colega está sozinho no banco. O que fazer?",
+      "audio": "m10_e2",
+      "itens": [
+        {
+          "icone": "🤗",
+          "img": "m10_oferecer",
+          "texto": "Chamar para brincar",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "😔",
+          "img": "m10_sozinho",
+          "texto": "Deixar sozinho",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "consequencia": "Ninguém gosta de ficar sozinho. Chame para brincar!"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🤝",
+      "img": "m10_ajudar",
+      "texto": "Conversar e ajudar"
+    },
+    "cena_errada": {
+      "icone": "✊",
+      "texto": "Bater no colega"
+    },
+    "explicacao": "Bater machuca. Conversar resolve.",
+    "audio": "m10_pnp"
+  },
+  "frase_reforco": "Amigo bom é amigo gentil!",
+  "audio_reforco": "m10_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

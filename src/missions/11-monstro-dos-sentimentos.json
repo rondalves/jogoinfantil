@@ -1,0 +1,103 @@
+{
+  "id": "11",
+  "mundo": 2,
+  "titulo": "Monstro dos sentimentos",
+  "icone": "😤",
+  "cenario": "bg_sala_aula",
+  "narracao_intro": "Olha o monstrinho, {nome}! Ele sente tudo que a gente sente.",
+  "audio_intro": "m11_intro",
+  "mostrar": {
+    "narracao": "Feliz, triste, bravo, com medo. Todo sentimento pode aparecer.",
+    "audio": "m11_mostrar",
+    "icone": "😤"
+  },
+  "etapas": [
+    {
+      "tipo": "tocar",
+      "narracao": "Toque no monstrinho que está bravo.",
+      "audio": "m11_e1",
+      "consequencia": "Esse está com outro sentimento. Procure o bravo!",
+      "alvos": [
+        {
+          "icone": "😀",
+          "img": "m11_feliz",
+          "x": 170,
+          "y": 620,
+          "texto": "Feliz",
+          "correto": false
+        },
+        {
+          "icone": "😢",
+          "img": "m11_triste",
+          "x": 550,
+          "y": 620,
+          "texto": "Triste",
+          "correto": false
+        },
+        {
+          "icone": "😠",
+          "img": "m11_bravo",
+          "x": 170,
+          "y": 900,
+          "texto": "Bravo"
+        },
+        {
+          "icone": "😨",
+          "img": "m11_medo",
+          "x": 550,
+          "y": 900,
+          "texto": "Com medo",
+          "correto": false
+        }
+      ]
+    },
+    {
+      "tipo": "respirar",
+      "narracao": "Quando a raiva vem, a gente respira. Sopre três vezes bem devagar.",
+      "audio": "m11_e2",
+      "repeticoes": 3
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "A raiva passou um pouco. E agora?",
+      "audio": "m11_e3",
+      "itens": [
+        {
+          "icone": "🤗",
+          "img": "m11_abraco",
+          "texto": "Falar o que sentiu",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "✊",
+          "texto": "Bater em alguém",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "consequencia": "Bater não faz a raiva passar. Falar faz!"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🤗",
+      "img": "m11_abraco",
+      "texto": "Pedir um abraço"
+    },
+    "cena_errada": {
+      "icone": "✊",
+      "texto": "Bater quando fica bravo"
+    },
+    "explicacao": "Sentir raiva pode. Bater não pode. Respire e fale o que sentiu.",
+    "audio": "m11_pnp"
+  },
+  "frase_reforco": "Todo sentimento é normal. Eu sei o que fazer com ele.",
+  "audio_reforco": "m11_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

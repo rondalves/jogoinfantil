@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { carregar } from '../assets';
 import { CONFIG } from '../config';
 import { gastarFicha, podeJogar } from '../economia';
 import { MINIGAMES, type MiniGame as Jogo, type ResultadoMiniGame } from '../minigames';
@@ -28,7 +29,11 @@ export class MiniGame extends Phaser.Scene {
     fundo(this, 0x9ad7f5);
     botaoVoltar(this, 'Mapa');
     botaoOuvir(this);
-    this.jogo.iniciar(this, this.perfil.personagem, 1).then((r) => this.resultado(r));
+    const espera = titulo(this, 'Preparando...', 600);
+    carregar(this, this.jogo.arte, () => {
+      espera.destroy();
+      this.jogo.iniciar(this, this.perfil.personagem, 1).then((r) => this.resultado(r));
+    });
   }
 
   private resultado(r: ResultadoMiniGame) {
@@ -36,13 +41,13 @@ export class MiniGame extends Phaser.Scene {
     this.children.removeAll(true);
     this.tweens.killAll();
     fundo(this, 0x9ad7f5);
-    titulo(this, 'Que corrida!', 300);
-    const frase = fale('mg1_fim');
+    titulo(this, this.jogo.tituloFim, 300);
+    const frase = fale(this.jogo.fraseFim);
     this.add
       .text(W / 2, 470, `${r.pontos}`, { fontSize: '150px', color: '#2b3a4a', fontStyle: 'bold' })
       .setOrigin(0.5)
       .setStroke('#ffffff', 12);
-    figura(this, W / 2 - 150, 470, 'mg1_moeda', '\u{1FA99}', 120);
+    figura(this, W / 2 - 150, 470, this.jogo.iconePonto, '\u{1FA99}', 120);
     balao(this, frase, 740);
 
     const motivo = podeJogar(this.perfil);
