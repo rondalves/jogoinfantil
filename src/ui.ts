@@ -107,7 +107,7 @@ export function titulo(cena: Phaser.Scene, texto: string, y = 180) {
       fontSize: `${TEMA.titulo}px`,
       fontStyle: 'bold',
       align: 'center',
-      wordWrap: { width: W - 110 },
+      wordWrap: { width: W - 150 },
     })
     .setStroke('#ffffff', 10)
     .setOrigin(0.5);

@@ -38,11 +38,7 @@ const tocar: Handler = (c, e) => {
     c.camada.add(base);
     const f = figura(c.cena, a.x, a.y, a.img, a.icone, 140);
     c.camada.add(f);
-    if (a.texto) {
-      c.camada.add(
-        c.cena.add.text(a.x, a.y + 100, a.texto, { fontSize: '34px', color: '#2b3a4a' }).setOrigin(0.5),
-      );
-    }
+    if (a.texto) c.camada.add(textoEmPainel(c.cena, a.x, a.y + 124, a.texto, 26, 190));
     toque(f, () => {
       if (a.correto === false) {
         tremer(c.cena, f);
