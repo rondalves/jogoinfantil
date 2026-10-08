@@ -1,0 +1,26 @@
+export const CONFIG = {
+  FICHAS_POR_PARTIDA: 1,
+  FICHAS_POR_MOEDA: 3,
+  MOEDAS_POR_MISSAO: 1,
+  MOEDAS_BONUS_MUNDO: 5,
+  PARTIDAS_POR_DIA: 5,
+
+  LARGURA: 720,
+  ALTURA: 1280,
+  MIN_TOQUE: 96,
+};
+
+export interface Mundo {
+  id: number;
+  nome: string;
+  icone: string;
+  cor: number;
+}
+
+export const MUNDOS: Mundo[] = [
+  { id: 1, nome: 'Manhã em Casa', icone: '🌅', cor: 0xffd9a0 },
+  { id: 2, nome: 'Escola', icone: '🎒', cor: 0xbfe3ff },
+  { id: 3, nome: 'Volta para Casa', icone: '🚗', cor: 0xd6f5c8 },
+  { id: 4, nome: 'Tarde', icone: '🧸', cor: 0xffd6e7 },
+  { id: 5, nome: 'Noite', icone: '🌙', cor: 0xd3cdf5 },
+];
