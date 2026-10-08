@@ -121,3 +121,34 @@ Campos comuns a todas: `narracao`, `audio` (nome do arquivo em `/assets/audio`, 
 
 Nenhum dado sai do aparelho: sem rede, sem analytics, sem SDK de anúncios, sem login.
 O painel dos pais permite apagar todo o progresso de um perfil.
+
+## De onde vêm as imagens
+
+As artes cruas (com fundo verde chroma key) ficam **fora do repositório**, em
+`C:\Users\rondj\Downloads\Imagens para jogo infantil` — caminho configurado em
+`ORIGEM`, no topo de [tools/preparar_assets.py](tools/preparar_assets.py).
+Guarde essa pasta num backup: o repositório tem só as imagens já preparadas.
+
+```bash
+npm run assets
+```
+
+(precisa de Python com `pip install pillow numpy scipy`)
+
+O script faz tudo de uma vez:
+
+- tira o fundo verde e corrige a franja esverdeada das bordas;
+- corta as folhas (vários objetos numa imagem só) em arquivos separados, pelo
+  recorte automático ou por grade quando as peças se encostam;
+- gera os 6 tons de pele e as 6 cores de cabelo a partir de uma arte base,
+  trocando só os pixels de pele e de cabelo (roupa e tênis não mudam);
+- redimensiona os cenários para 720x1280 em JPG.
+
+Para conferir a ordem das peças de uma folha nova antes de dar nome a elas:
+
+```bash
+python tools/preparar_assets.py --fatias nome_da_folha
+```
+
+O contato numerado sai em `tools/_fatias/` (pasta ignorada pelo git). Depois é
+só acrescentar a folha e os nomes na tabela `FOLHAS` do script.

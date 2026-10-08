@@ -1,0 +1,71 @@
+import Phaser from 'phaser';
+import { CONFIG } from '../config';
+import { gastarFicha, podeJogar } from '../economia';
+import { MINIGAMES, type MiniGame as Jogo, type ResultadoMiniGame } from '../minigames';
+import { narrador } from '../narrador';
+import { ativo, salvar, type Perfil } from '../storage';
+import { balao, botao, botaoOuvir, botaoVoltar, figura, fundo, titulo } from '../ui';
+
+const W = CONFIG.LARGURA;
+
+/** Casa qualquer mini game: roda o modulo e mostra o resultado. Nunca ha derrota. */
+export class MiniGame extends Phaser.Scene {
+  private jogo!: Jogo;
+  private perfil!: Perfil;
+
+  constructor() {
+    super('MiniGame');
+  }
+
+  init(dados: { id?: string }) {
+    this.jogo = MINIGAMES.find((g) => g.id === dados?.id) ?? MINIGAMES[0];
+  }
+
+  create() {
+    this.perfil = ativo()!;
+    narrador.setNome(this.perfil.nome);
+    fundo(this, 0x9ad7f5);
+    botaoVoltar(this, 'Mapa');
+    botaoOuvir(this);
+    this.jogo.iniciar(this, this.perfil.personagem, 1).then((r) => this.resultado(r));
+  }
+
+  private resultado(r: ResultadoMiniGame) {
+    this.input.removeAllListeners();
+    this.children.removeAll(true);
+    this.tweens.killAll();
+    fundo(this, 0x9ad7f5);
+    titulo(this, 'Que corrida!', 300);
+    const frase = narrador.falar(`Boa, {nome}! Você juntou ${r.pontos} moedinhas na pista!`);
+    this.add
+      .text(W / 2, 470, `${r.pontos}`, { fontSize: '150px', color: '#2b3a4a', fontStyle: 'bold' })
+      .setOrigin(0.5)
+      .setStroke('#ffffff', 12);
+    figura(this, W / 2 - 150, 470, 'mg1_moeda', '\u{1FA99}', 120);
+    balao(this, frase, 740);
+
+    const motivo = podeJogar(this.perfil);
+    botao(
+      this,
+      W / 2,
+      1030,
+      motivo === 'ok' ? 'Jogar de novo' : 'Voltar ao mapa',
+      () => {
+        if (motivo !== 'ok') {
+          this.scene.start('Mapa');
+          return;
+        }
+        gastarFicha(this.perfil);
+        salvar(this.perfil);
+        this.scene.restart({ id: this.jogo.id });
+      },
+      { icone: motivo === 'ok' ? '\u{1F3AE}' : '\u{1F5FA}\u{FE0F}', cor: 0x7ddc8a, largura: 460 },
+    );
+    if (motivo === 'ok') {
+      botao(this, W / 2, 1170, 'Voltar ao mapa', () => this.scene.start('Mapa'), {
+        icone: '\u{1F5FA}\u{FE0F}',
+        largura: 460,
+      });
+    }
+  }
+}

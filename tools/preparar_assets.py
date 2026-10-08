@@ -45,6 +45,22 @@ FOLHAS = {
     "ui_ficha": (["ficha"], 256, None),
     "ui_medalha_final": (["medalha_final"], 512, None),
     "mg3_itens_corredor": (["moeda"], 256, None),
+    "mg1_kart": (
+        [
+            "mg1_kart",
+            "mg1_moeda",
+            "mg1_cone",
+            "mg1_rival",
+            "mg1_presente",
+            None,
+            "mg1_poca",
+            None,
+            None,
+            "mg1_chegada",
+        ],
+        256,
+        None,
+    ),
     "m01_cuidado_manha": (
         [
             "m01_escova",
@@ -64,6 +80,12 @@ FOLHAS = {
         256,
         None,
     ),
+}
+
+# Folhas SEM fundo verde: so cortadas em grade e salvas como JPG. Tirar o verde
+# aqui comeria a grama e a agua das ilustracoes.
+FOLHAS_OPACAS = {
+    "mg1_pistas": (["pista_quintal", "pista_parque", "pista_praia"], 3, 1, 420),
 }
 
 # Cenarios: viram JPG do tamanho da tela (nao tem fundo verde).
@@ -214,7 +236,10 @@ def grade(rgba, cols, linhas):
 
 
 def fazer_folhas(so=None):
-    for nome, (rotulos, tam, modo) in FOLHAS.items():
+    alvos = FOLHAS
+    if so and so not in FOLHAS:
+        alvos = {so: ([], 512, None)}  # folha nova: so para ver os recortes
+    for nome, (rotulos, tam, modo) in alvos.items():
         if so and nome != so:
             continue
         rgba = tirar_verde(abrir(nome))
@@ -230,6 +255,21 @@ def fazer_folhas(so=None):
             if rotulo:
                 gravar(corte, rotulo)
         print(f"{nome}: {min(len(cortes), len(rotulos))} pecas")
+
+
+def fazer_opacas():
+    for nome, (rotulos, cols, linhas, tam) in FOLHAS_OPACAS.items():
+        im = abrir(nome)
+        lx, ly = im.width / cols, im.height / linhas
+        for i, rotulo in enumerate(rotulos):
+            if not rotulo:
+                continue
+            c, l = i % cols, i // cols
+            corte = im.crop((round(c * lx), round(l * ly), round((c + 1) * lx), round((l + 1) * ly)))
+            corte.thumbnail((tam, tam * 3), Image.LANCZOS)
+            os.makedirs(DESTINO, exist_ok=True)
+            corte.save(os.path.join(DESTINO, rotulo + ".jpg"), quality=82, optimize=True)
+        print(f"{nome}: {len([r for r in rotulos if r])} pecas")
 
 
 def fazer_personagem():
@@ -269,6 +309,7 @@ def main():
         fazer_folhas(so=args.fatias)
         return
     fazer_folhas()
+    fazer_opacas()
     fazer_personagem()
     fazer_cenarios()
     print("pronto ->", DESTINO)

@@ -1,11 +1,11 @@
 import Phaser from 'phaser';
 import { CONFIG, MUNDOS } from '../config';
-import { partidasHoje, podeJogar } from '../economia';
-import { liberados } from '../minigames';
+import { gastarFicha, partidasHoje, podeJogar } from '../economia';
+import { liberados, type MiniGame } from '../minigames';
 import { missoesBonus, missoesDoMundo, mundoCompleto } from '../missions';
 import { narrador } from '../narrador';
 import { desenharPersonagem } from '../personagem';
-import { ativo, type Perfil } from '../storage';
+import { ativo, salvar, type Perfil } from '../storage';
 import { balao, botao, botaoOuvir, figura, fundo, hud, toque } from '../ui';
 import type { Missao as MissaoDef } from '../types';
 
@@ -185,7 +185,7 @@ export class Mapa extends Phaser.Scene {
       W / 2 - 170,
       1200,
       'Jogar',
-      () => this.abrirJogos(jogos.length),
+      () => this.abrirJogos(jogos),
       { icone: '\u{1F3AE}', largura: 320, cor: 0x7ddc8a },
     ).setDepth(41);
     botao(this, W / 2 + 170, 1200, 'Missões', () => this.lista.setY(TOPO), {
@@ -194,9 +194,9 @@ export class Mapa extends Phaser.Scene {
     }).setDepth(41);
   }
 
-  private abrirJogos(quantos: number) {
+  private abrirJogos(jogos: MiniGame[]) {
     const motivo = podeJogar(this.p);
-    if (quantos === 0) {
+    if (jogos.length === 0) {
       narrador.falar('Termine um mundo inteiro para abrir um jogo novo!');
       this.aviso('Termine um mundo para abrir um jogo!');
       return;
@@ -211,8 +211,9 @@ export class Mapa extends Phaser.Scene {
       this.aviso('Sem fichas. Faça uma missão para ganhar mais!');
       return;
     }
-    // ponytail: a cena MiniGame entra na ETAPA 2, com o primeiro mini game.
-    this.scene.start('MiniGame');
+    gastarFicha(this.p);
+    salvar(this.p);
+    this.scene.start('MiniGame', { id: jogos[0].id });
   }
 
   private aviso(texto: string) {

@@ -292,7 +292,6 @@ export class Missao extends Phaser.Scene {
           }
           gastarFicha(this.perfil);
           salvar(this.perfil);
-          // ponytail: a cena MiniGame entra na ETAPA 2, junto do primeiro mini game.
           this.scene.start('MiniGame', { id: jogo!.id });
         },
         { icone: '\u{1F3AE}', cor: 0x7ddc8a, largura: 420 },
