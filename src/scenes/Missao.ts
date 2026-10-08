@@ -40,6 +40,7 @@ export class Missao extends Phaser.Scene {
   private indice = 0;
   private camada!: Phaser.GameObjects.Container;
   private bg?: Phaser.GameObjects.Image;
+  private barra!: Phaser.GameObjects.Container;
 
   constructor() {
     super('Missao');
@@ -56,7 +57,7 @@ export class Missao extends Phaser.Scene {
     narrador.setNome(this.perfil.nome);
     fundo(this, 0xfff2e0);
     this.cenario();
-    hud(this, this.perfil, 96, W / 2, 0.5);
+    this.barra = hud(this, this.perfil, 96, W / 2, 0.5);
     botaoOuvir(this);
     botaoVoltar(this, 'Mapa');
     this.camada = this.add.container(0, 0);
@@ -205,6 +206,8 @@ export class Missao extends Phaser.Scene {
     const ids = missoesDoMundo(this.def.mundo).map((m) => m.id);
     const bonus = bonusMundo(this.perfil, this.def.mundo, ids);
     salvar(this.perfil);
+    this.barra.destroy();
+    this.barra = hud(this, this.perfil, 96, W / 2, 0.5);
 
     this.camada.add(titulo(this, 'Missão cumprida!', 280));
     this.camada.add(estrelasNaTela(this, estrelas, this.def.estrelas_max, 430));

@@ -57,4 +57,29 @@ m01_e3.mp3;Monte o café: leve a fruta e o pão para o prato.;Missao 01 - Acorda
 m01_pnp.mp3;O que pode?;Missao 01 - Acordar e se cuidar: pode ou nao pode
 m01_pnp_explica.mp3;A comida é para comer. E a escova deixa o dente forte!;Missao 01 - Acordar e se cuidar: explicacao do pode ou nao pode
 m01_reforco.mp3;Dentes limpos, sorriso brilhando!;Missao 01 - Acordar e se cuidar: frase de reforco
+m02_intro.mp3;{nome}, vamos deixar a sua cama bonita?;Missao 02 - Arrumar a cama: abertura
+m02_mostrar.mp3;Primeiro o lençol, depois o cobertor, por último o travesseiro!;Missao 02 - Arrumar a cama: o personagem mostra
+m02_e1.mp3;Leve o lençol, o cobertor e o travesseiro para a cama.;Missao 02 - Arrumar a cama: etapa 1 (arrastar_para_alvo)
+m02_e2.mp3;Agora dê tapinhas no travesseiro para ele ficar fofinho!;Missao 02 - Arrumar a cama: etapa 2 (segurar_com_timer)
+m02_erro2.mp3;Segure mais um pouquinho, {nome}!;Missao 02 - Arrumar a cama: etapa 2, quando erra
+m02_pnp.mp3;O que pode?;Missao 02 - Arrumar a cama: pode ou nao pode
+m02_pnp_explica.mp3;Pedir ajuda é de gente esperta! Juntos fica mais fácil.;Missao 02 - Arrumar a cama: explicacao do pode ou nao pode
+m02_reforco.mp3;Cama arrumada, dia começou bem!;Missao 02 - Arrumar a cama: frase de reforco
+m03_intro.mp3;Olha só, {nome}: germes nas suas mãos! Vamos espantar todos?;Missao 03 - Guerra aos germes: abertura
+m03_mostrar.mp3;Água, sabão e muita esfregada. Os germes não gostam disso!;Missao 03 - Guerra aos germes: o personagem mostra
+m03_e1.mp3;Esfregue as mãos até os germes sumirem!;Missao 03 - Guerra aos germes: etapa 1 (esfregar)
+m03_e2.mp3;Toque nas horas de lavar a mão: antes de comer, depois do banheiro e depois de brincar com o pet.;Missao 03 - Guerra aos germes: etapa 2 (tocar)
+m03_erro2.mp3;Essa não é hora de lavar a mão. Tente outra!;Missao 03 - Guerra aos germes: etapa 2, quando erra
+m03_pnp.mp3;O que pode?;Missao 03 - Guerra aos germes: pode ou nao pode
+m03_pnp_explica.mp3;A água e o sabão levam os germes embora pelo ralo!;Missao 03 - Guerra aos germes: explicacao do pode ou nao pode
+m03_reforco.mp3;Mãos limpas, corpo saudável!;Missao 03 - Guerra aos germes: frase de reforco
+m04_intro.mp3;{nome}, tem coisas na casa que só adulto pode mexer. Vamos achar?;Missao 04 - Casa segura: abertura
+m04_mostrar.mp3;Toque só no que é perigoso. O resto pode deixar!;Missao 04 - Casa segura: o personagem mostra
+m04_e1.mp3;Toque em tudo que é perigoso para criança.;Missao 04 - Casa segura: etapa 1 (tocar)
+m04_erro1.mp3;Esse aí não é perigoso. Procure outro!;Missao 04 - Casa segura: etapa 1, quando erra
+m04_e2.mp3;A campainha tocou e você não conhece quem está na porta. O que fazer?;Missao 04 - Casa segura: etapa 2 (escolher_entre_opcoes)
+m04_erro2.mp3;Porta só adulto abre. Chame alguém!;Missao 04 - Casa segura: etapa 2, quando erra
+m04_pnp.mp3;O que pode?;Missao 04 - Casa segura: pode ou nao pode
+m04_pnp_explica.mp3;Achou perigo? Não mexe: chama um adulto na hora!;Missao 04 - Casa segura: explicacao do pode ou nao pode
+m04_reforco.mp3;Perigo? Chame um adulto!;Missao 04 - Casa segura: frase de reforco
 musica_timer.mp3;(musica instrumental de 30 s em loop);Timer da escovacao e da lavagem das maos

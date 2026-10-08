@@ -27,17 +27,17 @@ export function figura(
   return cena.add.text(x, y, icone, { fontSize: `${tam}px` }).setOrigin(0.5);
 }
 
-/** Toque com area minima garantida (dedo de crianca). */
+/**
+ * Toque com area minima garantida (dedo de crianca).
+ * A area vai em coordenadas LOCAIS da textura: uma arte de 256 px desenhada a
+ * 96 px precisa de um retangulo de 256, senao so o cantinho fica clicavel.
+ */
 export function toque(o: Fig, fn: (p: Phaser.Input.Pointer) => void) {
-  const b = o.getBounds();
-  const l = Math.max(b.width, CONFIG.MIN_TOQUE);
-  const a = Math.max(b.height, CONFIG.MIN_TOQUE);
-  const hit = new Phaser.Geom.Rectangle(
-    b.width / 2 - l / 2,
-    b.height / 2 - a / 2,
-    l,
-    a,
-  );
+  const ex = o.scaleX || 1;
+  const ey = o.scaleY || 1;
+  const l = Math.max(o.width, CONFIG.MIN_TOQUE / ex);
+  const a = Math.max(o.height, CONFIG.MIN_TOQUE / ey);
+  const hit = new Phaser.Geom.Rectangle((o.width - l) / 2, (o.height - a) / 2, l, a);
   o.setInteractive(hit, Phaser.Geom.Rectangle.Contains);
   o.on('pointerdown', fn);
   return o;

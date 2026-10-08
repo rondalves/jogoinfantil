@@ -1,0 +1,81 @@
+{
+  "id": "02",
+  "mundo": 1,
+  "titulo": "Arrumar a cama",
+  "icone": "🛏️",
+  "cenario": "bg_quarto_manha",
+  "narracao_intro": "{nome}, vamos deixar a sua cama bonita?",
+  "audio_intro": "m02_intro",
+  "mostrar": {
+    "narracao": "Primeiro o lençol, depois o cobertor, por último o travesseiro!",
+    "audio": "m02_mostrar",
+    "icone": "🛏️"
+  },
+  "etapas": [
+    {
+      "tipo": "arrastar_para_alvo",
+      "narracao": "Leve o lençol, o cobertor e o travesseiro para a cama.",
+      "audio": "m02_e1",
+      "alvo": {
+        "icone": "🛏️",
+        "img": "m02_cama_bagunca",
+        "x": 360,
+        "y": 930
+      },
+      "itens": [
+        {
+          "icone": "🧻",
+          "img": "m02_lencol",
+          "x": 150,
+          "y": 600
+        },
+        {
+          "icone": "🛌",
+          "img": "m02_cobertor",
+          "x": 360,
+          "y": 560
+        },
+        {
+          "icone": "🪶",
+          "img": "m02_travesseiro",
+          "x": 570,
+          "y": 600
+        }
+      ]
+    },
+    {
+      "tipo": "segurar_com_timer",
+      "narracao": "Agora dê tapinhas no travesseiro para ele ficar fofinho!",
+      "audio": "m02_e2",
+      "segundos": 6,
+      "consequencia": "Segure mais um pouquinho, {nome}!",
+      "alvo": {
+        "icone": "🪶",
+        "img": "m02_travesseiro",
+        "x": 360,
+        "y": 820
+      }
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🙋",
+      "img": "adulto",
+      "texto": "Pedir ajuda"
+    },
+    "cena_errada": {
+      "icone": "🌀",
+      "img": "m02_cama_bagunca",
+      "texto": "Deixar bagunçada"
+    },
+    "explicacao": "Pedir ajuda é de gente esperta! Juntos fica mais fácil.",
+    "audio": "m02_pnp"
+  },
+  "frase_reforco": "Cama arrumada, dia começou bem!",
+  "audio_reforco": "m02_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

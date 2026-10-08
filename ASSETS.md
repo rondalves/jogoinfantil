@@ -23,6 +23,10 @@ falta é narrado pela voz do navegador em pt-BR. Dá para ir completando aos pou
 | Fichas e prêmios | `moeda`, `ficha`, `estrela`, `estrela_vazia`, `medalha_final` | `mg3_itens_corredor`, `ui_ficha`, `ui_estrela_cheia_e_vazia`, `ui_medalha_final` |
 | Missão 01 | `m01_escova`, `m01_pasta`, `m01_copo`, `m01_toalha`, `m01_sabonete`, `m01_rosto`, `m01_maca`, `m01_banana`, `m01_laranja`, `m01_pao`, `m01_leite` | `m01_cuidado_manha` |
 | Corrida | `mg1_kart`, `mg1_rival`, `mg1_moeda`, `mg1_cone`, `mg1_poca`, `mg1_presente`, `mg1_chegada`, `pista_quintal`, `pista_parque`, `pista_praia` | `mg1_kart`, `mg1_pistas` |
+| Missão 02 | `m02_cama_bagunca`, `m02_cama_arrumada`, `m02_lencol`, `m02_cobertor`, `m02_travesseiro` | `m02_cama` |
+| Missão 03 | `m03_maos_sujas`, `m03_maos_limpas`, `m03_germe1..5`, `m03_torneira`, `m03_toalha`, `m03_bolhas` | `m03_germes` |
+| Missão 04 | `m04_tomada`, `m04_remedio`, `m04_produto`, `m04_faca`, `m04_fogao`, `m04_escada`, `m04_porta`, `m04_campainha`, `m04_perigo` | `m04_perigos` |
+| Gente e bichos | `adulto`, `pet_cachorro`, `pet_gato` | `personagens_adultos`, `pets` |
 | Cenários | `bg_menu_inicial`, `bg_criador_personagem`, `bg_mapa_mundos`, `bg_quarto_manha`, `bg_banheiro`, `bg_cozinha_cafe`, `bg_casa_segura`, `bg_escola_entrada`, `bg_sala_aula`, `bg_carro_interior`, `bg_sala_almoco`, `bg_quarto_brincar`, `bg_quarto_noite`, `bg_consultorio` | os `bg_*` originais, reduzidos para 720x1280 |
 
 ## Falta gerar (hoje aparece como emoji)

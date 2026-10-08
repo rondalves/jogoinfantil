@@ -30,6 +30,8 @@ export interface Etapa {
   alvos?: Item[];
   segundos?: number;
   passos?: number;
+  /** arte de cada sujeira/germe que some ao esfregar */
+  sujeiras?: string[];
   repeticoes?: number;
   /** frase leve narrada quando a criança erra */
   consequencia?: string;

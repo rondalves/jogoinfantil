@@ -7,11 +7,11 @@ import { narrador } from '../narrador';
 import { fale } from '../narracoes';
 import { desenharPersonagem } from '../personagem';
 import { ativo, salvar, type Perfil } from '../storage';
-import { balao, botao, botaoOuvir, figura, fundo, hud, irPara, toque } from '../ui';
+import { balao, botao, botaoOuvir, figura, fundo, hud, irPara, textoEmPainel, toque } from '../ui';
 import type { Missao as MissaoDef } from '../types';
 
 const W = CONFIG.LARGURA;
-const TOPO = 300;
+const TOPO = 330;
 const BASE = 1080;
 
 export class Mapa extends Phaser.Scene {
@@ -35,8 +35,10 @@ export class Mapa extends Phaser.Scene {
       return;
     }
     fundo(this, 0xbde8ff, 'bg_mapa_mundos');
+    // veu claro: o cenario do mapa e bonito, mas briga com os cartoes
+    this.add.rectangle(W / 2, CONFIG.ALTURA / 2, W, CONFIG.ALTURA, 0xffffff, 0.34).setDepth(-8);
     hud(this, this.p, 96);
-    botaoOuvir(this, W - 76, 200);
+    botaoOuvir(this, W - 76, 214);
 
     toque(
       figura(this, W - 76, 96, 'botao_pais', '\u{2699}\u{FE0F}', 92).setDepth(50),
@@ -47,13 +49,10 @@ export class Mapa extends Phaser.Scene {
       () => irPara(this, 'Perfis'),
     );
 
-    desenharPersonagem(this, this.p.personagem, 0.4).setPosition(90, 200).setDepth(50);
+    desenharPersonagem(this, this.p.personagem, 0.34).setPosition(84, 214).setDepth(50);
+    textoEmPainel(this, 230, 214, this.p.nome, 36, 300).setDepth(50);
     this.add
-      .text(172, 200, this.p.nome, { fontSize: '38px', color: '#2b3a4a', fontStyle: 'bold' })
-      .setOrigin(0, 0.5)
-      .setDepth(50);
-    this.add
-      .zone(90, 200, 150, 170)
+      .zone(84, 214, 150, 180)
       .setInteractive({ useHandCursor: true })
       .setDepth(51)
       .on('pointerup', () => irPara(this, 'Criador', { editar: true }));
@@ -79,7 +78,7 @@ export class Mapa extends Phaser.Scene {
       g.fillStyle(m.cor, aberto ? 0.95 : 0.4);
       g.fillRoundedRect(40, y, W - 80, 104, 26);
       this.lista.add(g);
-      this.lista.add(figura(this, 108, y + 52, `mundo${m.id}`, m.icone, 76));
+      this.lista.add(figura(this, 108, y + 52, aberto ? `mundo${m.id}` : 'mundo_bloqueado', m.icone, 76));
       this.lista.add(
         this.add
           .text(160, y + 36, `Mundo ${m.id} - ${m.nome}`, { fontSize: '32px', color: '#2b3a4a', fontStyle: 'bold' })
@@ -97,6 +96,10 @@ export class Mapa extends Phaser.Scene {
       y += 124;
 
       if (missoes.length === 0) {
+        if (!aberto) {
+          y += 30;
+          continue;
+        }
         this.lista.add(
           this.add.text(W / 2, y + 30, 'Missões chegando em breve', { fontSize: '30px', color: '#6b7a8a' }).setOrigin(0.5),
         );
@@ -137,9 +140,9 @@ export class Mapa extends Phaser.Scene {
     const estrelas = this.p.missoes[missao.id] ?? 0;
     const g = this.add.graphics();
     g.fillStyle(0xffffff, aberto ? 0.95 : 0.45);
-    g.fillRoundedRect(70, y, W - 140, 96, 24);
+    g.fillRoundedRect(56, y, W - 112, 96, 24);
     this.lista.add(g);
-    this.lista.add(this.add.text(118, y + 48, missao.icone, { fontSize: '50px' }).setOrigin(0.5));
+    this.lista.add(figura(this, 112, y + 48, `icone_${missao.id}`, missao.icone, 62));
     this.lista.add(
       this.add
         .text(170, y + 48, missao.titulo, { fontSize: '34px', color: '#2b3a4a', wordWrap: { width: 330 } })
@@ -153,7 +156,7 @@ export class Mapa extends Phaser.Scene {
     if (!aberto) return;
     if (estrelas === 0) this.lista.add(figura(this, W - 130, y + 48, 'botao_play', '\u{25B6}\u{FE0F}', 66));
     const z = this.add
-      .zone(W / 2, y + 48, W - 140, 96)
+      .zone(W / 2, y + 48, W - 112, 96)
       .setInteractive({ useHandCursor: true })
       .on('pointerup', () => {
         if (this.arrastou) return;
@@ -185,17 +188,10 @@ export class Mapa extends Phaser.Scene {
   private barraInferior() {
     this.add.rectangle(W / 2, 1200, W, 160, 0xffffff, 0.92).setDepth(40);
     const jogos = liberados(this.p.broches);
-    botao(
-      this,
-      W / 2 - 170,
-      1200,
-      'Jogar',
-      () => this.abrirJogos(jogos),
-      { icone: '\u{1F3AE}', largura: 320, cor: 0x7ddc8a },
-    ).setDepth(41);
-    botao(this, W / 2 + 170, 1200, 'Missões', () => this.lista.setY(TOPO), {
-      icone: '\u{1F5FA}\u{FE0F}',
-      largura: 320,
+    botao(this, W / 2, 1200, `Jogar  (${this.p.fichas})`, () => this.abrirJogos(jogos), {
+      icone: '\u{1F3AE}',
+      largura: 460,
+      cor: 0x7ddc8a,
     }).setDepth(41);
   }
 

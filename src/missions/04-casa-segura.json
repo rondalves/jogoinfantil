@@ -1,0 +1,118 @@
+{
+  "id": "04",
+  "mundo": 1,
+  "titulo": "Casa segura",
+  "icone": "⚠️",
+  "cenario": "bg_casa_segura",
+  "narracao_intro": "{nome}, tem coisas na casa que só adulto pode mexer. Vamos achar?",
+  "audio_intro": "m04_intro",
+  "mostrar": {
+    "narracao": "Toque só no que é perigoso. O resto pode deixar!",
+    "audio": "m04_mostrar",
+    "icone": "⚠️"
+  },
+  "etapas": [
+    {
+      "tipo": "tocar",
+      "narracao": "Toque em tudo que é perigoso para criança.",
+      "audio": "m04_e1",
+      "consequencia": "Esse aí não é perigoso. Procure outro!",
+      "alvos": [
+        {
+          "icone": "🔌",
+          "img": "m04_tomada",
+          "x": 170,
+          "y": 580
+        },
+        {
+          "icone": "💊",
+          "img": "m04_remedio",
+          "x": 360,
+          "y": 580
+        },
+        {
+          "icone": "🧴",
+          "img": "m04_produto",
+          "x": 550,
+          "y": 580
+        },
+        {
+          "icone": "🔪",
+          "img": "m04_faca",
+          "x": 170,
+          "y": 760
+        },
+        {
+          "icone": "🔥",
+          "img": "m04_fogao",
+          "x": 360,
+          "y": 760
+        },
+        {
+          "icone": "🪜",
+          "img": "m04_escada",
+          "x": 550,
+          "y": 760
+        },
+        {
+          "icone": "🍌",
+          "img": "m01_banana",
+          "x": 170,
+          "y": 940,
+          "correto": false
+        },
+        {
+          "icone": "🧸",
+          "img": "m03_toalha",
+          "x": 360,
+          "y": 940,
+          "correto": false
+        }
+      ]
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "A campainha tocou e você não conhece quem está na porta. O que fazer?",
+      "audio": "m04_e2",
+      "consequencia": "Porta só adulto abre. Chame alguém!",
+      "itens": [
+        {
+          "icone": "🚪",
+          "img": "m04_porta",
+          "x": 200,
+          "y": 760,
+          "texto": "Abrir a porta"
+        },
+        {
+          "icone": "🙋",
+          "img": "adulto",
+          "x": 520,
+          "y": 760,
+          "texto": "Chamar um adulto",
+          "correto": true
+        }
+      ]
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🙋",
+      "img": "adulto",
+      "texto": "Chamar um adulto"
+    },
+    "cena_errada": {
+      "icone": "🔌",
+      "img": "m04_tomada",
+      "texto": "Mexer na tomada"
+    },
+    "explicacao": "Achou perigo? Não mexe: chama um adulto na hora!",
+    "audio": "m04_pnp"
+  },
+  "frase_reforco": "Perigo? Chame um adulto!",
+  "audio_reforco": "m04_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

@@ -3,7 +3,7 @@ import { CONFIG } from '../config';
 import { narrador } from '../narrador';
 import { fale } from '../narracoes';
 import type { Etapa, Item } from '../types';
-import { figura, nota, textoEmPainel, TimerMusical, toque, tremer } from '../ui';
+import { figura, nota, textoEmPainel, TimerMusical, toque, tremer, type Fig } from '../ui';
 
 const W = CONFIG.LARGURA;
 
@@ -31,6 +31,11 @@ const tocar: Handler = (c, e) => {
   const alvos = e.alvos ?? e.itens ?? [];
   let faltam = alvos.filter((a) => a.correto !== false).length;
   for (const a of alvos) {
+    // ladrilho claro: sem ele o objeto se perde no cenario
+    const base = c.cena.add.graphics();
+    base.fillStyle(0xffffff, 0.86);
+    base.fillRoundedRect(a.x - 82, a.y - 82, 164, 164, 26);
+    c.camada.add(base);
     const f = figura(c.cena, a.x, a.y, a.img, a.icone, 140);
     c.camada.add(f);
     if (a.texto) {
@@ -132,12 +137,12 @@ const esfregar: Handler = (c, e) => {
   const alvo = e.alvo ?? { icone: '\u{1F9FC}', x: W / 2, y: 780 };
   c.camada.add(figura(c.cena, alvo.x, alvo.y, alvo.img, alvo.icone, 220));
   const total = e.passos ?? 5;
-  const sujeiras: Phaser.GameObjects.Text[] = [];
+  const sujeiras: Fig[] = [];
   for (let i = 0; i < total; i++) {
-    const ang = (i / total) * Math.PI * 2;
-    const s = c.cena.add
-      .text(alvo.x + Math.cos(ang) * 110, alvo.y + Math.sin(ang) * 110, '\u{1F7E4}', { fontSize: '60px' })
-      .setOrigin(0.5);
+    const ang = (i / total) * Math.PI * 2 - Math.PI / 2;
+    const arte = e.sujeiras?.[i % (e.sujeiras.length || 1)];
+    const s = figura(c.cena, alvo.x + Math.cos(ang) * 150, alvo.y + Math.sin(ang) * 150, arte, '\u{1F7E4}', 96);
+    c.cena.tweens.add({ targets: s, y: s.y - 10, duration: 900 + i * 120, yoyo: true, repeat: -1 });
     sujeiras.push(s);
     c.camada.add(s);
   }

@@ -1,0 +1,86 @@
+{
+  "id": "03",
+  "mundo": 1,
+  "titulo": "Guerra aos germes",
+  "icone": "🧼",
+  "cenario": "bg_banheiro",
+  "narracao_intro": "Olha só, {nome}: germes nas suas mãos! Vamos espantar todos?",
+  "audio_intro": "m03_intro",
+  "mostrar": {
+    "narracao": "Água, sabão e muita esfregada. Os germes não gostam disso!",
+    "audio": "m03_mostrar",
+    "icone": "🧼"
+  },
+  "etapas": [
+    {
+      "tipo": "esfregar",
+      "narracao": "Esfregue as mãos até os germes sumirem!",
+      "audio": "m03_e1",
+      "passos": 5,
+      "segundos": 20,
+      "alvo": {
+        "icone": "🤲",
+        "img": "m03_maos_sujas",
+        "x": 360,
+        "y": 800
+      },
+      "sujeiras": [
+        "m03_germe1",
+        "m03_germe2",
+        "m03_germe3",
+        "m03_germe4",
+        "m03_germe5"
+      ]
+    },
+    {
+      "tipo": "tocar",
+      "narracao": "Toque nas horas de lavar a mão: antes de comer, depois do banheiro e depois de brincar com o pet.",
+      "audio": "m03_e2",
+      "consequencia": "Essa não é hora de lavar a mão. Tente outra!",
+      "alvos": [
+        {
+          "icone": "🍎",
+          "img": "m01_maca",
+          "x": 170,
+          "y": 760,
+          "texto": "Antes de comer"
+        },
+        {
+          "icone": "🚪",
+          "img": "m04_porta",
+          "x": 360,
+          "y": 760,
+          "texto": "Depois do banheiro"
+        },
+        {
+          "icone": "🐶",
+          "img": "pet_cachorro",
+          "x": 550,
+          "y": 760,
+          "texto": "Depois de brincar"
+        }
+      ]
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "✨",
+      "img": "m03_maos_limpas",
+      "texto": "Lavar as mãos"
+    },
+    "cena_errada": {
+      "icone": "🦠",
+      "img": "m03_maos_sujas",
+      "texto": "Comer com a mão suja"
+    },
+    "explicacao": "A água e o sabão levam os germes embora pelo ralo!",
+    "audio": "m03_pnp"
+  },
+  "frase_reforco": "Mãos limpas, corpo saudável!",
+  "audio_reforco": "m03_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}
