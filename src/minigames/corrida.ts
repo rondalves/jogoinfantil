@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { CONFIG } from '../config';
-import { narrador } from '../narrador';
+import { fale } from '../narracoes';
 import { desenharPersonagem } from '../personagem';
 import type { PersonagemCfg } from '../storage';
 import { figura, nota, titulo } from '../ui';
@@ -37,7 +37,7 @@ function escolherPista(cena: Phaser.Scene, aoEscolher: (p: Pista) => void) {
   const capa = cena.add.container(0, 0);
   capa.add(cena.add.rectangle(W / 2, H / 2, W, H, 0x0e2235, 0.9));
   capa.add(titulo(cena, 'Escolha a pista!', 220));
-  narrador.falar('Escolha a pista da corrida!', 'mg1_escolha_pista');
+  fale('mg1_escolha_pista');
 
   PISTAS.forEach((p, i) => {
     const y = 460 + i * 250;
@@ -168,7 +168,7 @@ function correr(
           if (it.tipo === 'obstaculo') {
             freada = 1.2;
             nota(200);
-            narrador.falar('Opa! Devagar nessa curva!');
+            fale('mg1_devagar');
             cena.tweens.add({ targets: kart, angle: { from: -10, to: 10 }, duration: 90, yoyo: true, repeat: 2 });
           } else {
             pontos += it.tipo === 'presente' ? 3 : 1;
@@ -195,7 +195,7 @@ function correr(
     },
   });
 
-  narrador.falar('Pegue as moedas e desvie dos cones. Pode tocar na tela ou inclinar o celular!', 'mg1_como_jogar');
+  fale('mg1_como_jogar');
 }
 
 export const corrida: MiniGame = {

@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { CONFIG } from './config';
 import { narrador } from './narrador';
+import { fale } from './narracoes';
 import { botao } from './ui';
 
 const LETRAS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -56,7 +57,7 @@ export function teclado(
   capa.add(
     botao(cena, W / 2 + 170, 1120, 'Pronto', () => {
       if (!nome) {
-        narrador.falar('Escolha as letrinhas do seu nome.', 'ui_escreva_nome');
+        fale('ui_escreva_nome');
         return;
       }
       capa.destroy();
@@ -64,6 +65,6 @@ export function teclado(
     }, { icone: '\u{2705}', largura: 300, cor: 0x7ddc8a }),
   );
 
-  narrador.falar('Escreva seu nome com as letrinhas.', 'ui_escreva_nome');
+  fale('ui_escreva_nome');
   return capa;
 }

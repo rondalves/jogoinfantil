@@ -8,7 +8,8 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host",
     "test": "vitest run",
-    "assets": "python tools/preparar_assets.py"
+    "assets": "python tools/preparar_assets.py",
+    "narracao": "python tools/gerar_narracao.py"
   },
   "dependencies": {
     "phaser": "^3.90.0"

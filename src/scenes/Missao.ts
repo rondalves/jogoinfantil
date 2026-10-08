@@ -4,6 +4,7 @@ import { bonusMundo, concluirMissao, gastarFicha, podeJogar } from '../economia'
 import { miniGameDoMundo } from '../minigames';
 import { MISSOES, missaoPorId, missoesDoMundo } from '../missions';
 import { narrador } from '../narrador';
+import { fale } from '../narracoes';
 import { desenharPersonagem } from '../personagem';
 import { ativo, salvar, type Perfil } from '../storage';
 import type { Missao as MissaoDef } from '../types';
@@ -12,11 +13,14 @@ import {
   botao,
   botaoOuvir,
   botaoVoltar,
+  confete,
   estrelasNaTela,
   figura,
   fundo,
   hud,
+  irPara,
   nota,
+  textoEmPainel,
   titulo,
   toque,
   tremer,
@@ -80,7 +84,7 @@ export class Missao extends Phaser.Scene {
   private progresso() {
     const t = this.def.etapas.length;
     const txt = `Etapa ${Math.min(this.indice + 1, t)} de ${t}`;
-    this.camada.add(this.add.text(W / 2, 200, txt, { fontSize: '34px', color: '#8a7a66' }).setOrigin(0.5));
+    this.camada.add(textoEmPainel(this, W / 2, 200, txt, 30, 360));
   }
 
   private intro() {
@@ -129,24 +133,17 @@ export class Missao extends Phaser.Scene {
     this.cenario(etapa.cenario);
     this.progresso();
     const frase = narrador.falar(etapa.narracao, etapa.audio);
-    this.camada.add(
-      this.add
-        .text(W / 2, 320, frase, {
-          fontSize: '38px',
-          color: '#2b3a4a',
-          align: 'center',
-          wordWrap: { width: W - 120 },
-        })
-        .setOrigin(0.5),
-    );
+    this.camada.add(textoEmPainel(this, W / 2, 320, frase));
 
+    const chaveErro = `m${this.def.id}_erro${this.indice + 1}`;
     const ctx: Ctx = {
       cena: this,
       camada: this.camada,
+      chaveErro,
       erro: (consequencia) => {
         this.erros += 1;
         nota(220);
-        if (consequencia) narrador.falar(consequencia);
+        if (consequencia) narrador.falar(consequencia, chaveErro);
       },
       fim: () => {
         this.indice += 1;
@@ -191,11 +188,11 @@ export class Missao extends Phaser.Scene {
           tremer(this, f);
           this.erros += 1;
           nota(220);
-          narrador.falar(pnp.explicacao);
+          narrador.falar(pnp.explicacao, `m${this.def.id}_pnp_explica`);
           return;
         }
         nota(880);
-        narrador.falar(pnp.explicacao);
+        narrador.falar(pnp.explicacao, `m${this.def.id}_pnp_explica`);
         this.time.delayedCall(1400, () => this.final());
       });
     });
@@ -211,6 +208,7 @@ export class Missao extends Phaser.Scene {
 
     this.camada.add(titulo(this, 'Missão cumprida!', 280));
     this.camada.add(estrelasNaTela(this, estrelas, this.def.estrelas_max, 430));
+    confete(this, bonus > 0 ? 100 : 45);
     this.animarMoeda(bonus > 0);
 
     this.time.delayedCall(1800, () => {
@@ -226,11 +224,7 @@ export class Missao extends Phaser.Scene {
     const moeda = this.add.text(W / 2, y, '\u{1FA99}', { fontSize: '110px' }).setOrigin(0.5);
     this.camada.add(moeda);
     nota(784);
-    narrador.falar(
-      fimDeMundo
-        ? 'Mundo completo! Você ganhou um broche e cinco moedas, que viraram quinze fichas!'
-        : 'Você ganhou uma moeda! Ela virou três fichas!',
-    );
+    fale(fimDeMundo ? 'missao_mundo_completo' : 'missao_moeda');
     this.tweens.add({
       targets: moeda,
       scale: { from: 0, to: 1 },
@@ -269,7 +263,7 @@ export class Missao extends Phaser.Scene {
     const liberado = jogo && this.perfil.broches.includes(this.def.mundo);
     if (!liberado) {
       this.camada.add(
-        botao(this, W / 2, 1120, 'Voltar ao mapa', () => this.scene.start('Mapa'), { icone: '\u{1F5FA}\u{FE0F}' }),
+        botao(this, W / 2, 1120, 'Voltar ao mapa', () => irPara(this, 'Mapa'), { icone: '\u{1F5FA}\u{FE0F}' }),
       );
       return;
     }
@@ -283,22 +277,18 @@ export class Missao extends Phaser.Scene {
         () => {
           const motivo = podeJogar(this.perfil);
           if (motivo !== 'ok') {
-            narrador.falar(
-              motivo === 'limite'
-                ? 'As partidas de hoje acabaram. Vamos brincar de outra coisa?'
-                : 'Suas fichas acabaram. Faça outra missão para ganhar mais!',
-            );
+            fale(motivo === 'limite' ? 'missao_limite' : 'missao_sem_fichas');
             return;
           }
           gastarFicha(this.perfil);
           salvar(this.perfil);
-          this.scene.start('MiniGame', { id: jogo!.id });
+          irPara(this, 'MiniGame', { id: jogo!.id });
         },
         { icone: '\u{1F3AE}', cor: 0x7ddc8a, largura: 420 },
       ),
     );
     this.camada.add(
-      botao(this, W / 2, 1200, 'Guardar fichas', () => this.scene.start('Mapa'), {
+      botao(this, W / 2, 1200, 'Guardar fichas', () => irPara(this, 'Mapa'), {
         icone: '\u{1F39F}\u{FE0F}',
         largura: 420,
       }),

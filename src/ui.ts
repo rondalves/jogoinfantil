@@ -4,6 +4,7 @@ import { CONFIG } from './config';
 import { estrelasTotais } from './economia';
 import { narrador } from './narrador';
 import type { Perfil } from './storage';
+import { TEMA } from './theme';
 
 export type Fig = Phaser.GameObjects.Image | Phaser.GameObjects.Text;
 
@@ -57,9 +58,44 @@ export function tremer(cena: Phaser.Scene, o: Phaser.GameObjects.Components.Tran
   });
 }
 
+/** Troca de tela com escurecida suave, sem corte seco. */
+export function irPara(cena: Phaser.Scene, destino: string, dados?: object) {
+  narrador.parar();
+  const camera = cena.cameras.main;
+  camera.fadeOut(TEMA.transicao, 0, 0, 0);
+  camera.once('camerafadeoutcomplete', () => cena.scene.start(destino, dados));
+}
+
+/** Chuva de papeis coloridos: fim de missao e de mundo. */
+export function confete(cena: Phaser.Scene, quantidade = 40) {
+  for (let i = 0; i < quantidade; i++) {
+    const papel = cena.add
+      .rectangle(
+        Phaser.Math.Between(40, W - 40),
+        Phaser.Math.Between(-300, -20),
+        Phaser.Math.Between(14, 26),
+        Phaser.Math.Between(20, 34),
+        Phaser.Utils.Array.GetRandom(TEMA.confete),
+      )
+      .setDepth(60)
+      .setAngle(Phaser.Math.Between(0, 360));
+    cena.tweens.add({
+      targets: papel,
+      y: CONFIG.ALTURA + 60,
+      angle: papel.angle + Phaser.Math.Between(180, 540),
+      x: papel.x + Phaser.Math.Between(-80, 80),
+      duration: Phaser.Math.Between(1800, 3200),
+      delay: Phaser.Math.Between(0, 700),
+      ease: 'Sine.easeIn',
+      onComplete: () => papel.destroy(),
+    });
+  }
+}
+
 /** Cor chapada ou, se a imagem existir em /assets/img, o cenario cobrindo a tela. */
-export function fundo(cena: Phaser.Scene, cor: number, imagem?: string) {
-  cena.add.rectangle(W / 2, CONFIG.ALTURA / 2, W, CONFIG.ALTURA, cor).setDepth(-10);
+export function fundo(cena: Phaser.Scene, fundoCor: number, imagem?: string) {
+  cena.cameras.main.fadeIn(TEMA.transicao, 0, 0, 0);
+  cena.add.rectangle(W / 2, CONFIG.ALTURA / 2, W, CONFIG.ALTURA, fundoCor).setDepth(-10);
   if (!imagem || !cena.textures.exists(imagem)) return;
   const im = cena.add.image(W / 2, CONFIG.ALTURA / 2, imagem).setDepth(-9);
   im.setScale(Math.max(W / im.width, CONFIG.ALTURA / im.height));
@@ -68,11 +104,10 @@ export function fundo(cena: Phaser.Scene, cor: number, imagem?: string) {
 export function titulo(cena: Phaser.Scene, texto: string, y = 180) {
   return cena.add
     .text(W / 2, y, texto, {
-      fontSize: '60px',
-      color: '#2b3a4a',
+      fontSize: `${TEMA.titulo}px`,
       fontStyle: 'bold',
       align: 'center',
-      wordWrap: { width: W - 180 },
+      wordWrap: { width: W - 110 },
     })
     .setStroke('#ffffff', 10)
     .setOrigin(0.5);
@@ -97,10 +132,10 @@ export function botao(
   const a = 128;
   const c = cena.add.container(x, y);
   const g = cena.add.graphics();
-  const cor = op.cor ?? 0xffb43d;
+  const corBotao = op.cor ?? TEMA.acao;
   g.fillStyle(0x000000, 0.12);
   g.fillRoundedRect(-l / 2, -a / 2 + 10, l, a, 32);
-  g.fillStyle(cor, 1);
+  g.fillStyle(corBotao, 1);
   g.fillRoundedRect(-l / 2, -a / 2, l, a, 32);
   g.lineStyle(6, 0xffffff, 0.85);
   g.strokeRoundedRect(-l / 2, -a / 2, l, a, 32);
@@ -111,7 +146,7 @@ export function botao(
   c.add(
     cena.add
       .text(op.icone ? 30 : 0, 0, label, {
-        fontSize: `${op.tamanhoTexto ?? 42}px`,
+        fontSize: `${op.tamanhoTexto ?? TEMA.botao}px`,
         color: '#3a2a10',
         fontStyle: 'bold',
       })
@@ -119,7 +154,8 @@ export function botao(
   );
   c.setSize(l, a).setInteractive({ useHandCursor: true });
   c.on('pointerdown', () => {
-    cena.tweens.add({ targets: c, scale: 0.94, duration: 70, yoyo: true });
+    nota(740);
+    cena.tweens.add({ targets: c, scale: 0.92, duration: 80, yoyo: true, ease: 'Quad.easeOut' });
     onClick();
   });
   return c;
@@ -133,10 +169,7 @@ export function botaoOuvir(cena: Phaser.Scene, x = W - 86, y = 96) {
 
 export function botaoVoltar(cena: Phaser.Scene, destino: string, dados?: object) {
   const b = figura(cena, 86, 96, 'botao_voltar', '\u{2B05}\u{FE0F}', 96).setDepth(50);
-  return toque(b, () => {
-    narrador.parar();
-    cena.scene.start(destino, dados);
-  });
+  return toque(b, () => irPara(cena, destino, dados));
 }
 
 /** Saldo de moedas, fichas e estrelas, com os icones da arte. */
@@ -160,6 +193,26 @@ export function hud(cena: Phaser.Scene, p: Perfil, y = 96, x = 24, origemX = 0) 
         .setOrigin(0, 0.5),
     );
   });
+  return c;
+}
+
+/** Texto sobre uma faixa clara: legivel mesmo em cima do cenario. */
+export function textoEmPainel(
+  cena: Phaser.Scene,
+  x: number,
+  y: number,
+  conteudo: string,
+  tamanho = 38,
+  larguraMax = W - 120,
+): Phaser.GameObjects.Container {
+  const c = cena.add.container(0, 0);
+  const t = cena.add
+    .text(x, y, conteudo, { fontSize: `${tamanho}px`, align: 'center', wordWrap: { width: larguraMax - 48 } })
+    .setOrigin(0.5);
+  const g = cena.add.graphics();
+  g.fillStyle(0xffffff, 0.88);
+  g.fillRoundedRect(x - t.width / 2 - 24, y - t.height / 2 - 14, t.width + 48, t.height + 28, 22);
+  c.add([g, t]);
   return c;
 }
 
@@ -250,8 +303,9 @@ export class TimerMusical {
   ) {
     this.g = cena.add.graphics();
     this.rotulo = cena.add
-      .text(x, y, '', { fontSize: '40px', color: '#2b3a4a', fontStyle: 'bold' })
-      .setOrigin(0.5);
+      .text(x, y, '', { fontSize: '44px', color: '#ffffff', fontStyle: 'bold' })
+      .setOrigin(0.5)
+      .setStroke('#12263a', 8);
     const url = AUDIOS['musica_timer'];
     if (url) {
       this.musica = new Audio(url);
@@ -297,7 +351,9 @@ export class TimerMusical {
     const falta = Math.max(0, Math.ceil(this.segundos - this.passados));
     this.rotulo.setText(`${Math.floor(falta / 60)}:${String(falta % 60).padStart(2, '0')}`);
     this.g.clear();
-    this.g.lineStyle(18, 0xffffff, 0.9);
+    this.g.fillStyle(0x12263a, 0.42); // disco escuro: o anel some em cenario claro
+    this.g.fillCircle(this.x, this.y, this.raio + 12);
+    this.g.lineStyle(18, 0xffffff, 0.95);
     this.g.strokeCircle(this.x, this.y, this.raio);
     this.g.lineStyle(18, 0x51cf66, 1);
     this.g.beginPath();

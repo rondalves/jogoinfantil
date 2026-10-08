@@ -1,8 +1,9 @@
 import Phaser from 'phaser';
 import { CONFIG } from '../config';
 import { narrador } from '../narrador';
+import { fale } from '../narracoes';
 import type { Etapa, Item } from '../types';
-import { figura, nota, TimerMusical, toque, tremer } from '../ui';
+import { figura, nota, textoEmPainel, TimerMusical, toque, tremer } from '../ui';
 
 const W = CONFIG.LARGURA;
 
@@ -12,6 +13,8 @@ export interface Ctx {
   camada: Phaser.GameObjects.Container;
   /** errar nunca pune: mostra a consequencia de leve e deixa tentar de novo */
   erro: (consequencia?: string) => void;
+  /** nome do audio da frase de consequencia desta etapa */
+  chaveErro: string;
   fim: () => void;
 }
 
@@ -82,10 +85,15 @@ const segurarComTimer: Handler = (c, e) => {
   const alvo = e.alvo ?? { icone: '\u{1FAA5}', x: W / 2, y: 780 };
   const f = figura(c.cena, alvo.x, alvo.y, alvo.img, alvo.icone, 180);
   c.camada.add(f);
-  const dica = c.cena.add
-    .text(W / 2, alvo.y + 170, 'Segure o dedinho aqui', { fontSize: '38px', color: '#2b3a4a' })
-    .setOrigin(0.5);
-  c.camada.add(dica);
+  const dica = c.cena.add.text(W / 2, alvo.y + 170, 'Segure o dedinho aqui', { fontSize: '38px' }).setOrigin(0.5);
+  const fundoDica = c.cena.add.graphics();
+  const pintarDica = () => {
+    fundoDica.clear();
+    fundoDica.fillStyle(0xffffff, 0.88);
+    fundoDica.fillRoundedRect(W / 2 - dica.width / 2 - 20, dica.y - dica.height / 2 - 10, dica.width + 40, dica.height + 20, 18);
+  };
+  pintarDica();
+  c.camada.add([fundoDica, dica]);
 
   const timer = new TimerMusical(c.cena, W / 2, 520, e.segundos ?? 60, () => {
     timer.destruir();
@@ -99,6 +107,7 @@ const segurarComTimer: Handler = (c, e) => {
   f.on('pointerdown', () => {
     timer.retomar();
     dica.setText('Isso! Continue...');
+    pintarDica();
     c.cena.tweens.add({ targets: f, angle: { from: -12, to: 12 }, duration: 320, yoyo: true, repeat: -1 });
   });
   f.on('drag', (_p: Phaser.Input.Pointer, x: number) => {
@@ -109,9 +118,10 @@ const segurarComTimer: Handler = (c, e) => {
     c.cena.tweens.killTweensOf(f);
     f.setAngle(0);
     dica.setText('Segure o dedinho aqui');
+    pintarDica();
     if (!avisou && timer.progresso < 1) {
       avisou = true;
-      if (e.consequencia) narrador.falar(e.consequencia);
+      if (e.consequencia) narrador.falar(e.consequencia, c.chaveErro);
     }
   });
   // o timer vive fora do container: o motor limpa junto ao destruir a camada
@@ -131,10 +141,9 @@ const esfregar: Handler = (c, e) => {
     sujeiras.push(s);
     c.camada.add(s);
   }
-  const contador = c.cena.add
-    .text(W / 2, alvo.y + 230, `Esfregue! Faltam ${total}`, { fontSize: '40px', color: '#2b3a4a' })
-    .setOrigin(0.5);
-  c.camada.add(contador);
+  const painelContador = textoEmPainel(c.cena, W / 2, alvo.y + 230, `Esfregue! Faltam ${total}`, 36, 420);
+  const contador = painelContador.list[1] as Phaser.GameObjects.Text;
+  c.camada.add(painelContador);
 
   let distancia = 0;
   let limpos = 0;
@@ -245,7 +254,7 @@ const respirar: Handler = (c, e) => {
     tween = null;
     c.cena.tweens.add({ targets: bola, scale: 1, duration: 900, ease: 'Sine.easeInOut' });
     if (!grande) {
-      narrador.falar('Sopre bem devagar, bem longo. Vamos de novo!');
+      fale('etapa_sopre');
       return;
     }
     feitas += 1;

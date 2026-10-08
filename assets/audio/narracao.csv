@@ -1,0 +1,60 @@
+﻿arquivo;texto;local
+ui_quem_joga.mp3;Quem vai jogar hoje?;Tela de perfis
+ui_monte_personagem.mp3;Monte um personagem parecido com você!;Criador de personagem
+ui_escreva_nome.mp3;Escreva seu nome com as letrinhas.;Teclado do nome
+ui_nome_bonito.mp3;Oi! Que nome bonito!;Depois de confirmar o nome
+ui_primeiro_nome.mp3;Primeiro escreva seu nome!;Criador, ao salvar sem nome
+ui_item_guardado.mp3;Esse ainda está guardado. Junte estrelas e broches!;Criador, acessório bloqueado
+ui_perfis_cheios.mp3;Já tem quatro personagens aqui. Peça para um adulto apagar um.;Tela de perfis cheia
+mapa_termine_mundo.mp3;Termine um mundo inteiro para abrir um jogo novo!;Mapa, botão Jogar sem mini game
+mapa_limite.mp3;As partidas de hoje acabaram. Vamos desenhar ou brincar lá fora?;Mapa, limite diário
+mapa_sem_fichas.mp3;Suas fichas acabaram. Faça uma missão para ganhar mais!;Mapa, saldo zerado
+missao_moeda.mp3;Você ganhou uma moeda! Ela virou três fichas!;Fim da missão
+missao_mundo_completo.mp3;Mundo completo! Você ganhou um broche e cinco moedas, que viraram quinze fichas!;Fim do mundo
+missao_sem_fichas.mp3;Suas fichas acabaram. Faça outra missão para ganhar mais!;Fim da missão, sem fichas
+missao_limite.mp3;As partidas de hoje acabaram. Vamos brincar de outra coisa?;Fim da missão, limite diário
+etapa_sopre.mp3;Sopre bem devagar, bem longo. Vamos de novo!;Etapa de respirar
+mg1_escolha_pista.mp3;Escolha a pista da corrida!;Corrida de kart, escolha da pista
+mg1_como_jogar.mp3;Pegue as moedas e desvie dos cones. Pode tocar na tela ou inclinar o celular!;Corrida de kart, começo
+mg1_devagar.mp3;Opa! Devagar nessa curva!;Corrida de kart, ao bater
+mg1_fim.mp3;Boa! Olha quantas moedinhas você juntou!;Corrida de kart, fim
+tut_1.mp3;Este é o mapa. Cada mundo é uma hora do seu dia.;Tutorial, passo 1
+tut_2.mp3;Toque numa missão para começar. A raposinha vai te ajudar!;Tutorial, passo 2
+tut_3.mp3;Fazendo com capricho você ganha estrelas.;Tutorial, passo 3
+tut_4.mp3;As moedas viram fichas, e com as fichas você joga!;Tutorial, passo 4
+letra_a.mp3;A;Teclado do nome
+letra_b.mp3;B;Teclado do nome
+letra_c.mp3;C;Teclado do nome
+letra_d.mp3;D;Teclado do nome
+letra_e.mp3;E;Teclado do nome
+letra_f.mp3;F;Teclado do nome
+letra_g.mp3;G;Teclado do nome
+letra_h.mp3;H;Teclado do nome
+letra_i.mp3;I;Teclado do nome
+letra_j.mp3;J;Teclado do nome
+letra_k.mp3;K;Teclado do nome
+letra_l.mp3;L;Teclado do nome
+letra_m.mp3;M;Teclado do nome
+letra_n.mp3;N;Teclado do nome
+letra_o.mp3;O;Teclado do nome
+letra_p.mp3;P;Teclado do nome
+letra_q.mp3;Q;Teclado do nome
+letra_r.mp3;R;Teclado do nome
+letra_s.mp3;S;Teclado do nome
+letra_t.mp3;T;Teclado do nome
+letra_u.mp3;U;Teclado do nome
+letra_v.mp3;V;Teclado do nome
+letra_w.mp3;W;Teclado do nome
+letra_x.mp3;X;Teclado do nome
+letra_y.mp3;Y;Teclado do nome
+letra_z.mp3;Z;Teclado do nome
+m01_intro.mp3;Bom dia, {nome}! Vamos acordar e cuidar de você?;Missao 01 - Acordar e se cuidar: abertura
+m01_mostrar.mp3;Olha só: primeiro a escova, depois o rosto, depois o café!;Missao 01 - Acordar e se cuidar: o personagem mostra
+m01_e1.mp3;Passe a escova nos dentes, {nome}. Vamos escovar com a música!;Missao 01 - Acordar e se cuidar: etapa 1 (segurar_com_timer)
+m01_erro1.mp3;Solte só quando a música acabar. Vamos de novo!;Missao 01 - Acordar e se cuidar: etapa 1, quando erra
+m01_e2.mp3;Agora lave o rosto. Esfregue com o dedinho!;Missao 01 - Acordar e se cuidar: etapa 2 (esfregar)
+m01_e3.mp3;Monte o café: leve a fruta e o pão para o prato.;Missao 01 - Acordar e se cuidar: etapa 3 (arrastar_para_alvo)
+m01_pnp.mp3;O que pode?;Missao 01 - Acordar e se cuidar: pode ou nao pode
+m01_pnp_explica.mp3;A comida é para comer. E a escova deixa o dente forte!;Missao 01 - Acordar e se cuidar: explicacao do pode ou nao pode
+m01_reforco.mp3;Dentes limpos, sorriso brilhando!;Missao 01 - Acordar e se cuidar: frase de reforco
+musica_timer.mp3;(musica instrumental de 30 s em loop);Timer da escovacao e da lavagem das maos

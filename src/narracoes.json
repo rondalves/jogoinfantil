@@ -1,0 +1,29 @@
+{
+  "ui_quem_joga": { "texto": "Quem vai jogar hoje?", "local": "Tela de perfis" },
+  "ui_monte_personagem": { "texto": "Monte um personagem parecido com você!", "local": "Criador de personagem" },
+  "ui_escreva_nome": { "texto": "Escreva seu nome com as letrinhas.", "local": "Teclado do nome" },
+  "ui_nome_bonito": { "texto": "Oi! Que nome bonito!", "local": "Depois de confirmar o nome" },
+  "ui_primeiro_nome": { "texto": "Primeiro escreva seu nome!", "local": "Criador, ao salvar sem nome" },
+  "ui_item_guardado": { "texto": "Esse ainda está guardado. Junte estrelas e broches!", "local": "Criador, acessório bloqueado" },
+  "ui_perfis_cheios": { "texto": "Já tem quatro personagens aqui. Peça para um adulto apagar um.", "local": "Tela de perfis cheia" },
+
+  "mapa_termine_mundo": { "texto": "Termine um mundo inteiro para abrir um jogo novo!", "local": "Mapa, botão Jogar sem mini game" },
+  "mapa_limite": { "texto": "As partidas de hoje acabaram. Vamos desenhar ou brincar lá fora?", "local": "Mapa, limite diário" },
+  "mapa_sem_fichas": { "texto": "Suas fichas acabaram. Faça uma missão para ganhar mais!", "local": "Mapa, saldo zerado" },
+
+  "missao_moeda": { "texto": "Você ganhou uma moeda! Ela virou três fichas!", "local": "Fim da missão" },
+  "missao_mundo_completo": { "texto": "Mundo completo! Você ganhou um broche e cinco moedas, que viraram quinze fichas!", "local": "Fim do mundo" },
+  "missao_sem_fichas": { "texto": "Suas fichas acabaram. Faça outra missão para ganhar mais!", "local": "Fim da missão, sem fichas" },
+  "missao_limite": { "texto": "As partidas de hoje acabaram. Vamos brincar de outra coisa?", "local": "Fim da missão, limite diário" },
+  "etapa_sopre": { "texto": "Sopre bem devagar, bem longo. Vamos de novo!", "local": "Etapa de respirar" },
+
+  "mg1_escolha_pista": { "texto": "Escolha a pista da corrida!", "local": "Corrida de kart, escolha da pista" },
+  "mg1_como_jogar": { "texto": "Pegue as moedas e desvie dos cones. Pode tocar na tela ou inclinar o celular!", "local": "Corrida de kart, começo" },
+  "mg1_devagar": { "texto": "Opa! Devagar nessa curva!", "local": "Corrida de kart, ao bater" },
+  "mg1_fim": { "texto": "Boa! Olha quantas moedinhas você juntou!", "local": "Corrida de kart, fim" },
+
+  "tut_1": { "texto": "Este é o mapa. Cada mundo é uma hora do seu dia.", "local": "Tutorial, passo 1" },
+  "tut_2": { "texto": "Toque numa missão para começar. A raposinha vai te ajudar!", "local": "Tutorial, passo 2" },
+  "tut_3": { "texto": "Fazendo com capricho você ganha estrelas.", "local": "Tutorial, passo 3" },
+  "tut_4": { "texto": "As moedas viram fichas, e com as fichas você joga!", "local": "Tutorial, passo 4" }
+}

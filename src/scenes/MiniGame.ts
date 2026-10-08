@@ -3,8 +3,9 @@ import { CONFIG } from '../config';
 import { gastarFicha, podeJogar } from '../economia';
 import { MINIGAMES, type MiniGame as Jogo, type ResultadoMiniGame } from '../minigames';
 import { narrador } from '../narrador';
+import { fale } from '../narracoes';
 import { ativo, salvar, type Perfil } from '../storage';
-import { balao, botao, botaoOuvir, botaoVoltar, figura, fundo, titulo } from '../ui';
+import { balao, botao, botaoOuvir, botaoVoltar, figura, fundo, irPara, titulo } from '../ui';
 
 const W = CONFIG.LARGURA;
 
@@ -36,7 +37,7 @@ export class MiniGame extends Phaser.Scene {
     this.tweens.killAll();
     fundo(this, 0x9ad7f5);
     titulo(this, 'Que corrida!', 300);
-    const frase = narrador.falar(`Boa, {nome}! Você juntou ${r.pontos} moedinhas na pista!`);
+    const frase = fale('mg1_fim');
     this.add
       .text(W / 2, 470, `${r.pontos}`, { fontSize: '150px', color: '#2b3a4a', fontStyle: 'bold' })
       .setOrigin(0.5)
@@ -52,7 +53,7 @@ export class MiniGame extends Phaser.Scene {
       motivo === 'ok' ? 'Jogar de novo' : 'Voltar ao mapa',
       () => {
         if (motivo !== 'ok') {
-          this.scene.start('Mapa');
+          irPara(this, 'Mapa');
           return;
         }
         gastarFicha(this.perfil);
@@ -62,7 +63,7 @@ export class MiniGame extends Phaser.Scene {
       { icone: motivo === 'ok' ? '\u{1F3AE}' : '\u{1F5FA}\u{FE0F}', cor: 0x7ddc8a, largura: 460 },
     );
     if (motivo === 'ok') {
-      botao(this, W / 2, 1170, 'Voltar ao mapa', () => this.scene.start('Mapa'), {
+      botao(this, W / 2, 1170, 'Voltar ao mapa', () => irPara(this, 'Mapa'), {
         icone: '\u{1F5FA}\u{FE0F}',
         largura: 460,
       });

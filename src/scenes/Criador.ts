@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { CONFIG } from '../config';
 import { estrelasTotais } from '../economia';
 import { narrador } from '../narrador';
+import { fale } from '../narracoes';
 import {
   ACESSORIOS,
   acessorioLiberado,
@@ -14,7 +15,7 @@ import {
 } from '../personagem';
 import { ativo, criar, personagemPadrao, salvar, type PersonagemCfg } from '../storage';
 import { teclado } from '../teclado';
-import { botao, botaoOuvir, botaoVoltar, fundo, titulo } from '../ui';
+import { botao, botaoOuvir, botaoVoltar, fundo, irPara, titulo } from '../ui';
 
 const W = CONFIG.LARGURA;
 
@@ -75,7 +76,7 @@ export class Criador extends Phaser.Scene {
       cor: 0x7ddc8a,
     });
 
-    narrador.falar('Monte um personagem parecido com você!', 'ui_monte_personagem');
+    fale('ui_monte_personagem');
   }
 
   private desenharPreview() {
@@ -191,7 +192,7 @@ export class Criador extends Phaser.Scene {
             this.cfg.acessorios.includes(a.id),
             () => {
               if (!liberado) {
-                narrador.falar('Esse ainda está guardado. Junte estrelas e broches!');
+                fale('ui_item_guardado');
                 return;
               }
               this.cfg.acessorios = this.cfg.acessorios.includes(a.id)
@@ -213,14 +214,14 @@ export class Criador extends Phaser.Scene {
     teclado(this, this.nome, (nome) => {
       this.nome = nome;
       narrador.setNome(nome);
-      narrador.falar(`Oi, ${nome}! Que nome bonito!`);
+      fale('ui_nome_bonito');
       this.tituloTxt.setText(`Oi, ${nome}!`);
     });
   }
 
   private salvarPerfil() {
     if (!this.nome) {
-      narrador.falar('Primeiro escreva seu nome!', 'ui_escreva_nome');
+      fale('ui_primeiro_nome');
       return;
     }
     const atual = this.editando ? ativo() : null;
@@ -232,6 +233,6 @@ export class Criador extends Phaser.Scene {
       criar(this.nome, this.cfg);
     }
     narrador.setNome(this.nome);
-    this.scene.start('Mapa');
+    irPara(this, 'Mapa');
   }
 }

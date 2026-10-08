@@ -4,7 +4,7 @@ import { estrelasTotais, partidasHoje } from '../economia';
 import { MISSOES } from '../missions';
 import { narrador } from '../narrador';
 import { ativo, remover, salvar, zerarProgresso, type Perfil } from '../storage';
-import { botao, botaoVoltar, fundo, titulo } from '../ui';
+import { botao, botaoVoltar, fundo, irPara, titulo, toque } from '../ui';
 
 const W = CONFIG.LARGURA;
 
@@ -95,8 +95,17 @@ export class Pais extends Phaser.Scene {
       })
       .setOrigin(0.5);
 
-    botao(this, W / 2, 1070, 'Zerar progresso', () => this.confirmar('zerar'), { largura: 520, cor: 0xffb0a0 });
-    botao(this, W / 2, 1200, 'Apagar este perfil', () => this.confirmar('apagar'), { largura: 520, cor: 0xff8f7a });
+    botao(this, W / 2, 1050, 'Zerar progresso', () => this.confirmar('zerar'), { largura: 520, cor: 0xffb0a0 });
+    botao(this, W / 2, 1170, 'Apagar este perfil', () => this.confirmar('apagar'), { largura: 520, cor: 0xff8f7a });
+
+    const link = this.add
+      .text(W / 2, 1255, 'Política de privacidade', {
+        fontSize: '30px',
+        color: '#1f6fb2',
+        fontStyle: 'bold',
+      })
+      .setOrigin(0.5);
+    toque(link, () => window.open(CONFIG.URL_PRIVACIDADE, '_blank', 'noopener'));
   }
 
   private confirmar(acao: 'zerar' | 'apagar') {
@@ -118,7 +127,7 @@ export class Pais extends Phaser.Scene {
       botao(this, W / 2, 700, 'Sim, apagar', () => {
         if (acao === 'zerar') zerarProgresso(this.p.id);
         else remover(this.p.id);
-        this.scene.start(acao === 'zerar' ? 'Mapa' : 'Boot');
+        irPara(this, acao === 'zerar' ? 'Mapa' : 'Boot');
       }, { largura: 460, cor: 0xff8f7a }),
     );
     capa.add(botao(this, W / 2, 860, 'Cancelar', () => capa.destroy(), { largura: 460, cor: 0x7ddc8a }));

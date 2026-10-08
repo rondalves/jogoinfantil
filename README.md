@@ -29,6 +29,8 @@ npm run dev
 | `npm run build` | checa tipos e gera `dist/` |
 | `npm run preview` | serve o `dist/` na rede |
 | `npm test` | testes da lógica de estrelas/moedas/fichas |
+| `npm run assets` | prepara as imagens cruas (Python + pillow, numpy, scipy) |
+| `npm run narracao` | regenera `assets/audio/narracao.csv` com todas as frases |
 
 ## Estrutura de pastas
 
@@ -38,7 +40,9 @@ assets/
   audio/            narração e músicas (MP3). Nomes em ASSETS.md
 src/
   main.ts           configuração do Phaser (720x1280 retrato)
+  theme.ts          paleta, fonte arredondada e duração das transições
   config.ts         números do jogo (fichas, moedas, limite diário) e lista de mundos
+  narracoes.json    todas as frases da interface (a chave é o nome do .mp3)
   types.ts          schema das missões
   assets.ts         descobre o que existe em /assets e entrega a URL
   narrador.ts       narração por arquivo + fallback text-to-speech pt-BR
@@ -50,7 +54,8 @@ src/
   missions/         UMA missão = UM arquivo JSON (o motor não muda)
   minigames/        interface comum dos mini games (registro vazio até a ETAPA 2)
   scenes/
-    Boot.ts         carrega o que existe em /assets
+    Boot.ts         abertura: logotipo, raposinha e barra de carregamento
+    Tutorial.ts     4 passos narrados de 5 s, na primeira vez que abre o mapa
     Perfis.ts       escolher/criar perfil
     Criador.ts      criador de personagem + nome
     Mapa.ts         mundos, missões, estrelas, saldo, painel dos pais
@@ -108,12 +113,29 @@ Campos comuns a todas: `narracao`, `audio` (nome do arquivo em `/assets/audio`, 
 
 > `{nome}` em qualquer narração é trocado pelo nome da criança.
 
+## Narração
+
+Toda frase tem uma chave, que é o nome do arquivo em `assets/audio`
+(`m01_intro.mp3`, `ui_quem_joga.mp3`…). Com o arquivo, o jogo toca a gravação;
+sem ele, lê pela voz do navegador em pt-BR.
+
+`npm run narracao` varre `src/narracoes.json` e os JSONs das missões e escreve
+`assets/audio/narracao.csv` (`arquivo;texto;local`) — a lista pronta para gravar.
+
+## Política de privacidade
+
+`docs/privacidade.html` está pronta. O passo a passo para publicar de graça está
+em [docs/PUBLICAR_POLITICA.md](docs/PUBLICAR_POLITICA.md). O link dentro do app
+fica em `CONFIG.URL_PRIVACIDADE` e aparece no painel dos pais.
+
 ## Estado da entrega
 
-- **ETAPA 1 (esta)** — projeto, motor genérico, mapa, estrelas/moedas/fichas, timer musical, painel dos pais, criador de personagem com perfis e nome. Inclui a missão 01 em JSON para testar o motor.
-- ETAPA 2 — missão 1 polida + mini game de corrida.
-- ETAPA 3 — missões 2 a 20 (só JSON) + 4 mini games.
-- ETAPA 4 — PWA + Capacitor + APK/AAB.
+- **ETAPA 1** — motor genérico, mapa, estrelas/moedas/fichas, timer musical, painel dos pais, criador de personagem.
+- **ETAPA 2** — arte real no jogo todo + mini game de corrida de kart.
+- **Publicação, fase 1** — abertura, transições, confete, tema único, tutorial narrado.
+- **Publicação, fase 2** — `narracao.csv` com as 59 frases do jogo.
+- **Publicação, fase 3** — política de privacidade e instruções para publicá-la.
+- A fazer: missões 2 a 20, os outros 4 mini games, PWA, Capacitor e o build Android.
 
 > Para testar rápido, a etapa de escovação está com `"segundos": 120` (os 2 minutos reais). Baixe para `20` no JSON enquanto testa.
 

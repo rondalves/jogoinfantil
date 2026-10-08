@@ -1,0 +1,8 @@
+/* Fredoka (SIL Open Font License) — arredondada, boa para leitores iniciantes */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: block;
+  src: url('../assets/fontes/fredoka-600-latin.woff2') format('woff2');
+}

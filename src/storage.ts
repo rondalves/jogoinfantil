@@ -27,6 +27,8 @@ export interface Perfil {
   broches: number[];
   limiteDiario: number;
   partidas: { dia: string; n: number };
+  /** ja viu o tutorial de abertura */
+  viuTutorial?: boolean;
 }
 
 const CHAVE = 'missoes-do-dia:perfis';

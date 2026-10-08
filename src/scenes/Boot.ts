@@ -2,24 +2,59 @@ import Phaser from 'phaser';
 import { IMAGENS } from '../assets';
 import { CONFIG } from '../config';
 import { listar } from '../storage';
+import { TEMA } from '../theme';
+import { figura, irPara } from '../ui';
 
+const W = CONFIG.LARGURA;
+const H = CONFIG.ALTURA;
+const MINIMO = 1600;
+
+/** Tela de abertura: logotipo, a raposinha e a barra de carregamento. */
 export class Boot extends Phaser.Scene {
+  private comecou = 0;
+
   constructor() {
     super('Boot');
   }
 
   preload() {
-    const raposa = this.add
-      .text(CONFIG.LARGURA / 2, CONFIG.ALTURA / 2, '\u{1F98A}', { fontSize: '170px' })
-      .setOrigin(0.5);
-    this.tweens.add({ targets: raposa, angle: { from: -8, to: 8 }, duration: 600, yoyo: true, repeat: -1 });
+    this.comecou = Date.now();
+    this.add.rectangle(W / 2, H / 2, W, H, TEMA.ceu);
+    this.add.rectangle(W / 2, H, W * 1.6, 520, 0x8ccf6f).setOrigin(0.5, 0.5).setAngle(0);
 
-    // Carrega apenas o que existe de verdade em /assets/img (ver ASSETS.md).
+    this.add
+      .text(W / 2, 330, 'Missões\ndo Dia', {
+        fontSize: '104px',
+        fontStyle: 'bold',
+        align: 'center',
+        color: TEMA.texto,
+      })
+      .setOrigin(0.5)
+      .setStroke(TEMA.contorno, 16)
+      .setShadow(0, 10, 'rgba(0,0,0,0.18)', 12);
+
+    const raposa = this.add.text(W / 2, 760, '\u{1F98A}', { fontSize: '200px' }).setOrigin(0.5);
+    this.tweens.add({ targets: raposa, y: 720, duration: 700, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
+
+    const trilho = this.add.graphics();
+    trilho.fillStyle(0xffffff, 0.8);
+    trilho.fillRoundedRect(W / 2 - 220, 1030, 440, 36, 18);
+    const barra = this.add.graphics();
+    this.load.on('progress', (v: number) => {
+      barra.clear();
+      barra.fillStyle(TEMA.sim, 1);
+      barra.fillRoundedRect(W / 2 - 214, 1036, Math.max(24, 428 * v), 24, 12);
+    });
+
+    // carrega so o que existe de verdade em /assets/img (ver ASSETS.md)
     for (const [chave, url] of Object.entries(IMAGENS)) this.load.image(chave, url);
     this.load.on('loaderror', (f: Phaser.Loader.File) => console.warn('imagem nao carregou:', f.key));
   }
 
   create() {
-    this.scene.start(listar().length > 0 ? 'Perfis' : 'Criador');
+    // a raposinha de verdade entra assim que a arte termina de carregar
+    figura(this, W / 2, 760, 'mascote_raposinha', '\u{1F98A}', 300);
+    const espera = Math.max(0, MINIMO - (Date.now() - this.comecou));
+    this.time.delayedCall(espera, () => irPara(this, listar().length > 0 ? 'Perfis' : 'Criador'));
   }
 }

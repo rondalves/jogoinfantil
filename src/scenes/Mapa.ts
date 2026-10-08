@@ -4,9 +4,10 @@ import { gastarFicha, partidasHoje, podeJogar } from '../economia';
 import { liberados, type MiniGame } from '../minigames';
 import { missoesBonus, missoesDoMundo, mundoCompleto } from '../missions';
 import { narrador } from '../narrador';
+import { fale } from '../narracoes';
 import { desenharPersonagem } from '../personagem';
 import { ativo, salvar, type Perfil } from '../storage';
-import { balao, botao, botaoOuvir, figura, fundo, hud, toque } from '../ui';
+import { balao, botao, botaoOuvir, figura, fundo, hud, irPara, toque } from '../ui';
 import type { Missao as MissaoDef } from '../types';
 
 const W = CONFIG.LARGURA;
@@ -25,21 +26,25 @@ export class Mapa extends Phaser.Scene {
   create() {
     this.p = ativo()!;
     if (!this.p) {
-      this.scene.start('Perfis');
+      irPara(this, 'Perfis');
       return;
     }
     narrador.setNome(this.p.nome);
+    if (!this.p.viuTutorial) {
+      this.scene.start('Tutorial');
+      return;
+    }
     fundo(this, 0xbde8ff, 'bg_mapa_mundos');
     hud(this, this.p, 96);
     botaoOuvir(this, W - 76, 200);
 
     toque(
       figura(this, W - 76, 96, 'botao_pais', '\u{2699}\u{FE0F}', 92).setDepth(50),
-      () => this.scene.start('Pais'),
+      () => irPara(this, 'Pais'),
     );
     toque(
       figura(this, W - 196, 96, 'botao_casa', '\u{1F504}', 92).setDepth(50),
-      () => this.scene.start('Perfis'),
+      () => irPara(this, 'Perfis'),
     );
 
     desenharPersonagem(this, this.p.personagem, 0.4).setPosition(90, 200).setDepth(50);
@@ -51,7 +56,7 @@ export class Mapa extends Phaser.Scene {
       .zone(90, 200, 150, 170)
       .setInteractive({ useHandCursor: true })
       .setDepth(51)
-      .on('pointerup', () => this.scene.start('Criador', { editar: true }));
+      .on('pointerup', () => irPara(this, 'Criador', { editar: true }));
 
     this.lista = this.add.container(0, TOPO);
     this.montarLista();
@@ -152,7 +157,7 @@ export class Mapa extends Phaser.Scene {
       .setInteractive({ useHandCursor: true })
       .on('pointerup', () => {
         if (this.arrastou) return;
-        this.scene.start('Missao', { id: missao.id });
+        irPara(this, 'Missao', { id: missao.id });
       });
     this.lista.add(z);
   }
@@ -197,23 +202,23 @@ export class Mapa extends Phaser.Scene {
   private abrirJogos(jogos: MiniGame[]) {
     const motivo = podeJogar(this.p);
     if (jogos.length === 0) {
-      narrador.falar('Termine um mundo inteiro para abrir um jogo novo!');
+      fale('mapa_termine_mundo');
       this.aviso('Termine um mundo para abrir um jogo!');
       return;
     }
     if (motivo === 'limite') {
-      narrador.falar('As partidas de hoje acabaram. Vamos desenhar ou brincar lá fora?');
+      fale('mapa_limite');
       this.aviso(`Hoje já foram ${partidasHoje(this.p)} partidas. Amanhã tem mais!`);
       return;
     }
     if (motivo === 'sem_fichas') {
-      narrador.falar('Suas fichas acabaram. Faça uma missão para ganhar mais!');
+      fale('mapa_sem_fichas');
       this.aviso('Sem fichas. Faça uma missão para ganhar mais!');
       return;
     }
     gastarFicha(this.p);
     salvar(this.p);
-    this.scene.start('MiniGame', { id: jogos[0].id });
+    irPara(this, 'MiniGame', { id: jogos[0].id });
   }
 
   private aviso(texto: string) {

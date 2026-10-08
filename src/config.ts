@@ -5,6 +5,9 @@ export const CONFIG = {
   MOEDAS_BONUS_MUNDO: 5,
   PARTIDAS_POR_DIA: 5,
 
+  /** pagina publica da politica de privacidade (docs/privacidade.html no GitHub Pages) */
+  URL_PRIVACIDADE: 'https://rondalves.github.io/jogoinfantil/privacidade.html',
+
   LARGURA: 720,
   ALTURA: 1280,
   MIN_TOQUE: 96,
