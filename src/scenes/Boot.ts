@@ -3,10 +3,10 @@ import { IMAGENS_BASE } from '../assets';
 import { CONFIG } from '../config';
 import { listar } from '../storage';
 import { TEMA } from '../theme';
-import { figura, irPara } from '../ui';
+import { cobrirTela, figura, irPara } from '../ui';
 
 const W = CONFIG.LARGURA;
-const H = CONFIG.ALTURA;
+const H = CONFIG.DESENHO;
 const MINIMO = 1600;
 
 /** Tela de abertura: logotipo, a raposinha e a barra de carregamento. */
@@ -19,7 +19,7 @@ export class Boot extends Phaser.Scene {
 
   preload() {
     this.comecou = Date.now();
-    this.add.rectangle(W / 2, H / 2, W, H, TEMA.ceu);
+    cobrirTela(this, TEMA.ceu);
     this.add.rectangle(W / 2, H, W * 1.6, 520, 0x8ccf6f).setOrigin(0.5, 0.5).setAngle(0);
 
     this.add

@@ -20,32 +20,37 @@
         "icone": "📦",
         "img": "m16_caixa_blocos",
         "x": 360,
-        "y": 930
+        "y": 930,
+        "fala": "Caixa dos brinquedos"
       },
       "itens": [
         {
           "icone": "⚽",
           "img": "m15_bola",
           "x": 0,
-          "y": 0
+          "y": 0,
+          "fala": "Bola"
         },
         {
           "icone": "🧸",
           "img": "m15_urso",
           "x": 0,
-          "y": 0
+          "y": 0,
+          "fala": "Ursinho"
         },
         {
           "icone": "🚂",
           "img": "m15_trem",
           "x": 0,
-          "y": 0
+          "y": 0,
+          "fala": "Trenzinho"
         },
         {
           "icone": "🪆",
           "img": "m15_boneca",
           "x": 0,
-          "y": 0
+          "y": 0,
+          "fala": "Boneca"
         }
       ]
     },

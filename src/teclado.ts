@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { CONFIG } from './config';
 import { narrador } from './narrador';
 import { fale } from './narracoes';
-import { botao } from './ui';
+import { botao, cobrirTela } from './ui';
 
 const LETRAS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const MAX = 10;
@@ -15,7 +15,7 @@ export function teclado(
 ): Phaser.GameObjects.Container {
   const W = CONFIG.LARGURA;
   const capa = cena.add.container(0, 0).setDepth(100);
-  capa.add(cena.add.rectangle(W / 2, CONFIG.ALTURA / 2, W, CONFIG.ALTURA, 0x12263a, 0.98));
+  capa.add(cobrirTela(cena, 0x12263a, 0.98));
 
   let nome = inicial.toUpperCase().slice(0, MAX);
   const visor = cena.add

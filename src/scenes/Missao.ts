@@ -11,10 +11,12 @@ import { TEMA } from '../theme';
 import { ativo, salvar, type Perfil } from '../storage';
 import type { Missao as MissaoDef } from '../types';
 import {
+  area,
   balao,
   botao,
   botaoOuvir,
   botaoVoltar,
+  cobrirTela,
   confete,
   estrelasNaTela,
   figura,
@@ -22,9 +24,11 @@ import {
   hud,
   irPara,
   nota,
+  somCerto,
+  somErro,
+  TELA,
   textoEmPainel,
   titulo,
-  toque,
   tremer,
 } from '../ui';
 import { ETAPAS, type Ctx } from './etapas';
@@ -72,6 +76,7 @@ export class Missao extends Phaser.Scene {
         e.alvo?.img,
         ...das(e.alvos),
         ...das(e.itens),
+        ...das(e.perguntas),
         ...(e.sujeiras ?? []),
       ]),
     ];
@@ -80,6 +85,7 @@ export class Missao extends Phaser.Scene {
   create() {
     this.perfil = ativo()!;
     narrador.setNome(this.perfil.nome);
+    narrador.setVoz(this.perfil.voz ?? 'f');
     fundo(this, TEMA.creme);
     this.barra = hud(this, this.perfil, 96, W / 2, 0.5);
     botaoOuvir(this);
@@ -98,8 +104,8 @@ export class Missao extends Phaser.Scene {
     const alvo = nome ?? this.def.cenario;
     if (!alvo || !this.textures.exists(alvo)) return;
     this.bg?.destroy();
-    const im = this.add.image(W / 2, CONFIG.ALTURA / 2, alvo).setDepth(-9);
-    im.setScale(Math.max(W / im.width, CONFIG.ALTURA / im.height));
+    const im = this.add.image(W / 2, TELA.meio, alvo).setDepth(-9);
+    im.setScale(Math.max(W / im.width, TELA.altura / im.height));
     this.bg = im;
   }
 
@@ -113,7 +119,7 @@ export class Missao extends Phaser.Scene {
       }
     }
     this.camada.add(
-      this.add.rectangle(W / 2, CONFIG.ALTURA / 2, W, CONFIG.ALTURA, 0xfbf9f5, 0.72).setDepth(-1),
+      cobrirTela(this, 0xfbf9f5, 0.72).setDepth(-1),
     );
   }
 
@@ -186,7 +192,7 @@ export class Missao extends Phaser.Scene {
       chaveErro,
       erro: (consequencia) => {
         this.erros += 1;
-        nota(220);
+        somErro();
         if (consequencia) narrador.falar(consequencia, chaveErro);
       },
       fim: () => {
@@ -227,15 +233,19 @@ export class Missao extends Phaser.Scene {
           })
           .setOrigin(0.5),
       );
-      toque(f, () => {
+      // cartao inteiro clicavel: o dedo da crianca nao mira na figurinha
+      const zona = area(this, W / 2, y, W - 140, 280, undefined, cena.texto);
+      this.camada.add(zona);
+      zona.on('pointerdown', () => {
         if (!cena.ok) {
           tremer(this, f);
           this.erros += 1;
-          nota(220);
+          somErro();
           narrador.falar(pnp.explicacao, `m${this.def.id}_pnp_explica`);
           return;
         }
-        nota(880);
+        zona.disableInteractive();
+        somCerto();
         narrador.falar(pnp.explicacao, `m${this.def.id}_pnp_explica`);
         this.time.delayedCall(1400, () => this.final());
       });

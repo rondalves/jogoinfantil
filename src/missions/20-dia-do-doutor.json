@@ -23,7 +23,8 @@
         "icone": "🪑",
         "img": "m20_sala_espera",
         "x": 360,
-        "y": 820
+        "y": 820,
+        "fala": "Sala de espera"
       }
     },
     {

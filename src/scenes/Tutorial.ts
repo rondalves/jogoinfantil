@@ -4,7 +4,7 @@ import { narrador } from '../narrador';
 import { fale, type Chave } from '../narracoes';
 import { ativo, salvar, type Perfil } from '../storage';
 import { TEMA } from '../theme';
-import { balao, botao, botaoOuvir, figura, fundo, irPara, titulo } from '../ui';
+import { balao, botao, botaoOuvir, cobrirTela, figura, fundo, irPara, titulo } from '../ui';
 
 const W = CONFIG.LARGURA;
 
@@ -36,7 +36,7 @@ export class Tutorial extends Phaser.Scene {
     this.perfil = ativo()!;
     narrador.setNome(this.perfil.nome);
     fundo(this, TEMA.ceu, 'bg_mapa_mundos');
-    this.add.rectangle(W / 2, CONFIG.ALTURA / 2, W, CONFIG.ALTURA, TEMA.escuro, 0.55).setDepth(-8);
+    cobrirTela(this, TEMA.escuro, 0.55).setDepth(-8);
     botaoOuvir(this);
     titulo(this, 'Como se joga', 180);
     botao(this, W / 2, 1180, 'Pular', () => this.terminar(), { icone: '\u{23ED}\u{FE0F}', largura: 320 });

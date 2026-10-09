@@ -33,6 +33,12 @@ Mesmo padrão das outras: **fundo verde chapado**, cartoon, sem texto na imagem.
 | `acessorio_capa` | criador | 🧥 |
 | `acessorio_medalha` | criador | 🏅 |
 | `logo` | abertura e capturas da loja | texto |
+| `bg_sala_aula` | missões 07, 08 e 09 | **hoje é uma cozinha**, arquivo trocado na fatiagem |
+| `m07_professora` | missão 07, ouvir a professora | 👩‍🏫 |
+| `m05_pente` | missão 05, arrumar o cabelo | 💇 |
+| `m03_terra` | missão 03, brincar na terra | 🪴 |
+
+Os prompts dos dois cenários estão em [PROMPTS_CENARIOS.md](PROMPTS_CENARIOS.md).
 
 ## Tudo o que já entrou
 

@@ -73,7 +73,7 @@ async function grava(page, nome) {
 
 const main = async () => {
   mkdirSync(SAIDA, { recursive: true });
-  const navegador = await chromium.launch();
+  const navegador = await chromium.launch({ args: ['--mute-audio'] });
   const page = await navegador.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
 
   await page.goto(URL_JOGO);

@@ -2,11 +2,11 @@ import Phaser from 'phaser';
 import { CONFIG } from '../config';
 import { fale } from '../narracoes';
 import { desenharPersonagem } from '../personagem';
-import { figura, nota, textoEmPainel } from '../ui';
+import { cobrirTela, figura, nota, textoEmPainel } from '../ui';
 import type { MiniGame, ResultadoMiniGame } from './index';
 
 const W = CONFIG.LARGURA;
-const H = CONFIG.ALTURA;
+const H = CONFIG.DESENHO;
 const DURACAO = 70;
 
 /**
@@ -24,7 +24,7 @@ export const estrelas: MiniGame = {
   arte: ['m19_lua', 'm19_estrelas', 'bg_quarto_noite'],
   iniciar(cena, personagem) {
     return new Promise<ResultadoMiniGame>((resolve) => {
-      cena.add.rectangle(W / 2, H / 2, W, H, 0x2e3340).setDepth(-10);
+      cobrirTela(cena, 0x2e3340).setDepth(-10);
       if (cena.textures.exists('bg_quarto_noite')) {
         const bg = cena.add.image(W / 2, H / 2, 'bg_quarto_noite').setDepth(-9);
         bg.setScale(Math.max(W / bg.width, H / bg.height)).setAlpha(0.35);

@@ -3,11 +3,11 @@ import { CONFIG } from '../config';
 import { narrador } from '../narrador';
 import { desenharPersonagem } from '../personagem';
 import type { PersonagemCfg } from '../storage';
-import { figura, nota } from '../ui';
+import { cobrirTela, figura, nota, TELA } from '../ui';
 import type { ResultadoMiniGame } from './index';
 
 const W = CONFIG.LARGURA;
-const H = CONFIG.ALTURA;
+const H = CONFIG.DESENHO;
 const FAIXAS = [W / 2 - 170, W / 2, W / 2 + 170];
 const Y_HEROI = H - 260;
 
@@ -34,6 +34,8 @@ export interface OpcoesFaixas {
   /** frase narrada quando bate num obstaculo */
   aviso: string;
   icone: string;
+  /** 0 ou ausente = segue sem fim; 3 = tres trombadas e a corrida acaba */
+  vidas?: number;
 }
 
 interface Item {
@@ -50,7 +52,7 @@ function pecaQueCai(
   emoji: string,
   perigo: boolean,
 ): Phaser.GameObjects.Container {
-  const c = cena.add.container(x, -80);
+  const c = cena.add.container(x, TELA.topo - 80);
   const disco = cena.add.graphics();
   if (perigo) {
     disco.fillStyle(0xc0392b, 0.92);
@@ -80,15 +82,18 @@ export function correrFaixas(
   op: OpcoesFaixas,
   pronto: (r: ResultadoMiniGame) => void,
 ) {
-  cena.add.rectangle(W / 2, H / 2, W, H, op.chao).setDepth(-10);
-  cena.add.rectangle(W / 2, 0, W, 300, op.ceu).setOrigin(0.5, 0).setDepth(-10);
-  cena.add.rectangle(W / 2, H / 2, 560, H, op.pista).setDepth(-9);
+  cobrirTela(cena, op.chao).setDepth(-10);
+  cena.add.rectangle(W / 2, TELA.topo, W, 300 + CONFIG.MARGEM, op.ceu).setOrigin(0.5, 0).setDepth(-10);
+  cena.add.rectangle(W / 2, TELA.meio, 560, TELA.altura, op.pista).setDepth(-9);
 
   const listras: Phaser.GameObjects.Rectangle[] = [];
+  const quantas = Math.ceil(TELA.altura / 160) + 1;
   for (let f = 0; f < 2; f++) {
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < quantas; i++) {
       listras.push(
-        cena.add.rectangle(W / 2 + (f === 0 ? -85 : 85), i * 160, 14, 90, 0xffffff, 0.8).setDepth(-8),
+        cena.add
+          .rectangle(W / 2 + (f === 0 ? -85 : 85), TELA.topo + i * 160, 14, 90, 0xffffff, 0.8)
+          .setDepth(-8),
       );
     }
   }
@@ -136,6 +141,20 @@ export function correrFaixas(
   const texto = cena.add.text(72, 0, '0', { fontSize: '44px', fontStyle: 'bold' }).setOrigin(0, 0.5);
   placar.add(texto);
 
+  // tres vidas: trombar custa uma. Zerar so adianta a bandeirada, os pontos
+  // ganhos ficam -- nunca existe tela de "voce perdeu".
+  const totalVidas = op.vidas ?? 0;
+  let vidas = totalVidas;
+  const coracoes: Phaser.GameObjects.Text[] = [];
+  for (let i = 0; i < totalVidas; i++) {
+    coracoes.push(
+      cena.add
+        .text(W / 2 + (i - (totalVidas - 1) / 2) * 58, 190, '\u{2764}\u{FE0F}', { fontSize: '48px' })
+        .setOrigin(0.5)
+        .setDepth(40),
+    );
+  }
+
   const barra = cena.add.graphics().setDepth(40);
   const itens: Item[] = [];
   let velocidade = op.velocidade;
@@ -144,8 +163,14 @@ export function correrFaixas(
   let acabou = false;
 
   const pesoTotal = op.colecao.reduce((a, c) => a + c.chance, 0) + op.obstaculos.length;
-  const nascer = () => {
-    const f = Phaser.Math.Between(0, 2);
+  /** Faixas sem obstaculo perto do topo: e por onde ainda da para escapar. */
+  const faixasLivres = () => {
+    const ocupadas = new Set(
+      itens.filter((i) => i.pontos === 0 && i.fig.y < TELA.topo + 460).map((i) => i.faixa),
+    );
+    return [0, 1, 2].filter((l) => !ocupadas.has(l));
+  };
+  const soltarColetavel = (f: number) => {
     let sorte = Math.random() * pesoTotal;
     for (const c of op.colecao) {
       sorte -= c.chance;
@@ -154,8 +179,21 @@ export function correrFaixas(
         return;
       }
     }
+    const c = op.colecao[0];
+    itens.push({ fig: pecaQueCai(cena, FAIXAS[f], c.arte, c.emoji, false), faixa: f, pontos: c.pontos });
+  };
+  const nascer = () => {
+    const f = Phaser.Math.Between(0, 2);
+    const obstaculo = Math.random() * pesoTotal > pesoTotal - op.obstaculos.length;
+    const livres = faixasLivres();
+    // so vira obstaculo se ainda sobrar uma faixa limpa depois dele
+    if (!obstaculo || livres.length < 2) {
+      soltarColetavel(f);
+      return;
+    }
+    const onde = Phaser.Utils.Array.GetRandom(livres);
     const o = Phaser.Utils.Array.GetRandom(op.obstaculos);
-    itens.push({ fig: pecaQueCai(cena, FAIXAS[f], o.arte, o.emoji, true), faixa: f, pontos: 0 });
+    itens.push({ fig: pecaQueCai(cena, FAIXAS[onde], o.arte, o.emoji, true), faixa: onde, pontos: 0 });
   };
   const semeador = cena.time.addEvent({ delay: 760, loop: true, callback: nascer });
 
@@ -186,7 +224,7 @@ export function correrFaixas(
 
       for (const l of listras) {
         l.y += andar;
-        if (l.y > H + 60) l.y = -60;
+        if (l.y > TELA.baixo + 60) l.y = TELA.topo - 60;
       }
       for (let i = itens.length - 1; i >= 0; i--) {
         const it = itens[i];
@@ -197,6 +235,17 @@ export function correrFaixas(
             nota(200);
             narrador.falar(op.aviso);
             cena.tweens.add({ targets: heroi, angle: { from: -10, to: 10 }, duration: 90, yoyo: true, repeat: 2 });
+            if (totalVidas > 0) {
+              vidas -= 1;
+              const c = coracoes[vidas];
+              if (c) cena.tweens.add({ targets: c, alpha: 0.25, scale: 0.7, duration: 240 });
+              if (vidas <= 0) {
+                it.fig.destroy();
+                itens.splice(i, 1);
+                terminar();
+                return;
+              }
+            }
           } else {
             pontos += it.pontos;
             texto.setText(String(pontos));
@@ -206,7 +255,7 @@ export function correrFaixas(
           itens.splice(i, 1);
           continue;
         }
-        if (it.fig.y > H + 100) {
+        if (it.fig.y > TELA.baixo + 100) {
           it.fig.destroy();
           itens.splice(i, 1);
         }

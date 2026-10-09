@@ -22,7 +22,8 @@
         "icone": "⏱️",
         "img": "m18_cronometro",
         "x": 360,
-        "y": 820
+        "y": 820,
+        "fala": "Cronômetro"
       }
     },
     {

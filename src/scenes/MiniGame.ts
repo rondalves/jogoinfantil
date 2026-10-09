@@ -27,6 +27,7 @@ export class MiniGame extends Phaser.Scene {
   create() {
     this.perfil = ativo()!;
     narrador.setNome(this.perfil.nome);
+    narrador.setVoz(this.perfil.voz ?? 'f');
     fundo(this, TEMA.ceu);
     botaoVoltar(this, 'Mapa');
     botaoOuvir(this);

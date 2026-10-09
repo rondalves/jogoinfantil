@@ -1,243 +1,360 @@
-﻿arquivo;texto;local
-ui_quem_joga.mp3;Quem vai jogar hoje?;Tela de perfis
-ui_monte_personagem.mp3;Monte um personagem parecido com você!;Criador de personagem
-ui_escreva_nome.mp3;Escreva seu nome com as letrinhas.;Teclado do nome
-ui_nome_bonito.mp3;Oi! Que nome bonito!;Depois de confirmar o nome
-ui_primeiro_nome.mp3;Primeiro escreva seu nome!;Criador, ao salvar sem nome
-ui_item_guardado.mp3;Esse ainda está guardado. Junte estrelas e broches!;Criador, acessório bloqueado
-ui_perfis_cheios.mp3;Já tem quatro personagens aqui. Peça para um adulto apagar um.;Tela de perfis cheia
-mapa_termine_mundo.mp3;Termine um mundo inteiro para abrir um jogo novo!;Mapa, botão Jogar sem mini game
-mapa_limite.mp3;As partidas de hoje acabaram. Vamos desenhar ou brincar lá fora?;Mapa, limite diário
-mapa_sem_fichas.mp3;Suas fichas acabaram. Faça uma missão para ganhar mais!;Mapa, saldo zerado
-missao_moeda.mp3;Você ganhou uma moeda! Ela virou três fichas!;Fim da missão
-missao_mundo_completo.mp3;Mundo completo! Você ganhou um broche e cinco moedas, que viraram quinze fichas!;Fim do mundo
-missao_sem_fichas.mp3;Suas fichas acabaram. Faça outra missão para ganhar mais!;Fim da missão, sem fichas
-missao_limite.mp3;As partidas de hoje acabaram. Vamos brincar de outra coisa?;Fim da missão, limite diário
-etapa_sopre.mp3;Sopre bem devagar, bem longo. Vamos de novo!;Etapa de respirar
-mg1_escolha_pista.mp3;Escolha a pista da corrida!;Corrida de kart, escolha da pista
-mg1_como_jogar.mp3;Pegue as moedas e desvie dos cones. Pode tocar na tela ou inclinar o celular!;Corrida de kart, começo
-mg1_devagar.mp3;Opa! Devagar nessa curva!;Corrida de kart, ao bater
-mg1_fim.mp3;Boa! Olha quantas moedinhas você juntou!;Corrida de kart, fim
-tut_1.mp3;Este é o mapa. Cada mundo é uma hora do seu dia.;Tutorial, passo 1
-tut_2.mp3;Toque numa missão para começar. A raposinha vai te ajudar!;Tutorial, passo 2
-tut_3.mp3;Fazendo com capricho você ganha estrelas.;Tutorial, passo 3
-tut_4.mp3;As moedas viram fichas, e com as fichas você joga!;Tutorial, passo 4
-mg2_como_jogar.mp3;Toque no próximo degrau para subir. Se tiver pedra, toque de novo para pular!;Escalada, começo
-mg2_pedra.mp3;Tem uma pedra no caminho. Toque de novo para pular!;Escalada, ao achar uma pedra
-mg2_fim.mp3;Você chegou lá em cima! Que escalada!;Escalada, fim
-mg3_como_jogar.mp3;Corra e pegue as estrelinhas! Toque de um lado para desviar.;Corredor, começo
-mg3_fim.mp3;Que corrida boa! Olha quantas estrelas!;Corredor, fim
-mg4_como_jogar.mp3;Vire duas cartas e ache os pares iguais.;Memória, começo
-mg4_bolhas.mp3;Agora estoure todas as bolhas com o dedinho!;Memória, parte das bolhas
-mg4_fim.mp3;Que memória boa você tem!;Memória, fim
-mg5_como_jogar.mp3;As estrelas estão caindo devagarinho. Toque para pegar.;Céu das estrelas, começo
-mg5_fim.mp3;Que céu bonito! Agora é hora de descansar.;Céu das estrelas, fim
-medalha_final.mp3;Parabéns! Você cuidou do seu dia inteirinho. Você é o Super Ajudante do Dia!;Tela da medalha final
-letra_a.mp3;A;Teclado do nome
-letra_b.mp3;B;Teclado do nome
-letra_c.mp3;C;Teclado do nome
-letra_d.mp3;D;Teclado do nome
-letra_e.mp3;E;Teclado do nome
-letra_f.mp3;F;Teclado do nome
-letra_g.mp3;G;Teclado do nome
-letra_h.mp3;H;Teclado do nome
-letra_i.mp3;I;Teclado do nome
-letra_j.mp3;J;Teclado do nome
-letra_k.mp3;K;Teclado do nome
-letra_l.mp3;L;Teclado do nome
-letra_m.mp3;M;Teclado do nome
-letra_n.mp3;N;Teclado do nome
-letra_o.mp3;O;Teclado do nome
-letra_p.mp3;P;Teclado do nome
-letra_q.mp3;Q;Teclado do nome
-letra_r.mp3;R;Teclado do nome
-letra_s.mp3;S;Teclado do nome
-letra_t.mp3;T;Teclado do nome
-letra_u.mp3;U;Teclado do nome
-letra_v.mp3;V;Teclado do nome
-letra_w.mp3;W;Teclado do nome
-letra_x.mp3;X;Teclado do nome
-letra_y.mp3;Y;Teclado do nome
-letra_z.mp3;Z;Teclado do nome
-m01_intro.mp3;Bom dia, {nome}! Vamos acordar e cuidar de você?;Missao 01 - Acordar e se cuidar: abertura
-m01_mostrar.mp3;Escova em cada pedacinho: em cima, embaixo, dos dois lados e a linguinha!;Missao 01 - Acordar e se cuidar: o personagem mostra
-m01_e1.mp3;Vamos escovar! Siga a bolinha verde.;Missao 01 - Acordar e se cuidar: etapa 1 (escovar)
-m01_escovar1.mp3;Em cima, deste lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
-m01_escovar2.mp3;Em cima, do outro lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
-m01_escovar3.mp3;Embaixo, deste lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
-m01_escovar4.mp3;Embaixo, do outro lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
-m01_escovar5.mp3;Agora a linguinha!;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
-m01_e2.mp3;Agora lave o rosto. Esfregue com o dedinho!;Missao 01 - Acordar e se cuidar: etapa 2 (esfregar)
-m01_e3.mp3;Monte o café: leve a fruta e o pão para o prato.;Missao 01 - Acordar e se cuidar: etapa 3 (arrastar_para_alvo)
-m01_pnp.mp3;O que pode?;Missao 01 - Acordar e se cuidar: pode ou nao pode
-m01_pnp_explica.mp3;A comida é para comer. E a escova deixa o dente forte!;Missao 01 - Acordar e se cuidar: explicacao do pode ou nao pode
-m01_reforco.mp3;Dentes limpos, sorriso brilhando!;Missao 01 - Acordar e se cuidar: frase de reforco
-m02_intro.mp3;{nome}, vamos deixar a sua cama bonita?;Missao 02 - Arrumar a cama: abertura
-m02_mostrar.mp3;Primeiro o lençol, depois o cobertor, por último o travesseiro!;Missao 02 - Arrumar a cama: o personagem mostra
-m02_e1.mp3;Leve o lençol, o cobertor e o travesseiro para a cama.;Missao 02 - Arrumar a cama: etapa 1 (arrastar_para_alvo)
-m02_e2.mp3;Agora dê tapinhas no travesseiro para ele ficar fofinho!;Missao 02 - Arrumar a cama: etapa 2 (segurar_com_timer)
-m02_erro2.mp3;Segure mais um pouquinho, {nome}!;Missao 02 - Arrumar a cama: etapa 2, quando erra
-m02_pnp.mp3;O que pode?;Missao 02 - Arrumar a cama: pode ou nao pode
-m02_pnp_explica.mp3;Pedir ajuda é de gente esperta! Juntos fica mais fácil.;Missao 02 - Arrumar a cama: explicacao do pode ou nao pode
-m02_reforco.mp3;Cama arrumada, dia começou bem!;Missao 02 - Arrumar a cama: frase de reforco
-m03_intro.mp3;Olha só, {nome}: germes nas suas mãos! Vamos espantar todos?;Missao 03 - Guerra aos germes: abertura
-m03_mostrar.mp3;Água, sabão e muita esfregada. Os germes não gostam disso!;Missao 03 - Guerra aos germes: o personagem mostra
-m03_e1.mp3;Esfregue as mãos até os germes sumirem!;Missao 03 - Guerra aos germes: etapa 1 (esfregar)
-m03_e2.mp3;Toque nas horas de lavar a mão: antes de comer, depois do banheiro e depois de brincar com o pet.;Missao 03 - Guerra aos germes: etapa 2 (tocar)
-m03_erro2.mp3;Essa não é hora de lavar a mão. Tente outra!;Missao 03 - Guerra aos germes: etapa 2, quando erra
-m03_pnp.mp3;O que pode?;Missao 03 - Guerra aos germes: pode ou nao pode
-m03_pnp_explica.mp3;A água e o sabão levam os germes embora pelo ralo!;Missao 03 - Guerra aos germes: explicacao do pode ou nao pode
-m03_reforco.mp3;Mãos limpas, corpo saudável!;Missao 03 - Guerra aos germes: frase de reforco
-m04_intro.mp3;{nome}, tem coisas na casa que só adulto pode mexer. Vamos achar?;Missao 04 - Casa segura: abertura
-m04_mostrar.mp3;Toque só no que é perigoso. O resto pode deixar!;Missao 04 - Casa segura: o personagem mostra
-m04_e1.mp3;Toque em tudo que é perigoso para criança.;Missao 04 - Casa segura: etapa 1 (tocar)
-m04_erro1.mp3;Esse aí não é perigoso. Procure outro!;Missao 04 - Casa segura: etapa 1, quando erra
-m04_e2.mp3;A campainha tocou e você não conhece quem está na porta. O que fazer?;Missao 04 - Casa segura: etapa 2 (escolher_entre_opcoes)
-m04_erro2.mp3;Porta só adulto abre. Chame alguém!;Missao 04 - Casa segura: etapa 2, quando erra
-m04_pnp.mp3;O que pode?;Missao 04 - Casa segura: pode ou nao pode
-m04_pnp_explica.mp3;Achou perigo? Não mexe: chama um adulto na hora!;Missao 04 - Casa segura: explicacao do pode ou nao pode
-m04_reforco.mp3;Perigo? Chame um adulto!;Missao 04 - Casa segura: frase de reforco
-m05_intro.mp3;{nome}, a escola está esperando! Vamos arrumar a mochila?;Missao 05 - Ir para a escola: abertura
-m05_mostrar.mp3;Caderno, lápis, lanche e garrafinha. Tudo dentro da mochila!;Missao 05 - Ir para a escola: o personagem mostra
-m05_e1.mp3;Coloque tudo dentro da mochila.;Missao 05 - Ir para a escola: etapa 1 (arrastar_para_alvo)
-m05_e2.mp3;Agora na ordem: vestir o uniforme, calçar o tênis e pegar a mochila.;Missao 05 - Ir para a escola: etapa 2 (sequencia_ordenada)
-m05_erro2.mp3;Ainda não é esse. Olhe de novo!;Missao 05 - Ir para a escola: etapa 2, quando erra
-m05_pnp.mp3;O que pode?;Missao 05 - Ir para a escola: pode ou nao pode
-m05_pnp_explica.mp3;Avisar quem cuida de você deixa todo mundo tranquilo.;Missao 05 - Ir para a escola: explicacao do pode ou nao pode
-m05_reforco.mp3;Mochila pronta, dia começou!;Missao 05 - Ir para a escola: frase de reforco
-m06_intro.mp3;{nome}, a rua pede atenção. Vamos atravessar do jeito certo?;Missao 06 - Rua segura: abertura
-m06_mostrar.mp3;Mão dada, esperar o vermelho, verde caminha, e sempre na faixa!;Missao 06 - Rua segura: o personagem mostra
-m06_e1.mp3;Toque na ordem certa para atravessar.;Missao 06 - Rua segura: etapa 1 (sequencia_ordenada)
-m06_erro1.mp3;Calma! Esse vem depois. Tente outro.;Missao 06 - Rua segura: etapa 1, quando erra
-m06_e2.mp3;A bola foi parar na rua. O que fazer?;Missao 06 - Rua segura: etapa 2 (escolher_entre_opcoes)
-m06_erro2.mp3;Rua não é lugar de correr. Chame um adulto!;Missao 06 - Rua segura: etapa 2, quando erra
-m06_pnp.mp3;O que pode?;Missao 06 - Rua segura: pode ou nao pode
-m06_pnp_explica.mp3;A faixa é o caminho seguro. A bola a gente pede ajuda para pegar.;Missao 06 - Rua segura: explicacao do pode ou nao pode
-m06_reforco.mp3;Vermelho espera, verde caminha!;Missao 06 - Rua segura: frase de reforco
-m07_intro.mp3;Começou a aula, {nome}! Vamos ver como se faz?;Missao 07 - Ouvir a professora: abertura
-m07_mostrar.mp3;Sentar, ouvir, levantar a mão para falar e fazer a atividade.;Missao 07 - Ouvir a professora: o personagem mostra
-m07_e1.mp3;Toque na ordem: sentar, ouvir, levantar a mão e fazer a atividade.;Missao 07 - Ouvir a professora: etapa 1 (sequencia_ordenada)
-m07_erro1.mp3;Esse é o próximo? Olhe mais uma vez!;Missao 07 - Ouvir a professora: etapa 1, quando erra
-m07_e2.mp3;Você tem uma dúvida. Como pergunta?;Missao 07 - Ouvir a professora: etapa 2 (escolher_entre_opcoes)
-m07_erro2.mp3;Gritando ninguém escuta. Levante a mao!;Missao 07 - Ouvir a professora: etapa 2, quando erra
-m07_pnp.mp3;O que pode?;Missao 07 - Ouvir a professora: pode ou nao pode
-m07_pnp_explica.mp3;Com a mão levantada a professora vê você e todo mundo escuta.;Missao 07 - Ouvir a professora: explicacao do pode ou nao pode
-m07_reforco.mp3;Quem escuta, aprende!;Missao 07 - Ouvir a professora: frase de reforco
-m08_intro.mp3;Às vezes a gente precisa esperar, {nome}. E dá para esperar bem!;Missao 08 - Saber esperar: abertura
-m08_mostrar.mp3;Enquanto espera, dá para respirar, cantar baixinho ou olhar em volta.;Missao 08 - Saber esperar: o personagem mostra
-m08_e1.mp3;Toque nos três jeitos de esperar bem.;Missao 08 - Saber esperar: etapa 1 (tocar)
-m08_e2.mp3;A fila está andando. Segure a ampulheta e espere a areia cair.;Missao 08 - Saber esperar: etapa 2 (segurar_com_timer)
-m08_erro2.mp3;Ainda não acabou. Vamos esperar juntos!;Missao 08 - Saber esperar: etapa 2, quando erra
-m08_pnp.mp3;O que pode?;Missao 08 - Saber esperar: pode ou nao pode
-m08_pnp_explica.mp3;Esperar é difícil, mas passa. Quem espera bem chega na vez dele.;Missao 08 - Saber esperar: explicacao do pode ou nao pode
-m08_reforco.mp3;Esperar também é ser forte!;Missao 08 - Saber esperar: frase de reforco
-m09_intro.mp3;{nome}, tem palavras que fazem mágica de verdade. Quer ver?;Missao 09 - Palavras mágicas: abertura
-m09_mostrar.mp3;Por favor, muito obrigado, com licença e desculpa. São as palavras mágicas!;Missao 09 - Palavras mágicas: o personagem mostra
-m09_e1.mp3;Voce quer o brinquedo do colega. O que fala?;Missao 09 - Palavras mágicas: etapa 1 (escolher_entre_opcoes)
-m09_erro1.mp3;Com por favor fica muito mais fácil!;Missao 09 - Palavras mágicas: etapa 1, quando erra
-m09_e2.mp3;Ganhou um presente. O que fala?;Missao 09 - Palavras mágicas: etapa 2 (escolher_entre_opcoes)
-m09_erro2.mp3;Quem agradece deixa o outro feliz!;Missao 09 - Palavras mágicas: etapa 2, quando erra
-m09_pnp.mp3;O que pode?;Missao 09 - Palavras mágicas: pode ou nao pode
-m09_pnp_explica.mp3;Com licença abre caminho sem machucar ninguém.;Missao 09 - Palavras mágicas: explicacao do pode ou nao pode
-m09_reforco.mp3;Palavra mágica abre portas!;Missao 09 - Palavras mágicas: frase de reforco
-m10_intro.mp3;{nome}, ser amigo é fazer o outro se sentir bem. Vamos treinar?;Missao 10 - Amigos e gentileza: abertura
-m10_mostrar.mp3;Convidar quem está sozinho, dividir o brinquedo e ajudar quem caiu.;Missao 10 - Amigos e gentileza: o personagem mostra
-m10_e1.mp3;Toque nas três gentilezas.;Missao 10 - Amigos e gentileza: etapa 1 (tocar)
-m10_e2.mp3;Um colega está sozinho no banco. O que fazer?;Missao 10 - Amigos e gentileza: etapa 2 (escolher_entre_opcoes)
-m10_erro2.mp3;Ninguém gosta de ficar sozinho. Chame para brincar!;Missao 10 - Amigos e gentileza: etapa 2, quando erra
-m10_pnp.mp3;O que pode?;Missao 10 - Amigos e gentileza: pode ou nao pode
-m10_pnp_explica.mp3;Bater machuca. Conversar resolve.;Missao 10 - Amigos e gentileza: explicacao do pode ou nao pode
-m10_reforco.mp3;Amigo bom é amigo gentil!;Missao 10 - Amigos e gentileza: frase de reforco
-m11_intro.mp3;Olha o monstrinho, {nome}! Ele sente tudo que a gente sente.;Missao 11 - Monstro dos sentimentos: abertura
-m11_mostrar.mp3;Feliz, triste, bravo, com medo. Todo sentimento pode aparecer.;Missao 11 - Monstro dos sentimentos: o personagem mostra
-m11_e1.mp3;Toque no monstrinho que está bravo.;Missao 11 - Monstro dos sentimentos: etapa 1 (tocar)
-m11_erro1.mp3;Esse está com outro sentimento. Procure o bravo!;Missao 11 - Monstro dos sentimentos: etapa 1, quando erra
-m11_e2.mp3;Quando a raiva vem, a gente respira. Sopre três vezes bem devagar.;Missao 11 - Monstro dos sentimentos: etapa 2 (respirar)
-m11_e3.mp3;A raiva passou um pouco. E agora?;Missao 11 - Monstro dos sentimentos: etapa 3 (escolher_entre_opcoes)
-m11_erro3.mp3;Bater não faz a raiva passar. Falar faz!;Missao 11 - Monstro dos sentimentos: etapa 3, quando erra
-m11_pnp.mp3;O que pode?;Missao 11 - Monstro dos sentimentos: pode ou nao pode
-m11_pnp_explica.mp3;Sentir raiva pode. Bater não pode. Respire e fale o que sentiu.;Missao 11 - Monstro dos sentimentos: explicacao do pode ou nao pode
-m11_reforco.mp3;Todo sentimento é normal. Eu sei o que fazer com ele.;Missao 11 - Monstro dos sentimentos: frase de reforco
-m12_intro.mp3;Fim da aula, {nome}! Vamos para casa com segurança?;Missao 12 - Voltar de carro: abertura
-m12_mostrar.mp3;Esperar o adulto abrir, sentar na cadeirinha e ouvir o clique do cinto!;Missao 12 - Voltar de carro: o personagem mostra
-m12_e1.mp3;Toque na ordem certa para entrar no carro.;Missao 12 - Voltar de carro: etapa 1 (sequencia_ordenada)
-m12_erro1.mp3;Ainda não é esse. Olhe de novo!;Missao 12 - Voltar de carro: etapa 1, quando erra
-m12_e2.mp3;O carro está andando e a janela está do seu lado. O que fazer?;Missao 12 - Voltar de carro: etapa 2 (escolher_entre_opcoes)
-m12_erro2.mp3;Janela é o adulto quem mexe. Fique sentadinho!;Missao 12 - Voltar de carro: etapa 2, quando erra
-m12_pnp.mp3;O que pode?;Missao 12 - Voltar de carro: pode ou nao pode
-m12_pnp_explica.mp3;O cinto segura você se o carro parar de repente. Ele fica até o fim da viagem!;Missao 12 - Voltar de carro: explicacao do pode ou nao pode
-m12_reforco.mp3;Cinto afivelado, viagem segura!;Missao 12 - Voltar de carro: frase de reforco
-m13_intro.mp3;A comida está na mesa, {nome}! Vamos almoçar direitinho?;Missao 13 - Almoçar: abertura
-m13_mostrar.mp3;Lavar as mãos, sentar na cadeira, comer e agradecer!;Missao 13 - Almoçar: o personagem mostra
-m13_e1.mp3;Toque na ordem: lavar as mãos, sentar, comer e agradecer.;Missao 13 - Almoçar: etapa 1 (sequencia_ordenada)
-m13_erro1.mp3;Esse vem depois. Tente outro!;Missao 13 - Almoçar: etapa 1, quando erra
-m13_e2.mp3;Tem um legume novo no prato. O que fazer?;Missao 13 - Almoçar: etapa 2 (escolher_entre_opcoes)
-m13_erro2.mp3;Uma mordidinha só para conhecer. Se não gostar, tudo bem!;Missao 13 - Almoçar: etapa 2, quando erra
-m13_pnp.mp3;O que pode?;Missao 13 - Almoçar: pode ou nao pode
-m13_pnp_explica.mp3;Na mesa a gente fica sentado até acabar. Experimentar é de gente corajosa!;Missao 13 - Almoçar: explicacao do pode ou nao pode
-m13_reforco.mp3;Prato limpo, barriga feliz!;Missao 13 - Almoçar: frase de reforco
-m14_intro.mp3;Hora da lição, {nome}. Vamos fazer com calma?;Missao 14 - Lição de casa: abertura
-m14_mostrar.mp3;Guardar a tela, sentar, fazer a tarefa e pedir ajuda se travar.;Missao 14 - Lição de casa: o personagem mostra
-m14_e1.mp3;Toque na ordem: guardar a tela, sentar, fazer a tarefa, pedir ajuda.;Missao 14 - Lição de casa: etapa 1 (sequencia_ordenada)
-m14_erro1.mp3;Calma, esse vem depois!;Missao 14 - Lição de casa: etapa 1, quando erra
-m14_e2.mp3;Travou numa continha difícil. O que fazer?;Missao 14 - Lição de casa: etapa 2 (escolher_entre_opcoes)
-m14_erro2.mp3;Pedir ajuda não é desistir. É jeito de aprender!;Missao 14 - Lição de casa: etapa 2, quando erra
-m14_pnp.mp3;O que pode?;Missao 14 - Lição de casa: pode ou nao pode
-m14_pnp_explica.mp3;Primeiro a lição, depois a diversão. E ajuda a gente sempre pode pedir!;Missao 14 - Lição de casa: explicacao do pode ou nao pode
-m14_reforco.mp3;Tarefa feita, cabeça leve!;Missao 14 - Lição de casa: frase de reforco
-m15_intro.mp3;Agora é hora de brincar, {nome}! Escolha o seu brinquedo.;Missao 15 - Brincar: abertura
-m15_mostrar.mp3;Escolher um brinquedo, brincar bastante e dividir com um amigo!;Missao 15 - Brincar: o personagem mostra
-m15_e1.mp3;Toque nos brinquedos para escolher com o que brincar.;Missao 15 - Brincar: etapa 1 (tocar)
-m15_e2.mp3;Um amigo chegou e quer brincar também. O que fazer?;Missao 15 - Brincar: etapa 2 (escolher_entre_opcoes)
-m15_erro2.mp3;Brinquedo não se joga em ninguém. Dividir é mais divertido!;Missao 15 - Brincar: etapa 2, quando erra
-m15_pnp.mp3;O que pode?;Missao 15 - Brincar: pode ou nao pode
-m15_pnp_explica.mp3;Brinquedo machuca se voar. Brincar junto é bem melhor!;Missao 15 - Brincar: explicacao do pode ou nao pode
-m15_reforco.mp3;Brincar junto é muito melhor!;Missao 15 - Brincar: frase de reforco
-m16_intro.mp3;Olha a bagunça, {nome}! Vamos guardar tudo?;Missao 16 - Guardar os brinquedos: abertura
-m16_mostrar.mp3;Cada brinquedo tem a sua caixa. E depois a gente procura os que sobraram!;Missao 16 - Guardar os brinquedos: o personagem mostra
-m16_e1.mp3;Leve cada brinquedo para a caixa.;Missao 16 - Guardar os brinquedos: etapa 1 (arrastar_para_alvo)
-m16_e2.mp3;Procure os que ficaram no chão e toque neles.;Missao 16 - Guardar os brinquedos: etapa 2 (tocar)
-m16_pnp.mp3;O que pode?;Missao 16 - Guardar os brinquedos: pode ou nao pode
-m16_pnp_explica.mp3;Brinquedo no chão faz a gente tropeçar. Guardado, ninguém se machuca!;Missao 16 - Guardar os brinquedos: explicacao do pode ou nao pode
-m16_reforco.mp3;Tudo no lugar, ninguém tropeça!;Missao 16 - Guardar os brinquedos: frase de reforco
-m17_intro.mp3;{nome}, quer ser o ajudante da casa hoje?;Missao 17 - Ajudante da casa: abertura
-m17_mostrar.mp3;Roupa suja no cesto, mesa posta e comida para o pet!;Missao 17 - Ajudante da casa: o personagem mostra
-m17_e1.mp3;Leve a roupa suja para o cesto.;Missao 17 - Ajudante da casa: etapa 1 (arrastar_para_alvo)
-m17_e2.mp3;Agora ponha a mesa.;Missao 17 - Ajudante da casa: etapa 2 (arrastar_para_alvo)
-m17_e3.mp3;E a comidinha do pet?;Missao 17 - Ajudante da casa: etapa 3 (arrastar_para_alvo)
-m17_pnp.mp3;O que pode?;Missao 17 - Ajudante da casa: pode ou nao pode
-m17_pnp_explica.mp3;Quem ajuda deixa a casa boa para todo mundo!;Missao 17 - Ajudante da casa: explicacao do pode ou nao pode
-m17_reforco.mp3;Ajudante da casa, orgulho da família!;Missao 17 - Ajudante da casa: frase de reforco
-m18_intro.mp3;{nome}, a tela tem hora de começar e hora de acabar.;Missao 18 - Tela com limite: abertura
-m18_mostrar.mp3;Escolher o tempo, assistir, e desligar quando o tempo acabar.;Missao 18 - Tela com limite: o personagem mostra
-m18_e1.mp3;Segure o cronômetro: ele marca o tempo da tela.;Missao 18 - Tela com limite: etapa 1 (segurar_com_timer)
-m18_erro1.mp3;Segure mais um pouquinho, o tempo ainda está correndo!;Missao 18 - Tela com limite: etapa 1, quando erra
-m18_e2.mp3;O tempo acabou. O que fazer?;Missao 18 - Tela com limite: etapa 2 (escolher_entre_opcoes)
-m18_erro2.mp3;Combinado é combinado. Desligar na hora é de gente grande!;Missao 18 - Tela com limite: etapa 2, quando erra
-m18_pnp.mp3;O que pode?;Missao 18 - Tela com limite: pode ou nao pode
-m18_pnp_explica.mp3;Depois da tela vem a brincadeira. O corpo também quer se mexer!;Missao 18 - Tela com limite: explicacao do pode ou nao pode
-m18_reforco.mp3;Desliguei na hora, sou dono do meu tempo!;Missao 18 - Tela com limite: frase de reforco
-m19_intro.mp3;O dia acabou, {nome}. Vamos se arrumar para dormir?;Missao 19 - Banho, dentes e sono: abertura
-m19_mostrar.mp3;Banho, pijama, escovar os dentes, uma história e a luz apagada.;Missao 19 - Banho, dentes e sono: o personagem mostra
-m19_e1.mp3;Toque na ordem da hora de dormir.;Missao 19 - Banho, dentes e sono: etapa 1 (sequencia_ordenada)
-m19_erro1.mp3;Ainda não! Esse vem depois.;Missao 19 - Banho, dentes e sono: etapa 1, quando erra
-m19_e2.mp3;Antes de dormir, escovação caprichada!;Missao 19 - Banho, dentes e sono: etapa 2 (escovar)
-m19_escovar1.mp3;Em cima, deste lado;Missao 19 - Banho, dentes e sono: etapa 2, escovacao guiada
-m19_escovar2.mp3;Em cima, do outro lado;Missao 19 - Banho, dentes e sono: etapa 2, escovacao guiada
-m19_escovar3.mp3;Embaixo, deste lado;Missao 19 - Banho, dentes e sono: etapa 2, escovacao guiada
-m19_escovar4.mp3;Embaixo, do outro lado;Missao 19 - Banho, dentes e sono: etapa 2, escovacao guiada
-m19_e3.mp3;Agora respire fundo três vezes para o sono chegar.;Missao 19 - Banho, dentes e sono: etapa 3 (respirar)
-m19_pnp.mp3;O que pode?;Missao 19 - Banho, dentes e sono: pode ou nao pode
-m19_pnp_explica.mp3;A tela acende o olho e o sono foge. História é bem melhor!;Missao 19 - Banho, dentes e sono: explicacao do pode ou nao pode
-m19_reforco.mp3;Dia cumprido, bons sonhos!;Missao 19 - Banho, dentes e sono: frase de reforco
-m20_intro.mp3;Hoje é dia de consulta, {nome}. Não precisa ter medo: eu vou junto!;Missao 20 - Dia do doutor e do dentista: abertura
-m20_mostrar.mp3;Esperar a vez, abrir a boca e contar onde dói. Só isso!;Missao 20 - Dia do doutor e do dentista: o personagem mostra
-m20_e1.mp3;Primeiro, esperar a sua vez na sala de espera.;Missao 20 - Dia do doutor e do dentista: etapa 1 (segurar_com_timer)
-m20_erro1.mp3;Já está quase! Respire e espere mais um pouquinho.;Missao 20 - Dia do doutor e do dentista: etapa 1, quando erra
-m20_e2.mp3;Toque no que o doutor usa para te cuidar.;Missao 20 - Dia do doutor e do dentista: etapa 2 (tocar)
-m20_e3.mp3;O dentista pediu para abrir a boca. O que fazer?;Missao 20 - Dia do doutor e do dentista: etapa 3 (escolher_entre_opcoes)
-m20_erro3.mp3;Dá para ter medo e mesmo assim abrir a boca. Eu estou aqui com você!;Missao 20 - Dia do doutor e do dentista: etapa 3, quando erra
-m20_pnp.mp3;O que pode?;Missao 20 - Dia do doutor e do dentista: pode ou nao pode
-m20_pnp_explica.mp3;Quem conta onde dói ajuda o doutor a cuidar mais rápido!;Missao 20 - Dia do doutor e do dentista: explicacao do pode ou nao pode
-m20_reforco.mp3;Fui corajoso no doutor!;Missao 20 - Dia do doutor e do dentista: frase de reforco
-musica_timer.mp3;(musica instrumental de 30 s em loop);Timer da escovacao e da lavagem das maos
+﻿arquivo;voz;texto;local
+ui_quem_joga.mp3;adulto;Quem vai jogar hoje?;Tela de perfis
+ui_monte_personagem.mp3;adulto;Monte um personagem parecido com você!;Criador de personagem
+ui_escreva_nome.mp3;adulto;Escreva seu nome com as letrinhas.;Teclado do nome
+ui_nome_bonito.mp3;mascote;Oi! Que nome bonito!;Depois de confirmar o nome
+ui_primeiro_nome.mp3;adulto;Primeiro escreva seu nome!;Criador, ao salvar sem nome
+ui_item_guardado.mp3;adulto;Esse ainda está guardado. Junte estrelas e broches!;Criador, acessório bloqueado
+ui_perfis_cheios.mp3;adulto;Já tem quatro personagens aqui. Peça para um adulto apagar um.;Tela de perfis cheia
+mapa_termine_mundo.mp3;mascote;Termine um mundo inteiro para abrir um jogo novo!;Mapa, botão Jogar sem mini game
+mapa_limite.mp3;adulto;As partidas de hoje acabaram. Vamos desenhar ou brincar lá fora?;Mapa, limite diário
+mapa_sem_fichas.mp3;adulto;Suas fichas acabaram. Faça uma missão para ganhar mais!;Mapa, saldo zerado
+missao_moeda.mp3;mascote;Você ganhou uma moeda! Ela virou três fichas!;Fim da missão
+missao_mundo_completo.mp3;mascote;Mundo completo! Você ganhou um broche e cinco moedas, que viraram quinze fichas!;Fim do mundo
+missao_sem_fichas.mp3;adulto;Suas fichas acabaram. Faça outra missão para ganhar mais!;Fim da missão, sem fichas
+missao_limite.mp3;adulto;As partidas de hoje acabaram. Vamos brincar de outra coisa?;Fim da missão, limite diário
+etapa_sopre.mp3;adulto;Sopre bem devagar, bem longo. Vamos de novo!;Etapa de respirar
+mg1_escolha_pista.mp3;adulto;Escolha a pista da corrida!;Corrida de kart, escolha da pista
+mg1_como_jogar.mp3;adulto;Pegue as moedas e desvie dos cones. Pode tocar na tela ou inclinar o celular!;Corrida de kart, começo
+mg1_devagar.mp3;adulto;Opa! Devagar nessa curva!;Corrida de kart, ao bater
+mg1_fim.mp3;mascote;Boa! Olha quantas moedinhas você juntou!;Corrida de kart, fim
+tut_1.mp3;adulto;Este é o mapa. Cada mundo é uma hora do seu dia.;Tutorial, passo 1
+tut_2.mp3;mascote;Toque numa missão para começar. A raposinha vai te ajudar!;Tutorial, passo 2
+tut_3.mp3;adulto;Fazendo com capricho você ganha estrelas.;Tutorial, passo 3
+tut_4.mp3;adulto;As moedas viram fichas, e com as fichas você joga!;Tutorial, passo 4
+mg2_como_jogar.mp3;adulto;Toque no próximo degrau para subir. Se tiver pedra, toque de novo para pular!;Escalada, começo
+mg2_pedra.mp3;adulto;Tem uma pedra no caminho. Toque de novo para pular!;Escalada, ao achar uma pedra
+mg2_fim.mp3;mascote;Você chegou lá em cima! Que escalada!;Escalada, fim
+mg3_como_jogar.mp3;adulto;Corra e pegue as estrelinhas! Toque de um lado para desviar.;Corredor, começo
+mg3_fim.mp3;mascote;Que corrida boa! Olha quantas estrelas!;Corredor, fim
+mg4_como_jogar.mp3;adulto;Vire duas cartas e ache os pares iguais.;Memória, começo
+mg4_bolhas.mp3;adulto;Agora estoure todas as bolhas com o dedinho!;Memória, parte das bolhas
+mg4_fim.mp3;mascote;Que memória boa você tem!;Memória, fim
+mg5_como_jogar.mp3;adulto;As estrelas estão caindo devagarinho. Toque para pegar.;Céu das estrelas, começo
+mg5_fim.mp3;mascote;Que céu bonito! Agora é hora de descansar.;Céu das estrelas, fim
+medalha_final.mp3;mascote;Parabéns! Você cuidou do seu dia inteirinho. Você é o Super Ajudante do Dia!;Tela da medalha final
+letra_a.mp3;adulto;A;Teclado do nome
+letra_b.mp3;adulto;B;Teclado do nome
+letra_c.mp3;adulto;C;Teclado do nome
+letra_d.mp3;adulto;D;Teclado do nome
+letra_e.mp3;adulto;E;Teclado do nome
+letra_f.mp3;adulto;F;Teclado do nome
+letra_g.mp3;adulto;G;Teclado do nome
+letra_h.mp3;adulto;H;Teclado do nome
+letra_i.mp3;adulto;I;Teclado do nome
+letra_j.mp3;adulto;J;Teclado do nome
+letra_k.mp3;adulto;K;Teclado do nome
+letra_l.mp3;adulto;L;Teclado do nome
+letra_m.mp3;adulto;M;Teclado do nome
+letra_n.mp3;adulto;N;Teclado do nome
+letra_o.mp3;adulto;O;Teclado do nome
+letra_p.mp3;adulto;P;Teclado do nome
+letra_q.mp3;adulto;Q;Teclado do nome
+letra_r.mp3;adulto;R;Teclado do nome
+letra_s.mp3;adulto;S;Teclado do nome
+letra_t.mp3;adulto;T;Teclado do nome
+letra_u.mp3;adulto;U;Teclado do nome
+letra_v.mp3;adulto;V;Teclado do nome
+letra_w.mp3;adulto;W;Teclado do nome
+letra_x.mp3;adulto;X;Teclado do nome
+letra_y.mp3;adulto;Y;Teclado do nome
+letra_z.mp3;adulto;Z;Teclado do nome
+m01_intro.mp3;mascote;Bom dia, {nome}! Vamos acordar e cuidar de você?;Missao 01 - Acordar e se cuidar: abertura (raposinha)
+m01_mostrar.mp3;mascote;Escova em cada pedacinho: em cima, embaixo, dos dois lados e a linguinha!;Missao 01 - Acordar e se cuidar: o personagem mostra
+m01_e1.mp3;adulto;Vamos escovar! Siga a bolinha verde.;Missao 01 - Acordar e se cuidar: etapa 1 (escovar)
+m01_escovar1.mp3;adulto;Em cima, deste lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
+m01_escovar2.mp3;adulto;Em cima, do outro lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
+m01_escovar3.mp3;adulto;Embaixo, deste lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
+m01_escovar4.mp3;adulto;Embaixo, do outro lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
+m01_escovar5.mp3;adulto;Agora a linguinha!;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
+nome_escova_de_dente.mp3;adulto;Escova de dente;Nome de objeto (dedo por cima)
+m01_e2.mp3;adulto;Agora lave o rosto. Esfregue com o dedinho!;Missao 01 - Acordar e se cuidar: etapa 2 (esfregar)
+nome_rosto.mp3;adulto;Rosto;Nome de objeto (dedo por cima)
+m01_e3.mp3;adulto;Monte o café: leve a fruta e o pão para o prato.;Missao 01 - Acordar e se cuidar: etapa 3 (arrastar_para_alvo)
+nome_maca.mp3;adulto;Maçã;Nome de objeto (dedo por cima)
+nome_banana.mp3;adulto;Banana;Nome de objeto (dedo por cima)
+nome_pao.mp3;adulto;Pão;Nome de objeto (dedo por cima)
+nome_prato_do_cafe.mp3;adulto;Prato do café;Nome de objeto (dedo por cima)
+m01_pnp.mp3;adulto;O que pode?;Missao 01 - Acordar e se cuidar: pode ou nao pode
+m01_pnp_explica.mp3;adulto;A comida é para comer. E a escova deixa o dente forte!;Missao 01 - Acordar e se cuidar: explicacao do pode ou nao pode
+m01_reforco.mp3;mascote;Dentes limpos, sorriso brilhando!;Missao 01 - Acordar e se cuidar: frase de reforco
+m02_intro.mp3;mascote;{nome}, vamos deixar a sua cama bonita?;Missao 02 - Arrumar a cama: abertura (raposinha)
+m02_mostrar.mp3;mascote;Primeiro o lençol, depois o cobertor, por último o travesseiro!;Missao 02 - Arrumar a cama: o personagem mostra
+m02_e1.mp3;adulto;Leve o lençol, o cobertor e o travesseiro para a cama.;Missao 02 - Arrumar a cama: etapa 1 (arrastar_para_alvo)
+nome_lencol.mp3;adulto;Lençol;Nome de objeto (dedo por cima)
+nome_cobertor.mp3;adulto;Cobertor;Nome de objeto (dedo por cima)
+nome_travesseiro.mp3;adulto;Travesseiro;Nome de objeto (dedo por cima)
+nome_cama.mp3;adulto;Cama;Nome de objeto (dedo por cima)
+m02_e2.mp3;adulto;Agora dê tapinhas no travesseiro para ele ficar fofinho!;Missao 02 - Arrumar a cama: etapa 2 (segurar_com_timer)
+m02_erro2.mp3;adulto;Segure mais um pouquinho, {nome}!;Missao 02 - Arrumar a cama: etapa 2, quando erra
+m02_pnp.mp3;adulto;O que pode?;Missao 02 - Arrumar a cama: pode ou nao pode
+m02_pnp_explica.mp3;adulto;Pedir ajuda é de gente esperta! Juntos fica mais fácil.;Missao 02 - Arrumar a cama: explicacao do pode ou nao pode
+m02_reforco.mp3;mascote;Cama arrumada, dia começou bem!;Missao 02 - Arrumar a cama: frase de reforco
+m03_intro.mp3;mascote;Olha só, {nome}: germes nas suas mãos! Vamos espantar todos?;Missao 03 - Guerra aos germes: abertura (raposinha)
+m03_mostrar.mp3;mascote;Água, sabão e muita esfregada. E tem hora certa para lavar!;Missao 03 - Guerra aos germes: o personagem mostra
+m03_e1.mp3;adulto;Esfregue as mãos até os germes sumirem!;Missao 03 - Guerra aos germes: etapa 1 (esfregar)
+nome_maos_sujas.mp3;adulto;Mãos sujas;Nome de objeto (dedo por cima)
+m03_e2.mp3;adulto;Toque nas horas de lavar a mão: antes de comer, depois do banheiro e depois de brincar com o pet.;Missao 03 - Guerra aos germes: etapa 2 (tocar)
+nome_antes_de_comer.mp3;adulto;Antes de comer;Nome de objeto (dedo por cima)
+nome_depois_do_banheiro.mp3;adulto;Depois do banheiro;Nome de objeto (dedo por cima)
+nome_depois_de_brincar.mp3;adulto;Depois de brincar;Nome de objeto (dedo por cima)
+m03_erro2.mp3;adulto;Essa não é hora de lavar a mão. Tente outra!;Missao 03 - Guerra aos germes: etapa 2, quando erra
+m03_e3.mp3;adulto;Agora me diga: precisa lavar a mão agora?;Missao 03 - Guerra aos germes: etapa 3 (sim_ou_nao)
+m03_e3_p1.mp3;adulto;Vou comer agora;Missao 03 - Guerra aos germes: etapa 3, pergunta 1
+m03_e3_p1_ok.mp3;adulto;Isso! Antes de comer, mão sempre lavada.;Missao 03 - Guerra aos germes: etapa 3, resposta 1
+m03_e3_p2.mp3;adulto;Vou brincar na terra;Missao 03 - Guerra aos germes: etapa 3, pergunta 2
+m03_e3_p2_ok.mp3;adulto;Agora não precisa. A terra pode sujar! Lavar é depois de brincar.;Missao 03 - Guerra aos germes: etapa 3, resposta 2
+m03_e3_p3.mp3;adulto;Acabei de brincar com o cachorro;Missao 03 - Guerra aos germes: etapa 3, pergunta 3
+m03_e3_p3_ok.mp3;adulto;Sim! Depois do pet, direto na pia.;Missao 03 - Guerra aos germes: etapa 3, resposta 3
+m03_e3_p4.mp3;adulto;Vou ver um desenho;Missao 03 - Guerra aos germes: etapa 3, pergunta 4
+m03_e3_p4_ok.mp3;adulto;Não precisa. Ver desenho não suja a mão.;Missao 03 - Guerra aos germes: etapa 3, resposta 4
+m03_pnp.mp3;adulto;O que pode?;Missao 03 - Guerra aos germes: pode ou nao pode
+m03_pnp_explica.mp3;adulto;A água e o sabão levam os germes embora pelo ralo!;Missao 03 - Guerra aos germes: explicacao do pode ou nao pode
+m03_reforco.mp3;mascote;Mãos limpas, corpo saudável!;Missao 03 - Guerra aos germes: frase de reforco
+m04_intro.mp3;mascote;{nome}, tem coisas na casa que só adulto pode mexer. Vamos achar?;Missao 04 - Casa segura: abertura (raposinha)
+m04_mostrar.mp3;mascote;Toque só no que é perigoso. O resto pode deixar!;Missao 04 - Casa segura: o personagem mostra
+m04_e1.mp3;adulto;Toque em tudo que é perigoso para criança.;Missao 04 - Casa segura: etapa 1 (tocar)
+nome_tomada.mp3;adulto;Tomada;Nome de objeto (dedo por cima)
+nome_remedio.mp3;adulto;Remédio;Nome de objeto (dedo por cima)
+nome_produto_de_limpeza.mp3;adulto;Produto de limpeza;Nome de objeto (dedo por cima)
+nome_faca.mp3;adulto;Faca;Nome de objeto (dedo por cima)
+nome_fogao.mp3;adulto;Fogão;Nome de objeto (dedo por cima)
+nome_escada.mp3;adulto;Escada;Nome de objeto (dedo por cima)
+nome_toalha.mp3;adulto;Toalha;Nome de objeto (dedo por cima)
+m04_erro1.mp3;adulto;Esse aí não é perigoso. Procure outro!;Missao 04 - Casa segura: etapa 1, quando erra
+m04_e2.mp3;adulto;A campainha tocou e você não conhece quem está na porta. O que fazer?;Missao 04 - Casa segura: etapa 2 (escolher_entre_opcoes)
+nome_abrir_a_porta.mp3;adulto;Abrir a porta;Nome de objeto (dedo por cima)
+nome_chamar_um_adulto.mp3;adulto;Chamar um adulto;Nome de objeto (dedo por cima)
+m04_erro2.mp3;adulto;Porta só adulto abre. Chame alguém!;Missao 04 - Casa segura: etapa 2, quando erra
+m04_pnp.mp3;adulto;O que pode?;Missao 04 - Casa segura: pode ou nao pode
+m04_pnp_explica.mp3;adulto;Achou perigo? Não mexe: chama um adulto na hora!;Missao 04 - Casa segura: explicacao do pode ou nao pode
+m04_reforco.mp3;mascote;Perigo? Chame um adulto!;Missao 04 - Casa segura: frase de reforco
+m05_intro.mp3;mascote;{nome}, a escola está esperando! Vamos arrumar a mochila?;Missao 05 - Ir para a escola: abertura (raposinha)
+m05_mostrar.mp3;mascote;Caderno, lápis, lanche e garrafinha. Brinquedo fica em casa!;Missao 05 - Ir para a escola: o personagem mostra
+m05_e1.mp3;adulto;Coloque na mochila só o que é da escola.;Missao 05 - Ir para a escola: etapa 1 (arrastar_para_alvo)
+nome_caderno.mp3;adulto;Caderno;Nome de objeto (dedo por cima)
+nome_lapis.mp3;adulto;Lápis;Nome de objeto (dedo por cima)
+nome_lanche.mp3;adulto;Lanche;Nome de objeto (dedo por cima)
+nome_garrafinha.mp3;adulto;Garrafinha;Nome de objeto (dedo por cima)
+nome_bola.mp3;adulto;Bola;Nome de objeto (dedo por cima)
+nome_ursinho.mp3;adulto;Ursinho;Nome de objeto (dedo por cima)
+nome_mochila.mp3;adulto;Mochila;Nome de objeto (dedo por cima)
+m05_erro1.mp3;adulto;Esse fica em casa! Na mochila vai só o que é da escola.;Missao 05 - Ir para a escola: etapa 1, quando erra
+m05_e2.mp3;adulto;Agora na ordem: vestir o uniforme, calçar o tênis, arrumar o cabelo e pegar a mochila.;Missao 05 - Ir para a escola: etapa 2 (sequencia_ordenada)
+nome_uniforme.mp3;adulto;Uniforme;Nome de objeto (dedo por cima)
+nome_tenis.mp3;adulto;Tênis;Nome de objeto (dedo por cima)
+nome_arrumar_o_cabelo.mp3;adulto;Arrumar o cabelo;Nome de objeto (dedo por cima)
+m05_erro2.mp3;adulto;Ainda não é esse. Olhe de novo!;Missao 05 - Ir para a escola: etapa 2, quando erra
+m05_pnp.mp3;adulto;O que pode?;Missao 05 - Ir para a escola: pode ou nao pode
+m05_pnp_explica.mp3;adulto;Avisar quem cuida de você deixa todo mundo tranquilo.;Missao 05 - Ir para a escola: explicacao do pode ou nao pode
+m05_reforco.mp3;mascote;Mochila pronta, dia começou!;Missao 05 - Ir para a escola: frase de reforco
+m06_intro.mp3;mascote;{nome}, a rua pede atenção. Vamos atravessar do jeito certo?;Missao 06 - Rua segura: abertura (raposinha)
+m06_mostrar.mp3;mascote;Mão dada, esperar o vermelho, verde caminha, e sempre na faixa!;Missao 06 - Rua segura: o personagem mostra
+m06_e1.mp3;adulto;Toque na ordem certa para atravessar.;Missao 06 - Rua segura: etapa 1 (sequencia_ordenada)
+nome_dar_a_mao.mp3;adulto;Dar a mão;Nome de objeto (dedo por cima)
+nome_esperar.mp3;adulto;Esperar;Nome de objeto (dedo por cima)
+nome_verde.mp3;adulto;Verde;Nome de objeto (dedo por cima)
+nome_na_faixa.mp3;adulto;Na faixa;Nome de objeto (dedo por cima)
+m06_erro1.mp3;adulto;Calma! Esse vem depois. Tente outro.;Missao 06 - Rua segura: etapa 1, quando erra
+m06_e2.mp3;adulto;A bola foi parar na rua. O que fazer?;Missao 06 - Rua segura: etapa 2 (escolher_entre_opcoes)
+nome_correr_atras.mp3;adulto;Correr atrás;Nome de objeto (dedo por cima)
+m06_erro2.mp3;adulto;Rua não é lugar de correr. Chame um adulto!;Missao 06 - Rua segura: etapa 2, quando erra
+m06_pnp.mp3;adulto;O que pode?;Missao 06 - Rua segura: pode ou nao pode
+m06_pnp_explica.mp3;adulto;A faixa é o caminho seguro. A bola a gente pede ajuda para pegar.;Missao 06 - Rua segura: explicacao do pode ou nao pode
+m06_reforco.mp3;mascote;Vermelho espera, verde caminha!;Missao 06 - Rua segura: frase de reforco
+m07_intro.mp3;mascote;Começou a aula, {nome}! Vamos ver como se faz?;Missao 07 - Ouvir a professora: abertura (raposinha)
+m07_mostrar.mp3;mascote;Sentar, ouvir, levantar a mão para falar e fazer a atividade.;Missao 07 - Ouvir a professora: o personagem mostra
+m07_e1.mp3;adulto;Toque na ordem: sentar, ouvir, levantar a mão e fazer a atividade.;Missao 07 - Ouvir a professora: etapa 1 (sequencia_ordenada)
+nome_sentar.mp3;adulto;Sentar;Nome de objeto (dedo por cima)
+nome_ouvir.mp3;adulto;Ouvir;Nome de objeto (dedo por cima)
+nome_levantar_a_mao.mp3;adulto;Levantar a mão;Nome de objeto (dedo por cima)
+nome_fazer_a_tarefa.mp3;adulto;Fazer a tarefa;Nome de objeto (dedo por cima)
+m07_erro1.mp3;adulto;Esse é o próximo? Olhe mais uma vez!;Missao 07 - Ouvir a professora: etapa 1, quando erra
+m07_e2.mp3;adulto;Você tem uma dúvida. Como pergunta?;Missao 07 - Ouvir a professora: etapa 2 (escolher_entre_opcoes)
+nome_gritar_da_cadeira.mp3;adulto;Gritar da cadeira;Nome de objeto (dedo por cima)
+m07_erro2.mp3;adulto;Gritando ninguém escuta. Levante a mao!;Missao 07 - Ouvir a professora: etapa 2, quando erra
+m07_pnp.mp3;adulto;O que pode?;Missao 07 - Ouvir a professora: pode ou nao pode
+m07_pnp_explica.mp3;adulto;Com a mão levantada a professora vê você e todo mundo escuta.;Missao 07 - Ouvir a professora: explicacao do pode ou nao pode
+m07_reforco.mp3;mascote;Quem escuta, aprende!;Missao 07 - Ouvir a professora: frase de reforco
+m08_intro.mp3;mascote;Às vezes a gente precisa esperar, {nome}. E dá para esperar bem!;Missao 08 - Saber esperar: abertura (raposinha)
+m08_mostrar.mp3;mascote;Enquanto espera, dá para respirar, cantar baixinho ou olhar em volta.;Missao 08 - Saber esperar: o personagem mostra
+m08_e1.mp3;adulto;Toque nos três jeitos de esperar bem.;Missao 08 - Saber esperar: etapa 1 (tocar)
+nome_respirar.mp3;adulto;Respirar;Nome de objeto (dedo por cima)
+nome_cantar_baixinho.mp3;adulto;Cantar baixinho;Nome de objeto (dedo por cima)
+nome_olhar_em_volta.mp3;adulto;Olhar em volta;Nome de objeto (dedo por cima)
+m08_e2.mp3;adulto;A fila está andando. Segure a ampulheta e espere a areia cair.;Missao 08 - Saber esperar: etapa 2 (segurar_com_timer)
+nome_ampulheta.mp3;adulto;Ampulheta;Nome de objeto (dedo por cima)
+m08_erro2.mp3;adulto;Ainda não acabou. Vamos esperar juntos!;Missao 08 - Saber esperar: etapa 2, quando erra
+m08_pnp.mp3;adulto;O que pode?;Missao 08 - Saber esperar: pode ou nao pode
+m08_pnp_explica.mp3;adulto;Esperar é difícil, mas passa. Quem espera bem chega na vez dele.;Missao 08 - Saber esperar: explicacao do pode ou nao pode
+m08_reforco.mp3;mascote;Esperar também é ser forte!;Missao 08 - Saber esperar: frase de reforco
+m09_intro.mp3;mascote;{nome}, tem palavras que fazem mágica de verdade. Quer ver?;Missao 09 - Palavras mágicas: abertura (raposinha)
+m09_mostrar.mp3;mascote;Por favor, muito obrigado, com licença e desculpa. São as palavras mágicas!;Missao 09 - Palavras mágicas: o personagem mostra
+m09_e1.mp3;adulto;Voce quer o brinquedo do colega. O que fala?;Missao 09 - Palavras mágicas: etapa 1 (escolher_entre_opcoes)
+nome_por_favor.mp3;adulto;Por favor;Nome de objeto (dedo por cima)
+nome_me_da_isso.mp3;adulto;Me dá isso!;Nome de objeto (dedo por cima)
+m09_erro1.mp3;adulto;Com por favor fica muito mais fácil!;Missao 09 - Palavras mágicas: etapa 1, quando erra
+m09_e2.mp3;adulto;Ganhou um presente. O que fala?;Missao 09 - Palavras mágicas: etapa 2 (escolher_entre_opcoes)
+nome_muito_obrigado.mp3;adulto;Muito obrigado;Nome de objeto (dedo por cima)
+nome_nao_falar_nada.mp3;adulto;Não falar nada;Nome de objeto (dedo por cima)
+m09_erro2.mp3;adulto;Quem agradece deixa o outro feliz!;Missao 09 - Palavras mágicas: etapa 2, quando erra
+m09_pnp.mp3;adulto;O que pode?;Missao 09 - Palavras mágicas: pode ou nao pode
+m09_pnp_explica.mp3;adulto;Com licença abre caminho sem machucar ninguém.;Missao 09 - Palavras mágicas: explicacao do pode ou nao pode
+m09_reforco.mp3;mascote;Palavra mágica abre portas!;Missao 09 - Palavras mágicas: frase de reforco
+m10_intro.mp3;mascote;{nome}, ser amigo é fazer o outro se sentir bem. Vamos treinar?;Missao 10 - Amigos e gentileza: abertura (raposinha)
+m10_mostrar.mp3;mascote;Convidar quem está sozinho, dividir o brinquedo e ajudar quem caiu.;Missao 10 - Amigos e gentileza: o personagem mostra
+m10_e1.mp3;adulto;Toque nas três gentilezas.;Missao 10 - Amigos e gentileza: etapa 1 (tocar)
+nome_convidar_para_brincar.mp3;adulto;Convidar para brincar;Nome de objeto (dedo por cima)
+nome_dividir.mp3;adulto;Dividir;Nome de objeto (dedo por cima)
+nome_ajudar_quem_caiu.mp3;adulto;Ajudar quem caiu;Nome de objeto (dedo por cima)
+m10_e2.mp3;adulto;Um colega está sozinho no banco. O que fazer?;Missao 10 - Amigos e gentileza: etapa 2 (escolher_entre_opcoes)
+nome_chamar_para_brincar.mp3;adulto;Chamar para brincar;Nome de objeto (dedo por cima)
+nome_deixar_sozinho.mp3;adulto;Deixar sozinho;Nome de objeto (dedo por cima)
+m10_erro2.mp3;adulto;Ninguém gosta de ficar sozinho. Chame para brincar!;Missao 10 - Amigos e gentileza: etapa 2, quando erra
+m10_pnp.mp3;adulto;O que pode?;Missao 10 - Amigos e gentileza: pode ou nao pode
+m10_pnp_explica.mp3;adulto;Bater machuca. Conversar resolve.;Missao 10 - Amigos e gentileza: explicacao do pode ou nao pode
+m10_reforco.mp3;mascote;Amigo bom é amigo gentil!;Missao 10 - Amigos e gentileza: frase de reforco
+m11_intro.mp3;mascote;Olha o monstrinho, {nome}! Ele sente tudo que a gente sente.;Missao 11 - Monstro dos sentimentos: abertura (raposinha)
+m11_mostrar.mp3;mascote;Feliz, triste, bravo, com medo. Todo sentimento pode aparecer.;Missao 11 - Monstro dos sentimentos: o personagem mostra
+m11_e1.mp3;adulto;Toque no monstrinho que está bravo.;Missao 11 - Monstro dos sentimentos: etapa 1 (tocar)
+nome_feliz.mp3;adulto;Feliz;Nome de objeto (dedo por cima)
+nome_triste.mp3;adulto;Triste;Nome de objeto (dedo por cima)
+nome_bravo.mp3;adulto;Bravo;Nome de objeto (dedo por cima)
+nome_com_medo.mp3;adulto;Com medo;Nome de objeto (dedo por cima)
+m11_erro1.mp3;adulto;Esse está com outro sentimento. Procure o bravo!;Missao 11 - Monstro dos sentimentos: etapa 1, quando erra
+m11_e2.mp3;adulto;Quando a raiva vem, a gente respira. Sopre três vezes bem devagar.;Missao 11 - Monstro dos sentimentos: etapa 2 (respirar)
+m11_e3.mp3;adulto;A raiva passou um pouco. E agora?;Missao 11 - Monstro dos sentimentos: etapa 3 (escolher_entre_opcoes)
+nome_falar_o_que_sentiu.mp3;adulto;Falar o que sentiu;Nome de objeto (dedo por cima)
+nome_bater_em_alguem.mp3;adulto;Bater em alguém;Nome de objeto (dedo por cima)
+m11_erro3.mp3;adulto;Bater não faz a raiva passar. Falar faz!;Missao 11 - Monstro dos sentimentos: etapa 3, quando erra
+m11_pnp.mp3;adulto;O que pode?;Missao 11 - Monstro dos sentimentos: pode ou nao pode
+m11_pnp_explica.mp3;adulto;Sentir raiva pode. Bater não pode. Respire e fale o que sentiu.;Missao 11 - Monstro dos sentimentos: explicacao do pode ou nao pode
+m11_reforco.mp3;mascote;Todo sentimento é normal. Eu sei o que fazer com ele.;Missao 11 - Monstro dos sentimentos: frase de reforco
+m12_intro.mp3;mascote;Fim da aula, {nome}! Vamos para casa com segurança?;Missao 12 - Voltar de carro: abertura (raposinha)
+m12_mostrar.mp3;mascote;Esperar o adulto abrir, sentar na cadeirinha e ouvir o clique do cinto!;Missao 12 - Voltar de carro: o personagem mostra
+m12_e1.mp3;adulto;Toque na ordem certa para entrar no carro.;Missao 12 - Voltar de carro: etapa 1 (sequencia_ordenada)
+nome_esperar_o_adulto.mp3;adulto;Esperar o adulto;Nome de objeto (dedo por cima)
+nome_sentar_na_cadeirinha.mp3;adulto;Sentar na cadeirinha;Nome de objeto (dedo por cima)
+nome_passar_o_cinto.mp3;adulto;Passar o cinto;Nome de objeto (dedo por cima)
+nome_ouvir_o_clique.mp3;adulto;Ouvir o clique;Nome de objeto (dedo por cima)
+m12_erro1.mp3;adulto;Ainda não é esse. Olhe de novo!;Missao 12 - Voltar de carro: etapa 1, quando erra
+m12_e2.mp3;adulto;O carro está andando e a janela está do seu lado. O que fazer?;Missao 12 - Voltar de carro: etapa 2 (escolher_entre_opcoes)
+nome_deixar_a_janela_quieta.mp3;adulto;Deixar a janela quieta;Nome de objeto (dedo por cima)
+nome_mexer_na_janela.mp3;adulto;Mexer na janela;Nome de objeto (dedo por cima)
+m12_erro2.mp3;adulto;Janela é o adulto quem mexe. Fique sentadinho!;Missao 12 - Voltar de carro: etapa 2, quando erra
+m12_pnp.mp3;adulto;O que pode?;Missao 12 - Voltar de carro: pode ou nao pode
+m12_pnp_explica.mp3;adulto;O cinto segura você se o carro parar de repente. Ele fica até o fim da viagem!;Missao 12 - Voltar de carro: explicacao do pode ou nao pode
+m12_reforco.mp3;mascote;Cinto afivelado, viagem segura!;Missao 12 - Voltar de carro: frase de reforco
+m13_intro.mp3;mascote;A comida está na mesa, {nome}! Vamos almoçar direitinho?;Missao 13 - Almoçar: abertura (raposinha)
+m13_mostrar.mp3;mascote;Lavar as mãos, sentar na cadeira, comer e agradecer!;Missao 13 - Almoçar: o personagem mostra
+m13_e1.mp3;adulto;Toque na ordem: lavar as mãos, sentar, comer e agradecer.;Missao 13 - Almoçar: etapa 1 (sequencia_ordenada)
+nome_lavar_as_maos.mp3;adulto;Lavar as mãos;Nome de objeto (dedo por cima)
+nome_comer.mp3;adulto;Comer;Nome de objeto (dedo por cima)
+nome_agradecer.mp3;adulto;Agradecer;Nome de objeto (dedo por cima)
+m13_erro1.mp3;adulto;Esse vem depois. Tente outro!;Missao 13 - Almoçar: etapa 1, quando erra
+m13_e2.mp3;adulto;Tem um legume novo no prato. O que fazer?;Missao 13 - Almoçar: etapa 2 (escolher_entre_opcoes)
+nome_experimentar.mp3;adulto;Experimentar;Nome de objeto (dedo por cima)
+nome_sair_correndo.mp3;adulto;Sair correndo;Nome de objeto (dedo por cima)
+m13_erro2.mp3;adulto;Uma mordidinha só para conhecer. Se não gostar, tudo bem!;Missao 13 - Almoçar: etapa 2, quando erra
+m13_pnp.mp3;adulto;O que pode?;Missao 13 - Almoçar: pode ou nao pode
+m13_pnp_explica.mp3;adulto;Na mesa a gente fica sentado até acabar. Experimentar é de gente corajosa!;Missao 13 - Almoçar: explicacao do pode ou nao pode
+m13_reforco.mp3;mascote;Prato limpo, barriga feliz!;Missao 13 - Almoçar: frase de reforco
+m14_intro.mp3;mascote;Hora da lição, {nome}. Vamos fazer com calma?;Missao 14 - Lição de casa: abertura (raposinha)
+m14_mostrar.mp3;mascote;Guardar a tela, sentar, fazer a tarefa e pedir ajuda se travar.;Missao 14 - Lição de casa: o personagem mostra
+m14_e1.mp3;adulto;Toque na ordem: guardar a tela, sentar, fazer a tarefa, pedir ajuda.;Missao 14 - Lição de casa: etapa 1 (sequencia_ordenada)
+nome_guardar_a_tela.mp3;adulto;Guardar a tela;Nome de objeto (dedo por cima)
+nome_pedir_ajuda.mp3;adulto;Pedir ajuda;Nome de objeto (dedo por cima)
+m14_erro1.mp3;adulto;Calma, esse vem depois!;Missao 14 - Lição de casa: etapa 1, quando erra
+m14_e2.mp3;adulto;Travou numa continha difícil. O que fazer?;Missao 14 - Lição de casa: etapa 2 (escolher_entre_opcoes)
+nome_desistir.mp3;adulto;Desistir;Nome de objeto (dedo por cima)
+m14_erro2.mp3;adulto;Pedir ajuda não é desistir. É jeito de aprender!;Missao 14 - Lição de casa: etapa 2, quando erra
+m14_pnp.mp3;adulto;O que pode?;Missao 14 - Lição de casa: pode ou nao pode
+m14_pnp_explica.mp3;adulto;Primeiro a lição, depois a diversão. E ajuda a gente sempre pode pedir!;Missao 14 - Lição de casa: explicacao do pode ou nao pode
+m14_reforco.mp3;mascote;Tarefa feita, cabeça leve!;Missao 14 - Lição de casa: frase de reforco
+m15_intro.mp3;mascote;Agora é hora de brincar, {nome}! Escolha o seu brinquedo.;Missao 15 - Brincar: abertura (raposinha)
+m15_mostrar.mp3;mascote;Escolher um brinquedo, brincar bastante e dividir com um amigo!;Missao 15 - Brincar: o personagem mostra
+m15_e1.mp3;adulto;Toque nos brinquedos para escolher com o que brincar.;Missao 15 - Brincar: etapa 1 (tocar)
+nome_trenzinho.mp3;adulto;Trenzinho;Nome de objeto (dedo por cima)
+m15_e2.mp3;adulto;Um amigo chegou e quer brincar também. O que fazer?;Missao 15 - Brincar: etapa 2 (escolher_entre_opcoes)
+nome_dividir_o_brinquedo.mp3;adulto;Dividir o brinquedo;Nome de objeto (dedo por cima)
+nome_jogar_o_brinquedo_nele.mp3;adulto;Jogar o brinquedo nele;Nome de objeto (dedo por cima)
+m15_erro2.mp3;adulto;Brinquedo não se joga em ninguém. Dividir é mais divertido!;Missao 15 - Brincar: etapa 2, quando erra
+m15_pnp.mp3;adulto;O que pode?;Missao 15 - Brincar: pode ou nao pode
+m15_pnp_explica.mp3;adulto;Brinquedo machuca se voar. Brincar junto é bem melhor!;Missao 15 - Brincar: explicacao do pode ou nao pode
+m15_reforco.mp3;mascote;Brincar junto é muito melhor!;Missao 15 - Brincar: frase de reforco
+m16_intro.mp3;mascote;Olha a bagunça, {nome}! Vamos guardar tudo?;Missao 16 - Guardar os brinquedos: abertura (raposinha)
+m16_mostrar.mp3;mascote;Cada brinquedo tem a sua caixa. E depois a gente procura os que sobraram!;Missao 16 - Guardar os brinquedos: o personagem mostra
+m16_e1.mp3;adulto;Leve cada brinquedo para a caixa.;Missao 16 - Guardar os brinquedos: etapa 1 (arrastar_para_alvo)
+nome_boneca.mp3;adulto;Boneca;Nome de objeto (dedo por cima)
+nome_caixa_dos_brinquedos.mp3;adulto;Caixa dos brinquedos;Nome de objeto (dedo por cima)
+m16_e2.mp3;adulto;Procure os que ficaram no chão e toque neles.;Missao 16 - Guardar os brinquedos: etapa 2 (tocar)
+nome_carrinho.mp3;adulto;Carrinho;Nome de objeto (dedo por cima)
+nome_tambor.mp3;adulto;Tambor;Nome de objeto (dedo por cima)
+nome_piao.mp3;adulto;Pião;Nome de objeto (dedo por cima)
+m16_pnp.mp3;adulto;O que pode?;Missao 16 - Guardar os brinquedos: pode ou nao pode
+m16_pnp_explica.mp3;adulto;Brinquedo no chão faz a gente tropeçar. Guardado, ninguém se machuca!;Missao 16 - Guardar os brinquedos: explicacao do pode ou nao pode
+m16_reforco.mp3;mascote;Tudo no lugar, ninguém tropeça!;Missao 16 - Guardar os brinquedos: frase de reforco
+m17_intro.mp3;mascote;{nome}, quer ser o ajudante da casa hoje?;Missao 17 - Ajudante da casa: abertura (raposinha)
+m17_mostrar.mp3;mascote;Roupa suja no cesto, mesa posta e comida para o pet!;Missao 17 - Ajudante da casa: o personagem mostra
+m17_e1.mp3;adulto;Leve a roupa suja para o cesto.;Missao 17 - Ajudante da casa: etapa 1 (arrastar_para_alvo)
+nome_camiseta_suja.mp3;adulto;Camiseta suja;Nome de objeto (dedo por cima)
+nome_meia_suja.mp3;adulto;Meia suja;Nome de objeto (dedo por cima)
+nome_cesto_de_roupa.mp3;adulto;Cesto de roupa;Nome de objeto (dedo por cima)
+m17_e2.mp3;adulto;Agora ponha a mesa.;Missao 17 - Ajudante da casa: etapa 2 (arrastar_para_alvo)
+nome_prato.mp3;adulto;Prato;Nome de objeto (dedo por cima)
+nome_copo.mp3;adulto;Copo;Nome de objeto (dedo por cima)
+nome_garfo.mp3;adulto;Garfo;Nome de objeto (dedo por cima)
+nome_mesa.mp3;adulto;Mesa;Nome de objeto (dedo por cima)
+m17_e3.mp3;adulto;E a comidinha do pet?;Missao 17 - Ajudante da casa: etapa 3 (arrastar_para_alvo)
+nome_racao.mp3;adulto;Ração;Nome de objeto (dedo por cima)
+nome_ossinho.mp3;adulto;Ossinho;Nome de objeto (dedo por cima)
+nome_cachorrinho.mp3;adulto;Cachorrinho;Nome de objeto (dedo por cima)
+m17_pnp.mp3;adulto;O que pode?;Missao 17 - Ajudante da casa: pode ou nao pode
+m17_pnp_explica.mp3;adulto;Quem ajuda deixa a casa boa para todo mundo!;Missao 17 - Ajudante da casa: explicacao do pode ou nao pode
+m17_reforco.mp3;mascote;Ajudante da casa, orgulho da família!;Missao 17 - Ajudante da casa: frase de reforco
+m18_intro.mp3;mascote;{nome}, a tela tem hora de começar e hora de acabar.;Missao 18 - Tela com limite: abertura (raposinha)
+m18_mostrar.mp3;mascote;Escolher o tempo, assistir, e desligar quando o tempo acabar.;Missao 18 - Tela com limite: o personagem mostra
+m18_e1.mp3;adulto;Segure o cronômetro: ele marca o tempo da tela.;Missao 18 - Tela com limite: etapa 1 (segurar_com_timer)
+nome_cronometro.mp3;adulto;Cronômetro;Nome de objeto (dedo por cima)
+m18_erro1.mp3;adulto;Segure mais um pouquinho, o tempo ainda está correndo!;Missao 18 - Tela com limite: etapa 1, quando erra
+m18_e2.mp3;adulto;O tempo acabou. O que fazer?;Missao 18 - Tela com limite: etapa 2 (escolher_entre_opcoes)
+nome_desligar_na_hora.mp3;adulto;Desligar na hora;Nome de objeto (dedo por cima)
+nome_so_mais_5_minutinhos.mp3;adulto;Só mais 5 minutinhos;Nome de objeto (dedo por cima)
+m18_erro2.mp3;adulto;Combinado é combinado. Desligar na hora é de gente grande!;Missao 18 - Tela com limite: etapa 2, quando erra
+m18_pnp.mp3;adulto;O que pode?;Missao 18 - Tela com limite: pode ou nao pode
+m18_pnp_explica.mp3;adulto;Depois da tela vem a brincadeira. O corpo também quer se mexer!;Missao 18 - Tela com limite: explicacao do pode ou nao pode
+m18_reforco.mp3;mascote;Desliguei na hora, sou dono do meu tempo!;Missao 18 - Tela com limite: frase de reforco
+m19_intro.mp3;mascote;O dia acabou, {nome}. Vamos se arrumar para dormir?;Missao 19 - Banho, dentes e sono: abertura (raposinha)
+m19_mostrar.mp3;mascote;Banho, pijama, escovar os dentes, uma história e a luz apagada.;Missao 19 - Banho, dentes e sono: o personagem mostra
+m19_e1.mp3;adulto;Toque na ordem da hora de dormir.;Missao 19 - Banho, dentes e sono: etapa 1 (sequencia_ordenada)
+nome_banho.mp3;adulto;Banho;Nome de objeto (dedo por cima)
+nome_pijama.mp3;adulto;Pijama;Nome de objeto (dedo por cima)
+nome_historia.mp3;adulto;História;Nome de objeto (dedo por cima)
+nome_apagar_a_luz.mp3;adulto;Apagar a luz;Nome de objeto (dedo por cima)
+m19_erro1.mp3;adulto;Ainda não! Esse vem depois.;Missao 19 - Banho, dentes e sono: etapa 1, quando erra
+m19_e2.mp3;adulto;Antes de dormir, escovação caprichada!;Missao 19 - Banho, dentes e sono: etapa 2 (escovar)
+m19_escovar1.mp3;adulto;Em cima, deste lado;Missao 19 - Banho, dentes e sono: etapa 2, escovacao guiada
+m19_escovar2.mp3;adulto;Em cima, do outro lado;Missao 19 - Banho, dentes e sono: etapa 2, escovacao guiada
+m19_escovar3.mp3;adulto;Embaixo, deste lado;Missao 19 - Banho, dentes e sono: etapa 2, escovacao guiada
+m19_escovar4.mp3;adulto;Embaixo, do outro lado;Missao 19 - Banho, dentes e sono: etapa 2, escovacao guiada
+m19_e3.mp3;adulto;Agora respire fundo três vezes para o sono chegar.;Missao 19 - Banho, dentes e sono: etapa 3 (respirar)
+m19_pnp.mp3;adulto;O que pode?;Missao 19 - Banho, dentes e sono: pode ou nao pode
+m19_pnp_explica.mp3;adulto;A tela acende o olho e o sono foge. História é bem melhor!;Missao 19 - Banho, dentes e sono: explicacao do pode ou nao pode
+m19_reforco.mp3;mascote;Dia cumprido, bons sonhos!;Missao 19 - Banho, dentes e sono: frase de reforco
+m20_intro.mp3;mascote;Hoje é dia de consulta, {nome}. Não precisa ter medo: eu vou junto!;Missao 20 - Dia do doutor e do dentista: abertura (raposinha)
+m20_mostrar.mp3;mascote;Esperar a vez, abrir a boca e contar onde dói. Só isso!;Missao 20 - Dia do doutor e do dentista: o personagem mostra
+m20_e1.mp3;adulto;Primeiro, esperar a sua vez na sala de espera.;Missao 20 - Dia do doutor e do dentista: etapa 1 (segurar_com_timer)
+nome_sala_de_espera.mp3;adulto;Sala de espera;Nome de objeto (dedo por cima)
+m20_erro1.mp3;adulto;Já está quase! Respire e espere mais um pouquinho.;Missao 20 - Dia do doutor e do dentista: etapa 1, quando erra
+m20_e2.mp3;adulto;Toque no que o doutor usa para te cuidar.;Missao 20 - Dia do doutor e do dentista: etapa 2 (tocar)
+nome_escutar_o_coracao.mp3;adulto;Escutar o coração;Nome de objeto (dedo por cima)
+nome_ver_a_febre.mp3;adulto;Ver a febre;Nome de objeto (dedo por cima)
+nome_ver_o_tamanho.mp3;adulto;Ver o tamanho;Nome de objeto (dedo por cima)
+m20_e3.mp3;adulto;O dentista pediu para abrir a boca. O que fazer?;Missao 20 - Dia do doutor e do dentista: etapa 3 (escolher_entre_opcoes)
+nome_abrir_bem_a_boca.mp3;adulto;Abrir bem a boca;Nome de objeto (dedo por cima)
+nome_fechar_e_esconder.mp3;adulto;Fechar e esconder;Nome de objeto (dedo por cima)
+m20_erro3.mp3;adulto;Dá para ter medo e mesmo assim abrir a boca. Eu estou aqui com você!;Missao 20 - Dia do doutor e do dentista: etapa 3, quando erra
+m20_pnp.mp3;adulto;O que pode?;Missao 20 - Dia do doutor e do dentista: pode ou nao pode
+m20_pnp_explica.mp3;adulto;Quem conta onde dói ajuda o doutor a cuidar mais rápido!;Missao 20 - Dia do doutor e do dentista: explicacao do pode ou nao pode
+m20_reforco.mp3;mascote;Fui corajoso no doutor!;Missao 20 - Dia do doutor e do dentista: frase de reforco
+musica_timer.mp3;adulto;(musica instrumental de 30 s em loop);Timer da escovacao e da lavagem das maos

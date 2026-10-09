@@ -7,7 +7,7 @@
   "narracao_intro": "Olha só, {nome}: germes nas suas mãos! Vamos espantar todos?",
   "audio_intro": "m03_intro",
   "mostrar": {
-    "narracao": "Água, sabão e muita esfregada. Os germes não gostam disso!",
+    "narracao": "Água, sabão e muita esfregada. E tem hora certa para lavar!",
     "audio": "m03_mostrar",
     "icone": "🧼"
   },
@@ -22,7 +22,8 @@
         "icone": "🤲",
         "img": "m03_maos_sujas",
         "x": 360,
-        "y": 800
+        "y": 800,
+        "fala": "Mãos sujas"
       },
       "sujeiras": [
         "m03_germe1",
@@ -58,6 +59,40 @@
           "x": 550,
           "y": 760,
           "texto": "Depois de brincar"
+        }
+      ]
+    },
+    {
+      "tipo": "sim_ou_nao",
+      "narracao": "Agora me diga: precisa lavar a mão agora?",
+      "audio": "m03_e3",
+      "perguntas": [
+        {
+          "icone": "🍽️",
+          "img": "m01_maca",
+          "texto": "Vou comer agora",
+          "resposta": true,
+          "explica": "Isso! Antes de comer, mão sempre lavada."
+        },
+        {
+          "icone": "🪴",
+          "texto": "Vou brincar na terra",
+          "resposta": false,
+          "explica": "Agora não precisa. A terra pode sujar! Lavar é depois de brincar."
+        },
+        {
+          "icone": "🐶",
+          "img": "pet_cachorro",
+          "texto": "Acabei de brincar com o cachorro",
+          "resposta": true,
+          "explica": "Sim! Depois do pet, direto na pia."
+        },
+        {
+          "icone": "📺",
+          "img": "m18_tablet_ligado",
+          "texto": "Vou ver um desenho",
+          "resposta": false,
+          "explica": "Não precisa. Ver desenho não suja a mão."
         }
       ]
     }

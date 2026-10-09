@@ -2,12 +2,11 @@ import Phaser from 'phaser';
 import { CONFIG } from '../config';
 import { fale } from '../narracoes';
 import type { PersonagemCfg } from '../storage';
-import { figura, nota, titulo } from '../ui';
+import { cobrirTela, figura, nota, titulo } from '../ui';
 import { correrFaixas } from './faixas';
 import type { MiniGame, ResultadoMiniGame } from './index';
 
 const W = CONFIG.LARGURA;
-const H = CONFIG.ALTURA;
 
 interface Pista {
   id: string;
@@ -25,7 +24,7 @@ const PISTAS: Pista[] = [
 
 function escolherPista(cena: Phaser.Scene, aoEscolher: (p: Pista) => void) {
   const capa = cena.add.container(0, 0);
-  capa.add(cena.add.rectangle(W / 2, H / 2, W, H, 0x2e3338, 0.9));
+  capa.add(cobrirTela(cena, 0x2e3338, 0.9));
   capa.add(titulo(cena, 'Escolha a pista!', 220));
   fale('mg1_escolha_pista');
 
@@ -90,6 +89,7 @@ export const corrida: MiniGame = {
               { arte: 'mg1_poca', emoji: '\u{1F4A7}' },
             ],
             duracao: 75,
+            vidas: 3,
             velocidade: 24,
             aviso: 'Opa! Devagar nessa curva!',
             icone: '\u{1FA99}',

@@ -20,7 +20,8 @@
         "icone": "🪥",
         "img": "m01_escova",
         "x": 360,
-        "y": 780
+        "y": 780,
+        "fala": "Escova de dente"
       },
       "cenario": "bg_banheiro",
       "regioes": [
@@ -56,7 +57,8 @@
         "icone": "🧼",
         "img": "m01_rosto",
         "x": 360,
-        "y": 800
+        "y": 800,
+        "fala": "Rosto"
       },
       "cenario": "bg_banheiro"
     },
@@ -68,26 +70,30 @@
         "icone": "🍽️",
         "img": "m01_prato",
         "x": 360,
-        "y": 920
+        "y": 920,
+        "fala": "Prato do café"
       },
       "itens": [
         {
           "icone": "🍎",
           "img": "m01_maca",
           "x": 160,
-          "y": 600
+          "y": 600,
+          "fala": "Maçã"
         },
         {
           "icone": "🍌",
           "img": "m01_banana",
           "x": 360,
-          "y": 560
+          "y": 560,
+          "fala": "Banana"
         },
         {
           "icone": "🍞",
           "img": "m01_pao",
           "x": 560,
-          "y": 600
+          "y": 600,
+          "fala": "Pão"
         }
       ],
       "cenario": "bg_cozinha_cafe"

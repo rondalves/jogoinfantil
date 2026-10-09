@@ -58,7 +58,8 @@
         "icone": "🪥",
         "img": "m19_escova",
         "x": 360,
-        "y": 780
+        "y": 780,
+        "fala": "Escova de dente"
       },
       "regioes": [
         {

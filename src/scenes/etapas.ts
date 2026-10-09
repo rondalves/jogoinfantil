@@ -1,11 +1,25 @@
 import Phaser from 'phaser';
 import { CONFIG } from '../config';
+import { TEMA } from '../theme';
 import { escovar } from './escovacao';
 import { Esfrega } from '../etapasLogica';
 import { narrador } from '../narrador';
 import { fale } from '../narracoes';
-import type { Etapa, Item } from '../types';
-import { figura, nota, textoEmPainel, TimerMusical, toque, tremer, type Fig } from '../ui';
+import type { Etapa, Item, Pergunta } from '../types';
+import {
+  area,
+  botao,
+  figura,
+  lerAoPassar,
+  marcaErro,
+  nota,
+  somCerto,
+  somErro,
+  textoEmPainel,
+  TimerMusical,
+  tremer,
+  type Fig,
+} from '../ui';
 
 const W = CONFIG.LARGURA;
 
@@ -27,6 +41,7 @@ function certo(c: Ctx, x: number, y: number) {
   const v = c.cena.add.text(x, y, '\u{2705}', { fontSize: '90px' }).setOrigin(0.5);
   c.camada.add(v);
   c.cena.tweens.add({ targets: v, scale: { from: 0, to: 1 }, duration: 260, ease: 'Back.out' });
+  return v;
 }
 
 const tocar: Handler = (c, e) => {
@@ -41,13 +56,15 @@ const tocar: Handler = (c, e) => {
     const f = figura(c.cena, a.x, a.y, a.img, a.icone, 140);
     c.camada.add(f);
     if (a.texto) c.camada.add(textoEmPainel(c.cena, a.x, a.y + 124, a.texto, 26, 190));
-    toque(f, () => {
+    const zona = area(c.cena, a.x, a.y + 24, 184, 236, undefined, a.fala ?? a.texto);
+    c.camada.add(zona);
+    zona.on('pointerdown', () => {
       if (a.correto === false) {
         tremer(c.cena, f);
         c.erro(e.consequencia);
         return;
       }
-      f.disableInteractive();
+      zona.disableInteractive();
       certo(c, a.x, a.y);
       c.cena.tweens.add({ targets: f, alpha: 0.35, scale: f.scale * 1.15, duration: 260 });
       faltam -= 1;
@@ -60,18 +77,23 @@ const arrastar: Handler = (c, e) => {
   const alvo = e.alvo as Item;
   // posicoes fixas e iguais em toda missao: fila em cima, alvo grande embaixo
   const alvoX = W / 2;
-  const alvoY = 930;
+  const alvoY = 960;
   const sombra = c.cena.add.graphics();
   sombra.fillStyle(0xffffff, 0.95);
-  sombra.fillRoundedRect(alvoX - 190, alvoY - 170, 380, 340, 40);
+  sombra.fillRoundedRect(alvoX - 190, alvoY - 160, 380, 320, 40);
   c.camada.add(sombra);
-  c.camada.add(figura(c.cena, alvoX, alvoY, alvo.img, alvo.icone, 300));
+  c.camada.add(lerAoPassar(figura(c.cena, alvoX, alvoY, alvo.img, alvo.icone, 300), alvo.fala ?? alvo.texto));
   const itens = e.itens ?? [];
-  let faltam = itens.length;
-  const passo = Math.min(190, (W - 120) / Math.max(1, itens.length));
+  // item com "correto": false e pegadinha: nao entra, leva X e volta
+  let faltam = itens.filter((i) => i.correto !== false).length;
+  // ate 4 cabem numa fila; de 5 em diante quebra em duas, senao fica miudo
+  const porLinha = itens.length > 4 ? Math.ceil(itens.length / 2) : itens.length;
+  const passo = Math.min(190, (W - 120) / Math.max(1, porLinha));
   itens.forEach((it, i) => {
-    const casaX = W / 2 + (i - (itens.length - 1) / 2) * passo;
-    const casaY = 600;
+    const linha = Math.floor(i / porLinha);
+    const nesta = Math.min(porLinha, itens.length - linha * porLinha);
+    const casaX = W / 2 + ((i % porLinha) - (nesta - 1) / 2) * passo;
+    const casaY = itens.length > 4 ? 500 + linha * 184 : 600;
     const base = c.cena.add.graphics();
     base.fillStyle(0xffffff, 0.97);
     base.fillRoundedRect(casaX - passo / 2 + 8, casaY - 82, passo - 16, 164, 24);
@@ -79,21 +101,42 @@ const arrastar: Handler = (c, e) => {
     const f = figura(c.cena, casaX, casaY, it.img, it.icone, Math.min(130, passo - 40));
     c.camada.add(f);
     f.setInteractive({ draggable: true });
+    lerAoPassar(f, it.fala ?? it.texto);
     f.on('drag', (_p: Phaser.Input.Pointer, x: number, y: number) => {
       f.x = x;
       f.y = y;
     });
+    const voltarParaCasa = () =>
+      c.cena.tweens.add({ targets: f, x: casaX, y: casaY, duration: 260, ease: 'Back.out' });
     f.on('dragend', () => {
-      if (Phaser.Math.Distance.Between(f.x, f.y, alvoX, alvoY) < 200) {
-        f.disableInteractive();
-        const destX = alvoX + (i - (itens.length - 1) / 2) * 72;
-        c.cena.tweens.add({ targets: f, x: destX, y: alvoY - 10, scale: f.scale * 0.7, duration: 220 });
-        nota(784);
-        faltam -= 1;
-        if (faltam === 0) c.cena.time.delayedCall(600, c.fim);
-      } else {
-        c.cena.tweens.add({ targets: f, x: casaX, y: casaY, duration: 260, ease: 'Back.out' });
+      if (Phaser.Math.Distance.Between(f.x, f.y, alvoX, alvoY) >= 200) {
+        voltarParaCasa();
+        return;
       }
+      if (it.correto === false) {
+        marcaErro(c.cena, f.x, f.y);
+        somErro();
+        tremer(c.cena, f);
+        c.cena.time.delayedCall(360, voltarParaCasa);
+        c.erro(e.consequencia);
+        return;
+      }
+      // guardou: some de vez dentro do alvo, que e o que a crianca entende
+      f.disableInteractive();
+      base.destroy();
+      somCerto();
+      c.cena.tweens.add({
+        targets: f,
+        x: alvoX,
+        y: alvoY,
+        scale: 0,
+        alpha: 0,
+        duration: 320,
+        ease: 'Quad.easeIn',
+        onComplete: () => f.destroy(),
+      });
+      faltam -= 1;
+      if (faltam === 0) c.cena.time.delayedCall(600, c.fim);
     });
   });
 };
@@ -126,6 +169,7 @@ const segurarComTimer: Handler = (c, e) => {
   let avisou = false;
 
   f.setInteractive({ draggable: true });
+  lerAoPassar(f, alvo.fala ?? alvo.texto);
   f.on('pointerdown', () => {
     timer.retomar();
     dica.setText('Isso! Continue...');
@@ -209,12 +253,16 @@ const escolher: Handler = (c, e) => {
           .setOrigin(0.5),
       );
     }
-    toque(f, () => {
+    // o dedo pode cair em qualquer canto do cartao, nao so na figurinha
+    const zona = area(c.cena, o.x, o.y, 300, 300, undefined, o.fala ?? o.texto);
+    c.camada.add(zona);
+    zona.on('pointerdown', () => {
       if (!o.correto) {
         tremer(c.cena, f);
         c.erro(e.consequencia);
         return;
       }
+      zona.disableInteractive();
       certo(c, o.x, o.y - 30);
       c.cena.time.delayedCall(800, c.fim);
     });
@@ -237,7 +285,9 @@ const sequencia: Handler = (c, e) => {
       .setStroke('#ffffff', 8);
     c.camada.add(num);
     if (it.texto) c.camada.add(textoEmPainel(c.cena, it.x, it.y + 124, it.texto, 26, 190));
-    toque(f, () => {
+    const zona = area(c.cena, it.x, it.y + 24, 184, 236, undefined, it.fala ?? it.texto);
+    c.camada.add(zona);
+    zona.on('pointerdown', () => {
       if (i !== proximo) {
         tremer(c.cena, f);
         c.erro(e.consequencia);
@@ -246,7 +296,7 @@ const sequencia: Handler = (c, e) => {
       proximo += 1;
       num.setText(String(proximo));
       nota(600 + proximo * 60);
-      f.disableInteractive();
+      zona.disableInteractive();
       c.cena.tweens.add({ targets: f, scale: f.scale * 1.12, duration: 200, yoyo: true });
       if (proximo === itens.length) c.cena.time.delayedCall(700, c.fim);
     });
@@ -286,6 +336,78 @@ const respirar: Handler = (c, e) => {
   });
 };
 
+/**
+ * Precisa ou nao precisa? Uma situacao por vez, com Sim e Nao bem grandes.
+ * E aqui que a crianca aprende que a regra tem hora: lavar a mao antes de
+ * comer sim, antes de ir brincar na terra nao.
+ */
+const simOuNao: Handler = (c, e) => {
+  const perguntas = e.perguntas ?? [];
+  let atual = 0;
+  const palco = c.cena.add.container(0, 0);
+  c.camada.add(palco);
+
+  const bolinhas = c.cena.add.graphics();
+  c.camada.add(bolinhas);
+  const pintarBolinhas = () => {
+    bolinhas.clear();
+    perguntas.forEach((_, i) => {
+      const x = W / 2 + (i - (perguntas.length - 1) / 2) * 44;
+      bolinhas.fillStyle(i < atual ? TEMA.sim : 0xffffff, i < atual ? 1 : 0.8);
+      bolinhas.fillCircle(x, 1130, 13);
+    });
+  };
+
+  const mostrar = () => {
+    palco.removeAll(true);
+    pintarBolinhas();
+    if (atual >= perguntas.length) {
+      c.cena.time.delayedCall(500, c.fim);
+      return;
+    }
+    const p: Pergunta = perguntas[atual];
+    narrador.esquecerNome();
+
+    const cartao = c.cena.add.graphics();
+    cartao.fillStyle(0xffffff, 0.97);
+    cartao.fillRoundedRect(W / 2 - 230, 480, 460, 400, 36);
+    palco.add(cartao);
+    const fig = figura(c.cena, W / 2, 640, p.img, p.icone, 220);
+    palco.add(fig);
+    palco.add(textoEmPainel(c.cena, W / 2, 810, p.texto, 36, 420));
+    lerAoPassar(fig, p.texto, p.audio);
+    narrador.falar(p.texto, p.audio);
+
+    const responder = (dito: boolean, alvo: Phaser.GameObjects.Container) => {
+      if (dito !== p.resposta) {
+        tremer(c.cena, alvo);
+        c.erro(p.explica);
+        return;
+      }
+      nota(880);
+      narrador.falar(p.explica);
+      atual += 1;
+      // dentro do palco: a proxima pergunta limpa o visto junto
+      palco.add(certo(c, W / 2, 640));
+      c.cena.time.delayedCall(2600, mostrar);
+    };
+
+    const sim = botao(c.cena, W / 2 - 170, 990, 'Sim', () => responder(true, sim), {
+      icone: '\u{1F44D}',
+      cor: TEMA.sim,
+      largura: 300,
+    });
+    const nao = botao(c.cena, W / 2 + 170, 990, 'Não', () => responder(false, nao), {
+      icone: '\u{1F44E}',
+      cor: TEMA.nao,
+      largura: 300,
+    });
+    palco.add([sim, nao]);
+  };
+
+  mostrar();
+};
+
 export const ETAPAS: Record<Etapa['tipo'], Handler> = {
   escovar,
   tocar,
@@ -295,4 +417,5 @@ export const ETAPAS: Record<Etapa['tipo'], Handler> = {
   escolher_entre_opcoes: escolher,
   sequencia_ordenada: sequencia,
   respirar,
+  sim_ou_nao: simOuNao,
 };

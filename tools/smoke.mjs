@@ -73,7 +73,7 @@ const conferirLayout = () => {
 const problemas = [];
 
 const main = async () => {
-  const navegador = await chromium.launch();
+  const navegador = await chromium.launch({ args: ['--mute-audio'] });
   const page = await navegador.newPage({ viewport: { width: 540, height: 960 } });
 
   let atual = 'carregando';

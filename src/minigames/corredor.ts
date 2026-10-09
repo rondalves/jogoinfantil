@@ -5,7 +5,7 @@ import { correrFaixas } from './faixas';
 import type { MiniGame, ResultadoMiniGame } from './index';
 
 const W = CONFIG.LARGURA;
-const H = CONFIG.ALTURA;
+const H = CONFIG.DESENHO;
 
 /**
  * Corredor em tres faixas (mundo 3): a crianca corre, pega estrelas e desvia

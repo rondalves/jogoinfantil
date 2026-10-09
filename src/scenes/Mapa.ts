@@ -8,7 +8,7 @@ import { TEMA } from '../theme';
 import { fale } from '../narracoes';
 import { desenharPersonagem } from '../personagem';
 import { ativo, salvar, type Perfil } from '../storage';
-import { balao, botao, botaoOuvir, figura, fundo, hud, irPara, textoEmPainel, titulo, toque } from '../ui';
+import { balao, botao, botaoOuvir, cobrirTela, figura, fundo, hud, irPara, textoEmPainel, titulo, toque } from '../ui';
 import type { Missao as MissaoDef } from '../types';
 
 const W = CONFIG.LARGURA;
@@ -31,6 +31,7 @@ export class Mapa extends Phaser.Scene {
       return;
     }
     narrador.setNome(this.p.nome);
+    narrador.setVoz(this.p.voz ?? 'f');
     if (!this.p.viuTutorial) {
       this.scene.start('Tutorial');
       return;
@@ -183,6 +184,7 @@ export class Mapa extends Phaser.Scene {
     const z = this.add
       .zone(W / 2, y + 48, W - 112, 96)
       .setInteractive({ useHandCursor: true })
+      .on('pointerover', () => narrador.nomear(missao.titulo))
       .on('pointerup', () => {
         if (this.arrastou) return;
         irPara(this, 'Missao', { id: missao.id });
@@ -247,7 +249,7 @@ export class Mapa extends Phaser.Scene {
   /** Com mais de um jogo aberto, a crianca escolhe qual quer. */
   private escolherJogo(jogos: MiniGame[]) {
     const capa = this.add.container(0, 0).setDepth(80);
-    capa.add(this.add.rectangle(W / 2, CONFIG.ALTURA / 2, W, CONFIG.ALTURA, 0x12263a, 0.9));
+    capa.add(cobrirTela(this, 0x12263a, 0.9));
     capa.add(titulo(this, 'Qual jogo?', 260));
     jogos.forEach((j, i) => {
       capa.add(

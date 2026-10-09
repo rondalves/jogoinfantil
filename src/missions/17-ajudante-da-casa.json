@@ -20,20 +20,23 @@
         "icone": "🧺",
         "img": "m17_cesto",
         "x": 360,
-        "y": 930
+        "y": 930,
+        "fala": "Cesto de roupa"
       },
       "itens": [
         {
           "icone": "👕",
           "img": "m17_camiseta_suja",
           "x": 0,
-          "y": 0
+          "y": 0,
+          "fala": "Camiseta suja"
         },
         {
           "icone": "🧦",
           "img": "m17_meia_suja",
           "x": 0,
-          "y": 0
+          "y": 0,
+          "fala": "Meia suja"
         }
       ]
     },
@@ -45,26 +48,30 @@
         "icone": "🍽️",
         "img": "m13_mesa",
         "x": 360,
-        "y": 930
+        "y": 930,
+        "fala": "Mesa"
       },
       "itens": [
         {
           "icone": "🍽️",
           "img": "m17_prato",
           "x": 0,
-          "y": 0
+          "y": 0,
+          "fala": "Prato"
         },
         {
           "icone": "🥤",
           "img": "m17_copo",
           "x": 0,
-          "y": 0
+          "y": 0,
+          "fala": "Copo"
         },
         {
           "icone": "🍴",
           "img": "m17_garfo",
           "x": 0,
-          "y": 0
+          "y": 0,
+          "fala": "Garfo"
         }
       ]
     },
@@ -76,20 +83,23 @@
         "icone": "🐕",
         "img": "pet_cachorro",
         "x": 360,
-        "y": 930
+        "y": 930,
+        "fala": "Cachorrinho"
       },
       "itens": [
         {
           "icone": "🥫",
           "img": "m17_racao",
           "x": 0,
-          "y": 0
+          "y": 0,
+          "fala": "Ração"
         },
         {
           "icone": "🦴",
           "img": "m17_osso",
           "x": 0,
-          "y": 0
+          "y": 0,
+          "fala": "Ossinho"
         }
       ]
     }

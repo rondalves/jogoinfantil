@@ -7,66 +7,100 @@
   "narracao_intro": "{nome}, a escola está esperando! Vamos arrumar a mochila?",
   "audio_intro": "m05_intro",
   "mostrar": {
-    "narracao": "Caderno, lápis, lanche e garrafinha. Tudo dentro da mochila!",
+    "narracao": "Caderno, lápis, lanche e garrafinha. Brinquedo fica em casa!",
     "audio": "m05_mostrar",
     "icone": "🎒"
   },
   "etapas": [
     {
       "tipo": "arrastar_para_alvo",
-      "narracao": "Coloque tudo dentro da mochila.",
+      "narracao": "Coloque na mochila só o que é da escola.",
       "audio": "m05_e1",
       "alvo": {
         "icone": "🎒",
+        "img": "m05_mochila",
+        "fala": "Mochila",
         "x": 360,
-        "y": 950
+        "y": 960
       },
       "itens": [
         {
           "icone": "📓",
+          "fala": "Caderno",
           "x": 150,
-          "y": 600
+          "y": 500
         },
         {
           "icone": "✏️",
+          "fala": "Lápis",
           "x": 300,
-          "y": 560
+          "y": 500
         },
         {
           "icone": "🍎",
           "img": "m01_maca",
+          "fala": "Lanche",
           "x": 450,
-          "y": 560
+          "y": 500
         },
         {
           "icone": "🧃",
+          "fala": "Garrafinha",
           "x": 600,
-          "y": 600
+          "y": 500
+        },
+        {
+          "icone": "🏀",
+          "img": "m15_bola",
+          "fala": "Bola",
+          "x": 230,
+          "y": 684,
+          "correto": false
+        },
+        {
+          "icone": "🧸",
+          "img": "m15_urso",
+          "fala": "Ursinho",
+          "x": 490,
+          "y": 684,
+          "correto": false
         }
-      ]
+      ],
+      "consequencia": "Esse fica em casa! Na mochila vai só o que é da escola."
     },
     {
       "tipo": "sequencia_ordenada",
-      "narracao": "Agora na ordem: vestir o uniforme, calçar o tênis e pegar a mochila.",
+      "narracao": "Agora na ordem: vestir o uniforme, calçar o tênis, arrumar o cabelo e pegar a mochila.",
       "audio": "m05_e2",
       "consequencia": "Ainda não é esse. Olhe de novo!",
       "itens": [
         {
           "icone": "👕",
+          "fala": "Uniforme",
           "x": 170,
-          "y": 780,
+          "y": 620,
           "texto": "Uniforme"
         },
         {
           "icone": "👟",
-          "x": 360,
-          "y": 780,
+          "fala": "Tênis",
+          "x": 550,
+          "y": 620,
           "texto": "Tênis"
         },
         {
+          "icone": "💇",
+          "fala": "Arrumar o cabelo",
+          "x": 170,
+          "y": 900,
+          "texto": "Cabelo"
+        },
+        {
           "icone": "🎒",
+          "img": "m05_mochila",
+          "fala": "Mochila",
           "x": 550,
-          "y": 780,
+          "y": 900,
           "texto": "Mochila"
         }
       ]

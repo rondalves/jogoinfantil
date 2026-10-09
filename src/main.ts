@@ -19,7 +19,7 @@ carregarFonte().then(() => {
   const jogo = new Phaser.Game({
     type: Phaser.AUTO,
     parent: 'jogo',
-    backgroundColor: '#bde8ff',
+    backgroundColor: '#f3f1ec',
     scale: {
       mode: Phaser.Scale.FIT,
       autoCenter: Phaser.Scale.CENTER_BOTH,

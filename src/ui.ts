@@ -44,6 +44,62 @@ export function toque(o: Fig, fn: (p: Phaser.Input.Pointer) => void) {
   return o;
 }
 
+/**
+ * Le em voz alta o nome do objeto quando o dedo passa por cima, sem precisar
+ * tocar. A crianca ainda nao le: passear o dedo pela tela e como ela descobre
+ * o que e cada figura.
+ */
+/** Dois toques subindo: acertou. */
+export function somCerto() {
+  nota(784);
+  setTimeout(() => nota(1047), 110);
+}
+
+/** Dois toques descendo: nao e por ai. Nunca e um som de derrota. */
+export function somErro() {
+  nota(300);
+  setTimeout(() => nota(200), 120);
+}
+
+/** X vermelho que aparece e some: a resposta errada sem susto nem castigo. */
+export function marcaErro(cena: Phaser.Scene, x: number, y: number, tamanho = 120) {
+  const g = cena.add.graphics({ x, y });
+  g.lineStyle(20, 0xc0392b, 1);
+  const r = tamanho / 2;
+  g.lineBetween(-r, -r, r, r);
+  g.lineBetween(r, -r, -r, r);
+  g.setDepth(45).setScale(0);
+  cena.tweens.add({ targets: g, scale: 1, duration: 220, ease: 'Back.out' });
+  cena.tweens.add({ targets: g, alpha: 0, duration: 300, delay: 700, onComplete: () => g.destroy() });
+  return g;
+}
+
+export function lerAoPassar(o: Fig, texto?: string, audio?: string) {
+  if (!texto) return o;
+  if (!o.input) toque(o, () => undefined);
+  o.on('pointerover', () => narrador.nomear(texto, audio));
+  return o;
+}
+
+/**
+ * Area invisivel que recebe o toque e le o rotulo. Serve para o dedo acertar
+ * o cartao inteiro, nao so a figurinha no meio dele.
+ */
+export function area(
+  cena: Phaser.Scene,
+  x: number,
+  y: number,
+  largura: number,
+  altura: number,
+  fn?: () => void,
+  fala?: string,
+) {
+  const z = cena.add.zone(x, y, largura, altura).setInteractive({ useHandCursor: true });
+  if (fn) z.on('pointerdown', fn);
+  if (fala) z.on('pointerover', () => narrador.nomear(fala));
+  return z;
+}
+
 export function tremer(cena: Phaser.Scene, o: Phaser.GameObjects.Components.Transform) {
   const alvo = o as unknown as { x: number };
   const x = alvo.x;
@@ -73,7 +129,7 @@ export function confete(cena: Phaser.Scene, quantidade = 40) {
     const papel = cena.add
       .rectangle(
         Phaser.Math.Between(40, W - 40),
-        Phaser.Math.Between(-300, -20),
+        Phaser.Math.Between(TELA.topo - 300, TELA.topo - 20),
         Phaser.Math.Between(14, 26),
         Phaser.Math.Between(20, 34),
         Phaser.Utils.Array.GetRandom(TEMA.confete),
@@ -82,7 +138,7 @@ export function confete(cena: Phaser.Scene, quantidade = 40) {
       .setAngle(Phaser.Math.Between(0, 360));
     cena.tweens.add({
       targets: papel,
-      y: CONFIG.ALTURA + 60,
+      y: TELA.baixo + 60,
       angle: papel.angle + Phaser.Math.Between(180, 540),
       x: papel.x + Phaser.Math.Between(-80, 80),
       duration: Phaser.Math.Between(1800, 3200),
@@ -94,20 +150,41 @@ export function confete(cena: Phaser.Scene, quantidade = 40) {
 }
 
 /** Cor chapada ou, se a imagem existir em /assets/img, o cenario cobrindo a tela. */
+/** Limites visiveis, ja contando a sobra fora da caixa de desenho. */
+export const TELA = {
+  topo: -CONFIG.MARGEM,
+  baixo: CONFIG.DESENHO + CONFIG.MARGEM,
+  meio: CONFIG.DESENHO / 2,
+  altura: CONFIG.ALTURA,
+};
+
+/**
+ * Centra a caixa de desenho na tela do aparelho. Num celular comprido o
+ * canvas e mais alto que 1280: a sobra fica metade em cima, metade embaixo.
+ */
+export function centrarTela(cena: Phaser.Scene) {
+  if (CONFIG.MARGEM > 0) cena.cameras.main.setScroll(0, -CONFIG.MARGEM);
+}
+
+/** Retangulo que cobre a tela inteira do aparelho, nao so a caixa de desenho. */
+export function cobrirTela(cena: Phaser.Scene, cor: number, alpha = 1) {
+  centrarTela(cena);
+  return cena.add.rectangle(W / 2, TELA.meio, W, TELA.altura, cor, alpha);
+}
+
 export function fundo(cena: Phaser.Scene, fundoCor: number, imagem?: string) {
+  centrarTela(cena);
   cena.cameras.main.fadeIn(TEMA.transicao, 0, 0, 0);
-  cena.add.rectangle(W / 2, CONFIG.ALTURA / 2, W, CONFIG.ALTURA, fundoCor).setDepth(-10);
+  cobrirTela(cena, fundoCor).setDepth(-10);
   if (!imagem || !cena.textures.exists(imagem)) return;
-  const im = cena.add.image(W / 2, CONFIG.ALTURA / 2, imagem).setDepth(-9);
-  im.setScale(Math.max(W / im.width, CONFIG.ALTURA / im.height));
+  const im = cena.add.image(W / 2, TELA.meio, imagem).setDepth(-9);
+  im.setScale(Math.max(W / im.width, TELA.altura / im.height));
   // veu: o cenario fica de pano de fundo, nao briga com os objetos da etapa
-  cena.add
-    .rectangle(W / 2, CONFIG.ALTURA / 2, W, CONFIG.ALTURA, 0xfbf9f5, TEMA.veu)
-    .setDepth(-8);
+  cobrirTela(cena, 0xfbf9f5, TEMA.veu).setDepth(-8);
 }
 
 export function titulo(cena: Phaser.Scene, texto: string, y = 180) {
-  return cena.add
+  const t = cena.add
     .text(W / 2, y, texto, {
       fontSize: `${TEMA.titulo}px`,
       fontStyle: 'bold',
@@ -116,6 +193,8 @@ export function titulo(cena: Phaser.Scene, texto: string, y = 180) {
     })
     .setStroke('#ffffff', 10)
     .setOrigin(0.5);
+  lerAoPassar(t, texto);
+  return t;
 }
 
 export interface OpcoesBotao {
@@ -162,6 +241,7 @@ export function botao(
   rotulo.setX(vaoIcone / 2);
   c.add(rotulo);
   c.setSize(l, a).setInteractive({ useHandCursor: true });
+  c.on('pointerover', () => narrador.nomear(label));
   c.on('pointerdown', () => {
     nota(740);
     cena.tweens.add({ targets: c, scale: 0.92, duration: 80, yoyo: true, ease: 'Quad.easeOut' });
@@ -202,6 +282,17 @@ export function hud(cena: Phaser.Scene, p: Perfil, y = 96, x = 24, origemX = 0) 
         .setOrigin(0, 0.5),
     );
   });
+  c.add(
+    area(
+      cena,
+      (itens.length * passo - 24) / 2 - 14,
+      0,
+      itens.length * passo - 24,
+      80,
+      undefined,
+      `${p.moedas} moedas, ${p.fichas} fichas e ${estrelasTotais(p)} estrelas`,
+    ),
+  );
   return c;
 }
 
@@ -223,6 +314,8 @@ export function textoEmPainel(
   g.fillStyle(0xffffff, 0.96);
   g.fillRoundedRect(x - larg / 2, y - t.height / 2 - 14, larg, t.height + 28, 22);
   c.add([g, t]);
+  // passar o dedo pelo painel le a frase: quem nao le ainda ouve
+  c.add(area(cena, x, y, larg, t.height + 28, undefined, conteudo));
   return c;
 }
 
@@ -244,6 +337,7 @@ export function balao(cena: Phaser.Scene, texto: string, y = 340, mascote = true
       })
       .setOrigin(0.5),
   );
+  c.add(area(cena, W / 2, y, W - 120, 220, undefined, texto));
   return c;
 }
 

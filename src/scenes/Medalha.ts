@@ -21,6 +21,7 @@ export class Medalha extends Phaser.Scene {
   create() {
     this.p = ativo()!;
     narrador.setNome(this.p.nome);
+    narrador.setVoz(this.p.voz ?? 'f');
     fundo(this, TEMA.creme, 'bg_mapa_mundos');
     botaoOuvir(this);
     titulo(this, 'Super Ajudante\ndo Dia', 250);

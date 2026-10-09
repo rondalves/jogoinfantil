@@ -50,7 +50,8 @@
         "icone": "⏳",
         "img": "m08_ampulheta",
         "x": 360,
-        "y": 820
+        "y": 820,
+        "fala": "Ampulheta"
       }
     }
   ],

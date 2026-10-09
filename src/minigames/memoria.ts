@@ -6,7 +6,7 @@ import { figura, nota, textoEmPainel } from '../ui';
 import type { MiniGame, ResultadoMiniGame } from './index';
 
 const W = CONFIG.LARGURA;
-const H = CONFIG.ALTURA;
+const H = CONFIG.DESENHO;
 
 const CARTAS = ['m15_bola', 'm15_urso', 'm15_trem', 'm15_boneca', 'm15_blocos', 'm15_tambor'];
 const EMOJIS = ['\u{26BD}', '\u{1F9F8}', '\u{1F682}', '\u{1FA86}', '\u{1F9E9}', '\u{1FA98}'];

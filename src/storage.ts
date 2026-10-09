@@ -29,6 +29,8 @@ export interface Perfil {
   partidas: { dia: string; n: number };
   /** ja viu o tutorial de abertura */
   viuTutorial?: boolean;
+  /** voz do narrador adulto: 'f' feminina (padrao) ou 'm' masculina */
+  voz?: 'f' | 'm';
 }
 
 const CHAVE = 'missoes-do-dia:perfis';

@@ -22,51 +22,59 @@
           "icone": "🔌",
           "img": "m04_tomada",
           "x": 170,
-          "y": 580
+          "y": 580,
+          "fala": "Tomada"
         },
         {
           "icone": "💊",
           "img": "m04_remedio",
           "x": 360,
-          "y": 580
+          "y": 580,
+          "fala": "Remédio"
         },
         {
           "icone": "🧴",
           "img": "m04_produto",
           "x": 550,
-          "y": 580
+          "y": 580,
+          "fala": "Produto de limpeza"
         },
         {
           "icone": "🔪",
           "img": "m04_faca",
           "x": 170,
-          "y": 760
+          "y": 760,
+          "fala": "Faca"
         },
         {
           "icone": "🔥",
           "img": "m04_fogao",
           "x": 360,
-          "y": 760
+          "y": 760,
+          "fala": "Fogão"
         },
         {
           "icone": "🪜",
           "img": "m04_escada",
           "x": 550,
-          "y": 760
+          "y": 760,
+          "fala": "Escada"
         },
         {
           "icone": "🍌",
           "img": "m01_banana",
           "x": 170,
           "y": 940,
-          "correto": false
+          "correto": false,
+          "fala": "Banana"
         },
         {
           "icone": "🧸",
           "img": "m03_toalha",
           "x": 360,
           "y": 940,
-          "correto": false
+          "correto": false,
+          "fala": "Toalha"
         }
       ]
     },

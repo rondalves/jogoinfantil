@@ -20,26 +20,30 @@
         "icone": "🛏️",
         "img": "m02_cama_bagunca",
         "x": 360,
-        "y": 930
+        "y": 930,
+        "fala": "Cama"
       },
       "itens": [
         {
           "icone": "🧻",
           "img": "m02_lencol",
           "x": 150,
-          "y": 600
+          "y": 600,
+          "fala": "Lençol"
         },
         {
           "icone": "🛌",
           "img": "m02_cobertor",
           "x": 360,
-          "y": 560
+          "y": 560,
+          "fala": "Cobertor"
         },
         {
           "icone": "🪶",
           "img": "m02_travesseiro",
           "x": 570,
-          "y": 600
+          "y": 600,
+          "fala": "Travesseiro"
         }
       ]
     },
@@ -53,7 +57,8 @@
         "icone": "🪶",
         "img": "m02_travesseiro",
         "x": 360,
-        "y": 820
+        "y": 820,
+        "fala": "Travesseiro"
       }
     }
   ],

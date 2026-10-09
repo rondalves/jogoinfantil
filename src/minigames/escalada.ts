@@ -4,11 +4,11 @@ import { fale } from '../narracoes';
 import { desenharPersonagem } from '../personagem';
 import type { PersonagemCfg } from '../storage';
 import { TEMA } from '../theme';
-import { figura, nota } from '../ui';
+import { cobrirTela, figura, nota } from '../ui';
 import type { MiniGame, ResultadoMiniGame } from './index';
 
 const W = CONFIG.LARGURA;
-const H = CONFIG.ALTURA;
+const H = CONFIG.DESENHO;
 const DEGRAUS = 14;
 const ALTURA_DEGRAU = 190;
 const Y_BASE = H - 320;
@@ -155,7 +155,7 @@ export const escalada: MiniGame = {
   arte: ['bg_escalada', 'mg1_chegada'],
   icone: '\u{1F9D7}',
   iniciar(cena, personagem) {
-    cena.add.rectangle(W / 2, H / 2, W, H, TEMA.ceu).setDepth(-10);
+    cobrirTela(cena, TEMA.ceu).setDepth(-10);
     const fundoArte = cena.textures.exists('bg_escalada') ? cena.add.image(W / 2, H / 2, 'bg_escalada') : null;
     if (fundoArte) {
       fundoArte.setScale(Math.max(W / fundoArte.width, H / fundoArte.height)).setDepth(-9).setAlpha(0.75);

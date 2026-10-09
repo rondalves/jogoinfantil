@@ -6,7 +6,8 @@ export type TipoEtapa =
   | 'escolher_entre_opcoes'
   | 'sequencia_ordenada'
   | 'respirar'
-  | 'escovar';
+  | 'escovar'
+  | 'sim_ou_nao';
 
 /** Um pedaco da boca na escovacao guiada. */
 export interface Regiao {
@@ -20,10 +21,24 @@ export interface Item {
   icone: string;
   img?: string;
   texto?: string;
+  /** o que o narrador diz quando o dedo passa por cima; cai no texto se faltar */
+  fala?: string;
   x: number;
   y: number;
   /** false = pegadinha (não deve ser tocado); true = resposta certa */
   correto?: boolean;
+}
+
+/** Uma situacao do "precisa ou nao precisa?". */
+export interface Pergunta {
+  texto: string;
+  icone: string;
+  img?: string;
+  /** true = precisa mesmo; false = e a hora de dizer que nao */
+  resposta: boolean;
+  /** frase curta que explica o porque, dita acertando ou errando */
+  explica: string;
+  audio?: string;
 }
 
 export interface Etapa {
@@ -43,6 +58,8 @@ export interface Etapa {
   /** pedacos da boca, na ordem, para a etapa de escovar */
   regioes?: Regiao[];
   repeticoes?: number;
+  /** situacoes da etapa sim_ou_nao */
+  perguntas?: Pergunta[];
   /** frase leve narrada quando a criança erra */
   consequencia?: string;
 }
