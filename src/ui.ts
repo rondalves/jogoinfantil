@@ -216,7 +216,7 @@ export function textoEmPainel(
     .setOrigin(0.5);
   const larg = Math.min(larguraMax, t.width + 48);
   const g = cena.add.graphics();
-  g.fillStyle(0xffffff, 0.9);
+  g.fillStyle(0xffffff, 0.96);
   g.fillRoundedRect(x - larg / 2, y - t.height / 2 - 14, larg, t.height + 28, 22);
   c.add([g, t]);
   return c;
@@ -309,9 +309,8 @@ export class TimerMusical {
     this.relogio = new Cronometro(segundos);
     this.g = cena.add.graphics();
     this.rotulo = cena.add
-      .text(x, y, '', { fontSize: '44px', color: '#ffffff', fontStyle: 'bold' })
-      .setOrigin(0.5)
-      .setStroke('#12263a', 8);
+      .text(x, y, '', { fontSize: '44px', fontStyle: 'bold' })
+      .setOrigin(0.5);
     const url = AUDIOS['musica_timer'];
     if (url) {
       this.musica = new Audio(url);
@@ -357,11 +356,12 @@ export class TimerMusical {
     const falta = this.relogio.faltam;
     this.rotulo.setText(`${Math.floor(falta / 60)}:${String(falta % 60).padStart(2, '0')}`);
     this.g.clear();
-    this.g.fillStyle(0x12263a, 0.42); // disco escuro: o anel some em cenario claro
+    // disco branco cheio: sobre o cenario, meio transparente virava borrao
+    this.g.fillStyle(0xffffff, 0.96);
     this.g.fillCircle(this.x, this.y, this.raio + 12);
-    this.g.lineStyle(18, 0xffffff, 0.95);
+    this.g.lineStyle(18, 0xe2e6ea, 1);
     this.g.strokeCircle(this.x, this.y, this.raio);
-    this.g.lineStyle(18, 0x51cf66, 1);
+    this.g.lineStyle(18, TEMA.sim, 1);
     this.g.beginPath();
     this.g.arc(
       this.x,

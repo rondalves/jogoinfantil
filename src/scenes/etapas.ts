@@ -35,7 +35,7 @@ const tocar: Handler = (c, e) => {
   for (const a of alvos) {
     // ladrilho claro: sem ele o objeto se perde no cenario
     const base = c.cena.add.graphics();
-    base.fillStyle(0xffffff, 0.86);
+    base.fillStyle(0xffffff, 0.97);
     base.fillRoundedRect(a.x - 82, a.y - 82, 164, 164, 26);
     c.camada.add(base);
     const f = figura(c.cena, a.x, a.y, a.img, a.icone, 140);
@@ -62,7 +62,7 @@ const arrastar: Handler = (c, e) => {
   const alvoX = W / 2;
   const alvoY = 930;
   const sombra = c.cena.add.graphics();
-  sombra.fillStyle(0xffffff, 0.8);
+  sombra.fillStyle(0xffffff, 0.95);
   sombra.fillRoundedRect(alvoX - 190, alvoY - 170, 380, 340, 40);
   c.camada.add(sombra);
   c.camada.add(figura(c.cena, alvoX, alvoY, alvo.img, alvo.icone, 300));
@@ -73,7 +73,7 @@ const arrastar: Handler = (c, e) => {
     const casaX = W / 2 + (i - (itens.length - 1) / 2) * passo;
     const casaY = 600;
     const base = c.cena.add.graphics();
-    base.fillStyle(0xffffff, 0.86);
+    base.fillStyle(0xffffff, 0.97);
     base.fillRoundedRect(casaX - passo / 2 + 8, casaY - 82, passo - 16, 164, 24);
     c.camada.add(base);
     const f = figura(c.cena, casaX, casaY, it.img, it.icone, Math.min(130, passo - 40));
@@ -100,13 +100,18 @@ const arrastar: Handler = (c, e) => {
 
 const segurarComTimer: Handler = (c, e) => {
   const alvo = e.alvo ?? { icone: '\u{1FAA5}', x: W / 2, y: 780 };
+  // mesmo cartao das outras etapas: sem ele o alvo some no cenario
+  const cartao = c.cena.add.graphics();
+  cartao.fillStyle(0xffffff, 0.97);
+  cartao.fillRoundedRect(alvo.x - 115, alvo.y - 115, 230, 230, 30);
+  c.camada.add(cartao);
   const f = figura(c.cena, alvo.x, alvo.y, alvo.img, alvo.icone, 180);
   c.camada.add(f);
   const dica = c.cena.add.text(W / 2, alvo.y + 170, 'Segure o dedinho aqui', { fontSize: '38px' }).setOrigin(0.5);
   const fundoDica = c.cena.add.graphics();
   const pintarDica = () => {
     fundoDica.clear();
-    fundoDica.fillStyle(0xffffff, 0.88);
+    fundoDica.fillStyle(0xffffff, 0.95);
     fundoDica.fillRoundedRect(W / 2 - dica.width / 2 - 20, dica.y - dica.height / 2 - 10, dica.width + 40, dica.height + 20, 18);
   };
   pintarDica();
@@ -187,7 +192,7 @@ const escolher: Handler = (c, e) => {
   const opcoes = e.itens ?? [];
   for (const o of opcoes) {
     const g = c.cena.add.graphics();
-    g.fillStyle(0xffffff, 0.92);
+    g.fillStyle(0xffffff, 0.97);
     g.fillRoundedRect(o.x - 150, o.y - 150, 300, 300, 30);
     c.camada.add(g);
     const f = figura(c.cena, o.x, o.y - 30, o.img, o.icone, 150);
@@ -221,7 +226,7 @@ const sequencia: Handler = (c, e) => {
   let proximo = 0;
   itens.forEach((it, i) => {
     const base = c.cena.add.graphics();
-    base.fillStyle(0xffffff, 0.86);
+    base.fillStyle(0xffffff, 0.97);
     base.fillRoundedRect(it.x - 82, it.y - 82, 164, 164, 26);
     c.camada.add(base);
     const f = figura(c.cena, it.x, it.y, it.img, it.icone, 130);
