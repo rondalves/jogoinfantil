@@ -19,7 +19,12 @@ export const CONFIG = {
   MOEDAS_BONUS_MUNDO: 5,
   PARTIDAS_POR_DIA: 5,
   /** mundos livres; os de cima abrem com a compra unica (ver compras.ts) */
-  MUNDOS_LIVRES: 2,
+  /**
+   * Mundos abertos sem a compra. Em 6 o jogo inteiro fica livre: e assim que
+   * ele vai para o teste na Play, porque a compra ainda nao tem pagamento
+   * ligado. Volta para 2 quando o billing entrar.
+   */
+  MUNDOS_LIVRES: 6,
 
   /** pagina publica da politica de privacidade (docs/privacidade.html no GitHub Pages) */
   URL_PRIVACIDADE: 'https://rondalves.github.io/jogoinfantil/privacidade.html',

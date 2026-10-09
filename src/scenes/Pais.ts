@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { comprar, lojaDisponivel, PRECO, restaurar, temTudo } from '../compras';
-import { CONFIG } from '../config';
+import { CONFIG, MUNDOS } from '../config';
 import { estrelasTotais, partidasHoje } from '../economia';
 import { MISSOES } from '../missions';
 import { narrador } from '../narrador';
@@ -156,6 +156,8 @@ export class Pais extends Phaser.Scene {
    * preco e botao de comprar nao aparecem para a crianca em lugar nenhum.
    */
   private mundosCompletos() {
+    // com tudo livre (o teste na Play), nao existe o que comprar
+    if (CONFIG.MUNDOS_LIVRES >= MUNDOS.length) return;
     if (temTudo()) {
       this.add
         .text(W / 2, 265, '\u{2705} Mundos completos liberados', {
