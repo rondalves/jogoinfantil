@@ -322,6 +322,11 @@ FOLHAS_OPACAS = {
     "m06_pnp_errada": (["m06_pnp_errada"], 1, 1, 420),
 }
 
+# Capas das historinhas: quadradas, sem fundo verde, do tamanho do cartao.
+CAPAS = ["capa_historia1", "capa_historia2", "capa_historia3",
+         "capa_historia4", "capa_historia5", "capa_historia6"]
+FOLHAS_OPACAS.update({n: ([n], 1, 1, 512) for n in CAPAS})
+
 # Cenarios: viram JPG do tamanho da tela (nao tem fundo verde).
 CENARIOS = [
     "bg_menu_inicial",

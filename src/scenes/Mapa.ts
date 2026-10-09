@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { darVida } from '../animacoes';
+import { abas } from '../abas';
 import { mundoPago } from '../compras';
 import { CONFIG, MUNDOS } from '../config';
 import { gastarFicha, partidasHoje, podeJogar } from '../economia';
@@ -70,6 +71,7 @@ export class Mapa extends Phaser.Scene {
     this.montarLista();
     this.scroll();
     this.barraInferior();
+    abas(this, 'Mapa');
   }
 
   private montarLista() {
@@ -225,9 +227,9 @@ export class Mapa extends Phaser.Scene {
   }
 
   private barraInferior() {
-    this.add.rectangle(W / 2, 1200, W, 160, 0xffffff, 0.92).setDepth(40);
+    this.add.rectangle(W / 2, 1090, W, 150, 0xffffff, 0.92).setDepth(40);
     const jogos = liberados(this.p.broches);
-    botao(this, W / 2, 1200, `Jogar  (${this.p.fichas})`, () => this.abrirJogos(jogos), {
+    botao(this, W / 2, 1090, `Jogar  (${this.p.fichas})`, () => this.abrirJogos(jogos), {
       icone: '\u{1F3AE}',
       largura: 460,
       cor: 0x7ddc8a,

@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { AUDIOS } from './assets';
+import { AUDIOS, carregar } from './assets';
 import { CONFIG } from './config';
 import { estrelasTotais } from './economia';
 import { Cronometro } from './etapasLogica';
@@ -187,6 +187,11 @@ export function fundo(cena: Phaser.Scene, fundoCor: number, imagem?: string) {
   im.setScale(Math.max(W / im.width, TELA.altura / im.height));
   // veu: o cenario fica de pano de fundo, nao briga com os objetos da etapa
   cobrirTela(cena, 0xfbf9f5, TEMA.veu).setDepth(-8);
+}
+
+/** Carrega as capas que faltam e chama `pronto`. Atalho para as telas novas. */
+export function carregarCapas(cena: Phaser.Scene, chaves: string[], pronto: () => void) {
+  carregar(cena, chaves, pronto);
 }
 
 export function titulo(cena: Phaser.Scene, texto: string, y = 180) {

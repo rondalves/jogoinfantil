@@ -79,6 +79,22 @@ Missao nova = arquivo JSON novo em `src/missions/`. O motor nao muda.
 
 ---
 
+## Premio de cada mundo
+
+Fechar um mundo abre **para sempre** uma historinha e um joguinho. Nao
+gastam ficha, nao dao estrela e nao tem como errar.
+
+| mundo | | historinha | joguinho |
+|---|---|---|---|
+| 1 | Manha em Casa (livre) | A raposinha e o sol que acordou cedo | Estoura-bolhas |
+| 2 | Escola (livre) | O primeiro dia de aula | Memória das palavras mágicas |
+| 3 | Volta para Casa (paga) | A viagem da lua no carro | Trânsito colorido |
+| 4 | Tarde (paga) | O brinquedo que queria brincar | Quebra-cabeça de brinquedos |
+| 5 | Janta (paga) | A sopa de estrelas | Monte o prato colorido |
+| 6 | Banho e Cama (paga) | A raposinha vai dormir | Ligar as estrelinhas |
+
+---
+
 ## Missao 01 — Acordar e se cuidar 🦷
 
 Mundo 1 (Manha em Casa) · cenario `bg_quarto_manha`

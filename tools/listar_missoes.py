@@ -172,6 +172,31 @@ Missao nova = arquivo JSON novo em `src/missions/`. O motor nao muda.
 """
 
 
+def premios():
+    """Mundo fechado libera uma historinha e um joguinho, para sempre."""
+    hist, jogo = {}, {}
+    for f in sorted(glob.glob(os.path.join(RAIZ, "src", "stories", "*.json"))):
+        d = json.load(open(f, encoding="utf-8"))
+        hist[d["mundo"]] = d["titulo"]
+    for f in sorted(glob.glob(os.path.join(RAIZ, "src", "minigames", "*.json"))):
+        d = json.load(open(f, encoding="utf-8"))
+        jogo[d["mundo"]] = d["titulo"]
+    fora = [
+        "## Premio de cada mundo",
+        "",
+        "Fechar um mundo abre **para sempre** uma historinha e um joguinho. Nao",
+        "gastam ficha, nao dao estrela e nao tem como errar.",
+        "",
+        "| mundo | | historinha | joguinho |",
+        "|---|---|---|---|",
+    ]
+    for n in sorted(MUNDOS):
+        nome, preco = MUNDOS[n]
+        fora.append("| %d | %s (%s) | %s | %s |" % (n, nome, preco, hist.get(n, "-"), jogo.get(n, "-")))
+    fora.append("")
+    return fora
+
+
 def main():
     arquivos = sorted(glob.glob(os.path.join(RAIZ, "src", "missions", "*.json")))
     missoes = [json.load(open(f, encoding="utf-8")) for f in arquivos]
@@ -183,6 +208,8 @@ def main():
             f"- [{m['id']} — {m['titulo']}](#{ancora(m['titulo'], m['id'])}) · mundo {m['mundo']} · {livre}"
         )
     partes.append("\n---\n")
+    partes.append("\n".join(premios()))
+    partes.append("---\n")
     for m in missoes:
         partes.append("\n".join(missao(m)))
 

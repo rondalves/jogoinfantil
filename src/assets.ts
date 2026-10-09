@@ -48,3 +48,21 @@ export function carregar(
 export const AUDIOS = mapear(
   import.meta.glob('/assets/audio/*.{mp3,ogg,m4a,wav}', { eager: true, query: '?url', import: 'default' }),
 );
+
+/**
+ * As historinhas ficam numa subpasta e sao longas: entram por caminho
+ * ("historias/01-nome"), nao pelo nome solto, para nao se misturarem com as
+ * frases narradas.
+ */
+export const AUDIOS_HISTORIA: Record<string, string> = Object.fromEntries(
+  Object.entries(
+    import.meta.glob('/assets/audio/historias/*.{mp3,ogg,m4a,wav}', {
+      eager: true,
+      query: '?url',
+      import: 'default',
+    }),
+  ).map(([caminho, url]) => [
+    'historias/' + caminho.split('/').pop()!.replace(/\.\w+$/, ''),
+    url as string,
+  ]),
+);
