@@ -86,10 +86,9 @@ Prompt completo (troque só a parte em negrito):
 O mapa tem medalhão redondo (`mundoN`) e broche de mundo fechado (`brocheN`)
 para os mundos 1 a 5. O mundo 6 nasceu agora e não tem os dois.
 
-**Atalho que economiza duas gerações:** o `mundo5` e o `broche5` de hoje são de
-noite (lua e estrelas) — que agora é a cara do **mundo 6**, não do mundo 5.
-Renomeie os dois para `mundo6` e `broche6` e gere só o par novo da Janta. Me
-avise que eu troco os nomes na tabela do `preparar_assets.py`.
+**Feito:** o `mundo5` e o `broche5` de noite (lua e estrelas) viraram `mundo6` e
+`broche6`, que é onde essa cara faz sentido agora. Falta só o par da Janta — até
+lá o mundo 5 aparece no mapa com o emoji 🍽️.
 
 ### `mundo5` — Janta (medalhão)
 
