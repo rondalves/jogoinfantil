@@ -60,7 +60,8 @@ export class Mapa extends Phaser.Scene {
       .setDepth(51)
       .on('pointerup', () => irPara(this, 'Criador', { editar: true }));
 
-    this.lista = this.add.container(0, TOPO);
+    // 'rola' avisa o smoke que esta lista passa da tela de proposito
+    this.lista = this.add.container(0, TOPO).setName('rola');
     this.montarLista();
     this.scroll();
     this.barraInferior();

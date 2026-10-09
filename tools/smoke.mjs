@@ -25,6 +25,51 @@ const PERFIL = {
   viuTutorial: true,
 };
 
+/**
+ * Roda dentro da pagina: procura texto que vaza da tela ou que cai por cima
+ * de outro texto -- o defeito que nao quebra nada e so aparece quando
+ * alguem olha a tela.
+ */
+const conferirLayout = () => {
+  const j = window.__jogo;
+  const cena = j.scene.scenes.find((s) => s.scene.isActive() && s.scene.key !== 'Boot');
+  if (!cena) return ['nenhuma cena ativa'];
+  const textos = [];
+  const andar = (lista) => {
+    for (const o of lista) {
+      if (o.visible === false || o.alpha === 0) continue;
+      if (o.type === 'Container') {
+        if (o.name !== 'rola') andar(o.list);
+      }
+      else if (o.type === 'Text' && o.text.trim()) textos.push(o);
+    }
+  };
+  andar(cena.children.list);
+  const erros = [];
+  const caixas = [];
+  for (const t of textos) {
+    const b = t.getBounds();
+    if (b.width < 1 || b.height < 1) continue;
+    const nome = JSON.stringify(t.text.slice(0, 24));
+    if (b.x < -4 || b.right > 724 || b.y < -4 || b.bottom > 1284) {
+      erros.push(`texto ${nome} vaza da tela (${Math.round(b.x)},${Math.round(b.y)} ate ${Math.round(b.right)},${Math.round(b.bottom)})`);
+      continue;
+    }
+    // icone dentro do botao fica colado no rotulo de proposito
+    if (/[a-z]/i.test(t.text)) caixas.push({ b, nome });
+  }
+  for (let i = 0; i < caixas.length; i++) {
+    for (let k = i + 1; k < caixas.length; k++) {
+      const a = caixas[i].b;
+      const c = caixas[k].b;
+      if (Math.min(a.right, c.right) - Math.max(a.x, c.x) > 6 && Math.min(a.bottom, c.bottom) - Math.max(a.y, c.y) > 6) {
+        erros.push(`texto ${caixas[i].nome} por cima de ${caixas[k].nome}`);
+      }
+    }
+  }
+  return erros;
+};
+
 const problemas = [];
 
 const main = async () => {
@@ -76,6 +121,7 @@ const main = async () => {
       await page.waitForTimeout(900);
     }
     await page.waitForTimeout(600);
+    for (const e of await page.evaluate(conferirLayout)) problemas.push(`${atual}: ${e}`);
   }
 
   const jogos = ['corrida', 'escalada', 'corredor', 'memoria', 'estrelas'];
@@ -105,6 +151,7 @@ const main = async () => {
     j.scene.start('Medalha');
     await new Promise((r) => setTimeout(r, 2000));
   });
+  for (const e of await page.evaluate(conferirLayout)) problemas.push(`${atual}: ${e}`);
 
   for (const tela of ['Perfis', 'Criador', 'Mapa', 'Pais', 'Tutorial']) {
     atual = `tela ${tela}`;
@@ -114,6 +161,7 @@ const main = async () => {
       j.scene.start(chave);
       await new Promise((r) => setTimeout(r, 1500));
     }, tela);
+    for (const e of await page.evaluate(conferirLayout)) problemas.push(`${atual}: ${e}`);
   }
 
   await navegador.close();

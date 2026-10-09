@@ -5,7 +5,7 @@ está pronto em `docs/privacidade.html`.
 
 ## Antes de publicar
 
-1. Abra `docs/privacidade.html` e troque os dois `[E-MAIL]` pelo seu e-mail de contato.
+1. O e-mail de contato ja esta em `docs/privacidade.html`: site@geekantenado.com.
 2. Confira a data de atualização no topo.
 
 ## Passo a passo
