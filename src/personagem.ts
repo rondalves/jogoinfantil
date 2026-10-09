@@ -24,11 +24,44 @@ const CENTRO_CABECA = CABECA.topo + CABECA.altura / 2;
 export const PELES = [0xffe0bd, 0xf3c893, 0xe0ac69, 0xc68642, 0x8d5524, 0x5c3317];
 export const CORES_CABELO = [0x2b1b17, 0x6b4423, 0xd9a95b, 0xb33a2b, 0x4a4a4a, 0x7d4fa0];
 
-export const CABELOS = [
+/** Todo penteado que o jogo sabe mostrar. So aparece no criador o que tem arte. */
+const CATALOGO_CABELOS = [
   { id: 'cacheado', nome: 'Cacheado' },
-  { id: 'careca', nome: 'Sem cabelo' },
+  { id: 'crespo', nome: 'Crespo' },
+  { id: 'ondulado', nome: 'Ondulado' },
+  { id: 'enrolado', nome: 'Enrolado' },
+  { id: 'liso_longo', nome: 'Liso longo' },
+  { id: 'liso_curto', nome: 'Liso curto' },
+  { id: 'trancas', nome: 'Tranças' },
+  { id: 'tranca_unica', nome: 'Trança' },
+  { id: 'coque', nome: 'Coque' },
+  { id: 'maria_chiquinha', nome: 'Chiquinhas' },
+  { id: 'box_braids', nome: 'Box braids' },
+  { id: 'dreads', nome: 'Dreads' },
+  { id: 'menino_curto', nome: 'Curto' },
+  { id: 'menino_cacheado', nome: 'Cacheado curto' },
+  { id: 'menino_crespo', nome: 'Crespo baixo' },
+  { id: 'menino_black_power', nome: 'Black power' },
+  { id: 'menino_espetado', nome: 'Espetado' },
+  { id: 'menino_tigelinha', nome: 'Tigelinha' },
 ];
-export const OLHOS = [{ id: 'redondos', nome: 'Redondos' }];
+
+const CATALOGO_OLHOS = [
+  { id: 'redondos', nome: 'Redondos' },
+  { id: 'alegres', nome: 'Alegres' },
+  { id: 'grandes', nome: 'Grandes' },
+];
+
+export let CABELOS = [{ id: 'cacheado', nome: 'Cacheado' }, { id: 'careca', nome: 'Sem cabelo' }];
+export let OLHOS = [{ id: 'redondos', nome: 'Redondos' }];
+
+/** Le o que existe em assets/img e monta as listas do criador. */
+export function montarOpcoes(cena: Phaser.Scene) {
+  const comArte = CATALOGO_CABELOS.filter((c) => cena.textures.exists(`cabelo_${c.id}_1`));
+  CABELOS = [...comArte, { id: 'careca', nome: 'Sem cabelo' }];
+  const olhos = CATALOGO_OLHOS.filter((o) => cena.textures.exists(`olhos_${o.id}`));
+  if (olhos.length > 0) OLHOS = olhos;
+}
 export const ROUPAS = [
   { id: '', nome: 'Camiseta' },
   { id: '_macacao', nome: 'Macacão' },
@@ -101,7 +134,7 @@ export function desenharPersonagem(
   const chaveCabelo = `cabelo_${cabelo}_${(cfg.corCabelo % CORES_CABELO.length) + 1}`;
   if (cabelo !== 'careca' && cena.textures.exists(chaveCabelo)) {
     const im = porLargura(cena, chaveCabelo, CABECA.largura * 1.14);
-    im.setY(CABECA.topo - CABECA.altura * 0.1 + im.displayHeight / 2);
+    im.setY(CABECA.topo - CABECA.altura * 0.34 + im.displayHeight / 2);
     c.add(im);
   }
 

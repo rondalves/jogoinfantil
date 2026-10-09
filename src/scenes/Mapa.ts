@@ -84,7 +84,7 @@ export class Mapa extends Phaser.Scene {
       this.lista.add(figura(this, 108, y + 52, aberto ? `mundo${m.id}` : 'mundo_bloqueado', m.icone, 76));
       this.lista.add(
         this.add
-          .text(160, y + 36, `Mundo ${m.id} - ${m.nome}`, { fontSize: '32px', color: '#2b3a4a', fontStyle: 'bold' })
+          .text(160, y + 36, `Mundo ${m.id} - ${m.nome}`, { fontSize: '30px', fontStyle: 'bold', wordWrap: { width: 400 } })
           .setOrigin(0, 0.5),
       );
       this.lista.add(
@@ -95,7 +95,7 @@ export class Mapa extends Phaser.Scene {
           })
           .setOrigin(0, 0.5),
       );
-      if (temBroche) this.lista.add(figura(this, W - 110, y + 52, `broche${m.id}`, '\u{1F396}\u{FE0F}', 76));
+      if (temBroche) this.lista.add(figura(this, W - 84, y + 52, `broche${m.id}`, '\u{1F396}\u{FE0F}', 62));
       y += 124;
 
       if (missoes.length === 0) {

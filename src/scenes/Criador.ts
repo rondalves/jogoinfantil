@@ -10,6 +10,7 @@ import {
   CABELOS,
   CORES_CABELO,
   desenharPersonagem,
+  montarOpcoes,
   OLHOS,
   PELES,
   ROUPAS,
@@ -56,6 +57,7 @@ export class Criador extends Phaser.Scene {
   }
 
   create() {
+    montarOpcoes(this);
     fundo(this, TEMA.rosa, 'bg_criador_personagem');
     botaoOuvir(this);
     if (this.editando) botaoVoltar(this, 'Mapa');

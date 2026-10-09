@@ -42,11 +42,16 @@ arquivos em `assets/img`, somando 4,5 MB.
 
 ## Mais opções no criador de personagem
 
-Cada arquivo novo vira uma opção, sem mexer no código:
+O criador monta a lista sozinho a partir do que existe em `assets/img`: cada
+penteado novo vira uma opção, com as 6 cores, sem mexer em código.
 
-- **Penteados**: `cabelo_<estilo>_castanho` (liso curto, liso longo, crespo, tranças, coque)
-- **Olhos**: `olhos_<tipo>_castanhos` (alegres, grandes, sonolentos)
-- **Roupas**: um corpo inteiro vestido, como o macacão
+Os prompts prontos para gerar no Gemini (18 penteados, de menina, de menino,
+cacheado, crespo, ondulado, tranças, black power) estão em
+[PROMPTS_CABELOS.md](PROMPTS_CABELOS.md).
 
-Depois acrescente o nome em `FOLHAS` (script) e na lista `CABELOS` / `OLHOS` /
-`ROUPAS` de [src/personagem.ts](../src/personagem.ts).
+## Cores
+
+A arte crua vinha muito saturada para uma tela que a criança olha de perto por
+muito tempo. O script lava tudo na preparação: objetos ficam com 72% da
+saturação e um véu de 6% de branco; cenários, com 50% e 20%. Os números estão
+no topo de [tools/preparar_assets.py](../tools/preparar_assets.py).

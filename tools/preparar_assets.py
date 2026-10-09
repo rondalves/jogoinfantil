@@ -13,7 +13,7 @@ import os
 import sys
 
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageEnhance
 from scipy import ndimage
 
 ORIGEM = r"C:\Users\rondj\Downloads\Imagens para jogo infantil"
@@ -21,6 +21,12 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DESTINO = os.path.join(RAIZ, "assets", "img")
 
 LARGURA, ALTURA = 720, 1280
+
+# Quanto a cor e puxada para baixo. 1.0 seria a arte crua.
+SATURACAO_OBJETO = 0.72
+BRANCO_OBJETO = 0.06
+SATURACAO_CENARIO = 0.5
+BRANCO_CENARIO = 0.2
 
 # Tons de pele do jogo (iguais aos de src/personagem.ts).
 PELES = [(255, 224, 189), (243, 200, 147), (224, 172, 105), (198, 134, 66), (141, 85, 36), (92, 51, 23)]
@@ -269,12 +275,14 @@ CENARIOS = [
 ]
 
 
-def abrir(nome):
+def abrir(nome, obrigatorio=True):
     for ext in (".jpg", ".jpeg", ".png", ".webp"):
         p = os.path.join(ORIGEM, nome + ext)
         if os.path.exists(p):
             return Image.open(p).convert("RGB")
-    raise SystemExit(f"nao achei {nome} em {ORIGEM}")
+    if obrigatorio:
+        raise SystemExit(f"nao achei {nome} em {ORIGEM}")
+    return None
 
 
 def tirar_verde(im):
@@ -322,11 +330,26 @@ def recortar(rgba, caixa, tam):
     return corte
 
 
+def lavar(im, saturacao, branco):
+    """Tira o exagero da cor: o jogo e para olhar por muito tempo, de perto."""
+    rgba = im.convert("RGBA")
+    alpha = rgba.getchannel("A")
+    base = rgba.convert("RGB")
+    base = ImageEnhance.Color(base).enhance(saturacao)
+    if branco:
+        base = Image.blend(base, Image.new("RGB", base.size, (255, 255, 255)), branco)
+    base = ImageEnhance.Brightness(base).enhance(1.02)
+    saida = base.convert("RGBA")
+    saida.putalpha(alpha)
+    return saida
+
+
 def gravar(im, nome):
     """PNG de paleta: arte chapada fica ~6x menor sem diferenca visivel."""
     os.makedirs(DESTINO, exist_ok=True)
     caminho = os.path.join(DESTINO, nome + ".png")
-    im.convert("RGBA").quantize(colors=160, method=Image.FASTOCTREE).save(caminho, optimize=True)
+    lavada = lavar(im, SATURACAO_OBJETO, BRANCO_OBJETO)
+    lavada.quantize(colors=160, method=Image.FASTOCTREE).save(caminho, optimize=True)
     return caminho
 
 
@@ -405,7 +428,11 @@ def fazer_folhas(so=None):
     for nome, (rotulos, tam, modo) in alvos.items():
         if so and nome != so:
             continue
-        rgba = tirar_verde(abrir(nome))
+        bruta = abrir(nome, obrigatorio=False)
+        if bruta is None:
+            print(f"  . {nome}: ainda nao chegou, pulando")
+            continue
+        rgba = tirar_verde(bruta)
         caixas = grade(rgba, modo[1], modo[2]) if modo else pecas(rgba)
         cortes = [recortar(rgba, c, tam) for c in caixas]
         if so:
@@ -430,6 +457,7 @@ def fazer_opacas():
             c, l = i % cols, i // cols
             corte = im.crop((round(c * lx), round(l * ly), round((c + 1) * lx), round((l + 1) * ly)))
             corte.thumbnail((tam, tam * 3), Image.LANCZOS)
+            corte = lavar(corte, SATURACAO_CENARIO, BRANCO_CENARIO).convert("RGB")
             os.makedirs(DESTINO, exist_ok=True)
             corte.save(os.path.join(DESTINO, rotulo + ".jpg"), quality=82, optimize=True)
         print(f"{nome}: {len([r for r in rotulos if r])} pecas")
@@ -459,6 +487,7 @@ def fazer_personagem():
 def fazer_cenarios():
     for nome in CENARIOS:
         im = cobrir(abrir(nome), LARGURA, ALTURA)
+        im = lavar(im, SATURACAO_CENARIO, BRANCO_CENARIO).convert("RGB")
         os.makedirs(DESTINO, exist_ok=True)
         im.save(os.path.join(DESTINO, nome + ".jpg"), quality=80, optimize=True, progressive=True)
     print(f"cenarios: {len(CENARIOS)}")

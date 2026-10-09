@@ -66,10 +66,12 @@ export function correrFaixas(
   }
 
   let faixa = 1;
+  // a crianca entra primeiro e o kart por cima: so o tronco aparece, como
+  // quem esta sentado de verdade
+  const crianca = op.montaria ? desenharPersonagem(cena, personagem, 0.3) : null;
+  crianca?.setPosition(FAIXAS[faixa], Y_HEROI - 96);
   const heroi = op.heroi(cena, personagem) as Phaser.GameObjects.Image;
   heroi.setPosition(FAIXAS[faixa], Y_HEROI);
-  const crianca = op.montaria ? desenharPersonagem(cena, personagem, 0.34) : null;
-  crianca?.setPosition(FAIXAS[faixa], Y_HEROI - 110);
   const seguem: Phaser.GameObjects.GameObject[] = crianca ? [heroi, crianca] : [heroi];
 
   const irPara = (nova: number) => {
