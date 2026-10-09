@@ -21,11 +21,11 @@ const PADRAO: Regiao[] = [
 
 /** Onde cada regiao fica dentro da boca desenhada. */
 const LUGARES = [
-  { x: CENTRO_X - 120, y: CENTRO_Y - 120, r: 118 },
-  { x: CENTRO_X + 120, y: CENTRO_Y - 120, r: 118 },
-  { x: CENTRO_X - 120, y: CENTRO_Y + 110, r: 118 },
-  { x: CENTRO_X + 120, y: CENTRO_Y + 110, r: 118 },
-  { x: CENTRO_X, y: CENTRO_Y + 160, r: 110 },
+  { x: CENTRO_X - 115, y: CENTRO_Y - 95, r: 112 },
+  { x: CENTRO_X + 115, y: CENTRO_Y - 95, r: 112 },
+  { x: CENTRO_X - 115, y: CENTRO_Y + 95, r: 112 },
+  { x: CENTRO_X + 115, y: CENTRO_Y + 95, r: 112 },
+  { x: CENTRO_X, y: CENTRO_Y + 150, r: 105 },
 ];
 
 const PASSOS_POR_REGIAO = 4;
@@ -84,7 +84,7 @@ export function escovar(c: Ctx, e: Etapa) {
     g.fillStyle(0xe8c95a, 0.9);
     for (let n = 0; n < 5; n++) {
       const a = (n / 5) * Math.PI * 2;
-      g.fillCircle(l.x + Math.cos(a) * l.r * 0.45, l.y + Math.sin(a) * l.r * 0.45, 22);
+      g.fillCircle(l.x + Math.cos(a) * l.r * 0.42, l.y + Math.sin(a) * l.r * 0.42, 17);
     }
     sujeira.push(g);
     c.camada.add(g);
@@ -97,7 +97,7 @@ export function escovar(c: Ctx, e: Etapa) {
   escova.setDepth(5);
   c.camada.add(escova);
 
-  const painel = textoEmPainel(c.cena, W / 2, 470, regioes[0].texto, 38, W - 140);
+  const painel = textoEmPainel(c.cena, W / 2, 452, regioes[0].texto, 38, W - 260);
   c.camada.add(painel);
   const rotulo = painel.list[1] as Phaser.GameObjects.Text;
 
@@ -123,7 +123,7 @@ export function escovar(c: Ctx, e: Etapa) {
     c.cena.time.delayedCall(700, c.fim);
   };
 
-  const timer = new TimerMusical(c.cena, W / 2, 300, e.segundos ?? 60, terminar, 72);
+  const timer = new TimerMusical(c.cena, W - 112, 252, e.segundos ?? 60, terminar, 66);
   c.camada.once(Phaser.GameObjects.Events.DESTROY, () => timer.destruir());
 
   const proxima = () => {

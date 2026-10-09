@@ -174,3 +174,27 @@ python tools/preparar_assets.py --fatias nome_da_folha
 
 O contato numerado sai em `tools/_fatias/` (pasta ignorada pelo git). Depois é
 só acrescentar a folha e os nomes na tabela `FOLHAS` do script.
+
+## Capturas da loja
+
+```bash
+npm run preview        # num terminal
+npm run capturas       # noutro
+```
+
+Gera as 6 imagens 1080×1920 em `store/screenshots`, já com a faixa de texto no
+topo. O script ([tools/capturas.mjs](tools/capturas.mjs)) abre o jogo num
+Chromium de verdade, navega até cada tela e fotografa; a faixa é desenhada por
+[tools/faixa_capturas.py](tools/faixa_capturas.py).
+
+## Android
+
+O projeto nativo fica em `android/`, gerado pelo Capacitor. O passo a passo
+completo (keystore, build e Play Console) está em
+[docs/PUBLICAR.md](docs/PUBLICAR.md).
+
+```bash
+npm run android:build   # gera o .aab assinado
+npm run android:apk     # gera um .apk para testar no celular
+npm run android:abrir   # abre o projeto no Android Studio
+```

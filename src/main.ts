@@ -16,7 +16,7 @@ aplicarTema();
 
 // a fonte precisa estar pronta antes do primeiro texto, senao nasce com a do sistema
 carregarFonte().then(() => {
-  new Phaser.Game({
+  const jogo = new Phaser.Game({
     type: Phaser.AUTO,
     parent: 'jogo',
     backgroundColor: '#bde8ff',
@@ -30,4 +30,6 @@ carregarFonte().then(() => {
     input: { activePointers: 2 },
     scene: [Boot, Perfis, Criador, Tutorial, Mapa, Missao, MiniGame, Medalha, Pais],
   });
+  // tools/capturas.mjs espera a cena ficar pronta por aqui
+  (window as unknown as { __jogo: Phaser.Game }).__jogo = jogo;
 });

@@ -169,12 +169,12 @@ export class Mapa extends Phaser.Scene {
     this.lista.add(figura(this, 112, y + 48, `icone_${missao.id}`, missao.icone, 62));
     this.lista.add(
       this.add
-        .text(170, y + 48, missao.titulo, { fontSize: '34px', color: '#2b3a4a', wordWrap: { width: 330 } })
+        .text(168, y + 48, missao.titulo, { fontSize: '32px', wordWrap: { width: 290 } })
         .setOrigin(0, 0.5),
     );
     this.lista.add(
       this.add
-        .text(W - 110, y + 48, aberto ? '\u{2B50}'.repeat(estrelas) : '\u{1F512}', { fontSize: '34px' })
+        .text(W - 86, y + 48, aberto ? '\u{2B50}'.repeat(estrelas) : '\u{1F512}', { fontSize: '28px' })
         .setOrigin(1, 0.5),
     );
     if (!aberto) return;

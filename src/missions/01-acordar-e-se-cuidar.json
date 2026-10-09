@@ -13,7 +13,7 @@
   "etapas": [
     {
       "tipo": "escovar",
-      "narracao": "Vamos escovar! Siga a bolinha verde: ela mostra onde escovar.",
+      "narracao": "Vamos escovar! Siga a bolinha verde.",
       "audio": "m01_e1",
       "segundos": 60,
       "alvo": {

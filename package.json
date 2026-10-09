@@ -13,7 +13,8 @@
     "android:sync": "vite build && cap sync android",
     "android:build": "npm run android:sync && cd android && gradlew.bat bundleRelease",
     "android:apk": "npm run android:sync && cd android && gradlew.bat assembleRelease",
-    "android:abrir": "npm run android:sync && cap open android"
+    "android:abrir": "npm run android:sync && cap open android",
+    "capturas": "vite build && node tools/capturas.mjs && python tools/faixa_capturas.py"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.3",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@capacitor/assets": "^3.0.5",
+    "playwright": "^1.64.0",
     "typescript": "^5.6.3",
     "vite": "^6.0.7",
     "vitest": "^2.1.8"

@@ -61,7 +61,7 @@ letra_y.mp3;Y;Teclado do nome
 letra_z.mp3;Z;Teclado do nome
 m01_intro.mp3;Bom dia, {nome}! Vamos acordar e cuidar de você?;Missao 01 - Acordar e se cuidar: abertura
 m01_mostrar.mp3;Escova em cada pedacinho: em cima, embaixo, dos dois lados e a linguinha!;Missao 01 - Acordar e se cuidar: o personagem mostra
-m01_e1.mp3;Vamos escovar! Siga a bolinha verde: ela mostra onde escovar.;Missao 01 - Acordar e se cuidar: etapa 1 (escovar)
+m01_e1.mp3;Vamos escovar! Siga a bolinha verde.;Missao 01 - Acordar e se cuidar: etapa 1 (escovar)
 m01_escovar1.mp3;Em cima, deste lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
 m01_escovar2.mp3;Em cima, do outro lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
 m01_escovar3.mp3;Embaixo, deste lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada

@@ -83,7 +83,7 @@ export class Criador extends Phaser.Scene {
   private desenharPreview() {
     this.preview.removeAll(true);
     const boneco = desenharPersonagem(this, this.cfg, 1.15);
-    boneco.setPosition(W / 2, 400);
+    boneco.setPosition(W / 2, 420);
     this.preview.add(boneco);
   }
 
