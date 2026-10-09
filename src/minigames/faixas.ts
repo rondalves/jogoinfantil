@@ -37,9 +37,37 @@ export interface OpcoesFaixas {
 }
 
 interface Item {
-  fig: Phaser.GameObjects.Image | Phaser.GameObjects.Text;
+  fig: Phaser.GameObjects.Container;
   faixa: number;
   pontos: number;
+}
+
+/** Peca que cai: disco atras (vermelho se e para desviar) e a arte em cima. */
+function pecaQueCai(
+  cena: Phaser.Scene,
+  x: number,
+  arte: string,
+  emoji: string,
+  perigo: boolean,
+): Phaser.GameObjects.Container {
+  const c = cena.add.container(x, -80);
+  const disco = cena.add.graphics();
+  if (perigo) {
+    disco.fillStyle(0xc0392b, 0.92);
+    disco.fillCircle(0, 0, 76);
+    disco.lineStyle(8, 0xffffff, 0.95);
+    disco.strokeCircle(0, 0, 76);
+  } else {
+    disco.fillStyle(0xffffff, 0.8);
+    disco.fillCircle(0, 0, 70);
+  }
+  c.add(disco);
+  const f = figura(cena, 0, 0, arte, emoji, perigo ? 96 : 110);
+  c.add(f);
+  if (perigo) {
+    cena.tweens.add({ targets: c, scale: 1.08, duration: 420, yoyo: true, repeat: -1 });
+  }
+  return c;
 }
 
 /**
@@ -66,10 +94,16 @@ export function correrFaixas(
   }
 
   let faixa = 1;
-  // a crianca entra primeiro e o kart por cima: so o tronco aparece, como
-  // quem esta sentado de verdade
-  const crianca = op.montaria ? desenharPersonagem(cena, personagem, 0.3) : null;
-  crianca?.setPosition(FAIXAS[faixa], Y_HEROI - 96);
+  // a crianca entra primeiro, recortada na linha do banco: do banco para
+  // baixo quem aparece e o kart, entao ela fica sentada de verdade
+  const crianca = op.montaria ? desenharPersonagem(cena, personagem, 0.48) : null;
+  if (crianca) {
+    crianca.setPosition(FAIXAS[faixa], Y_HEROI - 54);
+    const corte = cena.make.graphics({ x: 0, y: 0 });
+    corte.fillStyle(0xffffff);
+    corte.fillRect(0, 0, W, Y_HEROI - 6);
+    crianca.setMask(corte.createGeometryMask());
+  }
   const heroi = op.heroi(cena, personagem) as Phaser.GameObjects.Image;
   heroi.setPosition(FAIXAS[faixa], Y_HEROI);
   const seguem: Phaser.GameObjects.GameObject[] = crianca ? [heroi, crianca] : [heroi];
@@ -116,12 +150,12 @@ export function correrFaixas(
     for (const c of op.colecao) {
       sorte -= c.chance;
       if (sorte <= 0) {
-        itens.push({ fig: figura(cena, FAIXAS[f], -80, c.arte, c.emoji, 110), faixa: f, pontos: c.pontos });
+        itens.push({ fig: pecaQueCai(cena, FAIXAS[f], c.arte, c.emoji, false), faixa: f, pontos: c.pontos });
         return;
       }
     }
     const o = Phaser.Utils.Array.GetRandom(op.obstaculos);
-    itens.push({ fig: figura(cena, FAIXAS[f], -80, o.arte, o.emoji, 110), faixa: f, pontos: 0 });
+    itens.push({ fig: pecaQueCai(cena, FAIXAS[f], o.arte, o.emoji, true), faixa: f, pontos: 0 });
   };
   const semeador = cena.time.addEvent({ delay: 760, loop: true, callback: nascer });
 

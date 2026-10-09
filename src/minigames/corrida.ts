@@ -79,7 +79,7 @@ export const corrida: MiniGame = {
             ceu: pista.ceu,
             chao: pista.chao,
             pista: pista.pista,
-            heroi: (c) => figura(c, 0, 0, 'mg1_kart', '\u{1F3CE}\u{FE0F}', 210),
+            heroi: (c) => figura(c, 0, 0, 'mg1_kart', '\u{1F3CE}\u{FE0F}', 272),
             montaria: true,
             colecao: [
               { arte: 'mg1_moeda', emoji: '\u{1FA99}', pontos: 1, chance: 6 },
