@@ -40,7 +40,9 @@ Mesmo padrão das outras: **fundo verde chapado**, cartoon, sem texto na imagem.
 `m07_professora` já está em `assets/img`, mas ainda não aparece: a missão 07
 não tem lugar para ela nos dados. Ver [PROXIMOS_PASSOS.md](PROXIMOS_PASSOS.md).
 
-Os prompts dos dois cenários estão em [PROMPTS_CENARIOS.md](PROMPTS_CENARIOS.md).
+A lista completa do que falta, com o prompt de cada um, está em
+[PROMPTS_PENDENTES.md](PROMPTS_PENDENTES.md). Os cenários da sala de aula e
+da rua ficaram em [PROMPTS_CENARIOS.md](PROMPTS_CENARIOS.md).
 
 A fila e os prompts estão em [FILA_GEMINI.md](FILA_GEMINI.md) (30 dos 37 itens
 já entraram), o estilo fixo do Gem em [GEM_ESTILO.md](GEM_ESTILO.md), e
