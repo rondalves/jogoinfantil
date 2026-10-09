@@ -12,6 +12,7 @@ import { ativo, salvar, type Perfil } from '../storage';
 import type { Missao as MissaoDef } from '../types';
 import {
   area,
+  arteExistente,
   balao,
   botao,
   botaoOuvir,
@@ -70,7 +71,9 @@ export class Missao extends Phaser.Scene {
       ...boca,
       d.cenario,
       d.pode_ou_nao_pode.cena_certa.img,
+      d.pode_ou_nao_pode.cena_certa.imgCena,
       d.pode_ou_nao_pode.cena_errada.img,
+      d.pode_ou_nao_pode.cena_errada.imgCena,
       ...d.etapas.flatMap((e) => [
         e.cenario,
         e.alvo?.img,
@@ -221,7 +224,8 @@ export class Missao extends Phaser.Scene {
       g.fillStyle(0xffffff, 0.95);
       g.fillRoundedRect(70, y - 140, W - 140, 280, 32);
       this.camada.add(g);
-      const f = figura(this, 200, y, cena.img, cena.icone, 150);
+      const arte = arteExistente(this, cena.imgCena, cena.img);
+      const f = figura(this, 200, y, arte, cena.icone, 150);
       this.camada.add(f);
       this.camada.add(
         this.add

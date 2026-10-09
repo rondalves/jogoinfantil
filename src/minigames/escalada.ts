@@ -57,7 +57,7 @@ function montar(
       mundo.add(e);
       enfeites[i] = e;
     } else if (d.tipo === 'pedra') {
-      const p = figura(cena, d.x, yDe(i) - 78, 'pedra', '\u{1FAA8}', 100);
+      const p = figura(cena, d.x, yDe(i) - 78, 'mg2_pedra', '\u{1FAA8}', 100);
       mundo.add(p);
       enfeites[i] = p;
     }

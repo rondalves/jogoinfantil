@@ -136,7 +136,10 @@ fica em `CONFIG.URL_PRIVACIDADE` e aparece no painel dos pais.
 - **Publicação, fase 1** — abertura, transições, confete, tema único, tutorial narrado.
 - **Publicação, fase 2** — `narracao.csv` com as 59 frases do jogo.
 - **Publicação, fase 3** — política de privacidade e instruções para publicá-la.
-- A fazer: missões 2 a 20, os outros 4 mini games, PWA, Capacitor e o build Android.
+- **Arte** — 20 missões, 5 mini games, 14 cenários e o criador (7 tons de pele,
+  17 penteados × 9 cores, 4 olhos, 6 acessórios) com arte de verdade.
+- A fazer: 7 imagens e três decisões, tudo listado em
+  [docs/PROXIMOS_PASSOS.md](docs/PROXIMOS_PASSOS.md).
 
 > Para testar rápido, a etapa de escovação está com `"segundos": 120` (os 2 minutos reais). Baixe para `20` no JSON enquanto testa.
 
@@ -151,6 +154,11 @@ As artes cruas (com fundo verde chroma key) ficam **fora do repositório**, em
 `C:\Users\rondj\Downloads\Imagens para jogo infantil` — caminho configurado em
 `ORIGEM`, no topo de [tools/preparar_assets.py](tools/preparar_assets.py).
 Guarde essa pasta num backup: o repositório tem só as imagens já preparadas.
+
+Os prompts para gerar arte nova no Gemini, na ordem, estão em
+[docs/FILA_GEMINI.md](docs/FILA_GEMINI.md); o estilo fixo do Gem em
+[docs/GEM_ESTILO.md](docs/GEM_ESTILO.md). Para dar o nome certo às imagens
+baixadas: `python tools/renomear_fila.py --lote --pasta "<pasta>"`.
 
 ```bash
 npm run assets

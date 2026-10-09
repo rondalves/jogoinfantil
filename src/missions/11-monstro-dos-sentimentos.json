@@ -72,6 +72,7 @@
         },
         {
           "icone": "✊",
+          "img": "m10_bater",
           "texto": "Bater em alguém",
           "x": 520,
           "y": 760
@@ -89,6 +90,7 @@
     },
     "cena_errada": {
       "icone": "✊",
+      "img": "m10_bater",
       "texto": "Bater quando fica bravo"
     },
     "explicacao": "Sentir raiva pode. Bater não pode. Respire e fale o que sentiu.",

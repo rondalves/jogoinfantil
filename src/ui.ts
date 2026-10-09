@@ -74,6 +74,11 @@ export function marcaErro(cena: Phaser.Scene, x: number, y: number, tamanho = 12
   return g;
 }
 
+/** Primeira chave com arte carregada: arte nova substitui a velha sozinha. */
+export function arteExistente(cena: Phaser.Scene, ...chaves: (string | undefined)[]) {
+  return chaves.find((c) => c && cena.textures.exists(c));
+}
+
 export function lerAoPassar(o: Fig, texto?: string, audio?: string) {
   if (!texto) return o;
   if (!o.input) toque(o, () => undefined);

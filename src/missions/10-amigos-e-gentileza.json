@@ -73,6 +73,7 @@
     },
     "cena_errada": {
       "icone": "✊",
+      "img": "m10_bater",
       "texto": "Bater no colega"
     },
     "explicacao": "Bater machuca. Conversar resolve.",

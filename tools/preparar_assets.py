@@ -29,8 +29,29 @@ SATURACAO_CENARIO = 0.5
 BRANCO_CENARIO = 0.2
 
 # Tons de pele do jogo (iguais aos de src/personagem.ts).
-PELES = [(255, 224, 189), (243, 200, 147), (224, 172, 105), (198, 134, 66), (141, 85, 36), (92, 51, 23)]
-CORES_CABELO = [(43, 27, 23), (107, 68, 35), (217, 169, 91), (179, 58, 43), (74, 74, 74), (125, 79, 160)]
+PELES = [(255, 224, 189), (239, 201, 171), (243, 200, 147), (224, 172, 105), (198, 134, 66),
+         (141, 85, 36), (92, 51, 23)]
+CORES_CABELO = [(43, 27, 23), (107, 68, 35), (217, 169, 91), (179, 58, 43), (74, 74, 74),
+                (125, 79, 160), (235, 212, 156), (232, 105, 159), (74, 144, 217)]
+
+# Penteados e olhos que o jogo sabe mostrar (iguais aos catalogos de
+# src/personagem.ts). So entra o que tiver arte: cabelo_<id>_castanho e
+# olhos_<id>_castanhos na pasta das imagens cruas.
+CABELOS = [
+    "cacheado", "crespo", "ondulado", "enrolado", "liso_longo", "liso_curto",
+    "trancas", "tranca_unica", "coque", "maria_chiquinha", "box_braids", "dreads",
+    "menino_curto", "menino_cacheado", "menino_crespo", "menino_black_power",
+    "menino_espetado", "menino_tigelinha", "menino_raspado", "menino_degrade", "menino_risco",
+    "menino_moicano",
+]
+OLHOS = ["redondos", "alegres", "grandes", "sorriso"]
+
+# O cabelo sai num quadro proprio, com 1 px = 1 unidade do personagem e o mesmo
+# centro do corpo: o jogo so desenha por cima, sem conta nenhuma. Os numeros
+# vem de CABECA, em src/personagem.ts (topo -228, altura 141, largura 183).
+QUADRO_CABELO = 640
+ROSTO_LARGURA = 168  # um pouco menor que a cabeca: o cabelo cobre as laterais
+ROSTO_TOPO = -213  # o vao comeca aqui, logo abaixo do topo da cabeca
 
 # folha -> nomes dos recortes, em ordem de leitura (linha por linha).
 # Peca sem nome util recebe None e nao e gravada.
@@ -245,6 +266,27 @@ FOLHAS = {
     ),
 }
 
+# Pecas soltas: um arquivo cru, uma peca com o mesmo nome. Grade 1x1 pega a
+# caixa de tudo junto, para o objeto nao sair picado em varios pedacos.
+SOLTAS = [
+    "m05_pente",
+    "m03_terra",
+    "m07_professora",
+    "m10_bater",
+    "mg2_pedra",
+    "logo",
+    "acessorio_aparelho_auditivo",
+    "acessorio_capa",
+    "acessorio_medalha",
+]
+FOLHAS.update({n: ([n], 320, ("grade", 1, 1)) for n in SOLTAS})
+FOLHAS["m05_mochila_itens"] = (
+    # o lapis fica mais alto que o caderno na folha: a leitura pega ele primeiro
+    ["m05_lapis", "m05_caderno", "m05_garrafinha", "m05_uniforme", "m05_tenis"],
+    256,
+    None,
+)
+
 # Folhas SEM fundo verde: so cortadas em grade e salvas como JPG. Tirar o verde
 # aqui comeria a grama e a agua das ilustracoes.
 FOLHAS_OPACAS = {
@@ -254,6 +296,9 @@ FOLHAS_OPACAS = {
     # cenas inteiras, sem fundo verde: viram carta do Pode ou Nao Pode
     "Gemini_Generated_Image_4sgk7f4sgk7f4sgk": (["m01_pnp_certa"], 1, 1, 420),
     "Gemini_Generated_Image_pt9umspt9umspt9u": (["m01_pnp_errada"], 1, 1, 420),
+    # salve as duas da rua ja com esse nome na pasta das imagens
+    "m06_pnp_certa": (["m06_pnp_certa"], 1, 1, 420),
+    "m06_pnp_errada": (["m06_pnp_errada"], 1, 1, 420),
 }
 
 # Cenarios: viram JPG do tamanho da tela (nao tem fundo verde).
@@ -344,10 +389,44 @@ def lavar(im, saturacao, branco):
     return saida
 
 
+def tapar_buraco(cor):
+    """Devolve um retoque que pinta o vazio de dentro da peca.
+
+    Arte com verde dentro (a lampada acesa do semaforo, o brocolis) perde
+    essa parte no chroma key: sobra um buraco transparente, que na tela vira
+    um vao branco. Aqui o buraco volta a ter cor.
+    """
+
+    def retocar(im):
+        a = np.asarray(im.convert("RGBA")).astype(np.uint8)
+        opaco = a[..., 3] > 40
+        buraco = ndimage.binary_fill_holes(opaco) & ~opaco
+        if not buraco.any():
+            return im
+        for canal, valor in enumerate(cor):
+            a[..., canal] = np.where(buraco, valor, a[..., canal])
+        a[..., 3] = np.where(buraco, 255, a[..., 3])
+        return Image.fromarray(a, "RGBA")
+
+    return retocar
+
+
+# retoque de uma peca so, depois do recorte e antes de lavar
+RETOQUES = {
+    # crianca de 4 anos le o semaforo pela cor antes do bonequinho
+    "m06_sinal_verde": tapar_buraco((86, 176, 104)),
+    # brocolis branco nao e brocolis
+    "m13_brocolis": tapar_buraco((124, 173, 112)),
+}
+
+
 def gravar(im, nome):
     """PNG de paleta: arte chapada fica ~6x menor sem diferenca visivel."""
     os.makedirs(DESTINO, exist_ok=True)
     caminho = os.path.join(DESTINO, nome + ".png")
+    retoque = RETOQUES.get(nome)
+    if retoque:
+        im = retoque(im)
     lavada = lavar(im, SATURACAO_OBJETO, BRANCO_OBJETO)
     lavada.quantize(colors=160, method=Image.FASTOCTREE).save(caminho, optimize=True)
     return caminho
@@ -407,6 +486,74 @@ def cobrir(im, larg, alt):
     return im.crop((x, y, x + larg, y + alt))
 
 
+def vao_do_rosto(rgba):
+    """(centro x, topo, largura) do vao onde o rosto aparece, em px da peca.
+
+    Nao da para achar por "buraco fechado": em quase todo penteado o vao e
+    aberto embaixo. Mede linha a linha o espaco transparente entre o cabelo da
+    esquerda e o da direita, e fica com a metade de cima desse corredor, que e
+    onde o rosto esta.
+    """
+    a = np.asarray(rgba)[..., 3] > 40
+    linhas = []
+    for y in range(a.shape[0]):
+        xs = np.flatnonzero(a[y])
+        if xs.size < 2:
+            continue
+        meio = ~a[y, xs[0] : xs[-1]]
+        if not meio.any():
+            continue
+        rot, n = ndimage.label(meio)
+        maior = int(np.argmax(ndimage.sum(meio, rot, range(1, n + 1)))) + 1
+        p = np.flatnonzero(rot == maior)
+        if p.size < a.shape[1] * 0.08:  # fresta entre mechas, nao e o rosto
+            continue
+        linhas.append((y, xs[0] + p[0], xs[0] + p[-1]))
+    if not linhas:
+        return None
+    # descendo do contorno do cabelo, o corredor abre ate a maca do rosto e
+    # depois fecha no queixo. A primeira barriga e a largura do rosto; o que
+    # vem abaixo (pescoco, ombros, vao entre as mechas) nao serve de medida.
+    larguras = np.array([l[2] - l[1] for l in linhas], dtype=float)
+    k = max(3, len(larguras) // 20)
+    suave = np.convolve(larguras, np.ones(k) / k, mode="same")
+    face = len(suave) - 1
+    for i in range(len(suave) - k - 1):
+        if suave[i] >= suave[i + k]:
+            face = i
+            break
+    larg = suave[face]
+    ate = [l for l in linhas[: face + 1]]
+    cx = sum((l[1] + l[2]) / 2 for l in ate) / len(ate)
+    return cx, linhas[0][0], larg
+
+
+def encaixar_cabelo(rgba):
+    """Peca de cabelo no quadro do corpo, com o vao do rosto sobre a cabeca.
+
+    Cada arte vem com o vao de um tamanho e numa altura diferente. Alinhar pela
+    caixa da imagem joga o cabelo na frente do rosto; aqui a referencia e o vao.
+    """
+    caixa = grade(rgba, 1, 1)[0]
+    corte = rgba.crop(caixa)
+    # mede numa copia pequena: o resultado so precisa de alguns px de precisao
+    escala_medida = 512 / max(corte.width, corte.height)
+    v = vao_do_rosto(corte.resize((max(1, round(corte.width * escala_medida)),
+                                   max(1, round(corte.height * escala_medida))), Image.NEAREST))
+    if v is None:
+        return None
+    cx, topo, larg = (n / escala_medida for n in v)
+    k = ROSTO_LARGURA / larg
+    corte = corte.resize((max(1, round(corte.width * k)), max(1, round(corte.height * k))), Image.LANCZOS)
+    quadro = Image.new("RGBA", (QUADRO_CABELO, QUADRO_CABELO), (0, 0, 0, 0))
+    x = round(QUADRO_CABELO / 2 - cx * k)
+    y = round(QUADRO_CABELO / 2 + ROSTO_TOPO - topo * k)
+    quadro.alpha_composite(corte, (max(-corte.width, x), max(-corte.height, y)))
+    if x < 0 or y < 0 or x + corte.width > QUADRO_CABELO or y + corte.height > QUADRO_CABELO:
+        print(f"  ! cabelo maior que o quadro de {QUADRO_CABELO}: sobrou para fora")
+    return quadro
+
+
 def grade(rgba, cols, linhas):
     """Caixa de todo o conteudo dividida em celulas iguais."""
     alpha = np.asarray(rgba)[..., 3] > 40
@@ -449,7 +596,10 @@ def fazer_folhas(so=None):
 
 def fazer_opacas():
     for nome, (rotulos, cols, linhas, tam) in FOLHAS_OPACAS.items():
-        im = abrir(nome)
+        im = abrir(nome, obrigatorio=False)
+        if im is None:
+            print(f"  . {nome}: ainda nao chegou, pulando")
+            continue
         lx, ly = im.width / cols, im.height / linhas
         for i, rotulo in enumerate(rotulos):
             if not rotulo:
@@ -471,17 +621,30 @@ def fazer_personagem():
         gravar(recortar(recolorir_pele(corpo, tom), pecas(corpo)[0], 512), f"corpo_pele{i}")
         gravar(recortar(recolorir_pele(sentado, tom), pecas(sentado)[0], 512), f"corpo_sentado_pele{i}")
         gravar(recortar(recolorir_pele(macacao, tom), pecas(macacao)[0], 512), f"corpo_macacao_pele{i}")
-    print("corpo: 18 pecas")
+    print(f"corpo: {len(PELES) * 3} pecas")
 
     # olhos sao varias manchas (sobrancelhas + olhos): pega a caixa de tudo junto
-    olhos = tirar_verde(abrir("olhos_redondos_castanhos"))
-    gravar(recortar(olhos, grade(olhos, 1, 1)[0], 512), "olhos_redondos")
+    feitas = 0
+    for nome in OLHOS:
+        bruta = abrir(f"olhos_{nome}_castanhos", obrigatorio=False)
+        if bruta is None:
+            continue
+        olhos = tirar_verde(bruta)
+        gravar(recortar(olhos, grade(olhos, 1, 1)[0], 512), f"olhos_{nome}")
+        feitas += 1
 
-    cabelo = tirar_verde(abrir("cabelo_cacheado_castanho"))
-    caixa = grade(cabelo, 1, 1)[0]
-    for i, cor in enumerate(CORES_CABELO, start=1):
-        gravar(recortar(recolorir_cabelo(cabelo, cor), caixa, 512), f"cabelo_cacheado_{i}")
-    print("olhos + cabelo: 7 pecas")
+    for nome in CABELOS:
+        bruta = abrir(f"cabelo_{nome}_castanho", obrigatorio=False)
+        if bruta is None:
+            continue
+        peca = encaixar_cabelo(tirar_verde(bruta))
+        if peca is None:
+            print(f"  ! cabelo_{nome}: nao achei o vao do rosto, pulando")
+            continue
+        for i, cor in enumerate(CORES_CABELO, start=1):
+            gravar(recolorir_cabelo(peca, cor), f"cabelo_{nome}_{i}")
+        feitas += len(CORES_CABELO)
+    print(f"olhos + cabelo: {feitas} pecas")
 
 
 def fazer_cenarios():

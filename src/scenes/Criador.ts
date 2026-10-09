@@ -20,6 +20,8 @@ import { teclado } from '../teclado';
 import { botao, botaoOuvir, botaoVoltar, fundo, irPara, titulo } from '../ui';
 
 const W = CONFIG.LARGURA;
+/** Opcoes por pagina: 2 linhas de 3, o que cabe entre o personagem e os botoes. */
+const POR_PAGINA = 6;
 
 type Aba = 'pele' | 'olhos' | 'cabelo' | 'corCabelo' | 'roupa' | 'extras' | 'cadeira';
 
@@ -41,6 +43,8 @@ export class Criador extends Phaser.Scene {
   private tituloTxt!: Phaser.GameObjects.Text;
   private pintarAbas: (() => void)[] = [];
   private opcoes!: Phaser.GameObjects.Container;
+  private pagina = 0;
+  private totalOpcoes = 0;
   private editando = false;
 
   constructor() {
@@ -111,6 +115,7 @@ export class Criador extends Phaser.Scene {
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => {
           this.aba = a.id;
+          this.pagina = 0;
           this.pintarAbas.forEach((f) => f());
           this.desenharOpcoes();
         });
@@ -121,12 +126,15 @@ export class Criador extends Phaser.Scene {
   private caixa(i: number, total: number) {
     const cols = Math.min(3, total);
     const x = W / 2 + ((i % cols) - (cols - 1) / 2) * 205;
-    const y = 810 + Math.floor(i / cols) * 160;
+    const y = 800 + Math.floor(i / cols) * 155;
     return { x, y };
   }
 
   private opcao(i: number, total: number, conteudo: (x: number, y: number) => void, ativa: boolean, onClick: () => void) {
-    const { x, y } = this.caixa(i, total);
+    this.totalOpcoes = total;
+    const base = this.pagina * POR_PAGINA;
+    if (i < base || i >= base + POR_PAGINA) return; // fora da pagina aberta
+    const { x, y } = this.caixa(i - base, Math.min(total - base, POR_PAGINA));
     const g = this.add.graphics();
     g.fillStyle(ativa ? 0x7ddc8a : 0xffffff, 0.95);
     g.fillRoundedRect(x - 90, y - 68, 180, 136, 22);
@@ -143,8 +151,33 @@ export class Criador extends Phaser.Scene {
     this.opcoes.add(z);
   }
 
+  /** Setas ◀ ▶ quando a aba tem mais opcoes do que cabem na tela. */
+  private desenharPaginas() {
+    const paginas = Math.ceil(this.totalOpcoes / POR_PAGINA);
+    if (paginas < 2) return;
+    const seta = (x: number, txt: string, passo: number) => {
+      const t = this.add
+        .text(x, 1065, txt, { fontSize: '56px', color: '#2b3a4a' })
+        .setOrigin(0.5)
+        .setInteractive({ useHandCursor: true })
+        .on('pointerdown', () => {
+          this.pagina = (this.pagina + passo + paginas) % paginas;
+          this.desenharOpcoes();
+        });
+      this.opcoes.add(t);
+    };
+    seta(W / 2 - 170, '◀', -1);
+    seta(W / 2 + 170, '▶', 1);
+    this.opcoes.add(
+      this.add
+        .text(W / 2, 1065, `${this.pagina + 1}/${paginas}`, { fontSize: '32px', color: '#2b3a4a' })
+        .setOrigin(0.5),
+    );
+  }
+
   private desenharOpcoes() {
     this.opcoes.removeAll(true);
+    this.totalOpcoes = 0;
     const cor = (c: number) => (x: number, y: number) => {
       const r = this.add.rectangle(x, y, 120, 84, c).setStrokeStyle(4, 0xffffff);
       this.opcoes.add(r);
@@ -211,6 +244,7 @@ export class Criador extends Phaser.Scene {
         this.opcao(1, 2, texto('Cadeira de rodas', '\u{1F9BD}'), this.cfg.cadeirante, () => (this.cfg.cadeirante = true));
         break;
     }
+    this.desenharPaginas();
   }
 
   private pedirNome() {

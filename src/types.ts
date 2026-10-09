@@ -67,6 +67,8 @@ export interface Etapa {
 export interface Cena {
   icone: string;
   img?: string;
+  /** cena inteira (crianca + lugar); entra sozinha quando a arte chegar */
+  imgCena?: string;
   texto: string;
 }
 

@@ -26,12 +26,14 @@
       "itens": [
         {
           "icone": "📓",
+          "img": "m05_caderno",
           "fala": "Caderno",
           "x": 150,
           "y": 500
         },
         {
           "icone": "✏️",
+          "img": "m05_lapis",
           "fala": "Lápis",
           "x": 300,
           "y": 500
@@ -45,6 +47,7 @@
         },
         {
           "icone": "🧃",
+          "img": "m05_garrafinha",
           "fala": "Garrafinha",
           "x": 600,
           "y": 500
@@ -76,6 +79,7 @@
       "itens": [
         {
           "icone": "👕",
+          "img": "m05_uniforme",
           "fala": "Uniforme",
           "x": 170,
           "y": 620,
@@ -83,6 +87,7 @@
         },
         {
           "icone": "👟",
+          "img": "m05_tenis",
           "fala": "Tênis",
           "x": 550,
           "y": 620,
@@ -90,6 +95,7 @@
         },
         {
           "icone": "💇",
+          "img": "m05_pente",
           "fala": "Arrumar o cabelo",
           "x": 170,
           "y": 900,

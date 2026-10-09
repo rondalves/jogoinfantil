@@ -1,77 +1,52 @@
-# O que gerar para melhorar os personagens
+# A arte do personagem
 
-Os rostos e o cabelo cacheado atuais vieram de uma geração única. Para trocar,
-gere as imagens abaixo com **fundo verde chapado (#00FF00)** e rode
-`npm run assets`. O jogo troca sozinho — não precisa mexer em código.
+O personagem é montado por camadas, cada uma um arquivo com **fundo verde
+chapado (#00FF00)**. Depois de salvar na pasta das artes cruas e rodar
+`npm run assets`, o criador acha a opção nova sozinho — não precisa mexer em
+código, desde que o nome siga a tabela abaixo.
 
 ## Regra de ouro: tudo no mesmo enquadramento
 
-Todas as camadas do personagem precisam sair **no mesmo quadro, com a cabeça
-exatamente no mesmo lugar e do mesmo tamanho**. O jeito mais seguro é gerar
-todas a partir da mesma imagem base, só trocando o que muda.
+Todas as camadas precisam sair **no mesmo quadro, com a cabeça exatamente no
+mesmo lugar e do mesmo tamanho**. O jeito mais seguro é gerar todas a partir da
+mesma imagem base, só trocando o que muda.
 
 - Quadrado, 2048×2048
 - Criança de corpo inteiro, de frente, braços abertos, centralizada
 - A cabeça ocupa a faixa de 5% a 33% da altura do quadro
 - Traço cartoon limpo, contorno escuro fino, sombreado chapado
 
-## 1. Rostos (prioridade)
+## As camadas
 
-O que está feio hoje são os olhos e a boca. Gere **só os olhos e a boca**,
-sem cabeça, no mesmo quadro de 2048×2048:
+| camada | arquivo cru | o jogo gera |
+|---|---|---|
+| Corpo | `corpo_base_pele_clara` | 7 tons de pele |
+| Corpo sentado | `corpo_cadeira_pele_clara` | 7 tons |
+| Macacão | `roupa_macacao_jeans` | 7 tons |
+| Olhos e boca | `olhos_<id>_castanhos` | uma opção no criador |
+| Cabelo | `cabelo_<id>_castanho` | 9 cores a partir do castanho |
+| Acessório | `acessorio_<id>` | a peça, sem recolorir |
 
-| arquivo | descrição |
-|---|---|
-| `olhos_redondos_castanhos` | olhos redondos grandes, castanhos, cílios curtos, sobrancelhas finas, boca sorrindo fechada |
-| `olhos_alegres_castanhos` | olhos em arco (sorrindo), boca aberta sorrindo |
-| `olhos_grandes_castanhos` | olhos bem grandes com brilho, boca pequena sorrindo |
+O `<id>` tem que bater com o catálogo de
+[src/personagem.ts](../src/personagem.ts) (`CATALOGO_CABELOS`,
+`CATALOGO_OLHOS`, `ACESSORIOS`) e com as listas `CABELOS`, `OLHOS` e `SOLTAS`
+de [tools/preparar_assets.py](../tools/preparar_assets.py). Id que não está nos
+dois lugares não vira opção.
 
-Peça: *"apenas os olhos e a boca de uma criança de desenho animado, estilo
-limpo, fundo verde chapado, sem rosto, sem cabeça, centralizado"*.
+Os prompts prontos, com o texto exato para cada camada, estão em
+[FILA_GEMINI.md](FILA_GEMINI.md).
 
-## 2. Cabelos
+## Cabelo: o erro que mais acontece
 
-Cada penteado é **uma imagem só**, em **castanho médio** — o jogo gera as 6
-cores sozinho. Sem cabeça embaixo, só o cabelo, no mesmo quadro.
+O cabelo é uma peça que vai **atrás e em volta** da cabeça: o meio é vazado em
+formato de rosto, um buraco oval que precisa ficar **verde**. Se o centro vier
+branco ou com pele, o jogo desenha uma mancha no lugar da cara. Confira o
+centro antes de aceitar a imagem.
 
-| arquivo | penteado |
-|---|---|
-| `cabelo_cacheado_castanho` | **refazer**: cachos definidos, volume médio, na altura do queixo |
-| `cabelo_crespo_castanho` | crespo volumoso arredondado |
-| `cabelo_liso_curto_castanho` | liso curto com franja |
-| `cabelo_liso_longo_castanho` | liso longo até o ombro |
-| `cabelo_trancas_castanho` | duas tranças |
-| `cabelo_coque_castanho` | coque no alto |
-| `cabelo_maria_chiquinha_castanho` | dois rabinhos laterais |
+Gere sempre em **castanho médio**: as 9 cores saem desse arquivo único.
 
-Depois de salvar, acrescente o estilo na lista `CABELOS` de
-[src/personagem.ts](../src/personagem.ts) e na tabela `FOLHAS` do script.
+## Hoje no jogo
 
-### Para ficar parecido com a sua filha
-
-Me diga e eu já deixo o arquivo e a lista prontos:
-
-- é liso, ondulado, cacheado ou crespo?
-- comprimento: curto, no ombro ou comprido?
-- tem franja?
-- cor: preto, castanho escuro, castanho claro, ruivo ou loiro?
-- costuma usar preso (rabo, tranças, maria-chiquinha) ou solto?
-
-## 3. Corpos
-
-Só se quiser trocar o traço. Mesma regra de enquadramento, **pele clara** (o
-jogo gera os 6 tons):
-
-| arquivo | descrição |
-|---|---|
-| `corpo_base_pele_clara` | criança careca, camiseta e shorts brancos, tênis branco |
-| `corpo_cadeira_pele_clara` | a mesma criança sentada em cadeira de rodas |
-| `roupa_macacao_jeans` | a mesma criança de macacão jeans |
-
-Qualquer roupa nova é um corpo inteiro vestido, no mesmo enquadramento.
-
-## 4. Acessórios
-
-Mesmo quadro, só a peça, sem cabeça:
-`acessorio_oculos`, `acessorio_aparelho_auditivo`, `acessorio_bone`,
-`acessorio_laco`, `acessorio_capa`, `acessorio_medalha`.
+7 tons de pele, 17 penteados em 9 cores, 4 pares de olhos, 6 acessórios, corpo
+em pé, sentado e de macacão. O que falta está em
+[PROXIMOS_PASSOS.md](PROXIMOS_PASSOS.md).

@@ -58,6 +58,36 @@ Peça solta, fundo verde, como a professora.
 > cores suaves e pouco saturadas. **Fundo verde chapado #00FF00**, uma cor só,
 > sem sombra projetada no fundo. Imagem quadrada 2048x2048.
 
+## As duas cenas da rua — `m06_pnp_certa` e `m06_pnp_errada`
+
+São **cenas inteiras**, do jeito da missão 01: quadrado, **sem fundo verde**,
+com a criança dentro da cena. Salve com esse nome exato e rode `npm run assets`
+— o jogo troca sozinho pelas novas.
+
+### `m06_pnp_errada` — correr atrás da bola
+
+> Ilustração 2D cartoon infantil, cena quadrada. **Uma criança pequena
+> correndo para dentro da rua atrás de uma bola colorida**, vista de lado, com
+> expressão de empolgação e sem perceber o perigo. A bola rola à frente dela
+> no asfalto. Ao fundo, a calçada, um portão de casa e um carro parado ao
+> longe. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves
+> e pouco saturadas. **Sem texto, sem letras, sem números.** Imagem quadrada
+> 1024x1024.
+
+### `m06_pnp_certa` — atravessar na faixa
+
+> Ilustração 2D cartoon infantil, cena quadrada. **Uma criança pequena
+> atravessando a rua na faixa de pedestres, de mão dada com um adulto**,
+> vista de lado, os dois sorrindo e olhando para frente. Faixa de pedestres
+> branca bem visível no asfalto e um semáforo de pedestre **aceso em verde**
+> na calçada. Ao fundo, a calçada e um carro parado esperando. Contorno escuro
+> fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas.
+> **Sem texto, sem letras, sem números.** Imagem quadrada 1024x1024.
+
+As duas precisam parecer **a mesma rua**, para a criança comparar só o que
+muda. Se puder, gere uma logo depois da outra na mesma conversa do Gemini,
+pedindo *"mesma rua, mesmo traço e mesmas cores da imagem anterior"*.
+
 ---
 
 ## Se sair errado

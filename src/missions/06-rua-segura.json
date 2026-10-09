@@ -77,14 +77,16 @@
     "cena_certa": {
       "icone": "🚸",
       "img": "m06_faixa",
-      "texto": "Atravessar na faixa"
+      "texto": "Atravessar na faixa, de mão dada",
+      "imgCena": "m06_pnp_certa"
     },
     "cena_errada": {
       "icone": "⚽",
       "img": "m06_bola",
-      "texto": "Correr atrás da bola"
+      "texto": "Correr atrás da bola na rua",
+      "imgCena": "m06_pnp_errada"
     },
-    "explicacao": "A faixa é o caminho seguro. A bola a gente pede ajuda para pegar.",
+    "explicacao": "A bola a gente pede para um adulto pegar. A gente atravessa na faixa, de mão dada.",
     "audio": "m06_pnp"
   },
   "frase_reforco": "Vermelho espera, verde caminha!",
