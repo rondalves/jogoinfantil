@@ -1,7 +1,8 @@
 # Prompts do que ainda falta desenhar
 
-Tudo o que o jogo pede e ainda não existe em `assets/img`. Hoje cada um desses
-sai como emoji ou como cor sólida — o jogo funciona, só fica feio.
+Lista conferida contra os JSONs em 9 de outubro de 2026. É o que o jogo pede e
+não existe (ou existe errado) em `assets/img`. Cada um desses sai hoje como
+emoji, cor chapada ou imagem trocada.
 
 Salve com o **nome exato** na pasta das imagens e rode `npm run assets`.
 
@@ -20,58 +21,41 @@ Salve com o **nome exato** na pasta das imagens e rode `npm run assets`.
 
 ---
 
-# 1. Cenários (3) — sem fundo verde
+# 1. O mais urgente: `bg_sala_aula` está errado
 
-Imagem **em pé, 9:16** (1080x1920). O meio e a parte de baixo ficam **livres**:
-é onde o jogo põe os cartões. Mobília nas bordas e ao fundo.
+O arquivo com esse nome **é uma cozinha**. As missões 07 (Ouvir a professora),
+08 (Saber esperar) e 09 (Palavras mágicas) acontecem numa cozinha por causa
+disso. Este prompt substitui o arquivo.
 
-### `bg_porta_casa` — chegando em casa (missão 13)
-
-> Ilustração 2D cartoon infantil da **entrada de uma casa vista por dentro**,
-> sem nenhuma pessoa. Porta de entrada fechada à esquerda, um cabideiro baixo
-> com ganchos vazios, um tapetinho de boas-vindas e um banquinho para sentar e
-> tirar o sapato. Ao fundo, a sala com um sofá e uma janela com luz de fim de
-> tarde. O **centro e a metade de baixo ficam livres, só com o chão**. Contorno
-> escuro fino e limpo, cores suaves e pouco saturadas. Sem texto, sem letras.
-> Imagem em pé, 9:16, 1080x1920.
-
-### `bg_sala_janta` — a mesa da janta (missões 19, 20 e 21)
-
-> Ilustração 2D cartoon infantil de uma **sala de jantar de casa de família à
-> noite**, vazia, sem nenhuma pessoa. Mesa de madeira ao fundo com uma toalha
-> clara e um prato de comida no meio, cadeiras em volta, um armário baixo de
-> louças na parede e uma luminária acesa sobre a mesa. Janela escura com a noite
-> do lado de fora. O **centro e a metade de baixo ficam livres, só com o chão**.
-> Contorno escuro fino e limpo, cores suaves e quentes, pouco saturadas. Sem
-> texto. Imagem em pé, 9:16, 1080x1920.
-
-### `bg_banheiro_banho` — o banho (missão 24)
-
-> Ilustração 2D cartoon infantil de um **banheiro de criança na hora do banho**,
-> **completamente vazio, sem nenhuma pessoa**. Box com chuveiro ligado soltando
-> vapor, banheira infantil com espuma e patinho de borracha, toalha pendurada,
-> tapetinho e prateleira com shampoo colorido. Ambiente claro e acolhedor. O
-> **centro e a metade de baixo ficam livres**. Contorno escuro fino e limpo,
-> cores suaves e pouco saturadas. Sem texto. Imagem em pé, 9:16, 1080x1920.
+> Ilustração 2D cartoon infantil de uma **sala de aula de educação infantil
+> vista de frente**, vazia, sem nenhuma pessoa. Ao fundo, um quadro verde limpo
+> **sem nada escrito**, um mapa colorido sem letras, prateleiras baixas com
+> livros e caixas de brinquedo, e uma janela grande com luz do dia.
+> Carteirinhas pequenas de madeira clara organizadas nas laterais, deixando o
+> **centro e a parte de baixo da imagem livres, só com o chão**. Tapete
+> colorido no chão. Contorno escuro fino e limpo, estilo de livro infantil,
+> cores suaves e pouco saturadas. **Sem texto, sem letras, sem números em lugar
+> nenhum.** Imagem em pé, proporção 9:16, 1080x1920.
 
 ---
 
-# 2. Peças soltas (7) — fundo verde #00FF00
+# 2. Peças soltas (8) — fundo verde #00FF00
 
 Quadrado 2048x2048, objeto centralizado ocupando quase todo o quadro, visto de
 frente, **sem mão, sem pessoa, sem chão e sem sombra projetada**.
 
-| arquivo | onde aparece | prompt (o objeto) |
+| arquivo | onde aparece | troque **[O OBJETO]** por |
 |---|---|---|
-| `m24_chuveiro` | missão 24 | um **chuveiro de parede ligado**, visto de frente, com um leque de gotas de água caindo logo abaixo do crivo |
+| `m24_chuveiro` | missão 24 | um **chuveiro de parede ligado**, com um leque de gotas de água caindo logo abaixo do crivo |
 | `m24_sabonete` | missão 24 | uma **barra de sabonete** arredondada com espuma branca em volta e duas bolhinhas subindo |
-| `m25_pente` | missão 25 | um **pente infantil** colorido, visto de frente, dentes para baixo |
+| `m25_pente` | missão 25 | um **pente infantil** colorido, dentes para baixo |
 | `m26_musica` | missão 26 | uma **nota musical** desenhada como caixinha de música: uma colcheia com um laço, cercada por três estrelinhas pequenas |
 | `m19_luz` | missão 26 | um **abajur de mesa aceso**, com cúpula redonda e uma luz amarela quentinha saindo dela |
-| `m19_historia` | missões 22 e 26 | um **livro infantil aberto**, visto de frente, páginas em branco **sem nenhuma letra nem desenho**, capa colorida |
-| `m10_amigos` | missão 20 | **duas crianças pequenas de mãos dadas**, vistas de frente, sorrindo, corpo inteiro, uma de pele clara e outra de pele escura, roupas simples e coloridas |
+| `m19_historia` | missões 22 e 26 | um **livro infantil aberto**, páginas em branco **sem nenhuma letra nem desenho**, capa colorida |
+| `m10_amigos` | missão 20 | **duas crianças pequenas de mãos dadas**, sorrindo, corpo inteiro, uma de pele clara e outra de pele escura, roupas simples e coloridas |
+| `m03_terra` | missão 03 | um **canteiro de terra com uma plantinha pequena e uma pá de brinquedo**, terra marrom fofa |
 
-Prompt completo (troque só a parte em negrito):
+Prompt completo:
 
 > Ilustração 2D cartoon infantil de **[O OBJETO]**, visto de frente, sem mãos,
 > sem pessoas em volta, sem chão e sem sombra projetada. Contorno escuro fino e
@@ -81,40 +65,61 @@ Prompt completo (troque só a parte em negrito):
 
 ---
 
-# 3. Mundo 6 no mapa (2)
+# 3. As duas cenas da rua (missão 06) — sem fundo verde
 
-O mapa tem medalhão redondo (`mundoN`) e broche de mundo fechado (`brocheN`)
-para os mundos 1 a 5. O mundo 6 nasceu agora e não tem os dois.
+Cenas inteiras, do jeito da missão 01: quadrado, com a criança dentro. O JSON já
+aponta para esses dois nomes — o jogo troca sozinho quando chegarem.
 
-**Feito:** o `mundo5` e o `broche5` de noite (lua e estrelas) viraram `mundo6` e
-`broche6`, que é onde essa cara faz sentido agora. Falta só o par da Janta — até
-lá o mundo 5 aparece no mapa com o emoji 🍽️.
+### `m06_pnp_errada` — correr atrás da bola
 
-### `mundo5` — Janta (medalhão)
+> Ilustração 2D cartoon infantil, cena quadrada. **Uma criança pequena correndo
+> para dentro da rua atrás de uma bola colorida**, vista de lado, com expressão
+> de empolgação e sem perceber o perigo. A bola rola à frente dela no asfalto.
+> Ao fundo, a calçada, um portão de casa e um carro parado ao longe. Contorno
+> escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas.
+> **Sem texto, sem letras, sem números.** Imagem quadrada 1024x1024.
 
-> Ilustração 2D cartoon infantil de um **medalhão redondo** com uma cena
-> pequena dentro: uma **mesa de jantar posta, com um prato fumegante e uma
-> luminária acesa em cima**, vista de frente, sem pessoas. Moldura circular
-> grossa em tom terroso quente, fundo da cena em tom de fim de noite. Contorno
-> escuro fino e limpo, cores suaves e pouco saturadas. Fundo verde chapado
-> #00FF00 fora do círculo. Imagem quadrada 2048x2048.
+### `m06_pnp_certa` — atravessar na faixa
 
-### `broche5` — Janta (broche)
+> Ilustração 2D cartoon infantil, cena quadrada. **Uma criança pequena
+> atravessando a rua na faixa de pedestres, de mão dada com um adulto**, vista
+> de lado, os dois sorrindo e olhando para frente. Faixa de pedestres branca bem
+> visível no asfalto e um semáforo de pedestre **aceso em verde** na calçada. Ao
+> fundo, a calçada e um carro parado esperando. Contorno escuro fino e limpo,
+> estilo de livro infantil, cores suaves e pouco saturadas. **Sem texto, sem
+> letras, sem números.** Imagem quadrada 1024x1024.
 
-> Ilustração 2D cartoon infantil de um **broche redondo de medalha**, com anel
-> metálico grosso e brilho suave, e no centro um **prato com talheres cruzados**
-> sorrindo de leve. Tom terroso quente. Contorno escuro fino e limpo, cores
-> suaves e pouco saturadas. Fundo verde chapado #00FF00 fora do broche. Imagem
-> quadrada 2048x2048.
+As duas precisam parecer **a mesma rua**: gere uma logo depois da outra na mesma
+conversa, pedindo *"mesma rua, mesmo traço e mesmas cores da imagem anterior"*.
 
 ---
 
-# 4. Capas das historinhas (6) — sem fundo verde
+# 4. O medalhão do mundo 5 (Janta)
 
-Aparecem na aba 📖 Historinhas, em cartão. Quadrado 1024x1024, **sem texto** —
-o título o jogo escreve por cima.
+Situação atual, conferida na pasta:
 
-| arquivo | historinha | cena |
+- `mundo6` e `broche6` — a lua e as estrelas. **Certos**, é a cara do mundo 6.
+- `broche5` — um medalhão de mesa de jantar. **Serve**, e combina com a Janta.
+- `mundo5` — hoje é **um ursinho de pelúcia**. É uma peça solta que entrou no
+  lugar errado na fatiagem, não um medalhão. É o único que precisa ser gerado.
+
+### `mundo5` — Janta (medalhão do mapa)
+
+> Ilustração 2D cartoon infantil de um **medalhão redondo**, com moldura
+> circular grossa em tom terroso quente, e dentro dele uma cena pequena: uma
+> **mesa de jantar posta, com um prato fumegante e uma luminária acesa em
+> cima**, vista de frente, **sem pessoas**. Fundo da cena em tom de fim de
+> noite. Contorno escuro fino e limpo, cores suaves e pouco saturadas. **Fundo
+> verde chapado #00FF00** fora do círculo. Imagem quadrada 2048x2048.
+
+---
+
+# 5. Capas das historinhas (6) — sem fundo verde
+
+Aparecem na aba 📖 Historinhas, em cartão. Quadrado 1024x1024, **sem texto** — o
+título o jogo escreve por cima.
+
+| arquivo | historinha | troque **[A CENA]** por |
 |---|---|---|
 | `capa_historia1` | A raposinha e o sol que acordou cedo | uma raposinha laranja espreguiçando na janela, com o sol nascendo atrás dela |
 | `capa_historia2` | O primeiro dia de aula | uma raposinha de mochila na porta de uma escola, olhando para dentro, um pouco tímida |
@@ -130,38 +135,44 @@ Prompt completo:
 > clima calmo e acolhedor. **Sem nenhum texto, letra ou número na imagem.**
 > Imagem quadrada 1024x1024, com a cena preenchendo o quadro inteiro.
 
----
-
-# 5. Já pedidos antes, ainda faltando
-
-Os prompts destes estão em [PROMPTS_CENARIOS.md](PROMPTS_CENARIOS.md) e
-[PROMPTS_CABELOS.md](PROMPTS_CABELOS.md):
-
-- `bg_sala_aula` — **o arquivo com esse nome hoje é uma cozinha.** As missões 07,
-  08 e 09 acontecem numa cozinha por causa disso.
-- `m06_pnp_certa` e `m06_pnp_errada` — as duas cenas da rua (criança correndo
-  atrás da bola / atravessando de mão dada). O JSON já aponta para elas.
-- `m07_professora`, `m03_terra`
-- `olhos_alegres_castanhos`, `olhos_grandes_castanhos`
-- `acessorio_aparelho_auditivo`, `acessorio_capa`, `acessorio_medalha`
-- `m05_caderno`, `m05_lapis`, `m05_garrafinha`, `m05_uniforme`, `m05_tenis`
-- `m10_bater`, `mg2_pedra`, `logo`
+A raposinha é o mascote que já existe no jogo (`mascote_raposinha`). Para as seis
+saírem com a mesma raposinha, **mande a imagem dela junto** na primeira geração e
+peça *"use exatamente esta raposinha nas próximas"*.
 
 ---
 
-# 6. O que **não** é pendência
+# 6. `logo` — a marca do jogo
+
+Usada na abertura e nas capturas da loja. Hoje a abertura escreve o nome em
+texto.
+
+> Ilustração 2D cartoon infantil de um **emblema de logotipo infantil**, redondo
+> e macio, **sem nenhuma letra ou palavra dentro**: uma raposinha laranja
+> sorrindo no centro, com um solzinho de um lado e uma luazinha do outro,
+> formando um arco em volta dela. Moldura arredondada em tom creme. Contorno
+> escuro fino e limpo, cores suaves e pouco saturadas. **Fundo verde chapado
+> #00FF00**. Imagem quadrada 2048x2048.
+
+O nome **Rotininha** o jogo escreve por cima, na fonte dele. Não peça o texto na
+imagem: cada geração sai com uma letra diferente e quase sempre com erro de
+ortografia.
+
+---
+
+# O que **não** é pendência
 
 `icone_01` até `icone_28`, os ícones de cada missão na lista do mapa, nunca
-existiram: o mapa usa o emoji da missão de propósito, e fica bom assim. Só vale
+existiram: o mapa usa o emoji da missão de propósito e fica bom assim. Só vale
 desenhar se você quiser o mapa inteiro ilustrado — são 28 peças para um ganho
 pequeno.
 
 ---
 
-# Prioridade, se for gerar aos poucos
+# Ordem, se for gerar aos poucos
 
-1. **`bg_sala_aula`** — é o único que está visivelmente errado hoje.
-2. Os **3 cenários novos** — 5 missões rodam sem fundo por causa deles.
-3. As **7 peças soltas** — tiram o emoji do meio da arte.
-4. **`mundo5` e `broche5`** — o mapa fica com um buraco no mundo 6.
+1. **`bg_sala_aula`** — é o único hoje visivelmente errado.
+2. As **8 peças soltas** — tiram o emoji do meio da arte.
+3. **`mundo5`** — o mapa está com um ursinho no lugar do medalhão da Janta.
+4. As **2 cenas da rua** — o "pode ou não pode" da missão 06 fica muito melhor.
 5. As **6 capas** — só fazem falta quando a aba de historinhas existir.
+6. **`logo`** — cosmético, serve para a ficha da loja.
