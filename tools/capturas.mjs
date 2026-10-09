@@ -124,11 +124,20 @@ const main = async () => {
   await page.waitForTimeout(2500);
   await grava(page, '05-corrida');
 
-  // 06 moedas e fichas: a tela do painel dos pais mostra o saldo
+  // 06 a medalha do fim: o mapa ja aparece na 02, repetir nao vende nada
   await page.goto(URL_JOGO);
   await pronto(page);
-  await toca(page, 185, 430, 2000);
-  await grava(page, '06-moedas');
+  await page.evaluate(async () => {
+    const j = window.__jogo;
+    const perfis = JSON.parse(localStorage.getItem('missoes-do-dia:perfis'));
+    for (let i = 1; i <= 20; i++) perfis[0].missoes[String(i).padStart(2, '0')] = 3;
+    localStorage.setItem('missoes-do-dia:perfis', JSON.stringify(perfis));
+    j.scene.scenes.forEach((s) => s.scene.key !== 'Boot' && j.scene.stop(s.scene.key));
+    j.scene.start('Medalha');
+    // o confete cai por ~4s e tapa o resumo: espera ele passar
+    await new Promise((r) => setTimeout(r, 4800));
+  });
+  await grava(page, '06-medalha');
 
   await navegador.close();
   console.log('capturas brutas em', SAIDA);

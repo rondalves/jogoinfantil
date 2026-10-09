@@ -24,7 +24,7 @@ TEXTOS = {
     '03-escova': 'Aprender fazendo',
     '04-pode-ou-nao': 'Pode ou Não Pode?',
     '05-corrida': 'Jogue e se divirta',
-    '06-moedas': 'Ganhe moedas e fichas',
+    '06-medalha': 'Termine o dia com medalha',
 }
 
 ALTURA = 230

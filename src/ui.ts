@@ -133,7 +133,16 @@ export function botao(
   onClick: () => void,
   op: OpcoesBotao = {},
 ): Phaser.GameObjects.Container {
-  const l = op.largura ?? Math.min(W - 60, 240 + label.length * 24);
+  // mede o rotulo antes de desenhar: botao estreito demais comia a palavra
+  const rotulo = cena.add
+    .text(0, 0, label, {
+      fontSize: `${op.tamanhoTexto ?? TEMA.botao}px`,
+      color: '#3a2a10',
+      fontStyle: 'bold',
+    })
+    .setOrigin(0.5);
+  const vaoIcone = op.icone ? 110 : 0;
+  const l = Math.min(W - 60, Math.max(op.largura ?? 0, vaoIcone + rotulo.width + 72));
   const a = 128;
   const c = cena.add.container(x, y);
   const g = cena.add.graphics();
@@ -148,15 +157,10 @@ export function botao(
   if (op.icone) {
     c.add(cena.add.text(-l / 2 + 60, 0, op.icone, { fontSize: '60px' }).setOrigin(0.5));
   }
-  c.add(
-    cena.add
-      .text(op.icone ? 30 : 0, 0, label, {
-        fontSize: `${op.tamanhoTexto ?? TEMA.botao}px`,
-        color: '#3a2a10',
-        fontStyle: 'bold',
-      })
-      .setOrigin(0.5),
-  );
+  const cabe = l - vaoIcone - 40;
+  if (rotulo.width > cabe) rotulo.setScale(cabe / rotulo.width);
+  rotulo.setX(vaoIcone / 2);
+  c.add(rotulo);
   c.setSize(l, a).setInteractive({ useHandCursor: true });
   c.on('pointerdown', () => {
     nota(740);
