@@ -6,18 +6,31 @@ Permissões: **nenhuma** — o jogo roda inteiro no aparelho, sem rede.
 
 ---
 
-## 0. Antes de tudo: um JDK 21
+## 0. O Java: nada a instalar
 
-O Android Studio instalado traz o **Java 25**, e o Gradle do projeto não roda
-nessa versão. Precisa de um **JDK 21**:
+O Gradle do projeto subiu para a versao 9.1, que roda no **Java 25** que ja vem
+dentro do Android Studio. Nao precisa baixar JDK nenhum.
 
-1. Abra o Android Studio e **abra a pasta `android`** do projeto.
-2. `File → Settings → Build, Execution, Deployment → Build Tools → Gradle`.
-3. Em **Gradle JDK**, escolha **Download JDK…**
-4. Version **21**, Vendor **Eclipse Temurin** → **Download**.
-5. Feche o Android Studio.
+Quem chama o build e `tools/gradle.cmd`: ele aponta o `JAVA_HOME` para o JDK do
+Android Studio quando a maquina nao tem um proprio. Se o seu Android Studio
+estiver em outra pasta, troque o caminho la (uma linha).
 
-Ele salva em `C:\Users\rondj\.jdks\...`. Me avise que eu aponto o build para lá.
+O caminho do SDK fica em `android/local.properties`, que nao vai para o git:
+
+```
+sdk.dir=C:/Users/rondj/AppData/Local/Android/Sdk
+```
+
+Use **barras normais** nesse arquivo. Com `\` o Gradle le o caminho errado e
+para com `Invalid file path`.
+
+Para conferir que esta tudo de pe, antes mesmo da chave de assinatura:
+
+```bash
+npm run android:apk
+```
+
+Sai um `android/app/build/outputs/apk/release/app-release-unsigned.apk`.
 
 ---
 

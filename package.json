@@ -11,8 +11,8 @@
     "assets": "python tools/preparar_assets.py",
     "narracao": "python tools/gerar_narracao.py",
     "android:sync": "vite build && cap sync android",
-    "android:build": "npm run android:sync && cd android && gradlew.bat bundleRelease",
-    "android:apk": "npm run android:sync && cd android && gradlew.bat assembleRelease",
+    "android:build": "npm run android:sync && tools\\gradle.cmd bundleRelease",
+    "android:apk": "npm run android:sync && tools\\gradle.cmd assembleRelease",
     "android:abrir": "npm run android:sync && cap open android",
     "capturas": "vite build && node tools/capturas.mjs && python tools/faixa_capturas.py",
     "smoke": "node tools/smoke.mjs"
