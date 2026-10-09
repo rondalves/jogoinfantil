@@ -8,6 +8,7 @@ import { fale } from '../narracoes';
 import { desenharPersonagem } from '../personagem';
 import { listar, setAtivo } from '../storage';
 import { balao, botao, botaoOuvir, fundo, irPara, titulo } from '../ui';
+import { musicaDoMundo } from '../musica';
 
 const W = CONFIG.LARGURA;
 const MAX_PERFIS = 4;
@@ -18,6 +19,7 @@ export class Perfis extends Phaser.Scene {
   }
 
   create() {
+    musicaDoMundo();
     fundo(this, TEMA.ceu, 'bg_menu_inicial');
     botaoOuvir(this);
     titulo(this, 'Quem vai jogar?');

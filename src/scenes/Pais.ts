@@ -7,6 +7,8 @@ import { narrador } from '../narrador';
 import { TEMA } from '../theme';
 import { ativo, remover, salvar, zerarProgresso, type Perfil } from '../storage';
 import { botao, botaoVoltar, cobrirTela, fundo, irPara, titulo, toque } from '../ui';
+import { musicaDoMundo } from '../musica';
+import { setMusicaLigada } from '../musica';
 
 const W = CONFIG.LARGURA;
 
@@ -19,6 +21,7 @@ export class Pais extends Phaser.Scene {
   }
 
   create() {
+    musicaDoMundo();
     this.p = ativo()!;
     fundo(this, TEMA.nuvem);
     botaoVoltar(this, 'Mapa');
@@ -100,16 +103,34 @@ export class Pais extends Phaser.Scene {
       { largura: 380, cor: 0xbfd4e8 },
     );
 
+    const nomeMusica = () => (this.p.musica === false ? 'desligada' : 'ligada');
+    const musicaRotulo = this.add
+      .text(W / 2, 828, `Música de fundo: ${nomeMusica()}`, { fontSize: '36px', color: '#2b3a4a' })
+      .setOrigin(0.5);
+    botao(
+      this,
+      W / 2,
+      894,
+      'Ligar / desligar',
+      () => {
+        this.p.musica = this.p.musica === false;
+        salvar(this.p);
+        setMusicaLigada(this.p.musica);
+        musicaRotulo.setText(`Música de fundo: ${nomeMusica()}`);
+      },
+      { largura: 380, cor: 0xbfd4e8 },
+    );
+
     const rotulo = this.add
-      .text(W / 2, 852, `Limite diário: ${this.p.limiteDiario} partidas`, { fontSize: '36px', color: '#2b3a4a' })
+      .text(W / 2, 962, `Limite diário: ${this.p.limiteDiario} partidas`, { fontSize: '36px', color: '#2b3a4a' })
       .setOrigin(0.5);
     const muda = (d: number) => {
       this.p.limiteDiario = Phaser.Math.Clamp(this.p.limiteDiario + d, 0, 20);
       salvar(this.p);
       rotulo.setText(`Limite diário: ${this.p.limiteDiario} partidas`);
     };
-    botao(this, W / 2 - 150, 942, '-1', () => muda(-1), { largura: 200, cor: 0xbfd4e8 });
-    botao(this, W / 2 + 150, 942, '+1', () => muda(1), { largura: 200, cor: 0xbfd4e8 });
+    botao(this, W / 2 - 150, 1028, '-1', () => muda(-1), { largura: 200, cor: 0xbfd4e8 });
+    botao(this, W / 2 + 150, 1028, '+1', () => muda(1), { largura: 200, cor: 0xbfd4e8 });
     this.add
       .text(W / 2, 1016, `Padrão: ${CONFIG.PARTIDAS_POR_DIA} por dia. 0 desliga os mini games.`, {
         fontSize: '28px',
@@ -117,7 +138,7 @@ export class Pais extends Phaser.Scene {
       })
       .setOrigin(0.5);
 
-    botao(this, W / 2, 1090, 'Zerar progresso', () => this.confirmar('zerar'), { largura: 520, cor: 0xffb0a0 });
+    botao(this, W / 2, 1108, 'Zerar progresso', () => this.confirmar('zerar'), { largura: 520, cor: 0xffb0a0 });
     botao(this, W / 2 - 185, 1205, 'Apagar perfil', () => this.confirmar('apagar'), { largura: 330, cor: 0xff8f7a });
 
     const link = this.add

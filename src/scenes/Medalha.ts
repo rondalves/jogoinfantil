@@ -8,6 +8,7 @@ import { desenharPersonagem } from '../personagem';
 import { ativo, type Perfil } from '../storage';
 import { TEMA } from '../theme';
 import { botao, botaoOuvir, confete, figura, fundo, irPara, textoEmPainel, titulo } from '../ui';
+import { musicaDoMundo } from '../musica';
 
 const W = CONFIG.LARGURA;
 
@@ -20,6 +21,7 @@ export class Medalha extends Phaser.Scene {
   }
 
   create() {
+    musicaDoMundo();
     this.p = ativo()!;
     narrador.setNome(this.p.nome);
     narrador.setVoz(this.p.voz ?? 'f');

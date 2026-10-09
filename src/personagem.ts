@@ -68,11 +68,19 @@ export function montarOpcoes(cena: Phaser.Scene) {
   CABELOS = [...comArte, { id: 'careca', nome: 'Sem cabelo' }];
   const olhos = CATALOGO_OLHOS.filter((o) => cena.textures.exists(`olhos_${o.id}`));
   if (olhos.length > 0) OLHOS = olhos;
+  const roupas = CATALOGO_ROUPAS.filter((r) => cena.textures.exists(`corpo${r.id}_pele1`));
+  if (roupas.length > 0) ROUPAS = roupas;
 }
-export const ROUPAS = [
+/** So entra no criador a roupa que tem arte (ver ROUPAS no preparar_assets). */
+const CATALOGO_ROUPAS = [
   { id: '', nome: 'Camiseta' },
   { id: '_macacao', nome: 'Macacão' },
+  { id: '_vestido_rosa', nome: 'Vestido rosa' },
+  { id: '_roxo', nome: 'Conjunto roxo' },
+  { id: '_azul', nome: 'Camiseta azul' },
+  { id: '_vermelho', nome: 'Moletom' },
 ];
+export let ROUPAS = [{ id: '', nome: 'Camiseta' }];
 
 export interface Acessorio {
   id: string;

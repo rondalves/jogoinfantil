@@ -1,9 +1,10 @@
 import Phaser from 'phaser';
 import { IMAGENS_BASE } from '../assets';
 import { CONFIG } from '../config';
-import { listar } from '../storage';
+import { ativo, listar } from '../storage';
 import { TEMA } from '../theme';
 import { cobrirTela, figura, irPara } from '../ui';
+import { musicaDoMundo, setMusicaLigada } from '../musica';
 
 const W = CONFIG.LARGURA;
 const H = CONFIG.DESENHO;
@@ -52,6 +53,8 @@ export class Boot extends Phaser.Scene {
   }
 
   create() {
+    setMusicaLigada(ativo()?.musica !== false);
+    musicaDoMundo();
     // a raposinha de verdade entra assim que a arte termina de carregar
     figura(this, W / 2, 760, 'mascote_raposinha', '\u{1F98A}', 300);
     const espera = Math.max(0, MINIMO - (Date.now() - this.comecou));

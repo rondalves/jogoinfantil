@@ -306,6 +306,42 @@ Ilustração 2D cartoon infantil de apenas o cabelo, sem cabeça, sem rosto, sem
 
 ---
 
+## Lote 4 — roupas
+
+São 6 opções no criador: a camiseta branca e o macacão jeans já existem; estas
+quatro completam. **Anexe sempre a imagem `corpo_base_pele_clara` da pasta das
+artes cruas** e peça para trocar só a roupa — é o que garante que a cabeça
+continue no mesmo lugar e o cabelo encaixe.
+
+A pele é recolorida pelo jogo nos 7 tons, então **nada de roupa amarela,
+laranja ou bege**: o script confunde esses tons com pele e repinta a roupa.
+
+### 38 — roupa_vestido_rosa
+
+```
+Use a imagem anexada como base e mude apenas a roupa, mantendo exatamente a mesma criança, a mesma pose de frente com os braços abertos, o mesmo tamanho e a mesma posição da cabeça, a mesma careca sem cabelo, o mesmo rosto vazio sem olhos nem boca, e o mesmo enquadramento. Vista a criança com um vestido infantil rosa claro de manga curta, com uma faixa rosa mais escura na cintura e a saia um pouco rodada até acima do joelho, e meias brancas com tênis branco. Ilustração 2D cartoon, contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
+```
+
+### 39 — roupa_conjunto_roxo
+
+```
+Use a imagem anexada como base e mude apenas a roupa, mantendo exatamente a mesma criança, a mesma pose de frente com os braços abertos, o mesmo tamanho e a mesma posição da cabeça, a mesma careca sem cabelo, o mesmo rosto vazio sem olhos nem boca, e o mesmo enquadramento. Vista a criança com uma blusa roxa de manga curta e um short roxo mais escuro, com tênis branco. Sem estampa e sem texto na roupa. Ilustração 2D cartoon, contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
+```
+
+### 40 — roupa_camiseta_azul
+
+```
+Use a imagem anexada como base e mude apenas a roupa, mantendo exatamente a mesma criança, a mesma pose de frente com os braços abertos, o mesmo tamanho e a mesma posição da cabeça, a mesma careca sem cabelo, o mesmo rosto vazio sem olhos nem boca, e o mesmo enquadramento. Vista a criança com uma camiseta azul-clara de manga curta e uma bermuda azul-marinho, com tênis branco. Sem estampa e sem texto na roupa. Ilustração 2D cartoon, contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
+```
+
+### 41 — roupa_moletom_vermelho
+
+```
+Use a imagem anexada como base e mude apenas a roupa, mantendo exatamente a mesma criança, a mesma pose de frente com os braços abertos, o mesmo tamanho e a mesma posição da cabeça, a mesma careca sem cabelo, o mesmo rosto vazio sem olhos nem boca, e o mesmo enquadramento. Vista a criança com um moletom vermelho de manga comprida com capuz e uma calça comprida cinza, com tênis branco. Nada de verde em nenhuma parte da roupa. Sem estampa e sem texto na roupa. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Ilustração 2D cartoon, contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Imagem quadrada 2048x2048.
+```
+
+---
+
 ## Se algum sair errado
 
 - **Veio com rosto ou cabeça**: acrescente *"NÃO desenhe rosto, olhos, boca,

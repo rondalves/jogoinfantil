@@ -6,6 +6,7 @@ import { Cronometro } from './etapasLogica';
 import { narrador } from './narrador';
 import type { Perfil } from './storage';
 import { TEMA } from './theme';
+import { abafarMusica } from './musica';
 
 export type Fig = Phaser.GameObjects.Image | Phaser.GameObjects.Text;
 
@@ -414,6 +415,7 @@ export class TimerMusical {
     this.rotulo = cena.add
       .text(x, y, '', { fontSize: '44px', fontStyle: 'bold' })
       .setOrigin(0.5);
+    abafarMusica(true);
     const url = AUDIOS['musica_timer'];
     if (url) {
       this.musica = new Audio(url);
@@ -482,5 +484,6 @@ export class TimerMusical {
     this.rotulo.destroy();
     this.musica?.pause();
     this.musica = undefined;
+    abafarMusica(false);
   }
 }

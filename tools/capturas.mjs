@@ -133,16 +133,16 @@ const main = async () => {
   // 06 a medalha do fim: o mapa ja aparece na 02, repetir nao vende nada
   await page.goto(URL_JOGO);
   await pronto(page);
-  await page.evaluate(async () => {
+  await page.evaluate(async (ids) => {
     const j = window.__jogo;
     const perfis = JSON.parse(localStorage.getItem('missoes-do-dia:perfis'));
-    for (const m of IDS) perfis[0].missoes[m] = 3;
+    for (const m of ids) perfis[0].missoes[m] = 3;
     localStorage.setItem('missoes-do-dia:perfis', JSON.stringify(perfis));
     j.scene.scenes.forEach((s) => s.scene.key !== 'Boot' && j.scene.stop(s.scene.key));
     j.scene.start('Medalha');
     // o confete cai por ~4s e tapa o resumo: espera ele passar
     await new Promise((r) => setTimeout(r, 4800));
-  });
+  }, IDS);
   await grava(page, '06-medalha');
 
   await navegador.close();

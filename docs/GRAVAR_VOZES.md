@@ -44,6 +44,57 @@ arquivo continua saindo na voz do navegador — dá para gravar aos poucos.
   *"amiguinho"* no lugar, ou deixe sem arquivo para o jogo falar com o nome
   certo pela voz do navegador.
 
+## O jeito que dá menos trabalho
+
+Gravar 60 frases uma a uma, salvando arquivo por arquivo, leva uma tarde. Em
+bloco leva uns 40 minutos:
+
+1. Abra `assets/audio/narracao.csv` no Excel e deixe na tela. A ordem da
+   planilha é a ordem em que a criança ouve.
+2. Grave **tudo numa tomada só**, lendo de cima para baixo, com **dois segundos
+   de silêncio entre uma frase e outra**. Erra? Diz a frase de novo, sem parar
+   a gravação.
+3. Abra a tomada no [Audacity](https://www.audacityteam.org) (grátis) e:
+   - *Efeitos → Redução de ruído*: selecione 2 s só de silêncio, "Obter perfil
+     de ruído", depois selecione tudo e aplique.
+   - *Efeitos → Normalizar* para **-3 dB**.
+   - *Analisar → Localizar silêncio* ou corte na mão nos intervalos.
+   - *Arquivo → Exportar → Exportar vários*, usando os rótulos como nome.
+4. Renomeie cada arquivo com o nome exato da coluna `arquivo` da planilha, em
+   minúsculas, e jogue tudo em `assets/audio/`.
+
+Dá para gravar aos poucos: cada frase que ganha arquivo para de usar a voz do
+navegador na hora. O resto continua em TTS até você gravar.
+
+## Para a gravação sair boa
+
+- **Lugar**: o cômodo mais abafado da casa. Guarda-roupa aberto cheio de roupa,
+  ou um cobertor pendurado atrás de você, mata o eco. Quarto vazio e banheiro
+  são os piores lugares.
+- **Desligue** ventilador, ar-condicionado, geladeira próxima e notificações do
+  celular.
+- **Distância**: um palmo da boca, falando **de lado** para o microfone (não de
+  frente), senão o "p" e o "t" estouram. Não mude de distância no meio.
+- **Celular serve**, e o gravador nativo grava melhor que a maioria dos apps.
+  Se tiver fone com microfone, melhor ainda: prenda perto do queixo.
+- **Volume**: fale como quem conta história para uma criança no colo — nem
+  sussurro, nem projetando. Se o medidor encostar no vermelho, afaste.
+- **Ritmo**: devagar, com pausa entre as frases. Quem ouve tem 4 anos e ainda
+  não lê.
+- Grave as frases do **mascote com voz de criança animada** e as do **adulto com
+  voz calma**. Se for a mesma pessoa, grave todas as do mascote primeiro: trocar
+  de personagem a cada frase cansa e a voz sai inconsistente.
+
+## Conferir no jogo
+
+```bash
+npm run dev
+```
+
+Não precisa mexer em código nem rodar nada além disso: o jogo acha os arquivos
+novos sozinho. Se uma frase continuar na voz do navegador, o nome do arquivo
+está diferente da coluna `arquivo` (confira acentos e `_m`).
+
 ## Por onde começar
 
 A planilha vem na ordem em que a criança ouve. As que mais aparecem:
@@ -56,4 +107,5 @@ A planilha vem na ordem em que a criança ouve. As que mais aparecem:
    mais rápidas de gravar e as que mais ajudam quem ainda não lê.
 
 `musica_timer.mp3` não é fala: é uma música instrumental de uns 30 segundos
-que roda em loop enquanto o cronômetro corre.
+que roda em loop enquanto o cronômetro corre. A música de fundo do jogo é outra
+coisa, e está em [MUSICA.md](MUSICA.md).

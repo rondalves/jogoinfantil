@@ -46,12 +46,31 @@ CABELOS = [
 ]
 OLHOS = ["redondos", "alegres", "grandes", "sorriso"]
 
+# Roupas: sufixo da chave no jogo -> arquivo cru (corpo inteiro vestido, no
+# mesmo enquadramento do corpo base). Tem que bater com ROUPAS de
+# src/personagem.ts. Evite roupa amarela, laranja ou bege (a troca de tom de
+# pele repinta essas cores) e qualquer verde (some no chroma key).
+ROUPAS = {
+    "_macacao": "roupa_macacao_jeans",
+    "_vestido_rosa": "roupa_vestido_rosa",
+    "_roxo": "roupa_conjunto_roxo",
+    "_azul": "roupa_camiseta_azul",
+    "_vermelho": "roupa_moletom_vermelho",
+}
+
 # O cabelo sai num quadro proprio, com 1 px = 1 unidade do personagem e o mesmo
 # centro do corpo: o jogo so desenha por cima, sem conta nenhuma. Os numeros
-# vem de CABECA, em src/personagem.ts (topo -228, altura 141, largura 183).
-QUADRO_CABELO = 640
-ROSTO_LARGURA = 168  # um pouco menor que a cabeca: o cabelo cobre as laterais
-ROSTO_TOPO = -213  # o vao comeca aqui, logo abaixo do topo da cabeca
+# sao medidos na propria arte do corpo, nao na constante CABECA do jogo:
+# a cabeca vai de -240 a -61, o cranio tem 158 de largura e as orelhas 182.
+QUADRO_CABELO = 768
+ROSTO_LARGURA = 150  # vao do rosto: o cranio menos a sobreposicao do cabelo
+ROSTO_TOPO = -206  # altura onde o vao comeca, logo abaixo do alto da cabeca
+TOPO_CABELO = -244  # o cabelo encosta no alto do cranio, nem acima nem abaixo
+# teto de tamanho: arte com volume demais encolhe ate aqui, sem nunca fechar o
+# vao abaixo de VAO_MINIMO (senao o cabelo entra na frente dos olhos)
+LARGURA_MAXIMA = 300
+ALTURA_MAXIMA = 300
+VAO_MINIMO = 142
 
 # folha -> nomes dos recortes, em ordem de leitura (linha por linha).
 # Peca sem nome util recebe None e nao e gravada.
@@ -66,8 +85,8 @@ FOLHAS = {
         192,
         None,
     ),
-    "ui_icones_mundos": (["mundo1", "mundo2", "mundo3", "mundo4", "mundo5", "mundo_bloqueado"], 256, None),
-    "ui_broches_mundos": (["broche1", "broche2", "broche3", "broche4", "broche5"], 256, ("grade", 5, 1)),
+    "ui_icones_mundos": (["mundo1", "mundo2", "mundo3", "mundo4", "mundo6", "mundo_bloqueado"], 256, None),
+    "ui_broches_mundos": (["broche1", "broche2", "broche3", "broche4", "broche6"], 256, ("grade", 5, 1)),
     "ui_estrela_cheia_e_vazia": ([None, "estrela", "estrela_vazia", None, None], 256, None),
     "ui_ficha": (["ficha"], 256, None),
     "ui_medalha_final": (["medalha_final"], 512, ("grade", 1, 1)),
@@ -269,6 +288,8 @@ FOLHAS = {
 # Pecas soltas: um arquivo cru, uma peca com o mesmo nome. Grade 1x1 pega a
 # caixa de tudo junto, para o objeto nao sair picado em varios pedacos.
 SOLTAS = [
+    "mundo5",
+    "broche5",
     "m05_pente",
     "m03_terra",
     "m07_professora",
@@ -317,6 +338,9 @@ CENARIOS = [
     "bg_quarto_brincar",
     "bg_quarto_noite",
     "bg_consultorio",
+    "bg_porta_casa",
+    "bg_sala_janta",
+    "bg_banheiro_banho",
 ]
 
 
@@ -511,21 +535,82 @@ def vao_do_rosto(rgba):
         linhas.append((y, xs[0] + p[0], xs[0] + p[-1]))
     if not linhas:
         return None
+    # cabelo espetado abre frestas entre as pontas, bem acima do rosto: fica so
+    # o trecho continuo de linhas que contem a maior abertura, que e a cabeca
+    trechos, atual = [], [linhas[0]]
+    for anterior, l in zip(linhas, linhas[1:]):
+        if l[0] == anterior[0] + 1:
+            atual.append(l)
+        else:
+            trechos.append(atual)
+            atual = [l]
+    trechos.append(atual)
+    linhas = max(trechos, key=lambda t: max(l[2] - l[1] for l in t))
     # descendo do contorno do cabelo, o corredor abre ate a maca do rosto e
     # depois fecha no queixo. A primeira barriga e a largura do rosto; o que
     # vem abaixo (pescoco, ombros, vao entre as mechas) nao serve de medida.
     larguras = np.array([l[2] - l[1] for l in linhas], dtype=float)
     k = max(3, len(larguras) // 20)
     suave = np.convolve(larguras, np.ones(k) / k, mode="same")
-    face = len(suave) - 1
-    for i in range(len(suave) - k - 1):
-        if suave[i] >= suave[i + k]:
-            face = i
+    larg, face = 0.0, len(suave) - 1
+    for i, w in enumerate(suave):
+        if w > larg:
+            larg, face = w, i
+        elif w < larg * 0.85:  # fechou no queixo: o que vem abaixo nao e rosto
             break
-    larg = suave[face]
-    ate = [l for l in linhas[: face + 1]]
+    ate = linhas[: face + 1]
     cx = sum((l[1] + l[2]) / 2 for l in ate) / len(ate)
     return cx, linhas[0][0], larg
+
+
+def cabeca_da_arte(rgba):
+    """(topo, centro x, largura) do rosto: a maior mancha de pele la em cima.
+
+    Pela silhueta nao da: capuz, cabelo e ombro largo enganam. A pele nua do
+    rosto e o unico ponto em comum entre as artes de corpo.
+    """
+    a = np.asarray(rgba).astype(np.float32)
+    rgb, alpha = a[..., :3], a[..., 3]
+    mx, mn = rgb.max(axis=2), rgb.min(axis=2)
+    sat = np.where(mx > 0, (mx - mn) / np.maximum(mx, 1), 0)
+    r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
+    pele = (r > g) & (g > b) & (sat > 0.13) & (sat < 0.62) & (mx > 90) & (alpha > 40)
+    pele[int(pele.shape[0] * 0.55) :] = False  # so a metade de cima: maos fora
+    rot, n = ndimage.label(pele)
+    if n == 0:
+        return None
+    maior = int(np.argmax(ndimage.sum(pele, rot, range(1, n + 1)))) + 1
+    ys, xs = np.where(rot == maior)
+    return ys.min(), (xs.min() + xs.max()) / 2, xs.max() - xs.min()
+
+
+def encaixar_corpo(arte, base, caixa_base):
+    """Roupa nova no quadro do corpo base, casando a cabeca das duas artes.
+
+    A arte gerada vem com outro enquadramento, e alinhar pela caixa joga a
+    cabeca para fora do lugar do cabelo e dos olhos.
+    """
+    cb, ca = cabeca_da_arte(base), cabeca_da_arte(arte)
+    if not cb or not ca:
+        return None
+    k = cb[2] / ca[2]
+    nova = arte.resize((max(1, round(arte.width * k)), max(1, round(arte.height * k))), Image.LANCZOS)
+    quadro = Image.new("RGBA", base.size, (0, 0, 0, 0))
+    quadro.alpha_composite(nova, (round(cb[1] - ca[1] * k), round(cb[0] - ca[0] * k)))
+    return quadro
+
+
+def tirar_tracos(rgba):
+    """Apaga linha fina solta — nas artes de cabelo vem um contorno de rosto
+    desenhado, que o fundo verde nao leva e fica como risco em volta do queixo.
+    Abertura morfologica: some o que e fino, a massa de cabelo fica."""
+    a = np.asarray(rgba)
+    cheio = a[..., 3] > 40
+    n = max(5, round(0.007 * max(rgba.size)))
+    limpo = ndimage.binary_opening(cheio, np.ones((n, n)))
+    saida = a.copy()
+    saida[..., 3] = saida[..., 3] * limpo
+    return Image.fromarray(saida, "RGBA")
 
 
 def encaixar_cabelo(rgba):
@@ -534,6 +619,7 @@ def encaixar_cabelo(rgba):
     Cada arte vem com o vao de um tamanho e numa altura diferente. Alinhar pela
     caixa da imagem joga o cabelo na frente do rosto; aqui a referencia e o vao.
     """
+    rgba = tirar_tracos(rgba)
     caixa = grade(rgba, 1, 1)[0]
     corte = rgba.crop(caixa)
     # mede numa copia pequena: o resultado so precisa de alguns px de precisao
@@ -544,10 +630,19 @@ def encaixar_cabelo(rgba):
         return None
     cx, topo, larg = (n / escala_medida for n in v)
     k = ROSTO_LARGURA / larg
+    # arte muito volumosa viraria um cabelo maior que a crianca: encolhe ate o
+    # teto, mas so ate o ponto em que o vao ainda deixa o rosto inteiro livre
+    teto = min(LARGURA_MAXIMA / corte.width, ALTURA_MAXIMA / corte.height)
+    k = min(max(k, VAO_MINIMO / larg), teto)  # o teto manda: nada maior que isso
+    if larg < corte.width * 0.2:
+        print(f"  ! vao do rosto medido em so {larg / corte.width:.0%} da peca: confira o encaixe")
     corte = corte.resize((max(1, round(corte.width * k)), max(1, round(corte.height * k))), Image.LANCZOS)
     quadro = Image.new("RGBA", (QUADRO_CABELO, QUADRO_CABELO), (0, 0, 0, 0))
     x = round(QUADRO_CABELO / 2 - cx * k)
     y = round(QUADRO_CABELO / 2 + ROSTO_TOPO - topo * k)
+    # penteado de risco no meio quase nao tem cabelo acima do vao: se o topo da
+    # peca ficar abaixo da cabeca, aparece o couro cabeludo. Sobe o necessario.
+    y = min(y, round(QUADRO_CABELO / 2 + TOPO_CABELO))
     quadro.alpha_composite(corte, (max(-corte.width, x), max(-corte.height, y)))
     if x < 0 or y < 0 or x + corte.width > QUADRO_CABELO or y + corte.height > QUADRO_CABELO:
         print(f"  ! cabelo maior que o quadro de {QUADRO_CABELO}: sobrou para fora")
@@ -614,14 +709,27 @@ def fazer_opacas():
 
 
 def fazer_personagem():
-    corpo = tirar_verde(abrir("corpo_base_pele_clara"))
-    sentado = tirar_verde(abrir("corpo_cadeira_pele_clara"))
-    macacao = tirar_verde(abrir("roupa_macacao_jeans"))
-    for i, tom in enumerate(PELES, start=1):
-        gravar(recortar(recolorir_pele(corpo, tom), pecas(corpo)[0], 512), f"corpo_pele{i}")
-        gravar(recortar(recolorir_pele(sentado, tom), pecas(sentado)[0], 512), f"corpo_sentado_pele{i}")
-        gravar(recortar(recolorir_pele(macacao, tom), pecas(macacao)[0], 512), f"corpo_macacao_pele{i}")
-    print(f"corpo: {len(PELES) * 3} pecas")
+    base = tirar_verde(abrir("corpo_base_pele_clara"))
+    caixa_base = pecas(base)[0]
+    corpos = {"": base, "_sentado": tirar_verde(abrir("corpo_cadeira_pele_clara"))}
+    for sufixo, arquivo in ROUPAS.items():
+        bruta = abrir(arquivo, obrigatorio=False)
+        if bruta is None:
+            print(f"  . {arquivo}: ainda nao chegou, pulando")
+            continue
+        # a arte da roupa vem com outro enquadramento: casa pela cabeca
+        encaixada = encaixar_corpo(tirar_verde(bruta), base, caixa_base)
+        if encaixada is None:
+            print(f"  ! {arquivo}: nao achei a cabeca, pulando")
+            continue
+        corpos[sufixo] = encaixada
+    feitas = 0
+    for sufixo, arte in corpos.items():
+        caixa = caixa_base if sufixo not in ("", "_sentado") else pecas(arte)[0]
+        for i, tom in enumerate(PELES, start=1):
+            gravar(recortar(recolorir_pele(arte, tom), caixa, 512), f"corpo{sufixo}_pele{i}")
+            feitas += 1
+    print(f"corpo: {feitas} pecas")
 
     # olhos sao varias manchas (sobrancelhas + olhos): pega a caixa de tudo junto
     feitas = 0

@@ -34,6 +34,7 @@ import {
   tremer,
 } from '../ui';
 import { ETAPAS, type Ctx } from './etapas';
+import { musicaDoMundo } from '../musica';
 
 const W = CONFIG.LARGURA;
 
@@ -89,6 +90,7 @@ export class Missao extends Phaser.Scene {
 
   create() {
     this.perfil = ativo()!;
+    musicaDoMundo(this.def.mundo);
     narrador.setNome(this.perfil.nome);
     narrador.setVoz(this.perfil.voz ?? 'f');
     fundo(this, TEMA.creme);

@@ -12,6 +12,7 @@ import { desenharPersonagem } from '../personagem';
 import { ativo, salvar, type Perfil } from '../storage';
 import { balao, botao, botaoOuvir, cobrirTela, figura, fundo, hud, irPara, textoEmPainel, titulo, toque } from '../ui';
 import type { Missao as MissaoDef } from '../types';
+import { musicaDoMundo } from '../musica';
 
 const W = CONFIG.LARGURA;
 const TOPO = 330;
@@ -28,6 +29,7 @@ export class Mapa extends Phaser.Scene {
 
   create() {
     this.p = ativo()!;
+    musicaDoMundo();
     if (!this.p) {
       irPara(this, 'Perfis');
       return;
@@ -90,14 +92,14 @@ export class Mapa extends Phaser.Scene {
       this.lista.add(figura(this, 108, y + 52, aberto ? `mundo${m.id}` : 'mundo_bloqueado', m.icone, 76));
       this.lista.add(
         this.add
-          .text(160, y + 36, `Mundo ${m.id} - ${m.nome}`, { fontSize: '30px', fontStyle: 'bold', wordWrap: { width: 400 } })
+          .text(160, y + 34, `Mundo ${m.id} - ${m.nome}`, { fontSize: '26px', fontStyle: 'bold', wordWrap: { width: 450 } })
           .setOrigin(0, 0.5),
       );
       this.lista.add(
         this.add
           .text(
             160,
-            y + 74,
+            y + 82,
             aberto
               ? `\u{2B50} ${estrelas}/${maximo}`
               : pago

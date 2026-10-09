@@ -31,6 +31,8 @@ export interface Perfil {
   viuTutorial?: boolean;
   /** voz do narrador adulto: 'f' feminina (padrao) ou 'm' masculina */
   voz?: 'f' | 'm';
+  /** musica de fundo (padrao ligada) */
+  musica?: boolean;
 }
 
 const CHAVE = 'missoes-do-dia:perfis';

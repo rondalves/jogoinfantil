@@ -8,6 +8,7 @@ import { fale } from '../narracoes';
 import { TEMA } from '../theme';
 import { ativo, salvar, type Perfil } from '../storage';
 import { balao, botao, botaoOuvir, botaoVoltar, figura, fundo, irPara, titulo } from '../ui';
+import { musicaDoMundo } from '../musica';
 
 const W = CONFIG.LARGURA;
 
@@ -26,6 +27,7 @@ export class MiniGame extends Phaser.Scene {
 
   create() {
     this.perfil = ativo()!;
+    musicaDoMundo(this.jogo.mundo);
     narrador.setNome(this.perfil.nome);
     narrador.setVoz(this.perfil.voz ?? 'f');
     fundo(this, TEMA.ceu);

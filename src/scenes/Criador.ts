@@ -18,6 +18,7 @@ import {
 import { ativo, criar, personagemPadrao, salvar, type PersonagemCfg } from '../storage';
 import { teclado } from '../teclado';
 import { botao, botaoOuvir, botaoVoltar, fundo, irPara, titulo } from '../ui';
+import { musicaDoMundo } from '../musica';
 
 const W = CONFIG.LARGURA;
 /** Opcoes por pagina: 2 linhas de 3, o que cabe entre o personagem e os botoes. */
@@ -61,6 +62,7 @@ export class Criador extends Phaser.Scene {
   }
 
   create() {
+    musicaDoMundo();
     montarOpcoes(this);
     fundo(this, TEMA.rosa, 'bg_criador_personagem');
     botaoOuvir(this);
