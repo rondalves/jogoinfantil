@@ -10,9 +10,12 @@ import { Missao } from './scenes/Missao';
 import { Pais } from './scenes/Pais';
 import { Perfis } from './scenes/Perfis';
 import { Tutorial } from './scenes/Tutorial';
+import { migrar } from './migracao';
 import { aplicarTema, carregarFonte } from './theme';
 
 aplicarTema();
+// progresso de quem jogou antes dos seis mundos: estrela vai para o id novo
+migrar();
 
 // a fonte precisa estar pronta antes do primeiro texto, senao nasce com a do sistema
 carregarFonte().then(() => {
