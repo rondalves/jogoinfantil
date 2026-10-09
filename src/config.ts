@@ -21,9 +21,9 @@ export interface Mundo {
 }
 
 export const MUNDOS: Mundo[] = [
-  { id: 1, nome: 'Manhã em Casa', icone: '🌅', cor: 0xffd9a0 },
-  { id: 2, nome: 'Escola', icone: '🎒', cor: 0xbfe3ff },
-  { id: 3, nome: 'Volta para Casa', icone: '🚗', cor: 0xd6f5c8 },
-  { id: 4, nome: 'Tarde', icone: '🧸', cor: 0xffd6e7 },
-  { id: 5, nome: 'Noite', icone: '🌙', cor: 0xd3cdf5 },
+  { id: 1, nome: 'Manhã em Casa', icone: '🌅', cor: 0xf0e4d4 },
+  { id: 2, nome: 'Escola', icone: '🎒', cor: 0xdfe6ec },
+  { id: 3, nome: 'Volta para Casa', icone: '🚗', cor: 0xdfe8df },
+  { id: 4, nome: 'Tarde', icone: '🧸', cor: 0xefe2de },
+  { id: 5, nome: 'Noite', icone: '🌙', cor: 0xe2e0ea },
 ];

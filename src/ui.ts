@@ -100,6 +100,10 @@ export function fundo(cena: Phaser.Scene, fundoCor: number, imagem?: string) {
   if (!imagem || !cena.textures.exists(imagem)) return;
   const im = cena.add.image(W / 2, CONFIG.ALTURA / 2, imagem).setDepth(-9);
   im.setScale(Math.max(W / im.width, CONFIG.ALTURA / im.height));
+  // veu: o cenario fica de pano de fundo, nao briga com os objetos da etapa
+  cena.add
+    .rectangle(W / 2, CONFIG.ALTURA / 2, W, CONFIG.ALTURA, 0xfbf9f5, TEMA.veu)
+    .setDepth(-8);
 }
 
 export function titulo(cena: Phaser.Scene, texto: string, y = 180) {
@@ -208,11 +212,12 @@ export function textoEmPainel(
 ): Phaser.GameObjects.Container {
   const c = cena.add.container(0, 0);
   const t = cena.add
-    .text(x, y, conteudo, { fontSize: `${tamanho}px`, align: 'center', wordWrap: { width: larguraMax - 48 } })
+    .text(x, y, conteudo, { fontSize: `${tamanho}px`, align: 'center', wordWrap: { width: larguraMax - 56 } })
     .setOrigin(0.5);
+  const larg = Math.min(larguraMax, t.width + 48);
   const g = cena.add.graphics();
-  g.fillStyle(0xffffff, 0.88);
-  g.fillRoundedRect(x - t.width / 2 - 24, y - t.height / 2 - 14, t.width + 48, t.height + 28, 22);
+  g.fillStyle(0xffffff, 0.9);
+  g.fillRoundedRect(x - larg / 2, y - t.height / 2 - 14, larg, t.height + 28, 22);
   c.add([g, t]);
   return c;
 }

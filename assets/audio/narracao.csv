@@ -52,9 +52,13 @@ letra_x.mp3;X;Teclado do nome
 letra_y.mp3;Y;Teclado do nome
 letra_z.mp3;Z;Teclado do nome
 m01_intro.mp3;Bom dia, {nome}! Vamos acordar e cuidar de você?;Missao 01 - Acordar e se cuidar: abertura
-m01_mostrar.mp3;Olha só: primeiro a escova, depois o rosto, depois o café!;Missao 01 - Acordar e se cuidar: o personagem mostra
-m01_e1.mp3;Passe a escova nos dentes, {nome}. Vamos escovar com a música!;Missao 01 - Acordar e se cuidar: etapa 1 (segurar_com_timer)
-m01_erro1.mp3;Solte só quando a música acabar. Vamos de novo!;Missao 01 - Acordar e se cuidar: etapa 1, quando erra
+m01_mostrar.mp3;Escova em cada pedacinho: em cima, embaixo, dos dois lados e a linguinha!;Missao 01 - Acordar e se cuidar: o personagem mostra
+m01_e1.mp3;Vamos escovar! Siga a bolinha verde: ela mostra onde escovar.;Missao 01 - Acordar e se cuidar: etapa 1 (escovar)
+m01_escovar1.mp3;Em cima, deste lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
+m01_escovar2.mp3;Em cima, do outro lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
+m01_escovar3.mp3;Embaixo, deste lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
+m01_escovar4.mp3;Embaixo, do outro lado;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
+m01_escovar5.mp3;Agora a linguinha!;Missao 01 - Acordar e se cuidar: etapa 1, escovacao guiada
 m01_e2.mp3;Agora lave o rosto. Esfregue com o dedinho!;Missao 01 - Acordar e se cuidar: etapa 2 (esfregar)
 m01_e3.mp3;Monte o café: leve a fruta e o pão para o prato.;Missao 01 - Acordar e se cuidar: etapa 3 (arrastar_para_alvo)
 m01_pnp.mp3;O que pode?;Missao 01 - Acordar e se cuidar: pode ou nao pode

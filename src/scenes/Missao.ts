@@ -7,6 +7,7 @@ import { MISSOES, missaoPorId, missoesDoMundo } from '../missions';
 import { narrador } from '../narrador';
 import { fale } from '../narracoes';
 import { desenharPersonagem } from '../personagem';
+import { TEMA } from '../theme';
 import { ativo, salvar, type Perfil } from '../storage';
 import type { Missao as MissaoDef } from '../types';
 import {
@@ -74,7 +75,7 @@ export class Missao extends Phaser.Scene {
   create() {
     this.perfil = ativo()!;
     narrador.setNome(this.perfil.nome);
-    fundo(this, 0xfff2e0);
+    fundo(this, TEMA.creme);
     this.barra = hud(this, this.perfil, 96, W / 2, 0.5);
     botaoOuvir(this);
     botaoVoltar(this, 'Mapa');
@@ -95,6 +96,20 @@ export class Missao extends Phaser.Scene {
     const im = this.add.image(W / 2, CONFIG.ALTURA / 2, alvo).setDepth(-9);
     im.setScale(Math.max(W / im.width, CONFIG.ALTURA / im.height));
     this.bg = im;
+  }
+
+  /** No fim da missao o cenario sai de foco: quem brilha e a estrela. */
+  private desfocarCenario() {
+    if (this.bg) {
+      try {
+        this.bg.preFX?.addBlur(0, 2, 2, 1.2);
+      } catch {
+        // sem WebGL o desfoque nao existe: o veu abaixo ja da o recado
+      }
+    }
+    this.camada.add(
+      this.add.rectangle(W / 2, CONFIG.ALTURA / 2, W, CONFIG.ALTURA, 0xfbf9f5, 0.72).setDepth(-1),
+    );
   }
 
   private limpar() {
@@ -157,7 +172,7 @@ export class Missao extends Phaser.Scene {
     this.cenario(etapa.cenario);
     this.progresso();
     const frase = narrador.falar(etapa.narracao, etapa.audio);
-    this.camada.add(textoEmPainel(this, W / 2, 320, frase));
+    this.camada.add(textoEmPainel(this, W / 2, 330, frase, 36, W - 160));
 
     const chaveErro = `m${this.def.id}_erro${this.indice + 1}`;
     const ctx: Ctx = {
@@ -232,6 +247,7 @@ export class Missao extends Phaser.Scene {
     this.barra.destroy();
     this.barra = hud(this, this.perfil, 96, W / 2, 0.5);
 
+    this.desfocarCenario();
     this.camada.add(titulo(this, 'Missão cumprida!', 280));
     this.camada.add(estrelasNaTela(this, estrelas, this.def.estrelas_max, 430));
     confete(this, bonus > 0 ? 100 : 45);

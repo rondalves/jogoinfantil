@@ -5,6 +5,7 @@ import { gastarFicha, podeJogar } from '../economia';
 import { MINIGAMES, type MiniGame as Jogo, type ResultadoMiniGame } from '../minigames';
 import { narrador } from '../narrador';
 import { fale } from '../narracoes';
+import { TEMA } from '../theme';
 import { ativo, salvar, type Perfil } from '../storage';
 import { balao, botao, botaoOuvir, botaoVoltar, figura, fundo, irPara, titulo } from '../ui';
 
@@ -26,7 +27,7 @@ export class MiniGame extends Phaser.Scene {
   create() {
     this.perfil = ativo()!;
     narrador.setNome(this.perfil.nome);
-    fundo(this, 0x9ad7f5);
+    fundo(this, TEMA.ceu);
     botaoVoltar(this, 'Mapa');
     botaoOuvir(this);
     const espera = titulo(this, 'Preparando...', 600);
@@ -40,7 +41,7 @@ export class MiniGame extends Phaser.Scene {
     this.input.removeAllListeners();
     this.children.removeAll(true);
     this.tweens.killAll();
-    fundo(this, 0x9ad7f5);
+    fundo(this, TEMA.ceu);
     titulo(this, this.jogo.tituloFim, 300);
     const frase = fale(this.jogo.fraseFim);
     this.add

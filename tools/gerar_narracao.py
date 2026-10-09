@@ -39,6 +39,9 @@ def linhas():
         for i, e in enumerate(m["etapas"], start=1):
             if e.get("audio"):
                 yield e["audio"], e["narracao"], f"{onde}: etapa {i} ({e['tipo']})"
+            for r in e.get("regioes") or []:
+                if r.get("audio"):
+                    yield r["audio"], r["texto"], f"{onde}: etapa {i}, escovacao guiada"
             if e.get("consequencia"):
                 yield f"m{m['id']}_erro{i}", e["consequencia"], f"{onde}: etapa {i}, quando erra"
         pnp = m["pode_ou_nao_pode"]

@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { CONFIG } from '../config';
+import { escovar } from './escovacao';
 import { Esfrega } from '../etapasLogica';
 import { narrador } from '../narrador';
 import { fale } from '../narracoes';
@@ -57,11 +58,25 @@ const tocar: Handler = (c, e) => {
 
 const arrastar: Handler = (c, e) => {
   const alvo = e.alvo as Item;
-  c.camada.add(figura(c.cena, alvo.x, alvo.y, alvo.img, alvo.icone, 200));
+  // posicoes fixas e iguais em toda missao: fila em cima, alvo grande embaixo
+  const alvoX = W / 2;
+  const alvoY = 930;
+  const sombra = c.cena.add.graphics();
+  sombra.fillStyle(0xffffff, 0.8);
+  sombra.fillRoundedRect(alvoX - 190, alvoY - 170, 380, 340, 40);
+  c.camada.add(sombra);
+  c.camada.add(figura(c.cena, alvoX, alvoY, alvo.img, alvo.icone, 300));
   const itens = e.itens ?? [];
   let faltam = itens.length;
+  const passo = Math.min(190, (W - 120) / Math.max(1, itens.length));
   itens.forEach((it, i) => {
-    const f = figura(c.cena, it.x, it.y, it.img, it.icone, 130);
+    const casaX = W / 2 + (i - (itens.length - 1) / 2) * passo;
+    const casaY = 600;
+    const base = c.cena.add.graphics();
+    base.fillStyle(0xffffff, 0.86);
+    base.fillRoundedRect(casaX - passo / 2 + 8, casaY - 82, passo - 16, 164, 24);
+    c.camada.add(base);
+    const f = figura(c.cena, casaX, casaY, it.img, it.icone, Math.min(130, passo - 40));
     c.camada.add(f);
     f.setInteractive({ draggable: true });
     f.on('drag', (_p: Phaser.Input.Pointer, x: number, y: number) => {
@@ -69,15 +84,15 @@ const arrastar: Handler = (c, e) => {
       f.y = y;
     });
     f.on('dragend', () => {
-      if (Phaser.Math.Distance.Between(f.x, f.y, alvo.x, alvo.y) < 150) {
+      if (Phaser.Math.Distance.Between(f.x, f.y, alvoX, alvoY) < 200) {
         f.disableInteractive();
-        const destX = alvo.x + (i - (itens.length - 1) / 2) * 56;
-        c.cena.tweens.add({ targets: f, x: destX, y: alvo.y - 20, scale: 0.7, duration: 220 });
+        const destX = alvoX + (i - (itens.length - 1) / 2) * 72;
+        c.cena.tweens.add({ targets: f, x: destX, y: alvoY - 10, scale: f.scale * 0.7, duration: 220 });
         nota(784);
         faltam -= 1;
         if (faltam === 0) c.cena.time.delayedCall(600, c.fim);
       } else {
-        c.cena.tweens.add({ targets: f, x: it.x, y: it.y, duration: 260, ease: 'Back.out' });
+        c.cena.tweens.add({ targets: f, x: casaX, y: casaY, duration: 260, ease: 'Back.out' });
       }
     });
   });
@@ -267,6 +282,7 @@ const respirar: Handler = (c, e) => {
 };
 
 export const ETAPAS: Record<Etapa['tipo'], Handler> = {
+  escovar,
   tocar,
   arrastar_para_alvo: arrastar,
   segurar_com_timer: segurarComTimer,

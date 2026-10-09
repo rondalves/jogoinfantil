@@ -6,24 +6,45 @@
   "narracao_intro": "Bom dia, {nome}! Vamos acordar e cuidar de você?",
   "audio_intro": "m01_intro",
   "mostrar": {
-    "narracao": "Olha só: primeiro a escova, depois o rosto, depois o café!",
+    "narracao": "Escova em cada pedacinho: em cima, embaixo, dos dois lados e a linguinha!",
     "audio": "m01_mostrar",
     "icone": "🪥"
   },
   "etapas": [
     {
-      "tipo": "segurar_com_timer",
-      "narracao": "Passe a escova nos dentes, {nome}. Vamos escovar com a música!",
+      "tipo": "escovar",
+      "narracao": "Vamos escovar! Siga a bolinha verde: ela mostra onde escovar.",
       "audio": "m01_e1",
-      "segundos": 120,
-      "consequencia": "Solte só quando a música acabar. Vamos de novo!",
+      "segundos": 60,
       "alvo": {
         "icone": "🪥",
         "img": "m01_escova",
         "x": 360,
         "y": 780
       },
-      "cenario": "bg_banheiro"
+      "cenario": "bg_banheiro",
+      "regioes": [
+        {
+          "texto": "Em cima, deste lado",
+          "audio": "m01_escovar1"
+        },
+        {
+          "texto": "Em cima, do outro lado",
+          "audio": "m01_escovar2"
+        },
+        {
+          "texto": "Embaixo, deste lado",
+          "audio": "m01_escovar3"
+        },
+        {
+          "texto": "Embaixo, do outro lado",
+          "audio": "m01_escovar4"
+        },
+        {
+          "texto": "Agora a linguinha!",
+          "audio": "m01_escovar5"
+        }
+      ]
     },
     {
       "tipo": "esfregar",

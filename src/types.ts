@@ -5,7 +5,15 @@ export type TipoEtapa =
   | 'esfregar'
   | 'escolher_entre_opcoes'
   | 'sequencia_ordenada'
-  | 'respirar';
+  | 'respirar'
+  | 'escovar';
+
+/** Um pedaco da boca na escovacao guiada. */
+export interface Regiao {
+  texto: string;
+  /** nome do arquivo em /assets/audio, sem extensao */
+  audio?: string;
+}
 
 export interface Item {
   id?: string;
@@ -32,6 +40,8 @@ export interface Etapa {
   passos?: number;
   /** arte de cada sujeira/germe que some ao esfregar */
   sujeiras?: string[];
+  /** pedacos da boca, na ordem, para a etapa de escovar */
+  regioes?: Regiao[];
   repeticoes?: number;
   /** frase leve narrada quando a criança erra */
   consequencia?: string;

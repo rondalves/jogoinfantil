@@ -3,6 +3,7 @@ import { CONFIG } from '../config';
 import { estrelasTotais, partidasHoje } from '../economia';
 import { MISSOES } from '../missions';
 import { narrador } from '../narrador';
+import { TEMA } from '../theme';
 import { ativo, remover, salvar, zerarProgresso, type Perfil } from '../storage';
 import { botao, botaoVoltar, fundo, irPara, titulo, toque } from '../ui';
 
@@ -18,7 +19,7 @@ export class Pais extends Phaser.Scene {
 
   create() {
     this.p = ativo()!;
-    fundo(this, 0xeef2f7);
+    fundo(this, TEMA.nuvem);
     botaoVoltar(this, 'Mapa');
     narrador.parar();
     this.portao();

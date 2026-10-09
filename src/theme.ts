@@ -3,35 +3,38 @@ import Phaser from 'phaser';
 /**
  * Paleta e tipografia unicas do jogo. Toda tela puxa daqui: para mudar a cara
  * do jogo inteiro basta mexer neste arquivo.
+ *
+ * Tons neutros e quentes de proposito: a arte das missoes ja e colorida, e a
+ * interface precisa sair da frente dela.
  */
 export const TEMA = {
-  /** Fredoka: arredondada e legivel para quem ainda esta aprendendo a ler. */
-  fonte: '"Fredoka", "Trebuchet MS", "Segoe UI", sans-serif',
+  /** Lexend: desenhada para quem esta aprendendo a ler. */
+  fonte: '"Lexend", "Segoe UI", system-ui, sans-serif',
 
   // texto
-  texto: '#2b3a4a',
-  textoSuave: '#6b7a8a',
+  texto: '#3a3f45',
+  textoSuave: '#8a9099',
   textoClaro: '#ffffff',
   contorno: '#ffffff',
 
   // fundos
-  ceu: 0xbde8ff,
-  creme: 0xfff2e0,
-  rosa: 0xffe9f2,
-  nuvem: 0xeef2f7,
-  escuro: 0x12263a,
+  ceu: 0xf3f1ec,
+  creme: 0xf7f5f1,
+  rosa: 0xf4f1ee,
+  nuvem: 0xf7f5f1,
+  escuro: 0x2e3338,
   painel: 0xffffff,
 
   // botoes
-  acao: 0xffb43d,
-  sim: 0x7ddc8a,
-  nao: 0xff9a8b,
-  neutro: 0xbfd4e8,
+  acao: 0xe6b887,
+  sim: 0x9cbfa6,
+  nao: 0xd9a3a0,
+  neutro: 0xd9d4cc,
 
   // premios
-  moeda: 0xffd43b,
-  estrela: 0xffc93c,
-  confete: [0xff6b6b, 0x4dabf7, 0x51cf66, 0xffd43b, 0xf783ac, 0x845ef7],
+  moeda: 0xe3b23c,
+  estrela: 0xe3b23c,
+  confete: [0xe6b887, 0x9cbfa6, 0xd9a3a0, 0xe3b23c, 0xb9c6d4, 0xc9bcd4],
 
   // tamanhos de fonte (px)
   titulo: 54,
@@ -41,6 +44,9 @@ export const TEMA = {
 
   /** duracao padrao das transicoes entre telas */
   transicao: 220,
+
+  /** quanto o cenario some atras dos cartoes e do texto */
+  veu: 0.55,
 };
 
 export const cor = (n: number) => `#${n.toString(16).padStart(6, '0')}`;
@@ -63,7 +69,7 @@ export function aplicarTema() {
 export async function carregarFonte() {
   try {
     await Promise.race([
-      Promise.all([document.fonts.load('600 40px Fredoka'), document.fonts.load('600 60px Fredoka')]),
+      Promise.all([document.fonts.load('500 40px Lexend'), document.fonts.load('700 54px Lexend')]),
       new Promise((ok) => setTimeout(ok, 2500)),
     ]);
   } catch {

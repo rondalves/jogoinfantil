@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { CONFIG } from '../config';
 import { estrelasTotais } from '../economia';
 import { narrador } from '../narrador';
+import { TEMA } from '../theme';
 import { fale } from '../narracoes';
 import { desenharPersonagem } from '../personagem';
 import { listar, setAtivo } from '../storage';
@@ -16,7 +17,7 @@ export class Perfis extends Phaser.Scene {
   }
 
   create() {
-    fundo(this, 0xbde8ff, 'bg_menu_inicial');
+    fundo(this, TEMA.ceu, 'bg_menu_inicial');
     botaoOuvir(this);
     titulo(this, 'Quem vai jogar?');
     const perfis = listar();

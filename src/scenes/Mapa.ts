@@ -4,6 +4,7 @@ import { gastarFicha, partidasHoje, podeJogar } from '../economia';
 import { liberados, type MiniGame } from '../minigames';
 import { missoesBonus, missoesDoMundo, mundoCompleto } from '../missions';
 import { narrador } from '../narrador';
+import { TEMA } from '../theme';
 import { fale } from '../narracoes';
 import { desenharPersonagem } from '../personagem';
 import { ativo, salvar, type Perfil } from '../storage';
@@ -34,9 +35,9 @@ export class Mapa extends Phaser.Scene {
       this.scene.start('Tutorial');
       return;
     }
-    fundo(this, 0xbde8ff, 'bg_mapa_mundos');
+    fundo(this, TEMA.ceu, 'bg_mapa_mundos');
     // veu claro: o cenario do mapa e bonito, mas briga com os cartoes
-    this.add.rectangle(W / 2, CONFIG.ALTURA / 2, W, CONFIG.ALTURA, 0xffffff, 0.34).setDepth(-8);
+    
     // faixa do cabecalho: a lista rola por baixo e nao embola com o saldo
     this.add.rectangle(W / 2, 140, W, 280, 0xffffff, 0.82).setDepth(45);
     hud(this, this.p, 96);

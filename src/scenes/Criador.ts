@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { CONFIG } from '../config';
 import { estrelasTotais } from '../economia';
 import { narrador } from '../narrador';
+import { TEMA } from '../theme';
 import { fale } from '../narracoes';
 import {
   ACESSORIOS,
@@ -55,7 +56,7 @@ export class Criador extends Phaser.Scene {
   }
 
   create() {
-    fundo(this, 0xffe9f2, 'bg_criador_personagem');
+    fundo(this, TEMA.rosa, 'bg_criador_personagem');
     botaoOuvir(this);
     if (this.editando) botaoVoltar(this, 'Mapa');
     this.tituloTxt = titulo(this, this.nome ? `Oi, ${this.nome}!` : 'Monte seu personagem', 120);

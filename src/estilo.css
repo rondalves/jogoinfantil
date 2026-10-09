@@ -1,8 +1,16 @@
-/* Fredoka (SIL Open Font License) — arredondada, boa para leitores iniciantes */
+/* Lexend (SIL Open Font License): desenhada para facilitar a leitura de quem
+   esta aprendendo a ler. Limpa, arredondada, sem ser infantilizada. */
 @font-face {
-  font-family: 'Fredoka';
+  font-family: 'Lexend';
   font-style: normal;
-  font-weight: 400 700;
+  font-weight: 500;
   font-display: block;
-  src: url('../assets/fontes/fredoka-600-latin.woff2') format('woff2');
+  src: url('../assets/fontes/lexend-500-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url('../assets/fontes/lexend-700-latin.woff2') format('woff2');
 }
