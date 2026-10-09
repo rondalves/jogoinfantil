@@ -100,8 +100,9 @@ Situação atual, conferida na pasta:
 
 - `mundo6` e `broche6` — a lua e as estrelas. **Certos**, é a cara do mundo 6.
 - `broche5` — um medalhão de mesa de jantar. **Serve**, e combina com a Janta.
-- `mundo5` — hoje é **um ursinho de pelúcia**. É uma peça solta que entrou no
-  lugar errado na fatiagem, não um medalhão. É o único que precisa ser gerado.
+- `mundo5` — hoje é **um ursinho de pelúcia**. Não foi erro de fatiagem: o
+  arquivo cru `mundo5.jpg` que chegou na pasta é mesmo um ursinho em fundo
+  verde. É o único que precisa ser gerado de novo, com o prompt abaixo.
 
 ### `mundo5` — Janta (medalhão do mapa)
 
