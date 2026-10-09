@@ -38,6 +38,8 @@ function memoriaRodada(cena: Phaser.Scene, aoFim: (pontos: number) => void) {
     const verso = cena.add.graphics();
     verso.fillStyle(TEMA.acao, 1);
     verso.fillRoundedRect(x - 88, y - 88, 176, 176, 26);
+    verso.fillStyle(0xffffff, 0.5);
+    verso.fillCircle(x, y, 42);
     const frente = figura(cena, x, y, CARTAS[idx], EMOJIS[idx], 140).setVisible(false);
     const zona = cena.add.zone(x, y, 176, 176).setInteractive({ useHandCursor: true });
     const carta: Carta = { i: idx, frente, verso, zona, virada: false, achada: false };

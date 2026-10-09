@@ -43,7 +43,7 @@ FOLHAS = {
     "ui_broches_mundos": (["broche1", "broche2", "broche3", "broche4", "broche5"], 256, ("grade", 5, 1)),
     "ui_estrela_cheia_e_vazia": ([None, "estrela", "estrela_vazia", None, None], 256, None),
     "ui_ficha": (["ficha"], 256, None),
-    "ui_medalha_final": (["medalha_final"], 512, None),
+    "ui_medalha_final": (["medalha_final"], 512, ("grade", 1, 1)),
     "mg3_itens_corredor": (
         ["moeda", "mg3_estrela", "mg3_ima", "mg3_balao", "mg3_cone", "mg3_caixa", "mg3_poca", None,
          "mg3_bola", "mg3_gol"],

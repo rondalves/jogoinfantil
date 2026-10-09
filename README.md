@@ -31,6 +31,7 @@ npm run dev
 | `npm test` | testes da lógica de estrelas/moedas/fichas |
 | `npm run assets` | prepara as imagens cruas (Python + pillow, numpy, scipy) |
 | `npm run narracao` | regenera `assets/audio/narracao.csv` com todas as frases |
+| `npm run smoke` | abre as 20 missões, os 5 mini games e as telas num navegador de verdade e acusa qualquer erro (precisa do `npm run preview` rodando) |
 
 ## Estrutura de pastas
 

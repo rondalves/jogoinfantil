@@ -25,7 +25,7 @@ export class Medalha extends Phaser.Scene {
     botaoOuvir(this);
     titulo(this, 'Super Ajudante\ndo Dia', 250);
 
-    const medalha = figura(this, W / 2, 620, 'medalha_final', '\u{1F3C5}', 380);
+    const medalha = figura(this, W / 2, 600, 'medalha_final', '\u{1F3C5}', 420);
     const tamanho = medalha.scale;
     medalha.setScale(0);
     this.tweens.add({ targets: medalha, scale: tamanho, duration: 900, ease: 'Back.out' });
@@ -39,7 +39,7 @@ export class Medalha extends Phaser.Scene {
     });
     confete(this, 120);
 
-    desenharPersonagem(this, this.p.personagem, 0.5).setPosition(140, 760);
+    desenharPersonagem(this, this.p.personagem, 0.32).setPosition(104, 1070);
 
     const feitas = Object.keys(this.p.missoes).length;
     const resumo = [
@@ -48,11 +48,11 @@ export class Medalha extends Phaser.Scene {
       `${this.p.moedas} moedas`,
       `${this.p.broches.length} de ${MUNDOS.length} broches`,
     ].join('\n');
-    textoEmPainel(this, W / 2, 960, resumo, 38, W - 160);
+    textoEmPainel(this, W / 2, 910, resumo, 36, W - 200);
 
-    botao(this, W / 2, 1180, 'Voltar ao mapa', () => irPara(this, 'Mapa'), {
+    botao(this, W / 2 + 60, 1080, 'Voltar ao mapa', () => irPara(this, 'Mapa'), {
       icone: '\u{1F5FA}\u{FE0F}',
-      largura: 460,
+      largura: 420,
     });
 
     narrador.falar(
