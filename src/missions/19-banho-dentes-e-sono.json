@@ -1,0 +1,110 @@
+{
+  "id": "19",
+  "mundo": 5,
+  "titulo": "Banho, dentes e sono",
+  "icone": "🛁",
+  "cenario": "bg_quarto_noite",
+  "narracao_intro": "O dia acabou, {nome}. Vamos se arrumar para dormir?",
+  "audio_intro": "m19_intro",
+  "mostrar": {
+    "narracao": "Banho, pijama, escovar os dentes, uma história e a luz apagada.",
+    "audio": "m19_mostrar",
+    "icone": "🛁"
+  },
+  "etapas": [
+    {
+      "tipo": "sequencia_ordenada",
+      "narracao": "Toque na ordem da hora de dormir.",
+      "audio": "m19_e1",
+      "consequencia": "Ainda não! Esse vem depois.",
+      "itens": [
+        {
+          "icone": "🛁",
+          "img": "m19_banheira",
+          "texto": "Banho",
+          "x": 170,
+          "y": 620
+        },
+        {
+          "icone": "👖",
+          "img": "m19_pijama",
+          "texto": "Pijama",
+          "x": 550,
+          "y": 620
+        },
+        {
+          "icone": "📖",
+          "img": "m19_livro_aberto",
+          "texto": "História",
+          "x": 170,
+          "y": 900
+        },
+        {
+          "icone": "🌙",
+          "img": "m19_luz_apagada",
+          "texto": "Apagar a luz",
+          "x": 550,
+          "y": 900
+        }
+      ]
+    },
+    {
+      "tipo": "escovar",
+      "narracao": "Antes de dormir, escovação caprichada!",
+      "audio": "m19_e2",
+      "segundos": 45,
+      "cenario": "bg_banheiro",
+      "alvo": {
+        "icone": "🪥",
+        "img": "m19_escova",
+        "x": 360,
+        "y": 780
+      },
+      "regioes": [
+        {
+          "texto": "Em cima, deste lado",
+          "audio": "m19_escovar1"
+        },
+        {
+          "texto": "Em cima, do outro lado",
+          "audio": "m19_escovar2"
+        },
+        {
+          "texto": "Embaixo, deste lado",
+          "audio": "m19_escovar3"
+        },
+        {
+          "texto": "Embaixo, do outro lado",
+          "audio": "m19_escovar4"
+        }
+      ]
+    },
+    {
+      "tipo": "respirar",
+      "narracao": "Agora respire fundo três vezes para o sono chegar.",
+      "audio": "m19_e3",
+      "repeticoes": 3
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🌙",
+      "img": "m19_luz_apagada",
+      "texto": "Apagar a luz e dormir"
+    },
+    "cena_errada": {
+      "icone": "📱",
+      "img": "m18_tablet_ligado",
+      "texto": "Tela na cama"
+    },
+    "explicacao": "A tela acende o olho e o sono foge. História é bem melhor!",
+    "audio": "m19_pnp"
+  },
+  "frase_reforco": "Dia cumprido, bons sonhos!",
+  "audio_reforco": "m19_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { CONFIG, MUNDOS } from '../config';
 import { gastarFicha, partidasHoje, podeJogar } from '../economia';
 import { liberados, type MiniGame } from '../minigames';
-import { missoesBonus, missoesDoMundo, mundoCompleto } from '../missions';
+import { jogoCompleto, missoesBonus, missoesDoMundo, mundoCompleto } from '../missions';
 import { narrador } from '../narrador';
 import { TEMA } from '../theme';
 import { fale } from '../narracoes';
@@ -115,6 +115,27 @@ export class Mapa extends Phaser.Scene {
         y += 112;
       }
       y += 26;
+    }
+
+    if (jogoCompleto(this.p.missoes)) {
+      const g = this.add.graphics();
+      g.fillStyle(0xe3b23c, 0.95);
+      g.fillRoundedRect(40, y, W - 80, 120, 26);
+      this.lista.add(g);
+      this.lista.add(figura(this, 112, y + 60, 'medalha_final', '\u{1F3C5}', 86));
+      this.lista.add(
+        this.add
+          .text(190, y + 60, 'Super Ajudante do Dia', { fontSize: '34px', fontStyle: 'bold' })
+          .setOrigin(0, 0.5),
+      );
+      const z = this.add
+        .zone(W / 2, y + 60, W - 80, 120)
+        .setInteractive({ useHandCursor: true })
+        .on('pointerup', () => {
+          if (!this.arrastou) irPara(this, 'Medalha');
+        });
+      this.lista.add(z);
+      y += 150;
     }
 
     const bonus = missoesBonus();

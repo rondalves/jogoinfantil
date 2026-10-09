@@ -44,7 +44,11 @@ FOLHAS = {
     "ui_estrela_cheia_e_vazia": ([None, "estrela", "estrela_vazia", None, None], 256, None),
     "ui_ficha": (["ficha"], 256, None),
     "ui_medalha_final": (["medalha_final"], 512, None),
-    "mg3_itens_corredor": (["moeda"], 256, None),
+    "mg3_itens_corredor": (
+        ["moeda", "mg3_estrela", "mg3_ima", "mg3_balao", "mg3_cone", "mg3_caixa", "mg3_poca", None,
+         "mg3_bola", "mg3_gol"],
+        256, None,
+    ),
     "mg1_kart": (
         [
             "mg1_kart",
@@ -121,6 +125,57 @@ FOLHAS = {
         None,
     ),
     "personagens_dentista_colegas": (["dentista", "colega_menino", "colegas", "colega_menina"], 320, None),
+    # lote novo do Gemini (nomes do gerador, conteudo na tabela)
+    "Gemini_Generated_Image_82ee4x82ee4x82ee": (["m01_boca_suja"], 512, None),
+    "Gemini_Generated_Image_8zd1bh8zd1bh8zd1": (["m01_boca_limpa"], 512, None),
+    "Gemini_Generated_Image_k5ne0wk5ne0wk5ne": (["m01_boca_espuma"], 512, None),
+    "Gemini_Generated_Image_t7s27lt7s27lt7s2": (["m01_prato"], 320, None),
+    "Gemini_Generated_Image_ry14i8ry14i8ry14": (["m05_mochila"], 320, None),
+    "Gemini_Generated_Image_njmxgxnjmxgxnjmx": (["acessorio_laco"], 256, None),
+    "Gemini_Generated_Image_q6mvumq6mvumq6mv": (["acessorio_bone"], 256, None),
+    # o par vermelho sai cortado em qualquer recorte: fica de fora
+    "Gemini_Generated_Image_pnlueqpnlueqpnlu": ([None, None], 256, ("grade", 1, 2)),
+    "Gemini_Generated_Image_v2skq3v2skq3v2sk": ([None, "acessorio_oculos"], 256, ("grade", 1, 2)),
+    "m12_carro": (
+        [None, None, "m12_cinto", "m12_clique", "m12_cadeirinha", "m12_fivela", None, None, None,
+         "m12_janela", "m12_janela_nao", "m12_macaneta", "m12_porta"],
+        256, None,
+    ),
+    "m13_almoco": (
+        ["m13_prato_cheio", "m13_prato_vazio", "m13_garfo", "m13_colher", "m13_suco", "m13_mesa",
+         "m13_brocolis", None, None, "m13_cadeira"],
+        256, None,
+    ),
+    "m15_brinquedos": (
+        ["m15_bola", "m15_carrinho", "m15_boneca", "m15_blocos", "m15_urso", "m15_trem", "m15_piao",
+         "m15_tambor"],
+        256, None,
+    ),
+    "m16_guardar": (
+        ["m16_caixa_cheia", "m16_bagunca", "m16_caixa_pelucia", "m16_caixa_blocos", "m16_tropecar",
+         "m16_estrela"],
+        256, None,
+    ),
+    "m17_ajudante_casa": (
+        ["m17_cesto", "m17_camiseta_suja", "m17_meia_suja", "m17_prato", "m17_copo", "m17_garfo",
+         "m17_colher", "m17_racao", "m17_potinho", "m17_osso"],
+        256, None,
+    ),
+    "m18_tela": (
+        ["m18_tablet_ligado", "m18_tablet_desligado", "m18_cronometro", "m18_relogio", "m18_pensando",
+         "m18_brincar", "m18_desligar"],
+        256, None,
+    ),
+    "m19_noite": (
+        ["m19_banheira", "m19_toalha", "m19_pijama", "m19_escova", "m19_livro_aberto", "m19_livro",
+         "m19_luz_acesa", "m19_luz_apagada", "m19_lua", "m19_estrelas", "m19_cama"],
+        256, None,
+    ),
+    "m20_medico_dentista": (
+        ["m20_estetoscopio", "m20_termometro", "m20_balanca", "m20_cadeira_dentista", None,
+         "m20_espelho_dentista", "m20_dente", "m20_sala_espera", "m20_estrela"],
+        256, None,
+    ),
     "m02_cama": (
         ["m02_cama_bagunca", "m02_cama_arrumada", "m02_lencol", "m02_cobertor", "m02_travesseiro"],
         320,
@@ -189,6 +244,10 @@ FOLHAS = {
 FOLHAS_OPACAS = {
     "mg1_pistas": (["pista_quintal", "pista_parque", "pista_praia"], 3, 1, 420),
     "mg2_cenario_escalada": (["bg_escalada"], 1, 1, 1280),
+    "mg3_corredor": (["bg_corredor"], 1, 1, 1280),
+    # cenas inteiras, sem fundo verde: viram carta do Pode ou Nao Pode
+    "Gemini_Generated_Image_4sgk7f4sgk7f4sgk": (["m01_pnp_certa"], 1, 1, 420),
+    "Gemini_Generated_Image_pt9umspt9umspt9u": (["m01_pnp_errada"], 1, 1, 420),
 }
 
 # Cenarios: viram JPG do tamanho da tela (nao tem fundo verde).

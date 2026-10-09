@@ -1,0 +1,118 @@
+{
+  "id": "17",
+  "mundo": 4,
+  "titulo": "Ajudante da casa",
+  "icone": "🧺",
+  "cenario": "bg_sala_almoco",
+  "narracao_intro": "{nome}, quer ser o ajudante da casa hoje?",
+  "audio_intro": "m17_intro",
+  "mostrar": {
+    "narracao": "Roupa suja no cesto, mesa posta e comida para o pet!",
+    "audio": "m17_mostrar",
+    "icone": "🧺"
+  },
+  "etapas": [
+    {
+      "tipo": "arrastar_para_alvo",
+      "narracao": "Leve a roupa suja para o cesto.",
+      "audio": "m17_e1",
+      "alvo": {
+        "icone": "🧺",
+        "img": "m17_cesto",
+        "x": 360,
+        "y": 930
+      },
+      "itens": [
+        {
+          "icone": "👕",
+          "img": "m17_camiseta_suja",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "icone": "🧦",
+          "img": "m17_meia_suja",
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "tipo": "arrastar_para_alvo",
+      "narracao": "Agora ponha a mesa.",
+      "audio": "m17_e2",
+      "alvo": {
+        "icone": "🍽️",
+        "img": "m13_mesa",
+        "x": 360,
+        "y": 930
+      },
+      "itens": [
+        {
+          "icone": "🍽️",
+          "img": "m17_prato",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "icone": "🥤",
+          "img": "m17_copo",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "icone": "🍴",
+          "img": "m17_garfo",
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "tipo": "arrastar_para_alvo",
+      "narracao": "E a comidinha do pet?",
+      "audio": "m17_e3",
+      "alvo": {
+        "icone": "🐕",
+        "img": "pet_cachorro",
+        "x": 360,
+        "y": 930
+      },
+      "itens": [
+        {
+          "icone": "🥫",
+          "img": "m17_racao",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "icone": "🦴",
+          "img": "m17_osso",
+          "x": 0,
+          "y": 0
+        }
+      ]
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🧺",
+      "img": "m17_cesto",
+      "texto": "Ajudar em casa"
+    },
+    "cena_errada": {
+      "icone": "👕",
+      "img": "m17_camiseta_suja",
+      "texto": "Jogar no chão"
+    },
+    "explicacao": "Quem ajuda deixa a casa boa para todo mundo!",
+    "audio": "m17_pnp"
+  },
+  "frase_reforco": "Ajudante da casa, orgulho da família!",
+  "audio_reforco": "m17_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

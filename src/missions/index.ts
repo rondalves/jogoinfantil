@@ -13,6 +13,10 @@ export const missoesDoMundo = (mundo: number) => MISSOES.filter((m) => m.mundo =
 
 export const missoesBonus = () => MISSOES.filter((m) => m.bonus);
 
+/** Terminou tudo: os cinco mundos e as missoes bonus. */
+export const jogoCompleto = (feitas: Record<string, number>) =>
+  MISSOES.length > 0 && MISSOES.every((m) => feitas[m.id]);
+
 export const mundoCompleto = (mundo: number, feitas: Record<string, number>) => {
   const ids = missoesDoMundo(mundo).map((m) => m.id);
   return ids.length > 0 && ids.every((id) => feitas[id]);

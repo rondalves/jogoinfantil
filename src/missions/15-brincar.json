@@ -1,0 +1,88 @@
+{
+  "id": "15",
+  "mundo": 4,
+  "titulo": "Brincar",
+  "icone": "🧸",
+  "cenario": "bg_quarto_brincar",
+  "narracao_intro": "Agora é hora de brincar, {nome}! Escolha o seu brinquedo.",
+  "audio_intro": "m15_intro",
+  "mostrar": {
+    "narracao": "Escolher um brinquedo, brincar bastante e dividir com um amigo!",
+    "audio": "m15_mostrar",
+    "icone": "🧸"
+  },
+  "etapas": [
+    {
+      "tipo": "tocar",
+      "narracao": "Toque nos brinquedos para escolher com o que brincar.",
+      "audio": "m15_e1",
+      "alvos": [
+        {
+          "icone": "⚽",
+          "img": "m15_bola",
+          "texto": "Bola",
+          "x": 170,
+          "y": 760
+        },
+        {
+          "icone": "🧸",
+          "img": "m15_urso",
+          "texto": "Ursinho",
+          "x": 360,
+          "y": 760
+        },
+        {
+          "icone": "🚂",
+          "img": "m15_trem",
+          "texto": "Trenzinho",
+          "x": 550,
+          "y": 760
+        }
+      ]
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "Um amigo chegou e quer brincar também. O que fazer?",
+      "audio": "m15_e2",
+      "itens": [
+        {
+          "icone": "🤝",
+          "img": "m10_dividir",
+          "texto": "Dividir o brinquedo",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "🏀",
+          "img": "m15_bola",
+          "texto": "Jogar o brinquedo nele",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "consequencia": "Brinquedo não se joga em ninguém. Dividir é mais divertido!"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🤝",
+      "img": "m10_dividir",
+      "texto": "Dividir o brinquedo"
+    },
+    "cena_errada": {
+      "icone": "🏀",
+      "img": "m15_bola",
+      "texto": "Jogar brinquedo nos outros"
+    },
+    "explicacao": "Brinquedo machuca se voar. Brincar junto é bem melhor!",
+    "audio": "m15_pnp"
+  },
+  "frase_reforco": "Brincar junto é muito melhor!",
+  "audio_reforco": "m15_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

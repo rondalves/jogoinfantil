@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Missões do Dia</string>
+    <string name="title_activity_main">Missões do Dia</string>
+    <string name="package_name">com.rotininha.missoesdodia</string>
+    <string name="custom_url_scheme">com.rotininha.missoesdodia</string>
+</resources>

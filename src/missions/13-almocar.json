@@ -1,0 +1,96 @@
+{
+  "id": "13",
+  "mundo": 4,
+  "titulo": "Almoçar",
+  "icone": "🍽️",
+  "cenario": "bg_sala_almoco",
+  "narracao_intro": "A comida está na mesa, {nome}! Vamos almoçar direitinho?",
+  "audio_intro": "m13_intro",
+  "mostrar": {
+    "narracao": "Lavar as mãos, sentar na cadeira, comer e agradecer!",
+    "audio": "m13_mostrar",
+    "icone": "🍽️"
+  },
+  "etapas": [
+    {
+      "tipo": "sequencia_ordenada",
+      "narracao": "Toque na ordem: lavar as mãos, sentar, comer e agradecer.",
+      "audio": "m13_e1",
+      "consequencia": "Esse vem depois. Tente outro!",
+      "itens": [
+        {
+          "icone": "✨",
+          "img": "m03_maos_limpas",
+          "texto": "Lavar as mãos",
+          "x": 170,
+          "y": 620
+        },
+        {
+          "icone": "🪑",
+          "img": "m13_cadeira",
+          "texto": "Sentar",
+          "x": 550,
+          "y": 620
+        },
+        {
+          "icone": "🍽️",
+          "img": "m13_prato_cheio",
+          "texto": "Comer",
+          "x": 170,
+          "y": 900
+        },
+        {
+          "icone": "🤗",
+          "img": "m13_prato_vazio",
+          "texto": "Agradecer",
+          "x": 550,
+          "y": 900
+        }
+      ]
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "Tem um legume novo no prato. O que fazer?",
+      "audio": "m13_e2",
+      "itens": [
+        {
+          "icone": "🥦",
+          "img": "m13_brocolis",
+          "texto": "Experimentar",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "🏃",
+          "img": "m13_cadeira",
+          "texto": "Sair correndo",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "consequencia": "Uma mordidinha só para conhecer. Se não gostar, tudo bem!"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🥦",
+      "img": "m13_brocolis",
+      "texto": "Experimentar comida nova"
+    },
+    "cena_errada": {
+      "icone": "🏃",
+      "img": "m13_cadeira",
+      "texto": "Levantar correndo"
+    },
+    "explicacao": "Na mesa a gente fica sentado até acabar. Experimentar é de gente corajosa!",
+    "audio": "m13_pnp"
+  },
+  "frase_reforco": "Prato limpo, barriga feliz!",
+  "audio_reforco": "m13_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

@@ -30,7 +30,20 @@ const LUGARES = [
 
 const PASSOS_POR_REGIAO = 4;
 
-function desenharBoca(cena: Phaser.Scene) {
+/** Usa a arte da boca quando existe; senao desenha uma. */
+function desenharBoca(cena: Phaser.Scene): Phaser.GameObjects.GameObject[] {
+  if (cena.textures.exists('m01_boca_suja')) {
+    const suja = cena.add.image(CENTRO_X, CENTRO_Y, 'm01_boca_suja');
+    suja.setScale(560 / suja.width);
+    const pecas: Phaser.GameObjects.GameObject[] = [suja];
+    if (cena.textures.exists('m01_boca_limpa')) {
+      const limpa = cena.add.image(CENTRO_X, CENTRO_Y, 'm01_boca_limpa').setAlpha(0);
+      limpa.setScale(560 / limpa.width);
+      limpa.setData('limpa', true);
+      pecas.push(limpa);
+    }
+    return pecas;
+  }
   const g = cena.add.graphics();
   // labios
   g.fillStyle(0xe0607a, 1);
@@ -48,7 +61,7 @@ function desenharBoca(cena: Phaser.Scene) {
     g.fillRoundedRect(x - 28, CENTRO_Y - 176, 56, 86, 14);
     g.fillRoundedRect(x - 28, CENTRO_Y + 66, 56, 80, 14);
   }
-  return g;
+  return [g];
 }
 
 /**
@@ -59,7 +72,9 @@ function desenharBoca(cena: Phaser.Scene) {
 export function escovar(c: Ctx, e: Etapa) {
   const regioes = e.regioes?.length ? e.regioes : PADRAO;
   const total = Math.min(regioes.length, LUGARES.length);
-  c.camada.add(desenharBoca(c.cena));
+  const boca = desenharBoca(c.cena);
+  c.camada.add(boca);
+  const bocaLimpa = boca.find((o) => o.getData?.('limpa')) as Phaser.GameObjects.Image | undefined;
 
   // placas de sujeira de cada regiao
   const sujeira: Phaser.GameObjects.Graphics[] = [];
@@ -115,6 +130,8 @@ export function escovar(c: Ctx, e: Etapa) {
     atual += 1;
     if (atual >= total) {
       rotulo.setText('Tudo limpinho!');
+      // o sorriso limpo aparece por cima da boca suja
+      if (bocaLimpa) c.cena.tweens.add({ targets: bocaLimpa, alpha: 1, duration: 500 });
       terminar();
       return;
     }

@@ -25,6 +25,14 @@ tut_4.mp3;As moedas viram fichas, e com as fichas você joga!;Tutorial, passo 4
 mg2_como_jogar.mp3;Toque no próximo degrau para subir. Se tiver pedra, toque de novo para pular!;Escalada, começo
 mg2_pedra.mp3;Tem uma pedra no caminho. Toque de novo para pular!;Escalada, ao achar uma pedra
 mg2_fim.mp3;Você chegou lá em cima! Que escalada!;Escalada, fim
+mg3_como_jogar.mp3;Corra e pegue as estrelinhas! Toque de um lado para desviar.;Corredor, começo
+mg3_fim.mp3;Que corrida boa! Olha quantas estrelas!;Corredor, fim
+mg4_como_jogar.mp3;Vire duas cartas e ache os pares iguais.;Memória, começo
+mg4_bolhas.mp3;Agora estoure todas as bolhas com o dedinho!;Memória, parte das bolhas
+mg4_fim.mp3;Que memória boa você tem!;Memória, fim
+mg5_como_jogar.mp3;As estrelas estão caindo devagarinho. Toque para pegar.;Céu das estrelas, começo
+mg5_fim.mp3;Que céu bonito! Agora é hora de descansar.;Céu das estrelas, fim
+medalha_final.mp3;Parabéns! Você cuidou do seu dia inteirinho. Você é o Super Ajudante do Dia!;Tela da medalha final
 letra_a.mp3;A;Teclado do nome
 letra_b.mp3;B;Teclado do nome
 letra_c.mp3;C;Teclado do nome
@@ -150,4 +158,86 @@ m11_erro3.mp3;Bater não faz a raiva passar. Falar faz!;Missao 11 - Monstro dos 
 m11_pnp.mp3;O que pode?;Missao 11 - Monstro dos sentimentos: pode ou nao pode
 m11_pnp_explica.mp3;Sentir raiva pode. Bater não pode. Respire e fale o que sentiu.;Missao 11 - Monstro dos sentimentos: explicacao do pode ou nao pode
 m11_reforco.mp3;Todo sentimento é normal. Eu sei o que fazer com ele.;Missao 11 - Monstro dos sentimentos: frase de reforco
+m12_intro.mp3;Fim da aula, {nome}! Vamos para casa com segurança?;Missao 12 - Voltar de carro: abertura
+m12_mostrar.mp3;Esperar o adulto abrir, sentar na cadeirinha e ouvir o clique do cinto!;Missao 12 - Voltar de carro: o personagem mostra
+m12_e1.mp3;Toque na ordem certa para entrar no carro.;Missao 12 - Voltar de carro: etapa 1 (sequencia_ordenada)
+m12_erro1.mp3;Ainda não é esse. Olhe de novo!;Missao 12 - Voltar de carro: etapa 1, quando erra
+m12_e2.mp3;O carro está andando e a janela está do seu lado. O que fazer?;Missao 12 - Voltar de carro: etapa 2 (escolher_entre_opcoes)
+m12_erro2.mp3;Janela é o adulto quem mexe. Fique sentadinho!;Missao 12 - Voltar de carro: etapa 2, quando erra
+m12_pnp.mp3;O que pode?;Missao 12 - Voltar de carro: pode ou nao pode
+m12_pnp_explica.mp3;O cinto segura você se o carro parar de repente. Ele fica até o fim da viagem!;Missao 12 - Voltar de carro: explicacao do pode ou nao pode
+m12_reforco.mp3;Cinto afivelado, viagem segura!;Missao 12 - Voltar de carro: frase de reforco
+m13_intro.mp3;A comida está na mesa, {nome}! Vamos almoçar direitinho?;Missao 13 - Almoçar: abertura
+m13_mostrar.mp3;Lavar as mãos, sentar na cadeira, comer e agradecer!;Missao 13 - Almoçar: o personagem mostra
+m13_e1.mp3;Toque na ordem: lavar as mãos, sentar, comer e agradecer.;Missao 13 - Almoçar: etapa 1 (sequencia_ordenada)
+m13_erro1.mp3;Esse vem depois. Tente outro!;Missao 13 - Almoçar: etapa 1, quando erra
+m13_e2.mp3;Tem um legume novo no prato. O que fazer?;Missao 13 - Almoçar: etapa 2 (escolher_entre_opcoes)
+m13_erro2.mp3;Uma mordidinha só para conhecer. Se não gostar, tudo bem!;Missao 13 - Almoçar: etapa 2, quando erra
+m13_pnp.mp3;O que pode?;Missao 13 - Almoçar: pode ou nao pode
+m13_pnp_explica.mp3;Na mesa a gente fica sentado até acabar. Experimentar é de gente corajosa!;Missao 13 - Almoçar: explicacao do pode ou nao pode
+m13_reforco.mp3;Prato limpo, barriga feliz!;Missao 13 - Almoçar: frase de reforco
+m14_intro.mp3;Hora da lição, {nome}. Vamos fazer com calma?;Missao 14 - Lição de casa: abertura
+m14_mostrar.mp3;Guardar a tela, sentar, fazer a tarefa e pedir ajuda se travar.;Missao 14 - Lição de casa: o personagem mostra
+m14_e1.mp3;Toque na ordem: guardar a tela, sentar, fazer a tarefa, pedir ajuda.;Missao 14 - Lição de casa: etapa 1 (sequencia_ordenada)
+m14_erro1.mp3;Calma, esse vem depois!;Missao 14 - Lição de casa: etapa 1, quando erra
+m14_e2.mp3;Travou numa continha difícil. O que fazer?;Missao 14 - Lição de casa: etapa 2 (escolher_entre_opcoes)
+m14_erro2.mp3;Pedir ajuda não é desistir. É jeito de aprender!;Missao 14 - Lição de casa: etapa 2, quando erra
+m14_pnp.mp3;O que pode?;Missao 14 - Lição de casa: pode ou nao pode
+m14_pnp_explica.mp3;Primeiro a lição, depois a diversão. E ajuda a gente sempre pode pedir!;Missao 14 - Lição de casa: explicacao do pode ou nao pode
+m14_reforco.mp3;Tarefa feita, cabeça leve!;Missao 14 - Lição de casa: frase de reforco
+m15_intro.mp3;Agora é hora de brincar, {nome}! Escolha o seu brinquedo.;Missao 15 - Brincar: abertura
+m15_mostrar.mp3;Escolher um brinquedo, brincar bastante e dividir com um amigo!;Missao 15 - Brincar: o personagem mostra
+m15_e1.mp3;Toque nos brinquedos para escolher com o que brincar.;Missao 15 - Brincar: etapa 1 (tocar)
+m15_e2.mp3;Um amigo chegou e quer brincar também. O que fazer?;Missao 15 - Brincar: etapa 2 (escolher_entre_opcoes)
+m15_erro2.mp3;Brinquedo não se joga em ninguém. Dividir é mais divertido!;Missao 15 - Brincar: etapa 2, quando erra
+m15_pnp.mp3;O que pode?;Missao 15 - Brincar: pode ou nao pode
+m15_pnp_explica.mp3;Brinquedo machuca se voar. Brincar junto é bem melhor!;Missao 15 - Brincar: explicacao do pode ou nao pode
+m15_reforco.mp3;Brincar junto é muito melhor!;Missao 15 - Brincar: frase de reforco
+m16_intro.mp3;Olha a bagunça, {nome}! Vamos guardar tudo?;Missao 16 - Guardar os brinquedos: abertura
+m16_mostrar.mp3;Cada brinquedo tem a sua caixa. E depois a gente procura os que sobraram!;Missao 16 - Guardar os brinquedos: o personagem mostra
+m16_e1.mp3;Leve cada brinquedo para a caixa.;Missao 16 - Guardar os brinquedos: etapa 1 (arrastar_para_alvo)
+m16_e2.mp3;Procure os que ficaram no chão e toque neles.;Missao 16 - Guardar os brinquedos: etapa 2 (tocar)
+m16_pnp.mp3;O que pode?;Missao 16 - Guardar os brinquedos: pode ou nao pode
+m16_pnp_explica.mp3;Brinquedo no chão faz a gente tropeçar. Guardado, ninguém se machuca!;Missao 16 - Guardar os brinquedos: explicacao do pode ou nao pode
+m16_reforco.mp3;Tudo no lugar, ninguém tropeça!;Missao 16 - Guardar os brinquedos: frase de reforco
+m17_intro.mp3;{nome}, quer ser o ajudante da casa hoje?;Missao 17 - Ajudante da casa: abertura
+m17_mostrar.mp3;Roupa suja no cesto, mesa posta e comida para o pet!;Missao 17 - Ajudante da casa: o personagem mostra
+m17_e1.mp3;Leve a roupa suja para o cesto.;Missao 17 - Ajudante da casa: etapa 1 (arrastar_para_alvo)
+m17_e2.mp3;Agora ponha a mesa.;Missao 17 - Ajudante da casa: etapa 2 (arrastar_para_alvo)
+m17_e3.mp3;E a comidinha do pet?;Missao 17 - Ajudante da casa: etapa 3 (arrastar_para_alvo)
+m17_pnp.mp3;O que pode?;Missao 17 - Ajudante da casa: pode ou nao pode
+m17_pnp_explica.mp3;Quem ajuda deixa a casa boa para todo mundo!;Missao 17 - Ajudante da casa: explicacao do pode ou nao pode
+m17_reforco.mp3;Ajudante da casa, orgulho da família!;Missao 17 - Ajudante da casa: frase de reforco
+m18_intro.mp3;{nome}, a tela tem hora de começar e hora de acabar.;Missao 18 - Tela com limite: abertura
+m18_mostrar.mp3;Escolher o tempo, assistir, e desligar quando o tempo acabar.;Missao 18 - Tela com limite: o personagem mostra
+m18_e1.mp3;Segure o cronômetro: ele marca o tempo da tela.;Missao 18 - Tela com limite: etapa 1 (segurar_com_timer)
+m18_erro1.mp3;Segure mais um pouquinho, o tempo ainda está correndo!;Missao 18 - Tela com limite: etapa 1, quando erra
+m18_e2.mp3;O tempo acabou. O que fazer?;Missao 18 - Tela com limite: etapa 2 (escolher_entre_opcoes)
+m18_erro2.mp3;Combinado é combinado. Desligar na hora é de gente grande!;Missao 18 - Tela com limite: etapa 2, quando erra
+m18_pnp.mp3;O que pode?;Missao 18 - Tela com limite: pode ou nao pode
+m18_pnp_explica.mp3;Depois da tela vem a brincadeira. O corpo também quer se mexer!;Missao 18 - Tela com limite: explicacao do pode ou nao pode
+m18_reforco.mp3;Desliguei na hora, sou dono do meu tempo!;Missao 18 - Tela com limite: frase de reforco
+m19_intro.mp3;O dia acabou, {nome}. Vamos se arrumar para dormir?;Missao 19 - Banho, dentes e sono: abertura
+m19_mostrar.mp3;Banho, pijama, escovar os dentes, uma história e a luz apagada.;Missao 19 - Banho, dentes e sono: o personagem mostra
+m19_e1.mp3;Toque na ordem da hora de dormir.;Missao 19 - Banho, dentes e sono: etapa 1 (sequencia_ordenada)
+m19_erro1.mp3;Ainda não! Esse vem depois.;Missao 19 - Banho, dentes e sono: etapa 1, quando erra
+m19_e2.mp3;Antes de dormir, escovação caprichada!;Missao 19 - Banho, dentes e sono: etapa 2 (escovar)
+m19_escovar1.mp3;Em cima, deste lado;Missao 19 - Banho, dentes e sono: etapa 2, escovacao guiada
+m19_escovar2.mp3;Em cima, do outro lado;Missao 19 - Banho, dentes e sono: etapa 2, escovacao guiada
+m19_escovar3.mp3;Embaixo, deste lado;Missao 19 - Banho, dentes e sono: etapa 2, escovacao guiada
+m19_escovar4.mp3;Embaixo, do outro lado;Missao 19 - Banho, dentes e sono: etapa 2, escovacao guiada
+m19_e3.mp3;Agora respire fundo três vezes para o sono chegar.;Missao 19 - Banho, dentes e sono: etapa 3 (respirar)
+m19_pnp.mp3;O que pode?;Missao 19 - Banho, dentes e sono: pode ou nao pode
+m19_pnp_explica.mp3;A tela acende o olho e o sono foge. História é bem melhor!;Missao 19 - Banho, dentes e sono: explicacao do pode ou nao pode
+m19_reforco.mp3;Dia cumprido, bons sonhos!;Missao 19 - Banho, dentes e sono: frase de reforco
+m20_intro.mp3;Hoje é dia de consulta, {nome}. Não precisa ter medo: eu vou junto!;Missao 20 - Dia do doutor e do dentista: abertura
+m20_mostrar.mp3;Esperar a vez, abrir a boca e contar onde dói. Só isso!;Missao 20 - Dia do doutor e do dentista: o personagem mostra
+m20_e1.mp3;Primeiro, esperar a sua vez na sala de espera.;Missao 20 - Dia do doutor e do dentista: etapa 1 (segurar_com_timer)
+m20_erro1.mp3;Já está quase! Respire e espere mais um pouquinho.;Missao 20 - Dia do doutor e do dentista: etapa 1, quando erra
+m20_e2.mp3;Toque no que o doutor usa para te cuidar.;Missao 20 - Dia do doutor e do dentista: etapa 2 (tocar)
+m20_e3.mp3;O dentista pediu para abrir a boca. O que fazer?;Missao 20 - Dia do doutor e do dentista: etapa 3 (escolher_entre_opcoes)
+m20_erro3.mp3;Dá para ter medo e mesmo assim abrir a boca. Eu estou aqui com você!;Missao 20 - Dia do doutor e do dentista: etapa 3, quando erra
+m20_pnp.mp3;O que pode?;Missao 20 - Dia do doutor e do dentista: pode ou nao pode
+m20_pnp_explica.mp3;Quem conta onde dói ajuda o doutor a cuidar mais rápido!;Missao 20 - Dia do doutor e do dentista: explicacao do pode ou nao pode
+m20_reforco.mp3;Fui corajoso no doutor!;Missao 20 - Dia do doutor e do dentista: frase de reforco
 musica_timer.mp3;(musica instrumental de 30 s em loop);Timer da escovacao e da lavagem das maos

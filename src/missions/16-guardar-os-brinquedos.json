@@ -1,0 +1,102 @@
+{
+  "id": "16",
+  "mundo": 4,
+  "titulo": "Guardar os brinquedos",
+  "icone": "📦",
+  "cenario": "bg_quarto_brincar",
+  "narracao_intro": "Olha a bagunça, {nome}! Vamos guardar tudo?",
+  "audio_intro": "m16_intro",
+  "mostrar": {
+    "narracao": "Cada brinquedo tem a sua caixa. E depois a gente procura os que sobraram!",
+    "audio": "m16_mostrar",
+    "icone": "📦"
+  },
+  "etapas": [
+    {
+      "tipo": "arrastar_para_alvo",
+      "narracao": "Leve cada brinquedo para a caixa.",
+      "audio": "m16_e1",
+      "alvo": {
+        "icone": "📦",
+        "img": "m16_caixa_blocos",
+        "x": 360,
+        "y": 930
+      },
+      "itens": [
+        {
+          "icone": "⚽",
+          "img": "m15_bola",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "icone": "🧸",
+          "img": "m15_urso",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "icone": "🚂",
+          "img": "m15_trem",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "icone": "🪆",
+          "img": "m15_boneca",
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "tipo": "tocar",
+      "narracao": "Procure os que ficaram no chão e toque neles.",
+      "audio": "m16_e2",
+      "alvos": [
+        {
+          "icone": "🚢",
+          "img": "m15_carrinho",
+          "texto": "Carrinho",
+          "x": 170,
+          "y": 760
+        },
+        {
+          "icone": "🪘",
+          "img": "m15_tambor",
+          "texto": "Tambor",
+          "x": 360,
+          "y": 760
+        },
+        {
+          "icone": "🌀",
+          "img": "m15_piao",
+          "texto": "Pião",
+          "x": 550,
+          "y": 760
+        }
+      ]
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "📦",
+      "img": "m16_caixa_pelucia",
+      "texto": "Guardar tudo"
+    },
+    "cena_errada": {
+      "icone": "🙃",
+      "img": "m16_tropecar",
+      "texto": "Deixar no chão"
+    },
+    "explicacao": "Brinquedo no chão faz a gente tropeçar. Guardado, ninguém se machuca!",
+    "audio": "m16_pnp"
+  },
+  "frase_reforco": "Tudo no lugar, ninguém tropeça!",
+  "audio_reforco": "m16_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

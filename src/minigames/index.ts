@@ -1,8 +1,11 @@
 import type Phaser from 'phaser';
 import type { Chave } from '../narracoes';
 import type { PersonagemCfg } from '../storage';
+import { corredor } from './corredor';
 import { corrida } from './corrida';
 import { escalada } from './escalada';
+import { estrelas } from './estrelas';
+import { memoria } from './memoria';
 
 export interface ResultadoMiniGame {
   /** pontos da partida (nunca ha derrota nem game over) */
@@ -27,8 +30,7 @@ export interface MiniGame {
   iniciar(cena: Phaser.Scene, personagem: PersonagemCfg, dificuldade: number): Promise<ResultadoMiniGame>;
 }
 
-// A fazer: corredor (mundo 3), quebra-cabeca (4), ceu das estrelas (5).
-export const MINIGAMES: MiniGame[] = [corrida, escalada];
+export const MINIGAMES: MiniGame[] = [corrida, escalada, corredor, memoria, estrelas];
 
 export const miniGameDoMundo = (mundo: number) => MINIGAMES.find((g) => g.mundo === mundo);
 

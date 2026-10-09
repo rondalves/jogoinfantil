@@ -1,0 +1,102 @@
+{
+  "id": "20",
+  "mundo": 5,
+  "bonus": true,
+  "titulo": "Dia do doutor e do dentista",
+  "icone": "🩺",
+  "cenario": "bg_consultorio",
+  "narracao_intro": "Hoje é dia de consulta, {nome}. Não precisa ter medo: eu vou junto!",
+  "audio_intro": "m20_intro",
+  "mostrar": {
+    "narracao": "Esperar a vez, abrir a boca e contar onde dói. Só isso!",
+    "audio": "m20_mostrar",
+    "icone": "🩺"
+  },
+  "etapas": [
+    {
+      "tipo": "segurar_com_timer",
+      "narracao": "Primeiro, esperar a sua vez na sala de espera.",
+      "audio": "m20_e1",
+      "segundos": 12,
+      "consequencia": "Já está quase! Respire e espere mais um pouquinho.",
+      "alvo": {
+        "icone": "🪑",
+        "img": "m20_sala_espera",
+        "x": 360,
+        "y": 820
+      }
+    },
+    {
+      "tipo": "tocar",
+      "narracao": "Toque no que o doutor usa para te cuidar.",
+      "audio": "m20_e2",
+      "alvos": [
+        {
+          "icone": "🩺",
+          "img": "m20_estetoscopio",
+          "texto": "Escutar o coração",
+          "x": 170,
+          "y": 760
+        },
+        {
+          "icone": "🌡️",
+          "img": "m20_termometro",
+          "texto": "Ver a febre",
+          "x": 360,
+          "y": 760
+        },
+        {
+          "icone": "⚖️",
+          "img": "m20_balanca",
+          "texto": "Ver o tamanho",
+          "x": 550,
+          "y": 760
+        }
+      ]
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "O dentista pediu para abrir a boca. O que fazer?",
+      "audio": "m20_e3",
+      "itens": [
+        {
+          "icone": "🦷",
+          "img": "m20_dente",
+          "texto": "Abrir bem a boca",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "😨",
+          "img": "m11_medo",
+          "texto": "Fechar e esconder",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "consequencia": "Dá para ter medo e mesmo assim abrir a boca. Eu estou aqui com você!"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🗣️",
+      "img": "m20_dente",
+      "texto": "Contar onde dói"
+    },
+    "cena_errada": {
+      "icone": "😨",
+      "img": "m11_medo",
+      "texto": "Não falar nada"
+    },
+    "explicacao": "Quem conta onde dói ajuda o doutor a cuidar mais rápido!",
+    "audio": "m20_pnp"
+  },
+  "frase_reforco": "Fui corajoso no doutor!",
+  "audio_reforco": "m20_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

@@ -9,12 +9,20 @@
     "preview": "vite preview --host",
     "test": "vitest run",
     "assets": "python tools/preparar_assets.py",
-    "narracao": "python tools/gerar_narracao.py"
+    "narracao": "python tools/gerar_narracao.py",
+    "android:sync": "vite build && cap sync android",
+    "android:build": "npm run android:sync && cd android && gradlew.bat bundleRelease",
+    "android:apk": "npm run android:sync && cd android && gradlew.bat assembleRelease",
+    "android:abrir": "npm run android:sync && cap open android"
   },
   "dependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/cli": "^8.5.3",
+    "@capacitor/core": "^8.5.3",
     "phaser": "^3.90.0"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
     "typescript": "^5.6.3",
     "vite": "^6.0.7",
     "vitest": "^2.1.8"

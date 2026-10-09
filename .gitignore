@@ -3,3 +3,13 @@ dist
 .DS_Store
 *.local
 tools/_fatias
+keystore.properties
+*.jks
+*.keystore
+android/.gradle
+android/app/build
+android/build
+android/local.properties
+android/app/src/main/assets/public
+android/app/src/main/assets/capacitor*
+assets-loja

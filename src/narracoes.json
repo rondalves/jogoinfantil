@@ -102,5 +102,37 @@
   "mg2_fim": {
     "texto": "Você chegou lá em cima! Que escalada!",
     "local": "Escalada, fim"
+  },
+  "mg3_como_jogar": {
+    "texto": "Corra e pegue as estrelinhas! Toque de um lado para desviar.",
+    "local": "Corredor, começo"
+  },
+  "mg3_fim": {
+    "texto": "Que corrida boa! Olha quantas estrelas!",
+    "local": "Corredor, fim"
+  },
+  "mg4_como_jogar": {
+    "texto": "Vire duas cartas e ache os pares iguais.",
+    "local": "Memória, começo"
+  },
+  "mg4_bolhas": {
+    "texto": "Agora estoure todas as bolhas com o dedinho!",
+    "local": "Memória, parte das bolhas"
+  },
+  "mg4_fim": {
+    "texto": "Que memória boa você tem!",
+    "local": "Memória, fim"
+  },
+  "mg5_como_jogar": {
+    "texto": "As estrelas estão caindo devagarinho. Toque para pegar.",
+    "local": "Céu das estrelas, começo"
+  },
+  "mg5_fim": {
+    "texto": "Que céu bonito! Agora é hora de descansar.",
+    "local": "Céu das estrelas, fim"
+  },
+  "medalha_final": {
+    "texto": "Parabéns! Você cuidou do seu dia inteirinho. Você é o Super Ajudante do Dia!",
+    "local": "Tela da medalha final"
   }
 }

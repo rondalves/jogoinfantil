@@ -1,0 +1,96 @@
+{
+  "id": "12",
+  "mundo": 3,
+  "titulo": "Voltar de carro",
+  "icone": "🚗",
+  "cenario": "bg_carro_interior",
+  "narracao_intro": "Fim da aula, {nome}! Vamos para casa com segurança?",
+  "audio_intro": "m12_intro",
+  "mostrar": {
+    "narracao": "Esperar o adulto abrir, sentar na cadeirinha e ouvir o clique do cinto!",
+    "audio": "m12_mostrar",
+    "icone": "🚗"
+  },
+  "etapas": [
+    {
+      "tipo": "sequencia_ordenada",
+      "narracao": "Toque na ordem certa para entrar no carro.",
+      "audio": "m12_e1",
+      "consequencia": "Ainda não é esse. Olhe de novo!",
+      "itens": [
+        {
+          "icone": "🚪",
+          "img": "m12_macaneta",
+          "texto": "Esperar o adulto",
+          "x": 170,
+          "y": 620
+        },
+        {
+          "icone": "🪑",
+          "img": "m12_cadeirinha",
+          "texto": "Sentar na cadeirinha",
+          "x": 550,
+          "y": 620
+        },
+        {
+          "icone": "🔗",
+          "img": "m12_cinto",
+          "texto": "Passar o cinto",
+          "x": 170,
+          "y": 900
+        },
+        {
+          "icone": "✨",
+          "img": "m12_clique",
+          "texto": "Ouvir o clique",
+          "x": 550,
+          "y": 900
+        }
+      ]
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "O carro está andando e a janela está do seu lado. O que fazer?",
+      "audio": "m12_e2",
+      "itens": [
+        {
+          "icone": "🙌",
+          "img": "m12_janela_nao",
+          "texto": "Deixar a janela quieta",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "🪟",
+          "img": "m12_janela",
+          "texto": "Mexer na janela",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "consequencia": "Janela é o adulto quem mexe. Fique sentadinho!"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "✨",
+      "img": "m12_clique",
+      "texto": "Cinto afivelado"
+    },
+    "cena_errada": {
+      "icone": "🔗",
+      "img": "m12_cinto",
+      "texto": "Tirar o cinto andando"
+    },
+    "explicacao": "O cinto segura você se o carro parar de repente. Ele fica até o fim da viagem!",
+    "audio": "m12_pnp"
+  },
+  "frase_reforco": "Cinto afivelado, viagem segura!",
+  "audio_reforco": "m12_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

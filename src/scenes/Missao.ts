@@ -3,7 +3,7 @@ import { carregar } from '../assets';
 import { CONFIG } from '../config';
 import { bonusMundo, concluirMissao, gastarFicha, podeJogar } from '../economia';
 import { miniGameDoMundo } from '../minigames';
-import { MISSOES, missaoPorId, missoesDoMundo } from '../missions';
+import { jogoCompleto, MISSOES, missaoPorId, missoesDoMundo } from '../missions';
 import { narrador } from '../narrador';
 import { fale } from '../narracoes';
 import { desenharPersonagem } from '../personagem';
@@ -301,6 +301,16 @@ export class Missao extends Phaser.Scene {
   }
 
   private botoesFinais() {
+    if (jogoCompleto(this.perfil.missoes)) {
+      this.camada.add(
+        botao(this, W / 2, 1120, 'Minha medalha!', () => irPara(this, 'Medalha'), {
+          icone: '\u{1F3C5}',
+          cor: 0x9cbfa6,
+          largura: 460,
+        }),
+      );
+      return;
+    }
     const jogo = miniGameDoMundo(this.def.mundo);
     const liberado = jogo && this.perfil.broches.includes(this.def.mundo);
     if (!liberado) {

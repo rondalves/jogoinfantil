@@ -1,0 +1,73 @@
+{
+  "id": "18",
+  "mundo": 4,
+  "titulo": "Tela com limite",
+  "icone": "⏱️",
+  "cenario": "bg_quarto_brincar",
+  "narracao_intro": "{nome}, a tela tem hora de começar e hora de acabar.",
+  "audio_intro": "m18_intro",
+  "mostrar": {
+    "narracao": "Escolher o tempo, assistir, e desligar quando o tempo acabar.",
+    "audio": "m18_mostrar",
+    "icone": "⏱️"
+  },
+  "etapas": [
+    {
+      "tipo": "segurar_com_timer",
+      "narracao": "Segure o cronômetro: ele marca o tempo da tela.",
+      "audio": "m18_e1",
+      "segundos": 12,
+      "consequencia": "Segure mais um pouquinho, o tempo ainda está correndo!",
+      "alvo": {
+        "icone": "⏱️",
+        "img": "m18_cronometro",
+        "x": 360,
+        "y": 820
+      }
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "O tempo acabou. O que fazer?",
+      "audio": "m18_e2",
+      "itens": [
+        {
+          "icone": "🔴",
+          "img": "m18_desligar",
+          "texto": "Desligar na hora",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "📱",
+          "img": "m18_tablet_ligado",
+          "texto": "Só mais 5 minutinhos",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "consequencia": "Combinado é combinado. Desligar na hora é de gente grande!"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "⚽",
+      "img": "m18_brincar",
+      "texto": "Trocar por uma brincadeira"
+    },
+    "cena_errada": {
+      "icone": "📱",
+      "img": "m18_tablet_ligado",
+      "texto": "Só mais 5 minutos"
+    },
+    "explicacao": "Depois da tela vem a brincadeira. O corpo também quer se mexer!",
+    "audio": "m18_pnp"
+  },
+  "frase_reforco": "Desliguei na hora, sou dono do meu tempo!",
+  "audio_reforco": "m18_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

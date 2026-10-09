@@ -1,0 +1,96 @@
+{
+  "id": "14",
+  "mundo": 4,
+  "titulo": "Lição de casa",
+  "icone": "📝",
+  "cenario": "bg_quarto_brincar",
+  "narracao_intro": "Hora da lição, {nome}. Vamos fazer com calma?",
+  "audio_intro": "m14_intro",
+  "mostrar": {
+    "narracao": "Guardar a tela, sentar, fazer a tarefa e pedir ajuda se travar.",
+    "audio": "m14_mostrar",
+    "icone": "📝"
+  },
+  "etapas": [
+    {
+      "tipo": "sequencia_ordenada",
+      "narracao": "Toque na ordem: guardar a tela, sentar, fazer a tarefa, pedir ajuda.",
+      "audio": "m14_e1",
+      "consequencia": "Calma, esse vem depois!",
+      "itens": [
+        {
+          "icone": "📵",
+          "img": "m18_tablet_desligado",
+          "texto": "Guardar a tela",
+          "x": 170,
+          "y": 620
+        },
+        {
+          "icone": "🪑",
+          "img": "m07_carteira",
+          "texto": "Sentar",
+          "x": 550,
+          "y": 620
+        },
+        {
+          "icone": "✏️",
+          "img": "m07_atividade",
+          "texto": "Fazer a tarefa",
+          "x": 170,
+          "y": 900
+        },
+        {
+          "icone": "✋",
+          "img": "m07_mao_levantada",
+          "texto": "Pedir ajuda",
+          "x": 550,
+          "y": 900
+        }
+      ]
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "Travou numa continha difícil. O que fazer?",
+      "audio": "m14_e2",
+      "itens": [
+        {
+          "icone": "🙋",
+          "img": "adulto",
+          "texto": "Pedir ajuda",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "😢",
+          "img": "m11_triste",
+          "texto": "Desistir",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "consequencia": "Pedir ajuda não é desistir. É jeito de aprender!"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🙋",
+      "img": "adulto",
+      "texto": "Pedir ajuda"
+    },
+    "cena_errada": {
+      "icone": "📱",
+      "img": "m18_tablet_ligado",
+      "texto": "Ficar na tela"
+    },
+    "explicacao": "Primeiro a lição, depois a diversão. E ajuda a gente sempre pode pedir!",
+    "audio": "m14_pnp"
+  },
+  "frase_reforco": "Tarefa feita, cabeça leve!",
+  "audio_reforco": "m14_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

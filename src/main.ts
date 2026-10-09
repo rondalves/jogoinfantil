@@ -4,6 +4,7 @@ import { CONFIG } from './config';
 import { Boot } from './scenes/Boot';
 import { Criador } from './scenes/Criador';
 import { Mapa } from './scenes/Mapa';
+import { Medalha } from './scenes/Medalha';
 import { MiniGame } from './scenes/MiniGame';
 import { Missao } from './scenes/Missao';
 import { Pais } from './scenes/Pais';
@@ -27,6 +28,6 @@ carregarFonte().then(() => {
     },
     render: { antialias: true, powerPreference: 'low-power', roundPixels: true },
     input: { activePointers: 2 },
-    scene: [Boot, Perfis, Criador, Tutorial, Mapa, Missao, MiniGame, Pais],
+    scene: [Boot, Perfis, Criador, Tutorial, Mapa, Missao, MiniGame, Medalha, Pais],
   });
 });
