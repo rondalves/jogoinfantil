@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { comprar, lojaDisponivel, PRECO, restaurar, temTudo } from '../compras';
 import { CONFIG } from '../config';
 import { estrelasTotais, partidasHoje } from '../economia';
 import { MISSOES } from '../missions';
@@ -75,18 +76,19 @@ export class Pais extends Phaser.Scene {
       `Broches de mundo: ${this.p.broches.length} de 5`,
       `Partidas hoje: ${partidasHoje(this.p)} de ${this.p.limiteDiario}`,
     ];
+    this.mundosCompletos();
     this.add
-      .text(60, 290, linhas.join('\n'), { fontSize: '34px', color: '#2b3a4a', lineSpacing: 12 })
+      .text(60, 350, linhas.join('\n'), { fontSize: '30px', color: '#2b3a4a', lineSpacing: 10 })
       .setOrigin(0, 0);
 
     const nomeVoz = () => (this.p.voz === 'm' ? 'masculina' : 'feminina');
     const vozRotulo = this.add
-      .text(W / 2, 680, `Voz do narrador: ${nomeVoz()}`, { fontSize: '36px', color: '#2b3a4a' })
+      .text(W / 2, 672, `Voz do narrador: ${nomeVoz()}`, { fontSize: '36px', color: '#2b3a4a' })
       .setOrigin(0.5);
     botao(
       this,
       W / 2,
-      770,
+      756,
       'Trocar a voz',
       () => {
         this.p.voz = this.p.voz === 'm' ? 'f' : 'm';
@@ -99,33 +101,74 @@ export class Pais extends Phaser.Scene {
     );
 
     const rotulo = this.add
-      .text(W / 2, 870, `Limite diário: ${this.p.limiteDiario} partidas`, { fontSize: '36px', color: '#2b3a4a' })
+      .text(W / 2, 852, `Limite diário: ${this.p.limiteDiario} partidas`, { fontSize: '36px', color: '#2b3a4a' })
       .setOrigin(0.5);
     const muda = (d: number) => {
       this.p.limiteDiario = Phaser.Math.Clamp(this.p.limiteDiario + d, 0, 20);
       salvar(this.p);
       rotulo.setText(`Limite diário: ${this.p.limiteDiario} partidas`);
     };
-    botao(this, W / 2 - 150, 965, '-1', () => muda(-1), { largura: 200, cor: 0xbfd4e8 });
-    botao(this, W / 2 + 150, 965, '+1', () => muda(1), { largura: 200, cor: 0xbfd4e8 });
+    botao(this, W / 2 - 150, 942, '-1', () => muda(-1), { largura: 200, cor: 0xbfd4e8 });
+    botao(this, W / 2 + 150, 942, '+1', () => muda(1), { largura: 200, cor: 0xbfd4e8 });
     this.add
-      .text(W / 2, 1040, `Padrão: ${CONFIG.PARTIDAS_POR_DIA} por dia. 0 desliga os mini games.`, {
+      .text(W / 2, 1016, `Padrão: ${CONFIG.PARTIDAS_POR_DIA} por dia. 0 desliga os mini games.`, {
         fontSize: '28px',
         color: '#6b7a8a',
       })
       .setOrigin(0.5);
 
-    botao(this, W / 2, 1120, 'Zerar progresso', () => this.confirmar('zerar'), { largura: 520, cor: 0xffb0a0 });
-    botao(this, W / 2 - 185, 1228, 'Apagar perfil', () => this.confirmar('apagar'), { largura: 330, cor: 0xff8f7a });
+    botao(this, W / 2, 1090, 'Zerar progresso', () => this.confirmar('zerar'), { largura: 520, cor: 0xffb0a0 });
+    botao(this, W / 2 - 185, 1205, 'Apagar perfil', () => this.confirmar('apagar'), { largura: 330, cor: 0xff8f7a });
 
     const link = this.add
-      .text(W / 2 + 185, 1228, 'Privacidade', {
+      .text(W / 2 + 185, 1205, 'Privacidade', {
         fontSize: '30px',
         color: '#1f6fb2',
         fontStyle: 'bold',
       })
       .setOrigin(0.5);
     toque(link, () => window.open(CONFIG.URL_PRIVACIDADE, '_blank', 'noopener'));
+  }
+
+  /**
+   * A compra unica que abre os mundos de cima. Fica aqui dentro de proposito:
+   * preco e botao de comprar nao aparecem para a crianca em lugar nenhum.
+   */
+  private mundosCompletos() {
+    if (temTudo()) {
+      this.add
+        .text(W / 2, 265, '\u{2705} Mundos completos liberados', {
+          fontSize: '34px',
+          color: '#3f7a52',
+          fontStyle: 'bold',
+        })
+        .setOrigin(0.5);
+      return;
+    }
+    const recado = this.add
+      .text(W / 2, 344, '', { fontSize: '26px', color: '#b5564a', align: 'center' })
+      .setOrigin(0.5);
+    const tentar = async (fn: () => Promise<boolean>, falhou: string) => {
+      if (!lojaDisponivel()) {
+        recado.setText('A compra abre no aplicativo instalado pela Play Store.');
+        return;
+      }
+      recado.setText('Abrindo a loja...');
+      recado.setText((await fn()) ? '' : falhou);
+      if (temTudo()) irPara(this, 'Pais');
+    };
+    botao(
+      this,
+      W / 2,
+      248,
+      `Abrir todos os mundos — ${PRECO}`,
+      () => void tentar(comprar, 'Não deu para concluir a compra.'),
+      { largura: 600, cor: TEMA.sim, tamanhoTexto: 32 },
+    );
+    const link = this.add
+      .text(W / 2, 318, 'Já comprei, restaurar', { fontSize: '26px', color: '#1f6fb2' })
+      .setOrigin(0.5);
+    toque(link, () => void tentar(restaurar, 'Não achei uma compra nesta conta.'));
   }
 
   private confirmar(acao: 'zerar' | 'apagar') {

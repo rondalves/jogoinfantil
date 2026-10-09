@@ -45,7 +45,7 @@ Mesmo padrão das outras: **fundo verde chapado**, cartoon, sem texto na imagem.
 | `acessorio_capa` | capa de herói |
 | `acessorio_medalha` | medalha de pescoço |
 | `icone_app` | 1024x1024, **fundo opaco**, sem texto — ícone da loja |
-| `logo` | logotipo "Missões do Dia", fundo transparente |
+| `logo` | logotipo "Rotininha", fundo transparente |
 
 Acessórios e peças soltas podem vir várias numa folha só: o script separa
 sozinho. Para conferir a ordem antes de dar nome:

@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { darVida } from '../animacoes';
 import { CONFIG, MUNDOS } from '../config';
 import { estrelasTotais } from '../economia';
 import { MISSOES } from '../missions';
@@ -40,7 +41,7 @@ export class Medalha extends Phaser.Scene {
     });
     confete(this, 120);
 
-    desenharPersonagem(this, this.p.personagem, 0.32).setPosition(104, 1070);
+    darVida(this, desenharPersonagem(this, this.p.personagem, 0.32).setPosition(104, 1070));
 
     const feitas = Object.keys(this.p.missoes).length;
     const resumo = [

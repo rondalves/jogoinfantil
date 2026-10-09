@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { ANIMACOES, ARTE_ANIMACAO, darVida } from '../animacoes';
 import { carregar } from '../assets';
 import { CONFIG } from '../config';
 import { bonusMundo, concluirMissao, gastarFicha, podeJogar } from '../economia';
@@ -70,6 +71,7 @@ export class Missao extends Phaser.Scene {
     return [
       ...boca,
       d.cenario,
+      ...(ARTE_ANIMACAO[d.pode_ou_nao_pode.animacao ?? ''] ?? []),
       d.pode_ou_nao_pode.cena_certa.img,
       d.pode_ou_nao_pode.cena_certa.imgCena,
       d.pode_ou_nao_pode.cena_errada.img,
@@ -147,6 +149,7 @@ export class Missao extends Phaser.Scene {
     this.camada.add(balao(this, frase, 430));
     const p = desenharPersonagem(this, this.perfil.personagem, 1.1);
     p.setPosition(W / 2, 820);
+    darVida(this, p);
     this.camada.add(p);
     this.camada.add(botao(this, W / 2, 1120, 'Vamos!', () => this.mostrar(), { icone: '\u{1F680}', cor: 0x7ddc8a }));
   }
@@ -159,6 +162,7 @@ export class Missao extends Phaser.Scene {
     this.camada.add(balao(this, frase, 400));
     const p = desenharPersonagem(this, this.perfil.personagem, 1.2);
     p.setPosition(W / 2, 830);
+    darVida(this, p);
     this.camada.add(p);
     const obj = figura(this, W / 2 + 150, 760, undefined, m?.icone ?? this.def.icone, 120);
     this.camada.add(obj);
@@ -251,7 +255,10 @@ export class Missao extends Phaser.Scene {
         zona.disableInteractive();
         somCerto();
         narrador.falar(pnp.explicacao, `m${this.def.id}_pnp_explica`);
-        this.time.delayedCall(1400, () => this.final());
+        // acertou: se a missao tem cena de premio, ela roda antes do fim
+        const filme = pnp.animacao ? ANIMACOES[pnp.animacao] : undefined;
+        const espera = filme ? 1500 + filme(this, this.camada, this.perfil.personagem) : 1400;
+        this.time.delayedCall(espera, () => this.final());
       });
     });
   }

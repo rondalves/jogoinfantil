@@ -1,8 +1,11 @@
-# Missões do Dia
+# Rotininha
 
-Jogo educativo infantil (4–7 anos, pt-BR), 2D cartoon, retrato, mobile-first.
-Vite + TypeScript + Phaser 3. Sem backend, sem anúncios, sem analytics, sem compras.
-Tudo fica no aparelho (localStorage).
+Jogo educativo infantil (4–7 anos, pt-BR) da **Colo Studio**. 2D cartoon,
+retrato, mobile-first. Vite + TypeScript + Phaser 3. Sem backend, sem anúncios
+e sem analytics — tudo fica no aparelho (localStorage).
+
+Os 10 primeiros mundos de missão são livres. Os 10 seguintes abrem com uma
+compra única de R$ 1,99, feita pelo adulto atrás da conta de matemática.
 
 ## Como rodar
 

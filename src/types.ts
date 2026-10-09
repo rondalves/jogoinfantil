@@ -89,6 +89,8 @@ export interface Missao {
     explicacao: string;
     audio?: string;
     pergunta?: string;
+    /** cena curta de premio depois da resposta certa (ver animacoes.ts) */
+    animacao?: string;
   };
   frase_reforco: string;
   audio_reforco?: string;

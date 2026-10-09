@@ -1,6 +1,6 @@
-# Publicar o Missões do Dia na Google Play
+# Publicar o Rotininha na Google Play
 
-App: **Missões do Dia** · Pacote: **com.rotininha.missoesdodia** (definitivo)
+App: **Rotininha** · Pacote: **com.rotininha.missoesdodia** (definitivo)
 Alvo: **API 36 (Android 16)**, que é o mínimo exigido hoje · Orientação: retrato
 Permissões: **nenhuma** — o jogo roda inteiro no aparelho, sem rede.
 
@@ -96,7 +96,7 @@ e instale o `app-release.apk` de `android/app/build/outputs/apk/release/`.
 
 ### 3.1 Criar o app
 **Todos os apps → Criar app**
-- Nome: `Missões do Dia`
+- Nome: `Rotininha`
 - Idioma padrão: Português (Brasil)
 - Tipo: **Jogo** · Gratuito
 - Aceite as declarações de diretrizes

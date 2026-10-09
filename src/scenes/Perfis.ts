@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { darVida } from '../animacoes';
 import { CONFIG } from '../config';
 import { estrelasTotais } from '../economia';
 import { narrador } from '../narrador';
@@ -32,6 +33,7 @@ export class Perfis extends Phaser.Scene {
       card.add(g);
       const boneco = desenharPersonagem(this, p.personagem, 0.5);
       boneco.setPosition(0, -40);
+      darVida(this, boneco);
       card.add(boneco);
       card.add(this.add.text(0, 100, p.nome, { fontSize: '42px', color: '#2b3a4a', fontStyle: 'bold' }).setOrigin(0.5));
       card.add(

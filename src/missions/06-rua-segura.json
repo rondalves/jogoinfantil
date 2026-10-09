@@ -87,7 +87,8 @@
       "imgCena": "m06_pnp_errada"
     },
     "explicacao": "A bola a gente pede para um adulto pegar. A gente atravessa na faixa, de mão dada.",
-    "audio": "m06_pnp"
+    "audio": "m06_pnp",
+    "animacao": "atravessar"
   },
   "frase_reforco": "Vermelho espera, verde caminha!",
   "audio_reforco": "m06_reforco",

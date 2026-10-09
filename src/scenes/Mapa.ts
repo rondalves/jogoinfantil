@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import { darVida } from '../animacoes';
+import { mundoPago } from '../compras';
 import { CONFIG, MUNDOS } from '../config';
 import { gastarFicha, partidasHoje, podeJogar } from '../economia';
 import { liberados, type MiniGame } from '../minigames';
@@ -53,7 +55,7 @@ export class Mapa extends Phaser.Scene {
       () => irPara(this, 'Perfis'),
     );
 
-    desenharPersonagem(this, this.p.personagem, 0.34).setPosition(84, 214).setDepth(50);
+    darVida(this, desenharPersonagem(this, this.p.personagem, 0.34).setPosition(84, 214).setDepth(50));
     textoEmPainel(this, 230, 214, this.p.nome, 36, 300).setDepth(50);
     this.add
       .zone(84, 214, 150, 180)
@@ -74,7 +76,9 @@ export class Mapa extends Phaser.Scene {
 
     for (const m of MUNDOS) {
       const missoes = missoesDoMundo(m.id);
-      const aberto = liberadoAnterior(m.id);
+      // mundo de cima so abre com a compra, feita pelo adulto na area dele
+      const pago = mundoPago(m.id);
+      const aberto = liberadoAnterior(m.id) && !pago;
       const temBroche = this.p.broches.includes(m.id);
       const estrelas = missoes.reduce((a, x) => a + (this.p.missoes[x.id] ?? 0), 0);
       const maximo = missoes.reduce((a, x) => a + x.estrelas_max, 0);
@@ -91,10 +95,16 @@ export class Mapa extends Phaser.Scene {
       );
       this.lista.add(
         this.add
-          .text(160, y + 74, aberto ? `\u{2B50} ${estrelas}/${maximo}` : '\u{1F512} Termine o mundo anterior', {
-            fontSize: '28px',
-            color: '#5b6a7a',
-          })
+          .text(
+            160,
+            y + 74,
+            aberto
+              ? `\u{2B50} ${estrelas}/${maximo}`
+              : pago
+                ? '\u{1F512} Peça para um adulto abrir'
+                : '\u{1F512} Termine o mundo anterior',
+            { fontSize: '28px', color: '#5b6a7a' },
+          )
           .setOrigin(0, 0.5),
       );
       if (temBroche) this.lista.add(figura(this, W - 84, y + 52, `broche${m.id}`, '\u{1F396}\u{FE0F}', 62));

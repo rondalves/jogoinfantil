@@ -18,6 +18,8 @@ export const CONFIG = {
   MOEDAS_POR_MISSAO: 1,
   MOEDAS_BONUS_MUNDO: 5,
   PARTIDAS_POR_DIA: 5,
+  /** mundos livres; os de cima abrem com a compra unica (ver compras.ts) */
+  MUNDOS_LIVRES: 2,
 
   /** pagina publica da politica de privacidade (docs/privacidade.html no GitHub Pages) */
   URL_PRIVACIDADE: 'https://rondalves.github.io/jogoinfantil/privacidade.html',
