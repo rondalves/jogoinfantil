@@ -1,6 +1,6 @@
 {
-  "id": "13",
-  "mundo": 4,
+  "id": "28",
+  "mundo": 5,
   "titulo": "Almoçar",
   "icone": "🍽️",
   "cenario": "bg_sala_almoco",
@@ -92,5 +92,6 @@
   "recompensa": {
     "moedas": 1
   },
-  "estrelas_max": 3
+  "estrelas_max": 3,
+  "bonus": true
 }

@@ -15,11 +15,12 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SAIDA = os.path.join(RAIZ, "docs", "MISSOES.md")
 
 MUNDOS = {
-    1: "Manha em Casa",
-    2: "Escola",
-    3: "Volta para Casa",
-    4: "Tarde",
-    5: "Noite",
+    1: ("Manha em Casa", "livre"),
+    2: ("Escola", "livre"),
+    3: ("Volta para Casa", "paga"),
+    4: ("Tarde", "paga"),
+    5: ("Janta", "paga"),
+    6: ("Banho e Cama", "paga"),
 }
 
 TIPOS = {
@@ -96,7 +97,7 @@ def descrever(e):
 def missao(m):
     fora = [f"## Missao {m['id']} — {m['titulo']} {m['icone']}", ""]
     extra = " · **missao bonus** (so abre com os 5 mundos fechados)" if m.get("bonus") else ""
-    fora.append(f"Mundo {m['mundo']} ({MUNDOS.get(m['mundo'], '?')}) · cenario `{m.get('cenario', '—')}`{extra}")
+    fora.append(f"Mundo {m['mundo']} ({MUNDOS.get(m['mundo'], ('?', '?'))[0]}) · cenario `{m.get('cenario', '—')}`{extra}")
     fora += ["", f"**Abertura:** \"{m['narracao_intro']}\""]
     mostrar = m.get("mostrar") or {}
     if mostrar.get("narracao"):
@@ -177,7 +178,7 @@ def main():
 
     partes = [CABECALHO, "## Indice\n"]
     for m in missoes:
-        livre = "livre" if m["mundo"] <= 2 else "paga"
+        livre = MUNDOS.get(m["mundo"], ("?", "?"))[1]
         partes.append(
             f"- [{m['id']} — {m['titulo']}](#{ancora(m['titulo'], m['id'])}) · mundo {m['mundo']} · {livre}"
         )

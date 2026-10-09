@@ -1,0 +1,74 @@
+{
+  "id": "22",
+  "mundo": 5,
+  "titulo": "Mais um pouquinho",
+  "icone": "🧸",
+  "cenario": "bg_quarto_brincar",
+  "narracao_intro": "{nome}, dá tempo de brincar mais um pouquinho antes do banho.",
+  "audio_intro": "m22_intro",
+  "mostrar": {
+    "narracao": "Agora é brincadeira calma: o corpo vai desacelerando devagarinho.",
+    "audio": "m22_mostrar",
+    "icone": "🧸"
+  },
+  "etapas": [
+    {
+      "tipo": "respirar",
+      "narracao": "Primeiro o corpo acalma. Sopre bem devagar, três vezes.",
+      "repeticoes": 3,
+      "audio": "m22_e1"
+    },
+    {
+      "tipo": "tocar",
+      "narracao": "Agora escolha uma brincadeira calminha.",
+      "alvos": [
+        {
+          "icone": "🧩",
+          "img": "m15_blocos",
+          "texto": "Montar blocos",
+          "fala": "Montar blocos",
+          "x": 170,
+          "y": 760
+        },
+        {
+          "icone": "📖",
+          "img": "m19_historia",
+          "texto": "Olhar um livro",
+          "fala": "Olhar um livro",
+          "x": 360,
+          "y": 760
+        },
+        {
+          "icone": "🧸",
+          "img": "m15_urso",
+          "texto": "Ninar o ursinho",
+          "fala": "Ninar o ursinho",
+          "x": 550,
+          "y": 760
+        }
+      ],
+      "audio": "m22_e2"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🧩",
+      "img": "m15_blocos",
+      "texto": "Brincadeira calma antes do banho"
+    },
+    "cena_errada": {
+      "icone": "🏃",
+      "img": "m15_bola",
+      "texto": "Correr e pular até a hora do banho"
+    },
+    "explicacao": "Corpo agitado demora a dormir. Brincadeira calma prepara a noite.",
+    "audio": "m22_pnp"
+  },
+  "frase_reforco": "Você sabe ir desacelerando!",
+  "audio_reforco": "m22_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

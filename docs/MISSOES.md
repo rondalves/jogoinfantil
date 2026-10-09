@@ -60,14 +60,22 @@ Missao nova = arquivo JSON novo em `src/missions/`. O motor nao muda.
 - [10 — Amigos e gentileza](#missao-10-amigos-e-gentileza) · mundo 2 · livre
 - [11 — Monstro dos sentimentos](#missao-11-monstro-dos-sentimentos) · mundo 2 · livre
 - [12 — Voltar de carro](#missao-12-voltar-de-carro) · mundo 3 · paga
-- [13 — Almoçar](#missao-13-almo-ar) · mundo 4 · paga
-- [14 — Lição de casa](#missao-14-li-o-de-casa) · mundo 4 · paga
-- [15 — Brincar](#missao-15-brincar) · mundo 4 · paga
+- [13 — Chegar em casa](#missao-13-chegar-em-casa) · mundo 3 · paga
+- [14 — Brincar até a janta](#missao-14-brincar-at-a-janta) · mundo 4 · paga
+- [15 — Lição de casa](#missao-15-li-o-de-casa) · mundo 4 · paga
 - [16 — Guardar os brinquedos](#missao-16-guardar-os-brinquedos) · mundo 4 · paga
 - [17 — Ajudante da casa](#missao-17-ajudante-da-casa) · mundo 4 · paga
 - [18 — Tela com limite](#missao-18-tela-com-limite) · mundo 4 · paga
-- [19 — Banho, dentes e sono](#missao-19-banho-dentes-e-sono) · mundo 5 · paga
-- [20 — Dia do doutor e do dentista](#missao-20-dia-do-doutor-e-do-dentista) · mundo 5 · paga
+- [19 — Hora da janta](#missao-19-hora-da-janta) · mundo 5 · paga
+- [20 — Conversa à mesa](#missao-20-conversa-mesa) · mundo 5 · paga
+- [21 — Sair da mesa](#missao-21-sair-da-mesa) · mundo 5 · paga
+- [22 — Mais um pouquinho](#missao-22-mais-um-pouquinho) · mundo 5 · paga
+- [23 — Escovar os dentes](#missao-23-escovar-os-dentes) · mundo 6 · paga
+- [24 — Hora do banho](#missao-24-hora-do-banho) · mundo 6 · paga
+- [25 — Pijama e cabelo](#missao-25-pijama-e-cabelo) · mundo 6 · paga
+- [26 — Boa noite](#missao-26-boa-noite) · mundo 6 · paga
+- [27 — Dia do doutor e do dentista](#missao-27-dia-do-doutor-e-do-dentista) · mundo 6 · paga
+- [28 — Almoçar](#missao-28-almo-ar) · mundo 5 · paga
 
 ---
 
@@ -614,51 +622,90 @@ Recompensa: 1 moeda · ate 3 estrelas
 
 ---
 
-## Missao 13 — Almoçar 🍽️
+## Missao 13 — Chegar em casa 🏠
 
-Mundo 4 (Tarde) · cenario `bg_sala_almoco`
+Mundo 3 (Volta para Casa) · cenario `bg_porta_casa`
 
-**Abertura:** "A comida está na mesa, {nome}! Vamos almoçar direitinho?"
+**Abertura:** "{nome}, chegamos! Antes de brincar, tem três coisinhas."
 
-**O personagem mostra:** "Lavar as mãos, sentar na cadeira, comer e agradecer!"
+**O personagem mostra:** "Mochila no lugar, mão lavada e uniforme fora. Aí sim o sofá!"
 
 ### Etapas
 
 **1. Sequencia ordenada**
 
-> Toque na ordem: lavar as mãos, sentar, comer e agradecer.
+> Toque na ordem: guardar a mochila, lavar as mãos e tirar o uniforme.
 
 Toca na ordem certa:
-  1. Lavar as mãos
-  2. Sentar
-  3. Comer
-  4. Agradecer
-  - _Se erra:_ "Esse vem depois. Tente outro!"
+  1. Guardar a mochila
+  2. Lavar as mãos
+  3. Tirar o uniforme
+  - _Se erra:_ "Esse vem depois. Olhe de novo!"
 
-**2. Escolher entre opcoes**
+**2. Esfregar**
 
-> Tem um legume novo no prato. O que fazer?
+> A escola deixa germes na mão. Esfregue até sumirem!
 
-Escolhe uma:
-  - Experimentar _(certo)_
-  - Sair correndo
-  - _Se erra:_ "Uma mordidinha só para conhecer. Se não gostar, tudo bem!"
+Esfrega **Mãos sujas** ate limpar 5 sujeiras (ate 20 s).
+  - _Se erra:_ "Falta pouco! Esfregue mais um cadinho."
 
 ### Pode ou nao pode
 
 Pergunta: "O que pode?"
 
-- Certo: **Experimentar comida nova**
-- Errado: Levantar correndo
-- Explicacao: "Na mesa a gente fica sentado até acabar. Experimentar é de gente corajosa!"
+- Certo: **Lavar as mãos e tirar o uniforme**
+- Errado: Ir direto para o sofá
+- Explicacao: "A mão e a roupa da rua ficam na porta. Assim a casa fica limpinha."
 
-**Reforco no fim:** "Prato limpo, barriga feliz!"
+**Reforco no fim:** "Germes da escola ficam lá fora!"
 
 Recompensa: 1 moeda · ate 3 estrelas
 
 ---
 
-## Missao 14 — Lição de casa 📝
+## Missao 14 — Brincar até a janta 🧸
+
+Mundo 4 (Tarde) · cenario `bg_quarto_brincar`
+
+**Abertura:** "{nome}, deu tempo de brincar! Com o que você quer brincar?"
+
+**O personagem mostra:** "Toque num brinquedo e veja o que ele faz. Brincar junto é melhor ainda!"
+
+### Etapas
+
+**1. Tocar**
+
+> Toque nos brinquedos e veja cada um acordar!
+
+Toca em 3 de 3 figuras.
+  - Bola
+  - Trenzinho
+  - Ursinho
+
+**2. Escolher entre opcoes**
+
+> Um amigo chegou e quer brincar. O que você faz?
+
+Escolhe uma:
+  - Dividir o brinquedo _(certo)_
+  - Jogar o brinquedo longe
+  - _Se erra:_ "Brinquedo jogado machuca e quebra. Que tal dividir?"
+
+### Pode ou nao pode
+
+Pergunta: "O que pode?"
+
+- Certo: **Dividir o brinquedo**
+- Errado: Jogar o brinquedo longe
+- Explicacao: "Brinquedo dividido rende duas brincadeiras. Jogado, rende zero."
+
+**Reforco no fim:** "Brincar junto é muito melhor!"
+
+Recompensa: 1 moeda · ate 3 estrelas
+
+---
+
+## Missao 15 — Lição de casa 📝
 
 Mundo 4 (Tarde) · cenario `bg_quarto_brincar`
 
@@ -697,48 +744,6 @@ Pergunta: "O que pode?"
 - Explicacao: "Primeiro a lição, depois a diversão. E ajuda a gente sempre pode pedir!"
 
 **Reforco no fim:** "Tarefa feita, cabeça leve!"
-
-Recompensa: 1 moeda · ate 3 estrelas
-
----
-
-## Missao 15 — Brincar 🧸
-
-Mundo 4 (Tarde) · cenario `bg_quarto_brincar`
-
-**Abertura:** "Agora é hora de brincar, {nome}! Escolha o seu brinquedo."
-
-**O personagem mostra:** "Escolher um brinquedo, brincar bastante e dividir com um amigo!"
-
-### Etapas
-
-**1. Tocar**
-
-> Toque nos brinquedos para escolher com o que brincar.
-
-Toca em 3 de 3 figuras.
-  - Bola
-  - Ursinho
-  - Trenzinho
-
-**2. Escolher entre opcoes**
-
-> Um amigo chegou e quer brincar também. O que fazer?
-
-Escolhe uma:
-  - Dividir o brinquedo _(certo)_
-  - Jogar o brinquedo nele
-  - _Se erra:_ "Brinquedo não se joga em ninguém. Dividir é mais divertido!"
-
-### Pode ou nao pode
-
-Pergunta: "O que pode?"
-
-- Certo: **Dividir o brinquedo**
-- Errado: Jogar brinquedo nos outros
-- Explicacao: "Brinquedo machuca se voar. Brincar junto é bem melhor!"
-
-**Reforco no fim:** "Brincar junto é muito melhor!"
 
 Recompensa: 1 moeda · ate 3 estrelas
 
@@ -876,60 +881,357 @@ Recompensa: 1 moeda · ate 3 estrelas
 
 ---
 
-## Missao 19 — Banho, dentes e sono 🛁
+## Missao 19 — Hora da janta 🍽️
 
-Mundo 5 (Noite) · cenario `bg_quarto_noite`
+Mundo 5 (Janta) · cenario `bg_sala_janta`
 
-**Abertura:** "O dia acabou, {nome}. Vamos se arrumar para dormir?"
+**Abertura:** "{nome}, a janta está na mesa! Vamos chegar do jeito certo?"
 
-**O personagem mostra:** "Banho, pijama, escovar os dentes, uma história e a luz apagada."
+**O personagem mostra:** "Mão lavada, sentar direitinho e esperar todo mundo. Aí a gente come!"
+
+### Etapas
+
+**1. Precisa ou nao precisa**
+
+> Me diga: precisa lavar a mão agora?
+
+Responde Sim ou Nao para 4 situacoes:
+  - A janta está servida -> **SIM** — Isso! Antes de comer, mão sempre lavada.
+  - Só mudei de desenho -> **NAO** — Não precisa. Mexer na tela não suja a mão.
+  - Fiz carinho no cachorro -> **SIM** — Sim! Depois do pet, direto na pia.
+  - Acabei de sair do banheiro -> **SIM** — Sempre! Essa é a hora mais importante de lavar.
+
+**2. Sequencia ordenada**
+
+> Toque na ordem: lavar as mãos, sentar à mesa e esperar todos.
+
+Toca na ordem certa:
+  1. Lavar as mãos
+  2. Sentar à mesa
+  3. Esperar todos
+  - _Se erra:_ "Calma! Esse vem depois."
+
+### Pode ou nao pode
+
+Pergunta: "O que pode?"
+
+- Certo: **Esperar todos sentarem**
+- Errado: Começar a comer sozinho
+- Explicacao: "A janta fica mais gostosa quando todo mundo começa junto."
+
+**Reforco no fim:** "Você sabe chegar na mesa!"
+
+Recompensa: 1 moeda · ate 3 estrelas
+
+---
+
+## Missao 20 — Conversa à mesa 💬
+
+Mundo 5 (Janta) · cenario `bg_sala_janta`
+
+**Abertura:** "{nome}, a mesa é onde a gente conta o dia. Quer contar o seu?"
+
+**O personagem mostra:** "Engole primeiro, fala depois. E todo mundo quer te ouvir!"
+
+### Etapas
+
+**1. Precisa ou nao precisa**
+
+> Me diga: pode falar assim?
+
+Responde Sim ou Nao para 4 situacoes:
+  - Falar de boca cheia -> **NAO** — Melhor não. Engole primeiro, aí a gente entende você.
+  - Falar depois de engolir -> **SIM** — Isso! Assim dá para ouvir tudo o que você diz.
+  - Escutar quem está falando -> **SIM** — Sim! Ouvir também é conversar.
+  - Gritar por cima dos outros -> **NAO** — Não precisa gritar. Na mesa, um fala de cada vez.
+
+**2. Escolher entre opcoes**
+
+> Você quer contar uma coisa e está com comida na boca. O que faz?
+
+Escolhe uma:
+  - Engolir e depois falar _(certo)_
+  - Falar de boca cheia
+  - _Se erra:_ "De boca cheia ninguém entende. Engole primeiro!"
+
+**3. Tocar**
+
+> Agora conte o seu dia! Toque no que você quiser contar.
+
+Toca em 3 de 3 figuras.
+  - Com quem brinquei
+  - O que me fez sorrir
+  - O que me deixou triste
+
+### Pode ou nao pode
+
+Pergunta: "O que pode?"
+
+- Certo: **Esperar a vez de falar**
+- Errado: Falar de boca cheia
+- Explicacao: "Na mesa, um fala de cada vez — e de boca vazia."
+
+**Reforco no fim:** "Sua voz tem lugar na mesa!"
+
+Recompensa: 1 moeda · ate 3 estrelas
+
+---
+
+## Missao 21 — Sair da mesa 🧽
+
+Mundo 5 (Janta) · cenario `bg_sala_janta`
+
+**Abertura:** "{nome}, terminou de jantar? Sair da mesa também tem jeito certo."
+
+**O personagem mostra:** "Termina, pede licença e leva o prato até a pia. Simples assim!"
 
 ### Etapas
 
 **1. Sequencia ordenada**
 
-> Toque na ordem da hora de dormir.
+> Toque na ordem: terminar, pedir licença e levar o prato.
 
 Toca na ordem certa:
-  1. Banho
-  2. Pijama
-  3. História
-  4. Apagar a luz
-  - _Se erra:_ "Ainda não! Esse vem depois."
+  1. Terminar
+  2. Pedir licença
+  3. Levar o prato
+  - _Se erra:_ "Ainda não é esse. Tente outro!"
 
-**2. Escovacao guiada**
+**2. Arrastar para o alvo**
 
-> Antes de dormir, escovação caprichada!
+> Leve a louça até a pia.
 
-Escova a boca em 4 lugares, seguindo a bolinha verde:
+Arrasta 3 de 4 coisas para **Pia**.
+  - Prato
+  - Copo
+  - Garfo
+  - Ursinho _(pegadinha)_
+  - _Se erra:_ "Esse não vai para a pia! Deixe na mesa."
+
+### Pode ou nao pode
+
+Pergunta: "O que pode?"
+
+- Certo: **Pedir licença e levar o prato**
+- Errado: Sair correndo da mesa
+- Explicacao: "Pedir licença avisa todo mundo. E o prato na pia ajuda quem cozinhou."
+
+**Reforco no fim:** "Você cuida do que é seu!"
+
+Recompensa: 1 moeda · ate 3 estrelas
+
+---
+
+## Missao 22 — Mais um pouquinho 🧸
+
+Mundo 5 (Janta) · cenario `bg_quarto_brincar`
+
+**Abertura:** "{nome}, dá tempo de brincar mais um pouquinho antes do banho."
+
+**O personagem mostra:** "Agora é brincadeira calma: o corpo vai desacelerando devagarinho."
+
+### Etapas
+
+**1. Respirar**
+
+> Primeiro o corpo acalma. Sopre bem devagar, três vezes.
+
+Respira fundo 3 vezes.
+
+**2. Tocar**
+
+> Agora escolha uma brincadeira calminha.
+
+Toca em 3 de 3 figuras.
+  - Montar blocos
+  - Olhar um livro
+  - Ninar o ursinho
+
+### Pode ou nao pode
+
+Pergunta: "O que pode?"
+
+- Certo: **Brincadeira calma antes do banho**
+- Errado: Correr e pular até a hora do banho
+- Explicacao: "Corpo agitado demora a dormir. Brincadeira calma prepara a noite."
+
+**Reforco no fim:** "Você sabe ir desacelerando!"
+
+Recompensa: 1 moeda · ate 3 estrelas
+
+---
+
+## Missao 23 — Escovar os dentes 🪥
+
+Mundo 6 (Banho e Cama) · cenario `bg_banheiro`
+
+**Abertura:** "{nome}, a comida deixa restinhos nos dentes. Vamos tirar todos?"
+
+**O personagem mostra:** "Em cima, embaixo, dos dois lados, e a linguinha no fim!"
+
+### Etapas
+
+**1. Escovacao guiada**
+
+> Vamos escovar! Siga a bolinha verde.
+
+Escova a boca em 5 lugares, seguindo a bolinha verde:
   1. Em cima, deste lado
   2. Em cima, do outro lado
   3. Embaixo, deste lado
   4. Embaixo, do outro lado
+  5. Agora a linguinha!
 
-**3. Respirar**
+**2. Escolher entre opcoes**
 
-> Agora respire fundo três vezes para o sono chegar.
+> Acabou de escovar. O que vem agora?
+
+Escolhe uma:
+  - Guardar a escova _(certo)_
+  - Comer um docinho
+  - _Se erra:_ "A escova guardada seca e fica limpinha para amanhã."
+
+### Pode ou nao pode
+
+Pergunta: "O que pode?"
+
+- Certo: **Escovar antes de dormir**
+- Errado: Dormir com doce no dente
+- Explicacao: "À noite o dente fica horas parado. Escovado, ele passa a noite protegido."
+
+**Reforco no fim:** "Seu sorriso agradece!"
+
+Recompensa: 1 moeda · ate 3 estrelas
+
+---
+
+## Missao 24 — Hora do banho 🛁
+
+Mundo 6 (Banho e Cama) · cenario `bg_banheiro_banho`
+
+**Abertura:** "{nome}, a água está quentinha. Vamos tomar banho?"
+
+**O personagem mostra:** "Liga o chuveiro, molha, sabonete, esfrega a espuma, enxágua e seca!"
+
+### Etapas
+
+**1. Sequencia ordenada**
+
+> Toque na ordem do banho.
+
+Toca na ordem certa:
+  1. Ligar o chuveiro
+  2. Passar sabonete
+  3. Enxaguar
+  4. Secar com a toalha
+  - _Se erra:_ "Esse não é o próximo. Olhe de novo!"
+
+**2. Esfregar**
+
+> Esfregue a espuma até ficar tudo limpinho!
+
+Esfrega **Sabonete** ate limpar 5 sujeiras (ate 25 s).
+  - _Se erra:_ "Falta pouquinho! Esfregue mais."
+
+### Pode ou nao pode
+
+Pergunta: "O que pode?"
+
+- Certo: **Secar bem antes de vestir**
+- Errado: Vestir o pijama molhado
+- Explicacao: "Pijama em corpo molhado fica frio e gruda. Seca primeiro!"
+
+**Reforco no fim:** "Você cuida do seu corpo!"
+
+Recompensa: 1 moeda · ate 3 estrelas
+
+---
+
+## Missao 25 — Pijama e cabelo 👡
+
+Mundo 6 (Banho e Cama) · cenario `bg_quarto_noite`
+
+**Abertura:** "{nome}, saiu do banho! Agora é se arrumar para a cama."
+
+**O personagem mostra:** "Secar, vestir o pijama, pentear o cabelo e deitar. Nessa ordem!"
+
+### Etapas
+
+**1. Sequencia ordenada**
+
+> Toque na ordem: secar, pijama, pentear e deitar.
+
+Toca na ordem certa:
+  1. Secar
+  2. Vestir o pijama
+  3. Pentear o cabelo
+  4. Deitar
+  - _Se erra:_ "Ainda não. Esse vem depois!"
+
+**2. Escolher entre opcoes**
+
+> A roupa suja do dia: onde ela vai?
+
+Escolhe uma:
+  - No cesto de roupa _(certo)_
+  - Jogada no chão
+  - _Se erra:_ "Roupa no chão some e fica cheirando. No cesto ela espera a lavagem."
+
+### Pode ou nao pode
+
+Pergunta: "O que pode?"
+
+- Certo: **Pijama limpo e cabelo penteado**
+- Errado: Dormir com a roupa do dia
+- Explicacao: "A roupa do dia trouxe a rua inteira. O pijama é só da cama."
+
+**Reforco no fim:** "Você se arruma sozinho!"
+
+Recompensa: 1 moeda · ate 3 estrelas
+
+---
+
+## Missao 26 — Boa noite 🌙
+
+Mundo 6 (Banho e Cama) · cenario `bg_quarto_noite`
+
+**Abertura:** "{nome}, chegou a hora mais quietinha do dia. Vamos dormir?"
+
+**O personagem mostra:** "Respira fundo, escolhe uma historinha ou uma musiquinha, e boa noite!"
+
+### Etapas
+
+**1. Respirar**
+
+> Sopre bem devagar, três vezes. O corpo vai ficando leve.
 
 Respira fundo 3 vezes.
+
+**2. Escolher entre opcoes**
+
+> O que você quer ouvir para dormir?
+
+Escolhe uma:
+  - Uma historinha _(certo)_
+  - Uma musiquinha _(certo)_
 
 ### Pode ou nao pode
 
 Pergunta: "O que pode?"
 
 - Certo: **Apagar a luz e dormir**
-- Errado: Tela na cama
-- Explicacao: "A tela acende o olho e o sono foge. História é bem melhor!"
+- Errado: Ficar na tela na cama
+- Explicacao: "A luz da tela engana o corpo e o sono demora. No escuro ele chega."
 
-**Reforco no fim:** "Dia cumprido, bons sonhos!"
+**Reforco no fim:** "Bons sonhos, Super Ajudante!"
 
 Recompensa: 1 moeda · ate 3 estrelas
 
 ---
 
-## Missao 20 — Dia do doutor e do dentista 🩺
+## Missao 27 — Dia do doutor e do dentista 🩺
 
-Mundo 5 (Noite) · cenario `bg_consultorio` · **missao bonus** (so abre com os 5 mundos fechados)
+Mundo 6 (Banho e Cama) · cenario `bg_consultorio` · **missao bonus** (so abre com os 5 mundos fechados)
 
 **Abertura:** "Hoje é dia de consulta, {nome}. Não precisa ter medo: eu vou junto!"
 
@@ -971,6 +1273,50 @@ Pergunta: "O que pode?"
 - Explicacao: "Quem conta onde dói ajuda o doutor a cuidar mais rápido!"
 
 **Reforco no fim:** "Fui corajoso no doutor!"
+
+Recompensa: 1 moeda · ate 3 estrelas
+
+---
+
+## Missao 28 — Almoçar 🍽️
+
+Mundo 5 (Janta) · cenario `bg_sala_almoco` · **missao bonus** (so abre com os 5 mundos fechados)
+
+**Abertura:** "A comida está na mesa, {nome}! Vamos almoçar direitinho?"
+
+**O personagem mostra:** "Lavar as mãos, sentar na cadeira, comer e agradecer!"
+
+### Etapas
+
+**1. Sequencia ordenada**
+
+> Toque na ordem: lavar as mãos, sentar, comer e agradecer.
+
+Toca na ordem certa:
+  1. Lavar as mãos
+  2. Sentar
+  3. Comer
+  4. Agradecer
+  - _Se erra:_ "Esse vem depois. Tente outro!"
+
+**2. Escolher entre opcoes**
+
+> Tem um legume novo no prato. O que fazer?
+
+Escolhe uma:
+  - Experimentar _(certo)_
+  - Sair correndo
+  - _Se erra:_ "Uma mordidinha só para conhecer. Se não gostar, tudo bem!"
+
+### Pode ou nao pode
+
+Pergunta: "O que pode?"
+
+- Certo: **Experimentar comida nova**
+- Errado: Levantar correndo
+- Explicacao: "Na mesa a gente fica sentado até acabar. Experimentar é de gente corajosa!"
+
+**Reforco no fim:** "Prato limpo, barriga feliz!"
 
 Recompensa: 1 moeda · ate 3 estrelas
 

@@ -1,0 +1,102 @@
+{
+  "id": "25",
+  "mundo": 6,
+  "titulo": "Pijama e cabelo",
+  "icone": "👡",
+  "cenario": "bg_quarto_noite",
+  "narracao_intro": "{nome}, saiu do banho! Agora é se arrumar para a cama.",
+  "audio_intro": "m25_intro",
+  "mostrar": {
+    "narracao": "Secar, vestir o pijama, pentear o cabelo e deitar. Nessa ordem!",
+    "audio": "m25_mostrar",
+    "icone": "👡"
+  },
+  "etapas": [
+    {
+      "tipo": "sequencia_ordenada",
+      "narracao": "Toque na ordem: secar, pijama, pentear e deitar.",
+      "consequencia": "Ainda não. Esse vem depois!",
+      "itens": [
+        {
+          "icone": "🧻",
+          "img": "m03_toalha",
+          "texto": "Secar",
+          "fala": "Secar",
+          "x": 170,
+          "y": 620
+        },
+        {
+          "icone": "👡",
+          "img": "m19_pijama",
+          "texto": "Vestir o pijama",
+          "fala": "Vestir o pijama",
+          "x": 550,
+          "y": 620
+        },
+        {
+          "icone": "💇",
+          "img": "m25_pente",
+          "texto": "Pentear o cabelo",
+          "fala": "Pentear o cabelo",
+          "x": 170,
+          "y": 900
+        },
+        {
+          "icone": "🛏️",
+          "img": "m02_cama_arrumada",
+          "texto": "Deitar",
+          "fala": "Deitar",
+          "x": 550,
+          "y": 900
+        }
+      ],
+      "audio": "m25_e1"
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "A roupa suja do dia: onde ela vai?",
+      "consequencia": "Roupa no chão some e fica cheirando. No cesto ela espera a lavagem.",
+      "itens": [
+        {
+          "icone": "🧺",
+          "img": "m17_cesto",
+          "texto": "No cesto de roupa",
+          "fala": "No cesto de roupa",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "💨",
+          "img": "m17_camiseta_suja",
+          "texto": "Jogada no chão",
+          "fala": "Jogada no chão",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "audio": "m25_e2"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "👡",
+      "img": "m19_pijama",
+      "texto": "Pijama limpo e cabelo penteado"
+    },
+    "cena_errada": {
+      "icone": "💧",
+      "img": "m17_camiseta_suja",
+      "texto": "Dormir com a roupa do dia"
+    },
+    "explicacao": "A roupa do dia trouxe a rua inteira. O pijama é só da cama.",
+    "audio": "m25_pnp"
+  },
+  "frase_reforco": "Você se arruma sozinho!",
+  "audio_reforco": "m25_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

@@ -1,0 +1,90 @@
+{
+  "id": "13",
+  "mundo": 3,
+  "titulo": "Chegar em casa",
+  "icone": "🏠",
+  "cenario": "bg_porta_casa",
+  "narracao_intro": "{nome}, chegamos! Antes de brincar, tem três coisinhas.",
+  "audio_intro": "m13_intro",
+  "mostrar": {
+    "narracao": "Mochila no lugar, mão lavada e uniforme fora. Aí sim o sofá!",
+    "audio": "m13_mostrar",
+    "icone": "🏠"
+  },
+  "etapas": [
+    {
+      "tipo": "sequencia_ordenada",
+      "narracao": "Toque na ordem: guardar a mochila, lavar as mãos e tirar o uniforme.",
+      "consequencia": "Esse vem depois. Olhe de novo!",
+      "itens": [
+        {
+          "icone": "🎒",
+          "img": "m05_mochila",
+          "texto": "Guardar a mochila",
+          "fala": "Guardar a mochila",
+          "x": 170,
+          "y": 760
+        },
+        {
+          "icone": "🧼",
+          "img": "m03_maos_limpas",
+          "texto": "Lavar as mãos",
+          "fala": "Lavar as mãos",
+          "x": 360,
+          "y": 760
+        },
+        {
+          "icone": "👕",
+          "texto": "Tirar o uniforme",
+          "fala": "Tirar o uniforme",
+          "x": 550,
+          "y": 760
+        }
+      ],
+      "audio": "m13_e1"
+    },
+    {
+      "tipo": "esfregar",
+      "narracao": "A escola deixa germes na mão. Esfregue até sumirem!",
+      "consequencia": "Falta pouco! Esfregue mais um cadinho.",
+      "passos": 5,
+      "segundos": 20,
+      "alvo": {
+        "icone": "🤲",
+        "img": "m03_maos_sujas",
+        "fala": "Mãos sujas",
+        "x": 360,
+        "y": 800
+      },
+      "sujeiras": [
+        "m03_germe1",
+        "m03_germe2",
+        "m03_germe3",
+        "m03_germe4",
+        "m03_germe5"
+      ],
+      "audio": "m13_e2"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🧼",
+      "img": "m03_maos_limpas",
+      "texto": "Lavar as mãos e tirar o uniforme"
+    },
+    "cena_errada": {
+      "icone": "🛋️",
+      "img": "m18_brincar",
+      "texto": "Ir direto para o sofá"
+    },
+    "explicacao": "A mão e a roupa da rua ficam na porta. Assim a casa fica limpinha.",
+    "audio": "m13_pnp"
+  },
+  "frase_reforco": "Germes da escola ficam lá fora!",
+  "audio_reforco": "m13_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

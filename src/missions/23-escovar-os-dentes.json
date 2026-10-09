@@ -1,0 +1,97 @@
+{
+  "id": "23",
+  "mundo": 6,
+  "titulo": "Escovar os dentes",
+  "icone": "🪥",
+  "cenario": "bg_banheiro",
+  "narracao_intro": "{nome}, a comida deixa restinhos nos dentes. Vamos tirar todos?",
+  "audio_intro": "m23_intro",
+  "mostrar": {
+    "narracao": "Em cima, embaixo, dos dois lados, e a linguinha no fim!",
+    "audio": "m23_mostrar",
+    "icone": "🪥"
+  },
+  "etapas": [
+    {
+      "tipo": "escovar",
+      "narracao": "Vamos escovar! Siga a bolinha verde.",
+      "segundos": 60,
+      "alvo": {
+        "icone": "🪥",
+        "img": "m19_escova",
+        "fala": "Escova de dente",
+        "x": 360,
+        "y": 780
+      },
+      "regioes": [
+        {
+          "texto": "Em cima, deste lado",
+          "audio": "m23_escovar1"
+        },
+        {
+          "texto": "Em cima, do outro lado",
+          "audio": "m23_escovar2"
+        },
+        {
+          "texto": "Embaixo, deste lado",
+          "audio": "m23_escovar3"
+        },
+        {
+          "texto": "Embaixo, do outro lado",
+          "audio": "m23_escovar4"
+        },
+        {
+          "texto": "Agora a linguinha!",
+          "audio": "m23_escovar5"
+        }
+      ],
+      "audio": "m23_e1"
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "Acabou de escovar. O que vem agora?",
+      "consequencia": "A escova guardada seca e fica limpinha para amanhã.",
+      "itens": [
+        {
+          "icone": "🪥",
+          "img": "m19_escova",
+          "texto": "Guardar a escova",
+          "fala": "Guardar a escova",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "🍬",
+          "img": "m13_suco",
+          "texto": "Comer um docinho",
+          "fala": "Comer um docinho",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "audio": "m23_e2"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🪥",
+      "img": "m19_escova",
+      "texto": "Escovar antes de dormir"
+    },
+    "cena_errada": {
+      "icone": "🍬",
+      "img": "m13_suco",
+      "texto": "Dormir com doce no dente"
+    },
+    "explicacao": "À noite o dente fica horas parado. Escovado, ele passa a noite protegido.",
+    "audio": "m23_pnp"
+  },
+  "frase_reforco": "Seu sorriso agradece!",
+  "audio_reforco": "m23_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

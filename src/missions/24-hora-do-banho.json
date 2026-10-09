@@ -1,0 +1,95 @@
+{
+  "id": "24",
+  "mundo": 6,
+  "titulo": "Hora do banho",
+  "icone": "🛁",
+  "cenario": "bg_banheiro_banho",
+  "narracao_intro": "{nome}, a água está quentinha. Vamos tomar banho?",
+  "audio_intro": "m24_intro",
+  "mostrar": {
+    "narracao": "Liga o chuveiro, molha, sabonete, esfrega a espuma, enxágua e seca!",
+    "audio": "m24_mostrar",
+    "icone": "🛁"
+  },
+  "etapas": [
+    {
+      "tipo": "sequencia_ordenada",
+      "narracao": "Toque na ordem do banho.",
+      "consequencia": "Esse não é o próximo. Olhe de novo!",
+      "itens": [
+        {
+          "icone": "🚿",
+          "img": "m24_chuveiro",
+          "texto": "Ligar o chuveiro",
+          "fala": "Ligar o chuveiro",
+          "x": 170,
+          "y": 620
+        },
+        {
+          "icone": "🧼",
+          "img": "m24_sabonete",
+          "texto": "Passar sabonete",
+          "fala": "Passar sabonete",
+          "x": 550,
+          "y": 620
+        },
+        {
+          "icone": "🫧",
+          "img": "m03_bolhas",
+          "texto": "Enxaguar",
+          "fala": "Enxaguar",
+          "x": 170,
+          "y": 900
+        },
+        {
+          "icone": "🧻",
+          "img": "m03_toalha",
+          "texto": "Secar com a toalha",
+          "fala": "Secar com a toalha",
+          "x": 550,
+          "y": 900
+        }
+      ],
+      "audio": "m24_e1"
+    },
+    {
+      "tipo": "esfregar",
+      "narracao": "Esfregue a espuma até ficar tudo limpinho!",
+      "consequencia": "Falta pouquinho! Esfregue mais.",
+      "passos": 5,
+      "segundos": 25,
+      "alvo": {
+        "icone": "🧼",
+        "img": "m24_sabonete",
+        "fala": "Sabonete",
+        "x": 360,
+        "y": 800
+      },
+      "sujeiras": [
+        "m03_bolhas"
+      ],
+      "audio": "m24_e2"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🧻",
+      "img": "m03_toalha",
+      "texto": "Secar bem antes de vestir"
+    },
+    "cena_errada": {
+      "icone": "💧",
+      "img": "m24_chuveiro",
+      "texto": "Vestir o pijama molhado"
+    },
+    "explicacao": "Pijama em corpo molhado fica frio e gruda. Seca primeiro!",
+    "audio": "m24_pnp"
+  },
+  "frase_reforco": "Você cuida do seu corpo!",
+  "audio_reforco": "m24_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

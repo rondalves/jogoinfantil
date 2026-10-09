@@ -7,6 +7,13 @@
  *   npm run smoke       (noutro)
  */
 import { chromium } from 'playwright';
+import { readFileSync, readdirSync } from 'node:fs';
+
+// os ids vem dos proprios JSONs: renumerar missao nao quebra o teste
+const IDS = readdirSync('src/missions')
+  .filter((f) => f.endsWith('.json'))
+  .sort()
+  .map((f) => JSON.parse(readFileSync(`src/missions/${f}`, 'utf8')).id);
 
 const URL_JOGO = process.env.URL_JOGO ?? 'http://localhost:4173/';
 
@@ -93,7 +100,7 @@ const main = async () => {
     { timeout: 60000 },
   );
 
-  const ids = Array.from({ length: 20 }, (_, i) => String(i + 1).padStart(2, '0'));
+  const ids = IDS;
 
   for (const id of ids) {
     atual = `missao ${id}`;
@@ -140,17 +147,17 @@ const main = async () => {
   }
 
   atual = 'medalha';
-  await page.evaluate(async () => {
+  await page.evaluate(async (ids) => {
     const j = window.__jogo;
     const feitas = {};
-    for (let i = 1; i <= 20; i++) feitas[String(i).padStart(2, '0')] = 3;
+    for (const id of ids) feitas[id] = 3;
     const perfis = JSON.parse(localStorage.getItem('missoes-do-dia:perfis'));
     perfis[0].missoes = feitas;
     localStorage.setItem('missoes-do-dia:perfis', JSON.stringify(perfis));
     j.scene.scenes.forEach((s) => s.scene.key !== 'Boot' && j.scene.stop(s.scene.key));
     j.scene.start('Medalha');
     await new Promise((r) => setTimeout(r, 2000));
-  });
+  }, ids);
   for (const e of await page.evaluate(conferirLayout)) problemas.push(`${atual}: ${e}`);
 
   for (const tela of ['Perfis', 'Criador', 'Mapa', 'Pais', 'Tutorial']) {

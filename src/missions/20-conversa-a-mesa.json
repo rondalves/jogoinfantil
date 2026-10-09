@@ -1,0 +1,123 @@
+{
+  "id": "20",
+  "mundo": 5,
+  "titulo": "Conversa à mesa",
+  "icone": "💬",
+  "cenario": "bg_sala_janta",
+  "narracao_intro": "{nome}, a mesa é onde a gente conta o dia. Quer contar o seu?",
+  "audio_intro": "m20_intro",
+  "mostrar": {
+    "narracao": "Engole primeiro, fala depois. E todo mundo quer te ouvir!",
+    "audio": "m20_mostrar",
+    "icone": "💬"
+  },
+  "etapas": [
+    {
+      "tipo": "sim_ou_nao",
+      "narracao": "Me diga: pode falar assim?",
+      "perguntas": [
+        {
+          "icone": "🤤",
+          "img": "m13_prato_cheio",
+          "texto": "Falar de boca cheia",
+          "resposta": false,
+          "explica": "Melhor não. Engole primeiro, aí a gente entende você."
+        },
+        {
+          "icone": "🙂",
+          "texto": "Falar depois de engolir",
+          "resposta": true,
+          "explica": "Isso! Assim dá para ouvir tudo o que você diz."
+        },
+        {
+          "icone": "👂",
+          "texto": "Escutar quem está falando",
+          "resposta": true,
+          "explica": "Sim! Ouvir também é conversar."
+        },
+        {
+          "icone": "📢",
+          "texto": "Gritar por cima dos outros",
+          "resposta": false,
+          "explica": "Não precisa gritar. Na mesa, um fala de cada vez."
+        }
+      ],
+      "audio": "m20_e1"
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "Você quer contar uma coisa e está com comida na boca. O que faz?",
+      "consequencia": "De boca cheia ninguém entende. Engole primeiro!",
+      "itens": [
+        {
+          "icone": "😊",
+          "texto": "Engolir e depois falar",
+          "fala": "Engolir e depois falar",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "🤤",
+          "img": "m13_prato_cheio",
+          "texto": "Falar de boca cheia",
+          "fala": "Falar de boca cheia",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "audio": "m20_e2"
+    },
+    {
+      "tipo": "tocar",
+      "narracao": "Agora conte o seu dia! Toque no que você quiser contar.",
+      "alvos": [
+        {
+          "icone": "👫",
+          "img": "m10_amigos",
+          "texto": "Com quem brinquei",
+          "fala": "Com quem brinquei",
+          "x": 170,
+          "y": 760
+        },
+        {
+          "icone": "😊",
+          "texto": "O que me fez sorrir",
+          "fala": "O que me fez sorrir",
+          "x": 360,
+          "y": 760
+        },
+        {
+          "icone": "😢",
+          "img": "m11_triste",
+          "texto": "O que me deixou triste",
+          "fala": "O que me deixou triste",
+          "x": 550,
+          "y": 760
+        }
+      ],
+      "audio": "m20_e3"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "👂",
+      "img": null,
+      "texto": "Esperar a vez de falar"
+    },
+    "cena_errada": {
+      "icone": "🤤",
+      "img": "m13_prato_cheio",
+      "texto": "Falar de boca cheia"
+    },
+    "explicacao": "Na mesa, um fala de cada vez — e de boca vazia.",
+    "audio": "m20_pnp"
+  },
+  "frase_reforco": "Sua voz tem lugar na mesa!",
+  "audio_reforco": "m20_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

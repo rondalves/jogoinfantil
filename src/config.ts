@@ -46,5 +46,6 @@ export const MUNDOS: Mundo[] = [
   { id: 2, nome: 'Escola', icone: '🎒', cor: 0xdfe6ec },
   { id: 3, nome: 'Volta para Casa', icone: '🚗', cor: 0xdfe8df },
   { id: 4, nome: 'Tarde', icone: '🧸', cor: 0xefe2de },
-  { id: 5, nome: 'Noite', icone: '🌙', cor: 0xe2e0ea },
+  { id: 5, nome: 'Janta', icone: '🍽️', cor: 0xeae3d6 },
+  { id: 6, nome: 'Banho e Cama', icone: '🛁', cor: 0xe2e0ea },
 ];

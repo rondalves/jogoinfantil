@@ -1,0 +1,68 @@
+{
+  "id": "26",
+  "mundo": 6,
+  "titulo": "Boa noite",
+  "icone": "🌙",
+  "cenario": "bg_quarto_noite",
+  "narracao_intro": "{nome}, chegou a hora mais quietinha do dia. Vamos dormir?",
+  "audio_intro": "m26_intro",
+  "mostrar": {
+    "narracao": "Respira fundo, escolhe uma historinha ou uma musiquinha, e boa noite!",
+    "audio": "m26_mostrar",
+    "icone": "🌙"
+  },
+  "etapas": [
+    {
+      "tipo": "respirar",
+      "narracao": "Sopre bem devagar, três vezes. O corpo vai ficando leve.",
+      "repeticoes": 3,
+      "audio": "m26_e1"
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "O que você quer ouvir para dormir?",
+      "itens": [
+        {
+          "icone": "📖",
+          "img": "m19_historia",
+          "texto": "Uma historinha",
+          "fala": "Uma historinha",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "🎵",
+          "img": "m26_musica",
+          "texto": "Uma musiquinha",
+          "fala": "Uma musiquinha",
+          "x": 520,
+          "y": 760,
+          "correto": true
+        }
+      ],
+      "audio": "m26_e2"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "💡",
+      "img": "m19_luz",
+      "texto": "Apagar a luz e dormir"
+    },
+    "cena_errada": {
+      "icone": "📺",
+      "img": "m18_tablet_ligado",
+      "texto": "Ficar na tela na cama"
+    },
+    "explicacao": "A luz da tela engana o corpo e o sono demora. No escuro ele chega.",
+    "audio": "m26_pnp"
+  },
+  "frase_reforco": "Bons sonhos, Super Ajudante!",
+  "audio_reforco": "m26_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

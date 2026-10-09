@@ -1,0 +1,93 @@
+{
+  "id": "14",
+  "mundo": 4,
+  "titulo": "Brincar até a janta",
+  "icone": "🧸",
+  "cenario": "bg_quarto_brincar",
+  "narracao_intro": "{nome}, deu tempo de brincar! Com o que você quer brincar?",
+  "audio_intro": "m14_intro",
+  "mostrar": {
+    "narracao": "Toque num brinquedo e veja o que ele faz. Brincar junto é melhor ainda!",
+    "audio": "m14_mostrar",
+    "icone": "🧸"
+  },
+  "etapas": [
+    {
+      "tipo": "tocar",
+      "narracao": "Toque nos brinquedos e veja cada um acordar!",
+      "alvos": [
+        {
+          "icone": "⚽",
+          "img": "m15_bola",
+          "texto": "Bola",
+          "fala": "Bola",
+          "x": 170,
+          "y": 760
+        },
+        {
+          "icone": "🚂",
+          "img": "m15_trem",
+          "texto": "Trenzinho",
+          "fala": "Trenzinho",
+          "x": 360,
+          "y": 760
+        },
+        {
+          "icone": "🧸",
+          "img": "m15_urso",
+          "texto": "Ursinho",
+          "fala": "Ursinho",
+          "x": 550,
+          "y": 760
+        }
+      ],
+      "audio": "m14_e1"
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "Um amigo chegou e quer brincar. O que você faz?",
+      "consequencia": "Brinquedo jogado machuca e quebra. Que tal dividir?",
+      "itens": [
+        {
+          "icone": "🤝",
+          "img": "m10_oferecer",
+          "texto": "Dividir o brinquedo",
+          "fala": "Dividir o brinquedo",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "💨",
+          "img": "m15_bola",
+          "texto": "Jogar o brinquedo longe",
+          "fala": "Jogar o brinquedo longe",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "audio": "m14_e2"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🤝",
+      "img": "m10_oferecer",
+      "texto": "Dividir o brinquedo"
+    },
+    "cena_errada": {
+      "icone": "😫",
+      "img": "m15_bola",
+      "texto": "Jogar o brinquedo longe"
+    },
+    "explicacao": "Brinquedo dividido rende duas brincadeiras. Jogado, rende zero.",
+    "audio": "m14_pnp"
+  },
+  "frase_reforco": "Brincar junto é muito melhor!",
+  "audio_reforco": "m14_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

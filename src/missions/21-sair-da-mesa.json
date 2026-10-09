@@ -1,0 +1,113 @@
+{
+  "id": "21",
+  "mundo": 5,
+  "titulo": "Sair da mesa",
+  "icone": "🧽",
+  "cenario": "bg_sala_janta",
+  "narracao_intro": "{nome}, terminou de jantar? Sair da mesa também tem jeito certo.",
+  "audio_intro": "m21_intro",
+  "mostrar": {
+    "narracao": "Termina, pede licença e leva o prato até a pia. Simples assim!",
+    "audio": "m21_mostrar",
+    "icone": "🧽"
+  },
+  "etapas": [
+    {
+      "tipo": "sequencia_ordenada",
+      "narracao": "Toque na ordem: terminar, pedir licença e levar o prato.",
+      "consequencia": "Ainda não é esse. Tente outro!",
+      "itens": [
+        {
+          "icone": "🍽️",
+          "img": "m13_prato_vazio",
+          "texto": "Terminar",
+          "fala": "Terminar",
+          "x": 170,
+          "y": 760
+        },
+        {
+          "icone": "🙋",
+          "img": "adulto",
+          "texto": "Pedir licença",
+          "fala": "Pedir licença",
+          "x": 360,
+          "y": 760
+        },
+        {
+          "icone": "🚶",
+          "img": "m17_prato",
+          "texto": "Levar o prato",
+          "fala": "Levar o prato",
+          "x": 550,
+          "y": 760
+        }
+      ],
+      "audio": "m21_e1"
+    },
+    {
+      "tipo": "arrastar_para_alvo",
+      "narracao": "Leve a louça até a pia.",
+      "consequencia": "Esse não vai para a pia! Deixe na mesa.",
+      "alvo": {
+        "icone": "🚰",
+        "img": "m17_cesto",
+        "fala": "Pia",
+        "x": 360,
+        "y": 960
+      },
+      "itens": [
+        {
+          "icone": "🍽️",
+          "img": "m17_prato",
+          "fala": "Prato",
+          "x": 150,
+          "y": 500
+        },
+        {
+          "icone": "🥛",
+          "img": "m17_copo",
+          "fala": "Copo",
+          "x": 360,
+          "y": 500
+        },
+        {
+          "icone": "🍴",
+          "img": "m17_garfo",
+          "fala": "Garfo",
+          "x": 570,
+          "y": 500
+        },
+        {
+          "icone": "🧸",
+          "img": "m15_urso",
+          "fala": "Ursinho",
+          "x": 360,
+          "y": 684,
+          "correto": false
+        }
+      ],
+      "audio": "m21_e2"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🙋",
+      "img": "adulto",
+      "texto": "Pedir licença e levar o prato"
+    },
+    "cena_errada": {
+      "icone": "🏃",
+      "img": "m13_cadeira",
+      "texto": "Sair correndo da mesa"
+    },
+    "explicacao": "Pedir licença avisa todo mundo. E o prato na pia ajuda quem cozinhou.",
+    "audio": "m21_pnp"
+  },
+  "frase_reforco": "Você cuida do que é seu!",
+  "audio_reforco": "m21_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

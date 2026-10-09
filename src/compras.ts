@@ -16,7 +16,7 @@ const CHAVE = 'missoes-do-dia:compra';
 /** Produto cadastrado no Play Console (compra unica, nao consumivel). */
 export const PRODUTO = 'rotininha.mundos.completos';
 
-export const PRECO = 'R$ 1,99';
+export const PRECO = 'R$ 4,99';
 
 /** Ponte opcional com a loja; so existe no aparelho, nunca no navegador. */
 interface Loja {

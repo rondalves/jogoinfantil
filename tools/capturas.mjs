@@ -5,6 +5,12 @@
  *   npm run capturas          (precisa do npm run preview rodando)
  */
 import { chromium } from 'playwright';
+import { readFileSync, readdirSync } from 'node:fs';
+
+const IDS = readdirSync('src/missions')
+  .filter((f) => f.endsWith('.json'))
+  .sort()
+  .map((f) => JSON.parse(readFileSync(`src/missions/${f}`, 'utf8')).id);
 import { mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -130,7 +136,7 @@ const main = async () => {
   await page.evaluate(async () => {
     const j = window.__jogo;
     const perfis = JSON.parse(localStorage.getItem('missoes-do-dia:perfis'));
-    for (let i = 1; i <= 20; i++) perfis[0].missoes[String(i).padStart(2, '0')] = 3;
+    for (const m of IDS) perfis[0].missoes[m] = 3;
     localStorage.setItem('missoes-do-dia:perfis', JSON.stringify(perfis));
     j.scene.scenes.forEach((s) => s.scene.key !== 'Boot' && j.scene.stop(s.scene.key));
     j.scene.start('Medalha');
