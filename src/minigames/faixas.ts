@@ -101,7 +101,12 @@ export function correrFaixas(
   let faixa = 1;
   // a crianca entra primeiro, recortada na linha do banco: do banco para
   // baixo quem aparece e o kart, entao ela fica sentada de verdade
-  const crianca = op.montaria ? desenharPersonagem(cena, personagem, 0.48) : null;
+  // no kart quem leva a crianca e o kart: a cadeira de rodas em cima dele
+  // nao faz sentido nenhum. O corpo em pe entra e o kart tapa da cintura
+  // para baixo, igual a qualquer outra crianca sentada no banco.
+  const crianca = op.montaria
+    ? desenharPersonagem(cena, { ...personagem, cadeirante: false }, 0.48)
+    : null;
   if (crianca) {
     crianca.setPosition(FAIXAS[faixa], Y_HEROI - 54);
     const corte = cena.make.graphics({ x: 0, y: 0 });

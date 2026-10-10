@@ -227,6 +227,8 @@ export interface OpcoesBotao {
   largura?: number;
   cor?: number;
   tamanhoTexto?: number;
+  /** so a area dos pais usa menor: la cabe muita coisa numa tela so */
+  altura?: number;
 }
 
 export function botao(
@@ -247,7 +249,7 @@ export function botao(
     .setOrigin(0.5);
   const vaoIcone = op.icone ? 110 : 0;
   const l = Math.min(W - 60, Math.max(op.largura ?? 0, vaoIcone + rotulo.width + 72));
-  const a = 128;
+  const a = op.altura ?? 128;
   const c = cena.add.container(x, y);
   const g = cena.add.graphics();
   const corBotao = op.cor ?? TEMA.acao;

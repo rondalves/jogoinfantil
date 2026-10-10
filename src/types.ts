@@ -81,7 +81,8 @@ export interface Missao {
   audio_intro?: string;
   /** cenario de fundo da missao (nome do arquivo em /assets/img) */
   cenario?: string;
-  mostrar?: { narracao: string; audio?: string; icone?: string };
+  /** `img` opcional: sem ela o cartao do 'olha como se faz' mostra o emoji */
+  mostrar?: { narracao: string; audio?: string; icone?: string; img?: string };
   etapas: Etapa[];
   pode_ou_nao_pode: {
     cena_certa: Cena;

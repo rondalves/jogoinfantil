@@ -97,6 +97,12 @@ export function escovar(c: Ctx, e: Etapa) {
 
   const escova = figura(c.cena, CENTRO_X, CENTRO_Y + 320, e.alvo?.img, e.alvo?.icone ?? '\u{1FAA5}', 190);
   escova.setDepth(5);
+  // a cerda tem de encostar no dente, nao o cabo: a arte de m01_escova sai
+  // deitada, com a cerda a 41 graus acima da horizontal (medido em 194,81 de
+  // 250x256). Girando para cima e ancorando na cerda, ela escova de verdade.
+  if (escova instanceof Phaser.GameObjects.Image && escova.texture.key === 'm01_escova') {
+    escova.setOrigin(0.776, 0.316).setAngle(-48);
+  }
   c.camada.add(escova);
 
   const painel = textoEmPainel(c.cena, W / 2, 452, regioes[0].texto, 38, W - 260);

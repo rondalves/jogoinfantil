@@ -68,7 +68,9 @@ export class Pais extends Phaser.Scene {
   }
 
   private painel() {
-    titulo(this, `Progresso de ${this.p.nome}`, 190);
+    titulo(this, `Progresso de ${this.p.nome}`, 180);
+    this.mundosCompletos();
+
     const feitas = Object.keys(this.p.missoes).length;
     const linhas = [
       `Missões concluídas: ${feitas} de ${MISSOES.length}`,
@@ -76,77 +78,77 @@ export class Pais extends Phaser.Scene {
       `Moedas ganhas: ${this.p.moedas}`,
       `Fichas gastas: ${this.p.fichasGastas}`,
       `Fichas no saldo: ${this.p.fichas}`,
-      `Broches de mundo: ${this.p.broches.length} de 5`,
+      `Broches de mundo: ${this.p.broches.length} de ${MUNDOS.length}`,
       `Partidas hoje: ${partidasHoje(this.p)} de ${this.p.limiteDiario}`,
     ];
-    this.mundosCompletos();
     this.add
-      .text(60, 350, linhas.join('\n'), { fontSize: '30px', color: '#2b3a4a', lineSpacing: 10 })
+      .text(60, 372, linhas.join('\n'), { fontSize: '28px', color: '#2b3a4a', lineSpacing: 8 })
       .setOrigin(0, 0);
 
-    const nomeVoz = () => (this.p.voz === 'm' ? 'masculina' : 'feminina');
-    const vozRotulo = this.add
-      .text(W / 2, 672, `Voz do narrador: ${nomeVoz()}`, { fontSize: '36px', color: '#2b3a4a' })
-      .setOrigin(0.5);
-    botao(
-      this,
-      W / 2,
-      756,
-      'Trocar a voz',
-      () => {
+    // cada ajuste e uma linha so: rotulo a esquerda, botao a direita. Antes
+    // era rotulo em cima e botao embaixo, e nao cabia na tela.
+    const ajuste = (y: number, texto: () => string, acao: (r: Phaser.GameObjects.Text) => void) => {
+      const r = this.add.text(56, y, texto(), { fontSize: '30px', color: '#2b3a4a' }).setOrigin(0, 0.5);
+      botao(this, W - 164, y, 'Trocar', () => acao(r), {
+        largura: 264,
+        cor: 0xbfd4e8,
+        altura: 86,
+        tamanhoTexto: 30,
+      });
+      return r;
+    };
+
+    ajuste(
+      690,
+      () => `Voz: ${this.p.voz === 'm' ? 'masculina' : 'feminina'}`,
+      (r) => {
         this.p.voz = this.p.voz === 'm' ? 'f' : 'm';
         salvar(this.p);
         narrador.setVoz(this.p.voz);
-        vozRotulo.setText(`Voz do narrador: ${nomeVoz()}`);
+        r.setText(`Voz: ${this.p.voz === 'm' ? 'masculina' : 'feminina'}`);
         narrador.falar('Pronto! Esta é a voz que vai explicar as missões.');
       },
-      { largura: 380, cor: 0xbfd4e8 },
     );
-
-    const nomeMusica = () => (this.p.musica === false ? 'desligada' : 'ligada');
-    const musicaRotulo = this.add
-      .text(W / 2, 828, `Música de fundo: ${nomeMusica()}`, { fontSize: '36px', color: '#2b3a4a' })
-      .setOrigin(0.5);
-    botao(
-      this,
-      W / 2,
-      894,
-      'Ligar / desligar',
-      () => {
+    ajuste(
+      790,
+      () => `Música: ${this.p.musica === false ? 'desligada' : 'ligada'}`,
+      (r) => {
         this.p.musica = this.p.musica === false;
         salvar(this.p);
         setMusicaLigada(this.p.musica);
-        musicaRotulo.setText(`Música de fundo: ${nomeMusica()}`);
+        r.setText(`Música: ${this.p.musica === false ? 'desligada' : 'ligada'}`);
       },
-      { largura: 380, cor: 0xbfd4e8 },
     );
 
-    const rotulo = this.add
-      .text(W / 2, 962, `Limite diário: ${this.p.limiteDiario} partidas`, { fontSize: '36px', color: '#2b3a4a' })
-      .setOrigin(0.5);
+    const limite = this.add
+      .text(56, 890, `Limite: ${this.p.limiteDiario} partidas por dia`, { fontSize: '30px', color: '#2b3a4a' })
+      .setOrigin(0, 0.5);
     const muda = (d: number) => {
       this.p.limiteDiario = Phaser.Math.Clamp(this.p.limiteDiario + d, 0, 20);
       salvar(this.p);
-      rotulo.setText(`Limite diário: ${this.p.limiteDiario} partidas`);
+      limite.setText(`Limite: ${this.p.limiteDiario} partidas por dia`);
     };
-    botao(this, W / 2 - 150, 1028, '-1', () => muda(-1), { largura: 200, cor: 0xbfd4e8 });
-    botao(this, W / 2 + 150, 1028, '+1', () => muda(1), { largura: 200, cor: 0xbfd4e8 });
+    botao(this, W - 230, 890, '-1', () => muda(-1), { largura: 120, cor: 0xbfd4e8, altura: 86 });
+    botao(this, W - 96, 890, '+1', () => muda(1), { largura: 120, cor: 0xbfd4e8, altura: 86 });
     this.add
-      .text(W / 2, 1016, `Padrão: ${CONFIG.PARTIDAS_POR_DIA} por dia. 0 desliga os mini games.`, {
-        fontSize: '28px',
+      .text(56, 950, `Padrão: ${CONFIG.PARTIDAS_POR_DIA} por dia. 0 desliga os mini games.`, {
+        fontSize: '24px',
         color: '#6b7a8a',
       })
-      .setOrigin(0.5);
+      .setOrigin(0, 0.5);
 
-    botao(this, W / 2, 1108, 'Zerar progresso', () => this.confirmar('zerar'), { largura: 520, cor: 0xffb0a0 });
-    botao(this, W / 2 - 185, 1205, 'Apagar perfil', () => this.confirmar('apagar'), { largura: 330, cor: 0xff8f7a });
-
+    botao(this, W / 2, 1036, 'Zerar progresso', () => this.confirmar('zerar'), {
+      largura: 520,
+      cor: 0xffb0a0,
+      altura: 96,
+    });
+    botao(this, W / 2 - 170, 1146, 'Apagar perfil', () => this.confirmar('apagar'), {
+      largura: 300,
+      cor: 0xff8f7a,
+      altura: 96,
+    });
     const link = this.add
-      .text(W / 2 + 185, 1205, 'Privacidade', {
-        fontSize: '30px',
-        color: '#1f6fb2',
-        fontStyle: 'bold',
-      })
+      .text(W / 2 + 180, 1146, 'Privacidade', { fontSize: '30px', color: '#1f6fb2', fontStyle: 'bold' })
       .setOrigin(0.5);
     toque(link, () => window.open(CONFIG.URL_PRIVACIDADE, '_blank', 'noopener'));
   }

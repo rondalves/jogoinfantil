@@ -146,6 +146,41 @@ const main = async () => {
     await page.waitForTimeout(500);
   }
 
+  // o painel dos pais so aparece depois da conta certa, entao o conferidor de
+  // layout nunca o via -- e foi justamente la que os botoes se embolaram.
+  atual = 'tela Pais (painel)';
+  await page.evaluate(async () => {
+    const j = window.__jogo;
+    j.scene.scenes.forEach((s) => s.scene.key !== 'Boot' && j.scene.stop(s.scene.key));
+    j.scene.start('Pais');
+    await new Promise((r) => setTimeout(r, 1500));
+  });
+  for (let i = 0; i < 3; i++) {
+    const alvo = await page.evaluate((n) => {
+      const j = window.__jogo;
+      const c = j.scene.getScene('Pais');
+      const capa = c.children.list.find((o) => o.type === 'Container' && o.list?.length > 3);
+      const botoes = (capa?.list ?? []).filter((o) => o.type === 'Container' && o.input);
+      const b = botoes[n];
+      if (!b) return null;
+      const r = j.canvas.getBoundingClientRect();
+      const k = r.width / 720;
+      return { x: r.x + b.x * k, y: r.y + (b.y - c.cameras.main.scrollY) * k };
+    }, i);
+    if (!alvo) break;
+    await page.mouse.click(alvo.x, alvo.y);
+    await page.waitForTimeout(700);
+    const abriu = await page.evaluate(() =>
+      window.__jogo.scene.getScene('Pais').children.list.some((o) => o.type === 'Text' && /Limite:/.test(o.text)),
+    );
+    if (abriu) break;
+  }
+  const abriuPainel = await page.evaluate(() =>
+    window.__jogo.scene.getScene('Pais').children.list.some((o) => o.type === 'Text' && /Limite:/.test(o.text)),
+  );
+  if (!abriuPainel) problemas.push(`${atual}: nao passei da conta, o painel nao foi conferido`);
+  for (const e of await page.evaluate(conferirLayout)) problemas.push(`${atual}: ${e}`);
+
   // o personagem ja saiu sem rosto fora do criador, porque a lista de olhos so
   // era montada la. Se voltar a acontecer, e aqui que aparece.
   atual = 'rosto do personagem';

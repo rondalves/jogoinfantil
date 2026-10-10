@@ -166,12 +166,18 @@ export class Missao extends Phaser.Scene {
     p.setPosition(W / 2, 830);
     darVida(this, p);
     this.camada.add(p);
-    const obj = figura(this, W / 2 + 150, 760, undefined, m?.icone ?? this.def.icone, 120);
+    // num cartao, nao solto no ar: o emoji sozinho ao lado do personagem lia
+    // como um pedaco de movel caido no quarto
+    const cartao = this.add.graphics();
+    cartao.fillStyle(0xffffff, 0.96);
+    cartao.fillRoundedRect(W / 2 + 128, 712, 164, 164, 28);
+    this.camada.add(cartao);
+    const obj = figura(this, W / 2 + 210, 794, m?.img, m?.icone ?? this.def.icone, 92);
     this.camada.add(obj);
     this.tweens.add({
       targets: obj,
-      angle: { from: -18, to: 18 },
-      y: 700,
+      angle: { from: -14, to: 14 },
+      y: 770,
       duration: 500,
       yoyo: true,
       repeat: 3,
