@@ -146,6 +146,23 @@ const main = async () => {
     await page.waitForTimeout(500);
   }
 
+  // o personagem ja saiu sem rosto fora do criador, porque a lista de olhos so
+  // era montada la. Se voltar a acontecer, e aqui que aparece.
+  atual = 'rosto do personagem';
+  await page.evaluate(async () => {
+    const j = window.__jogo;
+    j.scene.scenes.forEach((s) => s.scene.key !== 'Boot' && j.scene.stop(s.scene.key));
+    j.scene.start('Mapa');
+    await new Promise((r) => setTimeout(r, 1500));
+  });
+  const temRosto = await page.evaluate(() =>
+    window.__jogo.scene
+      .getScene('Mapa')
+      .children.list.filter((o) => o.type === 'Container')
+      .some((b) => b.list.some((x) => String(x.texture?.key ?? '').startsWith('olhos_'))),
+  );
+  if (!temRosto) problemas.push('rosto do personagem: nenhum olhos_* no boneco do mapa');
+
   atual = 'medalha';
   await page.evaluate(async (ids) => {
     const j = window.__jogo;

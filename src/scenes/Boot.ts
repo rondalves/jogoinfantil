@@ -3,6 +3,7 @@ import { IMAGENS_BASE } from '../assets';
 import { CONFIG } from '../config';
 import { ativo, listar } from '../storage';
 import { TEMA } from '../theme';
+import { montarOpcoes } from '../personagem';
 import { cobrirTela, figura, irPara } from '../ui';
 import { musicaDoMundo, setMusicaLigada } from '../musica';
 
@@ -53,6 +54,9 @@ export class Boot extends Phaser.Scene {
   }
 
   create() {
+    // monta as listas de cabelo, olhos e roupa a partir do que tem arte. Aqui,
+    // nao so no criador: sem isso o personagem sai sem rosto nas outras telas.
+    montarOpcoes(this);
     setMusicaLigada(ativo()?.musica !== false);
     musicaDoMundo();
     // a raposinha de verdade entra assim que a arte termina de carregar
