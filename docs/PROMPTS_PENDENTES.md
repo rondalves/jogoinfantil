@@ -177,3 +177,105 @@ pequeno.
 4. As **2 cenas da rua** — o "pode ou não pode" da missão 06 fica muito melhor.
 5. As **6 capas** — só fazem falta quando a aba de historinhas existir.
 6. **`logo`** — cosmético, serve para a ficha da loja.
+
+---
+
+# O rosto do personagem (testado no celular em 10/10/2026)
+
+Quatro problemas vistos no aparelho, com o que resolve cada um.
+
+## 1. O rosto e oval demais
+
+A cabeca da arte do corpo e um ovo em pe. Crianca de 4 anos le melhor rosto
+**redondo, com a bochecha larga e o queixo curto**. Isso vem da arte do corpo
+base, nao do codigo.
+
+Arquivo cru: `corpo_base_pele_clara`
+
+> Ilustracao 2D cartoon infantil de **uma crianca de pe, de frente, corpo
+> inteiro, braco aberto para o lado**, sem rosto desenhado (sem olhos, sem
+> boca, sem sobrancelha) — so a pele lisa da cabeca. **A cabeca e bem redonda,
+> quase um circulo**, com bochecha larga e queixo curto e macio, no estilo de
+> boneco de feltro. Orelhas pequenas coladas. Camiseta branca e shorts branco
+> lisos, tenis branco. Pele clara uniforme. Contorno escuro fino e limpo,
+> cores suaves e pouco saturadas. **Fundo verde chapado #00FF00.** Imagem
+> quadrada 2048x2048, a crianca centralizada ocupando a altura do quadro.
+
+Se trocar esse arquivo, **todas as roupas precisam ser regeradas** no mesmo
+enquadramento, senao a cabeca da roupa nao casa com a do corpo.
+
+## 2. Os olhos
+
+| hoje | problema |
+|---|---|
+| `olhos_grandes` | olho grande demais num rosto oval fica estranho, meio assustado |
+| `olhos_alegres` | olho fechado em arco + boca aberta le como **bichinho**, nao crianca |
+| `olhos_sorriso` | **esse ficou bom**, serve de referencia para os outros |
+
+Regere os dois primeiros pedindo olho **aberto**, com iris visivel:
+
+> Apenas **os olhos, as sobrancelhas e a boca** de uma crianca de desenho
+> animado, sem rosto, sem cabeca, sem pele em volta. **[O JEITO]**. Olhos
+> abertos com iris castanha e um brilho pequeno, sobrancelha fina e suave,
+> boca pequena sorrindo de canto. Contorno escuro fino e limpo, cores suaves.
+> **Fundo verde chapado #00FF00.** Imagem quadrada 2048x2048, as pecas
+> centralizadas ocupando a largura de um rosto.
+
+- `olhos_grandes` → **[O JEITO]** = *Olhos redondos e medios, um pouco maiores
+  que o normal, mas sem exagero — ainda cabem num rosto de crianca*
+- `olhos_alegres` → **[O JEITO]** = *Olhos abertos em formato de amendoa,
+  cantos levemente curvados para cima, cara de quem esta contente*
+
+## 3. Oculos e aparelho auditivo sairam do criador
+
+Os dois flutuavam fora do lugar, entao sairam da lista (ficaram comentados em
+`src/personagem.ts`). **Voltam assim que a arte chegar na moldura certa** — e
+so descomentar duas linhas.
+
+O que estava errado: as pecas vinham cortadas rente ao objeto, entao o jogo nao
+tinha como saber onde e o "meio dos olhos" ou "onde encosta na orelha". A
+solucao e vir **na mesma moldura 2048x2048 do corpo**, ja no lugar:
+
+### `acessorio_oculos`
+
+> Apenas **um oculos infantil de armacao arredondada**, visto exatamente de
+> frente, sem rosto, sem cabeca e sem orelhas. Armacao azul petroleo fina,
+> lentes transparentes. Contorno escuro fino e limpo. **Fundo verde chapado
+> #00FF00.** Imagem quadrada 2048x2048, com o oculos **centralizado na
+> horizontal e posicionado a 33% da altura a partir do topo**, ocupando 22% da
+> largura do quadro.
+
+### `acessorio_aparelho_auditivo`
+
+> Apenas **um aparelho auditivo infantil retroauricular**, visto de lado,
+> gancho voltado para a esquerda, sem orelha, sem cabeca e sem pele. Corpo
+> bege claro com um detalhe colorido. Contorno escuro fino e limpo. **Fundo
+> verde chapado #00FF00.** Imagem quadrada 2048x2048, com o aparelho **a 38%
+> da altura a partir do topo e a 65% da largura a partir da esquerda**,
+> ocupando 8% da largura do quadro.
+
+As porcentagens sao o que faz a peca cair sozinha no lugar: sao as mesmas
+coordenadas que o codigo ja usa (olhos em -0.30 da altura, orelha em x 0.155).
+
+## 4. A perna some no fundo claro
+
+Nas roupas novas (vestido rosa, conjunto roxo, camiseta azul, moletom) a perna
+fica **mais clara que a do corpo base** e desaparece em cenario bege — e o que
+parecia "crianca sem perna" na travessia da rua.
+
+Medido na canela, tom de pele 3:
+
+| arte | cor da perna |
+|---|---|
+| `corpo_pele3` (base) | (184, 132, 102) |
+| `corpo_macacao_pele3` | (183, 128, 99) |
+| `corpo_azul_pele3` | (222, 176, 146) |
+| `corpo_roxo_pele3` | (225, 179, 149) |
+
+O `recolorir_pele` preserva o brilho do original, entao arte que nasce com pele
+mais clara continua clara depois de repintada. Nao e so contraste: a perna do
+vestido tambem e **mais fina** (665 px de pele na canela contra 2778 na base).
+
+Duas saidas: regerar as roupas novas com a **mesma pele do corpo base**, ou
+normalizar o brilho dentro do `recolorir_pele` antes de aplicar o tom. A
+primeira e mais segura — mexer no filtro pode repintar camiseta branca.
