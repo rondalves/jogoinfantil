@@ -44,9 +44,7 @@ CABELOS = [
     "menino_espetado", "menino_tigelinha", "menino_raspado", "menino_degrade", "menino_risco",
     "menino_moicano",
 ]
-# "redondos" ficou de fora: e a unica peca so com olhos, e desde que a boca
-# desenhada no corpo saiu, ela deixaria a crianca sem boca. Volta refeita.
-OLHOS = ["alegres", "grandes", "sorriso"]
+OLHOS = ["redondos", "alegres", "grandes", "sorriso"]
 
 # Roupas: sufixo da chave no jogo -> arquivo cru (corpo inteiro vestido, no
 # mesmo enquadramento do corpo base). Tem que bater com ROUPAS de
