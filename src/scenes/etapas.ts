@@ -57,7 +57,11 @@ const tocar: Handler = (c, e) => {
       : null;
     const base = c.cena.add.graphics();
     base.fillStyle(0xffffff, 0.97);
-    base.fillRoundedRect(a.x - 82, a.y - 82, 164, 164 + (rotulo ? rotulo.height + 24 : 0), 26);
+    const alturaA = 164 + (rotulo ? rotulo.height + 24 : 0);
+    base.fillRoundedRect(a.x - 82, a.y - 82, 164, alturaA, 26);
+    // borda: em cenario claro (banheiro, cozinha) o cartao branco sumia no fundo
+    base.lineStyle(4, 0xc9b8a8, 1);
+    base.strokeRoundedRect(a.x - 82, a.y - 82, 164, alturaA, 26);
     c.camada.add(base);
     const f = figura(c.cena, a.x, a.y, a.img, a.icone, 140);
     c.camada.add(f);
@@ -288,7 +292,10 @@ const sequencia: Handler = (c, e) => {
       : null;
     const base = c.cena.add.graphics();
     base.fillStyle(0xffffff, 0.97);
-    base.fillRoundedRect(it.x - 82, it.y - 82, 164, 164 + (rotulo ? rotulo.height + 24 : 0), 26);
+    const alturaI = 164 + (rotulo ? rotulo.height + 24 : 0);
+    base.fillRoundedRect(it.x - 82, it.y - 82, 164, alturaI, 26);
+    base.lineStyle(4, 0xc9b8a8, 1);
+    base.strokeRoundedRect(it.x - 82, it.y - 82, 164, alturaI, 26);
     c.camada.add(base);
     const f = figura(c.cena, it.x, it.y, it.img, it.icone, 130);
     c.camada.add(f);

@@ -31,8 +31,8 @@ BRANCO_CENARIO = 0.2
 # Tons de pele do jogo (iguais aos de src/personagem.ts).
 PELES = [(255, 224, 189), (239, 201, 171), (243, 200, 147), (224, 172, 105), (198, 134, 66),
          (141, 85, 36), (92, 51, 23)]
-CORES_CABELO = [(43, 27, 23), (107, 68, 35), (217, 169, 91), (179, 58, 43), (74, 74, 74),
-                (125, 79, 160), (235, 212, 156), (232, 105, 159), (74, 144, 217)]
+CORES_CABELO = [(43, 27, 23), (107, 68, 35), (217, 169, 91), (179, 58, 43), (195, 195, 200),
+                (125, 79, 160), (247, 226, 176), (232, 105, 159), (74, 144, 217)]
 
 # Penteados e olhos que o jogo sabe mostrar (iguais aos catalogos de
 # src/personagem.ts). So entra o que tiver arte: cabelo_<id>_castanho e
@@ -68,8 +68,8 @@ ROSTO_TOPO = -206  # altura onde o vao comeca, logo abaixo do alto da cabeca
 TOPO_CABELO = -244  # o cabelo encosta no alto do cranio, nem acima nem abaixo
 # teto de tamanho: arte com volume demais encolhe ate aqui, sem nunca fechar o
 # vao abaixo de VAO_MINIMO (senao o cabelo entra na frente dos olhos)
-LARGURA_MAXIMA = 300
-ALTURA_MAXIMA = 300
+LARGURA_MAXIMA = 258
+ALTURA_MAXIMA = 268
 VAO_MINIMO = 142
 
 # folha -> nomes dos recortes, em ordem de leitura (linha por linha).
@@ -501,8 +501,10 @@ def recolorir_cabelo(rgba, destino):
     a = np.asarray(rgba).astype(np.float32)
     rgb, alpha = a[..., :3], a[..., 3:]
     luz = (rgb[..., 0] * 0.299 + rgb[..., 1] * 0.587 + rgb[..., 2] * 0.114) / 255.0
-    # a arte original e castanha e media ~0.35: normaliza para usar toda a faixa
-    luz = np.clip(luz / 0.55, 0, 1.25)
+    # a arte original e castanha e media ~0.35: normaliza para usar toda a faixa.
+    # Cor clara precisa de meio-tom mais alto, senao loiro e grisalho viram caqui
+    claro = (destino[0] * 0.299 + destino[1] * 0.587 + destino[2] * 0.114) / 255.0
+    luz = np.clip(luz / (0.55 - 0.35 * max(0.0, claro - 0.45)), 0, 1.25)
     novo = np.clip(luz[..., None] * np.array(destino, dtype=np.float32), 0, 255)
     return Image.fromarray(np.dstack([novo, alpha]).astype(np.uint8), "RGBA")
 

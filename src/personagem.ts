@@ -23,7 +23,7 @@ const CENTRO_CABECA = CABECA.topo + CABECA.altura / 2;
 /** Cores só para os botões do criador — a arte já vem recolorida. */
 export const PELES = [0xffe0bd, 0xefc9ab, 0xf3c893, 0xe0ac69, 0xc68642, 0x8d5524, 0x5c3317];
 export const CORES_CABELO = [
-  0x2b1b17, 0x6b4423, 0xd9a95b, 0xb33a2b, 0x4a4a4a, 0x7d4fa0, 0xebd49c, 0xe8699f, 0x4a90d9,
+  0x2b1b17, 0x6b4423, 0xd9a95b, 0xb33a2b, 0xc3c3c8, 0x7d4fa0, 0xf7e2b0, 0xe8699f, 0x4a90d9,
 ];
 
 /** Todo penteado que o jogo sabe mostrar. So aparece no criador o que tem arte. */
