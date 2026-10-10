@@ -21,6 +21,134 @@ export type Animacao = (
 ) => number;
 
 /**
+ * As pecas do personagem, achadas de fora pelo nome da textura.
+ *
+ * desenharPersonagem monta corpo + olhos + cabelo + acessorios num container.
+ * Em vez de mudar aquele arquivo para devolver referencias, a gente olha os
+ * filhos e reconhece cada um pela textura. E so leitura: quem monta continua
+ * sendo dono do desenho.
+ *
+ * Com corpo, olhos e cabelo na mao da para fazer o essencial de um esqueleto
+ * de tres ossos -- o corpo que anda, o cabelo que chega atrasado e o rosto que
+ * pisca e muda de humor. E o que tira o jeito de adesivo colado na tela.
+ */
+export interface Pecas {
+  corpo?: Phaser.GameObjects.Image;
+  olhos?: Phaser.GameObjects.Image;
+  cabelo?: Phaser.GameObjects.Image;
+}
+
+export function pecas(alvo: Phaser.GameObjects.Container): Pecas {
+  const fora: Pecas = {};
+  for (const o of alvo.list) {
+    const im = o as Phaser.GameObjects.Image;
+    const chave = typeof im.texture?.key === 'string' ? im.texture.key : '';
+    if (chave.startsWith('corpo')) fora.corpo ??= im;
+    else if (chave.startsWith('olhos_')) fora.olhos ??= im;
+    else if (chave.startsWith('cabelo_')) fora.cabelo ??= im;
+  }
+  return fora;
+}
+
+/** Rosto que o jogo sabe fazer. Cada um e uma arte de olhos+boca ja pronta. */
+const ROSTOS: Record<string, string> = {
+  normal: 'olhos_redondos',
+  feliz: 'olhos_alegres',
+  surpreso: 'olhos_grandes',
+  contente: 'olhos_sorriso',
+};
+
+/**
+ * Troca a cara do personagem. A peca traz olhos e boca juntos, entao e so
+ * trocar a textura -- e preciso recalcular a escala porque cada arte tem uma
+ * largura diferente e o rosto nao pode mudar de tamanho junto com o humor.
+ */
+export function expressao(alvo: Phaser.GameObjects.Container, humor: keyof typeof ROSTOS | string) {
+  const { olhos } = pecas(alvo);
+  const chave = ROSTOS[humor] ?? humor;
+  if (!olhos || !olhos.scene.textures.exists(chave) || olhos.texture.key === chave) return;
+  const larguraAntes = olhos.displayWidth;
+  olhos.setTexture(chave);
+  olhos.setScale(larguraAntes / olhos.width);
+}
+
+/**
+ * Pisca de vez em quando, no ritmo de quem esta acordado e calmo.
+ *
+ * Fecha so a altura da peca do rosto: dois quadros de nada, mas e o sinal que
+ * o olho humano usa para decidir se tem alguem ali.
+ */
+export function piscar(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container) {
+  const { olhos } = pecas(alvo);
+  if (!olhos) return alvo;
+  const aberto = olhos.scaleY;
+  const agendar = () =>
+    cena.time.delayedCall(Phaser.Math.Between(2200, 6000), () => {
+      if (!olhos.active) return;
+      cena.tweens.add({
+        targets: olhos,
+        scaleY: aberto * 0.08,
+        duration: 70,
+        yoyo: true,
+        onComplete: agendar,
+      });
+    });
+  agendar();
+  return alvo;
+}
+
+/**
+ * Passo: o corpo sobe e desce, inclina de leve e o cabelo chega atrasado.
+ *
+ * Sem perna separada na arte nao da para animar a perna. Mas o que o olho le
+ * como "andando" e o balanco vertical no ritmo certo mais o atraso do cabelo,
+ * nao a perna em si. Devolve os tweens para quem chamou poder parar.
+ */
+export function andar(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container, passoMs = 300) {
+  const { cabelo } = pecas(alvo);
+  const base = alvo.y;
+  const tweens = [
+    cena.tweens.add({
+      targets: alvo,
+      y: base - 9,
+      duration: passoMs,
+      yoyo: true,
+      repeat: -1,
+      ease: 'Sine.easeInOut',
+    }),
+    cena.tweens.add({
+      targets: alvo,
+      angle: { from: -2.2, to: 2.2 },
+      duration: passoMs * 2,
+      yoyo: true,
+      repeat: -1,
+      ease: 'Sine.easeInOut',
+    }),
+  ];
+  if (cabelo) {
+    // o cabelo sai meio passo atrasado: e isso que tira o jeito de bloco so
+    tweens.push(
+      cena.tweens.add({
+        targets: cabelo,
+        y: cabelo.y + 7,
+        angle: { from: -3, to: 3 },
+        duration: passoMs,
+        delay: passoMs / 2,
+        yoyo: true,
+        repeat: -1,
+        ease: 'Sine.easeInOut',
+      }),
+    );
+  }
+  return () => {
+    for (const t of tweens) t.remove();
+    alvo.setAngle(0);
+    alvo.y = base;
+    cabelo?.setAngle(0);
+  };
+}
+
+/**
  * Respiracao: o personagem parado nunca fica totalmente parado.
  *
  * E o truque mais barato que existe para a crianca sentir que tem alguem ali
@@ -28,6 +156,8 @@ export type Animacao = (
  * qualquer personagem ja montado.
  */
 export function darVida(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container) {
+  // quem respira tambem pisca: as duas coisas andam juntas em todo personagem
+  piscar(cena, alvo);
   const base = alvo.scaleY;
   cena.tweens.add({
     targets: alvo,
@@ -41,17 +171,67 @@ export function darVida(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container) 
   return alvo;
 }
 
-/** Pulinho de quem acertou. */
+/**
+ * Pulinho de quem acertou, com antecipacao e aterrissagem.
+ *
+ * O pulo so parece vivo com as tres partes: agacha antes (antecipacao), sobe
+ * rapido e desce devagar, e amassa ao tocar o chao (squash). Sem isso o boneco
+ * sobe e desce como elevador. O cabelo chega atrasado e o rosto fica feliz.
+ */
 export function comemorar(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container) {
-  cena.tweens.add({
+  const { cabelo } = pecas(alvo);
+  const y = alvo.y;
+  const ex = alvo.scaleX;
+  const ey = alvo.scaleY;
+  expressao(alvo, 'feliz');
+
+  cena.tweens.chain({
     targets: alvo,
-    y: alvo.y - 46,
-    duration: 260,
-    yoyo: true,
-    repeat: 1,
-    ease: 'Quad.easeOut',
+    tweens: [
+      // agacha: o olho precisa ver a forca sendo juntada
+      { scaleY: ey * 0.88, scaleX: ex * 1.07, y: y + 10, duration: 130, ease: 'Quad.easeOut' },
+      { scaleY: ey * 1.06, scaleX: ex * 0.95, y: y - 70, duration: 190, ease: 'Quad.easeOut' },
+      { y: y - 62, duration: 90, ease: 'Sine.easeInOut' },
+      { y, scaleY: ey, scaleX: ex, duration: 170, ease: 'Quad.easeIn' },
+      // amassa na aterrissagem e volta
+      { scaleY: ey * 0.86, scaleX: ex * 1.1, duration: 80, ease: 'Quad.easeOut' },
+      { scaleY: ey, scaleX: ex, duration: 220, ease: 'Back.out' },
+    ],
   });
-  cena.tweens.add({ targets: alvo, angle: { from: -5, to: 5 }, duration: 160, yoyo: true, repeat: 3 });
+  if (cabelo) {
+    const cy = cabelo.y;
+    cena.tweens.chain({
+      targets: cabelo,
+      tweens: [
+        { y: cy + 10, duration: 180, delay: 90, ease: 'Quad.easeOut' },
+        { y: cy - 6, duration: 200, ease: 'Sine.easeInOut' },
+        { y: cy, duration: 260, ease: 'Back.out' },
+      ],
+    });
+  }
+  return alvo;
+}
+
+/**
+ * Desanimou: ombro cai, cabeca pende e o balanco fica lento.
+ *
+ * Nunca e castigo -- serve para a crianca ler no personagem o que a frase diz,
+ * e volta sozinho ao normal depois de um tempinho.
+ */
+export function entristecer(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container, ms = 1600) {
+  const { cabelo } = pecas(alvo);
+  const y = alvo.y;
+  const ey = alvo.scaleY;
+  cena.tweens.add({ targets: alvo, scaleY: ey * 0.95, y: y + 12, duration: 420, ease: 'Quad.easeOut' });
+  if (cabelo) {
+    const cy = cabelo.y;
+    cena.tweens.add({ targets: cabelo, y: cy + 9, duration: 480, ease: 'Quad.easeOut' });
+    cena.time.delayedCall(ms, () => cena.tweens.add({ targets: cabelo, y: cy, duration: 400 }));
+  }
+  cena.time.delayedCall(ms, () => {
+    cena.tweens.add({ targets: alvo, scaleY: ey, y, duration: 400, ease: 'Sine.easeInOut' });
+    expressao(alvo, 'normal');
+  });
   return alvo;
 }
 
@@ -117,31 +297,40 @@ const atravessar: Animacao = (cena, camada, personagem) => {
     },
   });
 
-  const adulto = figura(cena, W / 2 + 74, beiraBaixo + 120, 'adulto', '\u{1F9D1}', 330).setDepth(64);
-  const crianca = desenharPersonagem(cena, personagem, 0.42).setDepth(64);
-  crianca.setPosition(W / 2 - 78, beiraBaixo + 150);
-  camada.add([adulto, crianca]);
+  // cada um vai dentro de um carrinho: o carrinho viaja e o corpo balanca
+  // dentro dele. Senao o passo e a travessia disputam o mesmo y.
+  const carrinho = (dentro: Phaser.GameObjects.Container, x: number, y: number) => {
+    dentro.setPosition(0, 0);
+    return cena.add.container(x, y, [dentro]).setDepth(64);
+  };
+  const adulto = cena.add.container(0, 0, [figura(cena, 0, 0, 'adulto', '\u{1F9D1}', 330)]);
+  const crianca = desenharPersonagem(cena, personagem, 0.42);
+  piscar(cena, crianca);
+  expressao(crianca, 'contente');
+  const carrinhos = [
+    carrinho(adulto, W / 2 + 74, beiraBaixo + 120),
+    carrinho(crianca, W / 2 - 78, beiraBaixo + 150),
+  ];
+  camada.add(carrinhos);
 
-  const andar = beiraBaixo - beiraCima + 300;
-  for (const [i, quem] of [adulto, crianca].entries()) {
+  const distancia = beiraBaixo - beiraCima + 300;
+  for (const c of carrinhos) {
     cena.tweens.add({
-      targets: quem,
-      y: quem.y - andar,
+      targets: c,
+      y: c.y - distancia,
       // encolhe um tiquinho ao se afastar: da profundidade sem perspectiva
-      scale: quem.scale * 0.88,
+      scale: 0.88,
       duration: 1900,
       delay: 1450,
       ease: 'Sine.easeInOut',
     });
-    cena.tweens.add({
-      targets: quem,
-      angle: { from: -2.5, to: 2.5 },
-      duration: 300,
-      delay: 1450 + i * 150,
-      yoyo: true,
-      repeat: 5,
-    });
   }
+  // o passo comeca ao sair da calcada e para ao chegar do outro lado
+  cena.time.delayedCall(1450, () => {
+    const parar = [adulto, crianca].map((quem, i) => andar(cena, quem, 300 + i * 24));
+    cena.time.delayedCall(1900, () => parar.forEach((p) => p()));
+  });
+
   cena.time.delayedCall(1450, () => nota(660));
   cena.time.delayedCall(2300, () => nota(784));
   cena.time.delayedCall(3100, () => nota(880));

@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { darVida } from '../animacoes';
+import { comemorar, darVida } from '../animacoes';
 import { CONFIG, MUNDOS } from '../config';
 import { estrelasTotais } from '../economia';
 import { MISSOES } from '../missions';
@@ -43,7 +43,10 @@ export class Medalha extends Phaser.Scene {
     });
     confete(this, 120);
 
-    darVida(this, desenharPersonagem(this, this.p.personagem, 0.32).setPosition(104, 1070));
+    const heroi = desenharPersonagem(this, this.p.personagem, 0.32).setPosition(104, 1070);
+    darVida(this, heroi);
+    // a medalha e o unico lugar do jogo que merece pulo: ela fechou o dia
+    this.time.delayedCall(900, () => comemorar(this, heroi));
 
     const feitas = Object.keys(this.p.missoes).length;
     const resumo = [

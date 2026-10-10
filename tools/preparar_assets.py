@@ -44,7 +44,9 @@ CABELOS = [
     "menino_espetado", "menino_tigelinha", "menino_raspado", "menino_degrade", "menino_risco",
     "menino_moicano",
 ]
-OLHOS = ["redondos", "alegres", "grandes", "sorriso"]
+# "redondos" ficou de fora: e a unica peca so com olhos, e desde que a boca
+# desenhada no corpo saiu, ela deixaria a crianca sem boca. Volta refeita.
+OLHOS = ["alegres", "grandes", "sorriso"]
 
 # Roupas: sufixo da chave no jogo -> arquivo cru (corpo inteiro vestido, no
 # mesmo enquadramento do corpo base). Tem que bater com ROUPAS de
@@ -570,6 +572,52 @@ def vao_do_rosto(rgba):
     return cx, linhas[0][0], larg
 
 
+def apagar_boca(rgba):
+    """Tira a boca desenhada no corpo: quem poe boca e a peca de olhos.
+
+    Tres artes de corpo vieram com nariz e boca; as roupas novas, com o rosto
+    vazio. Com a boca da arte a crianca ficava com duas bocas. Apaga esticando
+    a pele das laterais, linha a linha, para nao achatar o sombreado.
+    """
+    cab = cabeca_da_arte(rgba)
+    if cab is None:
+        return rgba
+    topo, cx, larg = cab
+    a = np.asarray(rgba).copy()
+    luz = a[..., :3].mean(axis=2)
+    dentro = np.zeros(luz.shape, bool)
+    # so o miolo do rosto: o contorno da cabeca tambem e escuro
+    y0, y1 = int(topo + larg * 0.35), int(topo + larg * 1.35)
+    x0, x1 = int(cx - larg * 0.42), int(cx + larg * 0.42)
+    dentro[y0:y1, x0:x1] = True
+    escuro = (luz < 140) & (a[..., 3] > 100) & dentro
+    rot, n = ndimage.label(escuro)
+    if n == 0:
+        return rgba
+    boca = None
+    for i, fatia in enumerate(ndimage.find_objects(rot), start=1):
+        ys, xs = fatia
+        alt, lar = ys.stop - ys.start, xs.stop - xs.start
+        # boca: larga, baixa e no miolo. Nariz e pequeno; queixo e largo demais
+        if not (larg * 0.12 < lar < larg * 0.6 and alt < larg * 0.22 and lar > alt):
+            continue
+        if boca is None or ys.start > boca[0].start:
+            boca = fatia
+    if boca is None:
+        return rgba
+    ys, xs = boca
+    m = max(3, int(larg * 0.02))
+    opaco = a[..., 3] > 100
+    for y in range(max(0, ys.start - m), min(a.shape[0], ys.stop + m)):
+        e, d = xs.start - m, xs.stop + m
+        if e < 1 or d >= a.shape[1] or not opaco[y, e] or not opaco[y, d]:
+            continue
+        esq, dir_ = a[y, e, :3].astype(np.float32), a[y, d, :3].astype(np.float32)
+        rampa = np.linspace(0, 1, d - e)[:, None]
+        a[y, e:d, :3] = (esq * (1 - rampa) + dir_ * rampa).astype(np.uint8)
+    return Image.fromarray(a, "RGBA")
+
+
 def cabeca_da_arte(rgba):
     """(topo, centro x, largura) do rosto: a maior mancha de pele la em cima.
 
@@ -716,16 +764,16 @@ def fazer_opacas():
 
 
 def fazer_personagem():
-    base = tirar_verde(abrir("corpo_base_pele_clara"))
+    base = apagar_boca(tirar_verde(abrir("corpo_base_pele_clara")))
     caixa_base = pecas(base)[0]
-    corpos = {"": base, "_sentado": tirar_verde(abrir("corpo_cadeira_pele_clara"))}
+    corpos = {"": base, "_sentado": apagar_boca(tirar_verde(abrir("corpo_cadeira_pele_clara")))}
     for sufixo, arquivo in ROUPAS.items():
         bruta = abrir(arquivo, obrigatorio=False)
         if bruta is None:
             print(f"  . {arquivo}: ainda nao chegou, pulando")
             continue
         # a arte da roupa vem com outro enquadramento: casa pela cabeca
-        encaixada = encaixar_corpo(tirar_verde(bruta), base, caixa_base)
+        encaixada = encaixar_corpo(apagar_boca(tirar_verde(bruta)), base, caixa_base)
         if encaixada is None:
             print(f"  ! {arquivo}: nao achei a cabeca, pulando")
             continue

@@ -145,7 +145,8 @@ export function desenharPersonagem(
   const chaveOlhos = `olhos_${OLHOS[cfg.olhos % OLHOS.length].id}`;
   if (cena.textures.exists(chaveOlhos)) {
     const olhos = porLargura(cena, chaveOlhos, CABECA.largura * 0.78);
-    olhos.setY(CENTRO_CABECA - CABECA.altura * 0.06);
+    // a peca traz olhos e boca: encaixa no meio do rosto, nao na linha dos olhos
+    olhos.setY(CENTRO_CABECA + CABECA.altura * 0.07);
     c.add(olhos);
   }
 
