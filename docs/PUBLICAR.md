@@ -164,3 +164,23 @@ porque a política Families é checada com mais cuidado.
 A cada versão nova, suba `versionCode` em `android/app/build.gradle`
 (1 → 2 → 3…) e `versionName` (`1.0` → `1.1`). Depois `npm run android:build`
 e envie o novo `.aab`. **Sempre com a mesma keystore.**
+
+---
+
+## Conformidade com o Feito para a Familia (conferida em 9/10/2026)
+
+O que a Play exige de um app para menores de 13 anos, e onde o jogo esta:
+
+| exigencia | estado | onde conferir |
+|---|---|---|
+| Nenhuma coleta de dados | **ok** | zero `fetch`, `XMLHttpRequest`, `WebSocket` ou SDK de analytics no `src/`. As dependencias sao so Phaser e Capacitor |
+| Funciona offline | **ok** | nenhuma URL buscada em tempo de execucao; a fonte Lexend vai embutida em `assets/fontes/` |
+| Nenhuma permissao de aparelho | **ok** | `AndroidManifest.xml` tem **zero** `uses-permission` — nem INTERNET |
+| Compra fora do alcance da crianca | **ok** | o botao so existe em `Pais.painel()`, e `painel()` so e chamado pelo acerto da conta em `Pais.portao()` |
+| Nenhum anuncio | **ok** | nao ha rede de anuncio no projeto |
+| Link externo so na area do adulto | **ok** | o unico `window.open` do jogo e o link da politica de privacidade, dentro do painel dos pais — e a Play exige que ele esteja la |
+| Politica de privacidade publica | **depende de voce** | a URL em `CONFIG.URL_PRIVACIDADE` precisa estar no ar antes de enviar (ver PUBLICAR_POLITICA.md) |
+
+Para a varredura continuar valendo, nao acrescente: biblioteca de anuncio ou
+analytics, chamada de rede, permissao no manifesto, nem `window.open` fora de
+`Pais.ts`. Qualquer um desses tira o app do programa.
