@@ -16,7 +16,8 @@
     "android:abrir": "npm run android:sync && cap open android",
     "capturas": "vite build && node tools/capturas.mjs && python tools/faixa_capturas.py",
     "smoke": "node tools/smoke.mjs",
-    "missoes": "python tools/listar_missoes.py"
+    "missoes": "python tools/listar_missoes.py",
+    "faltando": "python tools/faltando.py"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.3",

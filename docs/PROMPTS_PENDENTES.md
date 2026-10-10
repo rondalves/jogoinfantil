@@ -1,5 +1,10 @@
 # Prompts do que ainda falta desenhar
 
+> **Antes de ler o resto: rode `npm run faltando`.** Ele varre os JSONs e a
+> pasta e diz exatamente o que falta hoje, mais o que existe mas precisa ser
+> refeito. Esta lista escrita envelhece; o comando nao.
+
+
 Lista conferida contra os JSONs em 9 de outubro de 2026. É o que o jogo pede e
 não existe (ou existe errado) em `assets/img`. Cada um desses sai hoje como
 emoji, cor chapada ou imagem trocada.
@@ -355,3 +360,19 @@ rosto redondo, os dois olhos e os dois acessorios com moldura.
 5. as 2 cenas da rua
 6. `m01_espuma`, `mg1_kart_tras`, `m13_casa`
 7. as 6 capas e a logo
+
+## `olhos_triste` — a cara de desanimado
+
+O jogo sabe deixar o personagem triste (ombro cai, cabeca pende), mas sem essa
+peca a **cara** nao muda junto. Mesma moldura dos outros olhos.
+
+> Apenas **os olhos, as sobrancelhas e a boca** de uma crianca de desenho
+> animado, sem rosto, sem cabeca, sem pele em volta. Olhos abertos olhando um
+> pouco para baixo, **sobrancelhas inclinadas para cima no meio** (cara de
+> desanimado, nao de bravo), boca pequena em arco virado para baixo, suave.
+> Nada de lagrima. Contorno escuro fino e limpo, cores suaves. **Fundo verde
+> chapado #00FF00.** Imagem quadrada 2048x2048, as pecas centralizadas
+> ocupando a largura de um rosto.
+
+Triste aqui nunca e castigo: aparece junto com a frase que explica o que
+aconteceu e volta ao normal sozinho em dois segundos.
