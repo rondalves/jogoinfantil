@@ -279,3 +279,79 @@ vestido tambem e **mais fina** (665 px de pele na canela contra 2778 na base).
 Duas saidas: regerar as roupas novas com a **mesma pele do corpo base**, ou
 normalizar o brilho dentro do `recolorir_pele` antes de aplicar o tom. A
 primeira e mais segura — mexer no filtro pode repintar camiseta branca.
+
+---
+
+# Arte que o teste de 10/10 pediu (segunda rodada)
+
+As quatro coisas que eu consertei no codigo — painel dos pais, kart sem a
+cadeira, escova virada e o objeto solto num cartao — nao precisam de arte. Esta
+lista e o que **so** sai com desenho novo.
+
+## 1. Os cinco emojis que ainda aparecem no meio do jogo
+
+Emoji no meio da arte desenhada salta aos olhos. Os que ainda aparecem na tela
+"olha como se faz" de cada missao, dentro do cartao novo:
+
+| onde | hoje | arquivo a gerar |
+|---|---|---|
+| missao 01, 23 | 🪥 | **ja existe** (`m01_escova`), falta o JSON apontar — eu faco |
+| missao 02 | 🛏️ | `m02_cama_arrumada` ja existe, idem |
+| missao 05 | 🎒 | `m05_mochila` ja existe, idem |
+| missao 13 | 🏠 | `m13_casa` |
+| missao 22 | 🧸 | ja existe |
+
+Para `m13_casa`, peca solta de fundo verde:
+
+> Ilustracao 2D cartoon infantil de **uma casinha simples vista de frente**,
+> com porta, duas janelas e telhado, sem chao e sem jardim em volta. Contorno
+> escuro fino e limpo, cores suaves e pouco saturadas. **Fundo verde chapado
+> #00FF00.** Imagem quadrada 2048x2048, a casinha centralizada.
+
+## 2. A boca da escovacao pode fechar o ciclo
+
+Hoje a escovacao tem `m01_boca_suja` e `m01_boca_limpa` e troca uma pela outra
+no fim. O que daria a sensacao de limpeza que voce pediu e **a espuma**: uma
+peca de espuma branca que aparece onde a escova passa.
+
+> Ilustracao 2D cartoon infantil de **um tufo de espuma branca de pasta de
+> dente**, formato de nuvem irregular com algumas bolhinhas, visto de frente,
+> sem boca, sem escova e sem maos. Branco levemente azulado, contorno escuro
+> fino e limpo. **Fundo verde chapado #00FF00.** Imagem quadrada 2048x2048.
+
+Salve como `m01_espuma`. Com ela eu ponho a espuma nascendo sob a cerda e
+sumindo no enxague — e so codigo depois que o arquivo existir.
+
+## 3. O kart pede uma vista de tras
+
+A crianca no kart aparece de frente com o kart tapando da cintura para baixo.
+Funciona, mas o certo mesmo e **um kart visto de tras**, com o banco aberto
+para a crianca sentar dentro.
+
+> Ilustracao 2D cartoon infantil de **um kart infantil visto de tras**, com o
+> encosto do banco baixo e vazio no meio (sem ninguem sentado), duas rodas
+> grandes atras, aerofolio pequeno e um volante aparecendo por cima do banco.
+> Cores primarias suaves. Contorno escuro fino e limpo. **Fundo verde chapado
+> #00FF00.** Imagem quadrada 2048x2048, o kart centralizado e ocupando quase
+> toda a largura.
+
+Salve como `mg1_kart_tras`. Assim a crianca senta de verdade no vao do banco,
+em vez de ser recortada na linha da cintura.
+
+## 4. O que continua da lista antiga
+
+Nada do que estava pendente foi resolvido nesta rodada. Continuam valendo os
+prompts das secoes acima: `bg_sala_aula` (hoje e uma cozinha), as 8 pecas
+soltas, as 2 cenas da rua, as 6 capas de historinha, a logo, o corpo base de
+rosto redondo, os dois olhos e os dois acessorios com moldura.
+
+**A ordem que eu faria**, do que mais incomoda para o que menos:
+
+1. `corpo_base_pele_clara` de rosto redondo + **as 6 roupas regeradas juntas**
+   (resolve o rosto oval E a perna que some, de uma vez)
+2. `bg_sala_aula`
+3. `acessorio_oculos` e `acessorio_aparelho_auditivo` com moldura (voltam ao jogo)
+4. `olhos_grandes` e `olhos_alegres` refeitos
+5. as 2 cenas da rua
+6. `m01_espuma`, `mg1_kart_tras`, `m13_casa`
+7. as 6 capas e a logo

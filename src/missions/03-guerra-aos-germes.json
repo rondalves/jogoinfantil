@@ -9,7 +9,8 @@
   "mostrar": {
     "narracao": "Água, sabão e muita esfregada. E tem hora certa para lavar!",
     "audio": "m03_mostrar",
-    "icone": "🧼"
+    "icone": "🧼",
+    "img": "m03_maos_limpas"
   },
   "etapas": [
     {

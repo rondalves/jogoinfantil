@@ -9,7 +9,8 @@
   "mostrar": {
     "narracao": "Cada brinquedo tem a sua caixa. E depois a gente procura os que sobraram!",
     "audio": "m16_mostrar",
-    "icone": "📦"
+    "icone": "📦",
+    "img": "m16_caixa_blocos"
   },
   "etapas": [
     {

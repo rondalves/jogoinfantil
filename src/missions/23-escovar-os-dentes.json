@@ -9,7 +9,8 @@
   "mostrar": {
     "narracao": "Em cima, embaixo, dos dois lados, e a linguinha no fim!",
     "audio": "m23_mostrar",
-    "icone": "🪥"
+    "icone": "🪥",
+    "img": "m19_escova"
   },
   "etapas": [
     {

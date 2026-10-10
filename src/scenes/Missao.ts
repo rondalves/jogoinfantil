@@ -72,6 +72,7 @@ export class Missao extends Phaser.Scene {
     return [
       ...boca,
       d.cenario,
+      d.mostrar?.img,
       ...(ARTE_ANIMACAO[d.pode_ou_nao_pode.animacao ?? ''] ?? []),
       d.pode_ou_nao_pode.cena_certa.img,
       d.pode_ou_nao_pode.cena_certa.imgCena,

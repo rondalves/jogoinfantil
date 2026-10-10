@@ -9,7 +9,8 @@
   "mostrar": {
     "narracao": "Mão lavada, sentar direitinho e esperar todo mundo. Aí a gente come!",
     "audio": "m19_mostrar",
-    "icone": "🍽️"
+    "icone": "🍽️",
+    "img": "m13_prato_cheio"
   },
   "etapas": [
     {

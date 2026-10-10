@@ -8,7 +8,8 @@
   "mostrar": {
     "narracao": "Escova em cada pedacinho: em cima, embaixo, dos dois lados e a linguinha!",
     "audio": "m01_mostrar",
-    "icone": "🪥"
+    "icone": "🪥",
+    "img": "m01_escova"
   },
   "etapas": [
     {

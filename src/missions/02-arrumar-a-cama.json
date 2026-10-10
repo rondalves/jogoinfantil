@@ -9,7 +9,8 @@
   "mostrar": {
     "narracao": "Primeiro o lençol, depois o cobertor, por último o travesseiro!",
     "audio": "m02_mostrar",
-    "icone": "🛏️"
+    "icone": "🛏️",
+    "img": "m02_cama_arrumada"
   },
   "etapas": [
     {

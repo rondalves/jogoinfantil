@@ -9,7 +9,8 @@
   "mostrar": {
     "narracao": "Roupa suja no cesto, mesa posta e comida para o pet!",
     "audio": "m17_mostrar",
-    "icone": "🧺"
+    "icone": "🧺",
+    "img": "m17_cesto"
   },
   "etapas": [
     {

@@ -9,7 +9,8 @@
   "mostrar": {
     "narracao": "Termina, pede licença e leva o prato até a pia. Simples assim!",
     "audio": "m21_mostrar",
-    "icone": "🧽"
+    "icone": "🧽",
+    "img": "m17_prato"
   },
   "etapas": [
     {

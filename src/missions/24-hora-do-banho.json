@@ -9,7 +9,8 @@
   "mostrar": {
     "narracao": "Liga o chuveiro, molha, sabonete, esfrega a espuma, enxágua e seca!",
     "audio": "m24_mostrar",
-    "icone": "🛁"
+    "icone": "🛁",
+    "img": "m03_toalha"
   },
   "etapas": [
     {
