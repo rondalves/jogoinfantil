@@ -28,7 +28,6 @@ PEDIDAS_PELO_CODIGO = {
 
 # arte que existe mas esta errada: o arquivo nao falta, o desenho e que nao serve
 ERRADAS = {
-    "bg_sala_aula": "o arquivo com esse nome e uma cozinha (missoes 07, 08 e 09)",
     "olhos_grandes": "olho grande demais, fica assustado",
     "olhos_alegres": "olho fechado em arco le como bichinho",
     "corpo_base_pele_clara": "cabeca muito oval; refazer obriga a refazer as 6 roupas",

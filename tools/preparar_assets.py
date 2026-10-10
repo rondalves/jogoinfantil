@@ -288,6 +288,12 @@ FOLHAS = {
 # Pecas soltas: um arquivo cru, uma peca com o mesmo nome. Grade 1x1 pega a
 # caixa de tudo junto, para o objeto nao sair picado em varios pedacos.
 SOLTAS = [
+    "m19_luz",
+    "m19_historia",
+    "m24_sabonete",
+    "m25_pente",
+    "m26_musica",
+    "m10_amigos",
     "mundo5",
     "broche5",
     "m05_pente",
