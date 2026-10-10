@@ -90,8 +90,10 @@ export class Criador extends Phaser.Scene {
 
   private desenharPreview() {
     this.preview.removeAll(true);
-    const boneco = desenharPersonagem(this, this.cfg, 1.15);
-    boneco.setPosition(W / 2, 420);
+    // cabe entre o titulo (120) e a faixa de abas (630): com cabelo volumoso
+    // a 1.15 a crianca passava por cima dos dois
+    const boneco = desenharPersonagem(this, this.cfg, 0.78);
+    boneco.setPosition(W / 2, 380);
     this.preview.add(boneco);
   }
 

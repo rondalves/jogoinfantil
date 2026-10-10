@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { CONFIG } from '../config';
 import { fale } from '../narracoes';
 import { TEMA } from '../theme';
-import { figura, nota, textoEmPainel } from '../ui';
+import { figura, fundo, nota, textoEmPainel } from '../ui';
 import type { MiniGame, ResultadoMiniGame } from './index';
 
 const W = CONFIG.LARGURA;
@@ -30,7 +30,9 @@ function memoriaRodada(cena: Phaser.Scene, aoFim: (pontos: number) => void) {
   let pontos = 0;
   let travado = false;
 
-  const painel = textoEmPainel(cena, W / 2, 330, 'Ache os pares!', 40, W - 160);
+  // sem cenario a tela ficava um vazio creme no meio de um jogo todo ilustrado
+  fundo(cena, TEMA.creme, 'bg_quarto_brincar');
+  const painel = textoEmPainel(cena, W / 2, 300, 'Ache os pares!', 40, W - 160);
 
   baralho.forEach((idx, n) => {
     const x = W / 2 + ((n % 3) - 1) * 200;
@@ -85,7 +87,7 @@ function memoriaRodada(cena: Phaser.Scene, aoFim: (pontos: number) => void) {
 function bolhasRodada(cena: Phaser.Scene, jaTem: number, aoFim: (pontos: number) => void) {
   let pontos = jaTem;
   let restam = 12;
-  const painel = textoEmPainel(cena, W / 2, 330, 'Agora estoure as bolhas!', 40, W - 160);
+  const painel = textoEmPainel(cena, W / 2, 300, 'Agora estoure as bolhas!', 40, W - 160);
   fale('mg4_bolhas');
 
   const soltar = () => {
@@ -130,7 +132,7 @@ export const memoria: MiniGame = {
   tituloFim: 'Que memória boa!',
   fraseFim: 'mg4_fim',
   iconePonto: 'estrela',
-  arte: CARTAS,
+  arte: [...CARTAS, 'bg_quarto_brincar'],
   iniciar(cena) {
     return new Promise<ResultadoMiniGame>((resolve) => {
       fale('mg4_como_jogar');

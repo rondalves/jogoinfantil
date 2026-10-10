@@ -32,7 +32,7 @@ export class Joguinhos extends Phaser.Scene {
     this.p = ativo()!;
     narrador.setNome(this.p.nome);
     narrador.setVoz(this.p.voz ?? 'f');
-    fundo(this, TEMA.creme, 'bg_mapa_mundos');
+    fundo(this, TEMA.creme, 'bg_mapa_mundos', true);
     botaoOuvir(this);
     titulo(this, 'Joguinhos', 170);
     narrador.falar('Escolha um joguinho. Aqui é só brincar!', 'biblioteca_jogos');

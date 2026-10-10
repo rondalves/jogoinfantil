@@ -31,7 +31,7 @@ export class Cantinho extends Phaser.Scene {
     this.p = ativo()!;
     narrador.setNome(this.p.nome);
     narrador.setVoz(this.p.voz ?? 'f');
-    fundo(this, TEMA.creme, 'bg_criador_personagem');
+    fundo(this, TEMA.creme, 'bg_criador_personagem', true);
     botaoOuvir(this);
     titulo(this, `O cantinho de ${this.p.nome}`, 170);
 

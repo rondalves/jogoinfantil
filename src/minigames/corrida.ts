@@ -24,7 +24,8 @@ const PISTAS: Pista[] = [
 
 function escolherPista(cena: Phaser.Scene, aoEscolher: (p: Pista) => void) {
   const capa = cena.add.container(0, 0);
-  capa.add(cobrirTela(cena, 0x2e3338, 0.9));
+  // veu claro: era a unica tela escura de um jogo todo em tom pastel
+  capa.add(cobrirTela(cena, 0xfbf9f5, 0.93));
   capa.add(titulo(cena, 'Escolha a pista!', 220));
   fale('mg1_escolha_pista');
 

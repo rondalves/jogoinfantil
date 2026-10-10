@@ -30,7 +30,7 @@ export class Historinhas extends Phaser.Scene {
     this.p = ativo()!;
     narrador.setNome(this.p.nome);
     narrador.setVoz(this.p.voz ?? 'f');
-    fundo(this, TEMA.creme, 'bg_mapa_mundos');
+    fundo(this, TEMA.creme, 'bg_mapa_mundos', true);
     botaoOuvir(this);
     titulo(this, 'Historinhas', 170);
     narrador.falar('Escolha uma historinha para ouvir.', 'biblioteca_historias');

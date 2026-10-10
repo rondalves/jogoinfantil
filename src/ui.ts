@@ -178,15 +178,29 @@ export function cobrirTela(cena: Phaser.Scene, cor: number, alpha = 1) {
   return cena.add.rectangle(W / 2, TELA.meio, W, TELA.altura, cor, alpha);
 }
 
-export function fundo(cena: Phaser.Scene, fundoCor: number, imagem?: string) {
+/**
+ * Cor de fundo, cenario por cima e um veu claro para o cenario nao brigar com
+ * os objetos da frente.
+ *
+ * `desfocar` tira o cenario de foco: nas telas de lista (mapa, historinhas,
+ * joguinhos) o que importa sao os cartoes, e o desenho atras so atrapalha a
+ * leitura. Sem WebGL o desfoque nao existe e o veu sozinho ja resolve.
+ */
+export function fundo(cena: Phaser.Scene, fundoCor: number, imagem?: string, desfocar = false) {
   centrarTela(cena);
   cena.cameras.main.fadeIn(TEMA.transicao, 0, 0, 0);
   cobrirTela(cena, fundoCor).setDepth(-10);
   if (!imagem || !cena.textures.exists(imagem)) return;
   const im = cena.add.image(W / 2, TELA.meio, imagem).setDepth(-9);
   im.setScale(Math.max(W / im.width, TELA.altura / im.height));
-  // veu: o cenario fica de pano de fundo, nao briga com os objetos da etapa
-  cobrirTela(cena, 0xfbf9f5, TEMA.veu).setDepth(-8);
+  if (desfocar) {
+    try {
+      im.preFX?.addBlur(0, 2, 2, 1.4);
+    } catch {
+      // sem WebGL: o veu abaixo ja da o recado
+    }
+  }
+  cobrirTela(cena, 0xfbf9f5, desfocar ? Math.min(0.78, TEMA.veu + 0.18) : TEMA.veu).setDepth(-8);
 }
 
 /** Carrega as capas que faltam e chama `pronto`. Atalho para as telas novas. */

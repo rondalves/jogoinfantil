@@ -41,7 +41,7 @@ export class Mapa extends Phaser.Scene {
       this.scene.start('Tutorial');
       return;
     }
-    fundo(this, TEMA.ceu, 'bg_mapa_mundos');
+    fundo(this, TEMA.ceu, 'bg_mapa_mundos', true);
     // veu claro: o cenario do mapa e bonito, mas briga com os cartoes
     
     // faixa do cabecalho: a lista rola por baixo e nao embola com o saldo

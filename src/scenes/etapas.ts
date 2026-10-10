@@ -48,14 +48,20 @@ const tocar: Handler = (c, e) => {
   const alvos = e.alvos ?? e.itens ?? [];
   let faltam = alvos.filter((a) => a.correto !== false).length;
   for (const a of alvos) {
-    // ladrilho claro: sem ele o objeto se perde no cenario
+    // ladrilho claro: sem ele o objeto se perde no cenario. Figura e nome no
+    // mesmo cartao, senao viram dois retangulos brancos em degrau
+    const rotulo = a.texto
+      ? c.cena.add
+          .text(a.x, a.y + 92, a.texto, { fontSize: '26px', align: 'center', wordWrap: { width: 148 } })
+          .setOrigin(0.5, 0)
+      : null;
     const base = c.cena.add.graphics();
     base.fillStyle(0xffffff, 0.97);
-    base.fillRoundedRect(a.x - 82, a.y - 82, 164, 164, 26);
+    base.fillRoundedRect(a.x - 82, a.y - 82, 164, 164 + (rotulo ? rotulo.height + 24 : 0), 26);
     c.camada.add(base);
     const f = figura(c.cena, a.x, a.y, a.img, a.icone, 140);
     c.camada.add(f);
-    if (a.texto) c.camada.add(textoEmPainel(c.cena, a.x, a.y + 124, a.texto, 26, 190));
+    if (rotulo) c.camada.add(rotulo);
     const zona = area(c.cena, a.x, a.y + 24, 184, 236, undefined, a.fala ?? a.texto);
     c.camada.add(zona);
     zona.on('pointerdown', () => {
@@ -273,9 +279,16 @@ const sequencia: Handler = (c, e) => {
   const itens = e.itens ?? [];
   let proximo = 0;
   itens.forEach((it, i) => {
+    // figura e nome no mesmo cartao: dois paineis brancos empilhados viravam
+    // um degrau feio quando o nome tinha duas ou tres linhas
+    const rotulo = it.texto
+      ? c.cena.add
+          .text(it.x, it.y + 92, it.texto, { fontSize: '26px', align: 'center', wordWrap: { width: 148 } })
+          .setOrigin(0.5, 0)
+      : null;
     const base = c.cena.add.graphics();
     base.fillStyle(0xffffff, 0.97);
-    base.fillRoundedRect(it.x - 82, it.y - 82, 164, 164, 26);
+    base.fillRoundedRect(it.x - 82, it.y - 82, 164, 164 + (rotulo ? rotulo.height + 24 : 0), 26);
     c.camada.add(base);
     const f = figura(c.cena, it.x, it.y, it.img, it.icone, 130);
     c.camada.add(f);
@@ -284,7 +297,7 @@ const sequencia: Handler = (c, e) => {
       .setOrigin(0.5)
       .setStroke('#ffffff', 8);
     c.camada.add(num);
-    if (it.texto) c.camada.add(textoEmPainel(c.cena, it.x, it.y + 124, it.texto, 26, 190));
+    if (rotulo) c.camada.add(rotulo);
     const zona = area(c.cena, it.x, it.y + 24, 184, 236, undefined, it.fala ?? it.texto);
     c.camada.add(zona);
     zona.on('pointerdown', () => {
@@ -308,9 +321,17 @@ const respirar: Handler = (c, e) => {
   let feitas = 0;
   const bola = c.cena.add.circle(W / 2, 760, 70, 0x8fd6ff, 0.9);
   const rotulo = c.cena.add
-    .text(W / 2, 1000, `Segure e sopre! Faltam ${total}`, { fontSize: '40px', color: '#2b3a4a' })
+    .text(W / 2, 980, `Segure e sopre! Faltam ${total}`, { fontSize: '40px', color: '#2b3a4a' })
     .setOrigin(0.5);
-  c.camada.add([bola, rotulo]);
+  // sem painel branco a frase sumia no cenario, como em toda outra etapa
+  const fundo = c.cena.add.graphics();
+  const pintar = () => {
+    fundo.clear();
+    fundo.fillStyle(0xffffff, 0.96);
+    fundo.fillRoundedRect(W / 2 - rotulo.width / 2 - 24, rotulo.y - rotulo.height / 2 - 12, rotulo.width + 48, rotulo.height + 24, 20);
+  };
+  pintar();
+  c.camada.add([bola, fundo, rotulo]);
   let tween: Phaser.Tweens.Tween | null = null;
 
   const zona = c.cena.add.zone(W / 2, 760, 420, 420).setInteractive({ useHandCursor: true });
@@ -332,6 +353,7 @@ const respirar: Handler = (c, e) => {
     feitas += 1;
     nota(880);
     rotulo.setText(feitas >= total ? 'Que calma boa!' : `Segure e sopre! Faltam ${total - feitas}`);
+    pintar();
     if (feitas >= total) c.cena.time.delayedCall(900, c.fim);
   });
 };
