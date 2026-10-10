@@ -94,15 +94,18 @@ export interface Acessorio {
   estrelas?: number;
   /** broche de mundo necessario */
   broche?: number;
+  /** entra atras do corpo (a capa de heroi) */
+  atras?: boolean;
 }
 
 export const ACESSORIOS: Acessorio[] = [
-  { id: 'oculos', nome: 'Óculos', icone: '\u{1F453}', x: 0, y: -0.31, tamanho: 0.2 },
-  { id: 'aparelho_auditivo', nome: 'Aparelho auditivo', icone: '\u{1F9BB}', x: 0.14, y: -0.3, tamanho: 0.13 },
+  // medido na arte do corpo: olhos em -0.30, orelha em x 0.155 e y -0.235
+  { id: 'oculos', nome: 'Óculos', icone: '\u{1F453}', x: 0, y: -0.295, tamanho: 0.2 },
+  { id: 'aparelho_auditivo', nome: 'Aparelho auditivo', icone: '\u{1F9BB}', x: 0.155, y: -0.235, tamanho: 0.075 },
   { id: 'bone', nome: 'Boné', icone: '\u{1F9E2}', x: 0, y: -0.45, tamanho: 0.22, estrelas: 3 },
   { id: 'laco', nome: 'Laço', icone: '\u{1F380}', x: -0.15, y: -0.44, tamanho: 0.15, estrelas: 3 },
-  { id: 'capa', nome: 'Capa de herói', icone: '\u{1F9E3}', x: 0, y: 0.05, tamanho: 0.3, broche: 1 },
-  { id: 'medalha', nome: 'Medalha', icone: '\u{1F3C5}', x: 0, y: -0.05, tamanho: 0.18, broche: 2 },
+  { id: 'capa', nome: 'Capa de herói', icone: '\u{1F9E3}', x: 0, y: 0.02, tamanho: 0.42, broche: 1, atras: true },
+  { id: 'medalha', nome: 'Medalha', icone: '\u{1F3C5}', x: 0, y: -0.015, tamanho: 0.13, broche: 2 },
 ];
 
 export function acessorioLiberado(a: Acessorio, estrelas: number, broches: number[]) {
@@ -164,6 +167,8 @@ export function desenharPersonagem(
       : cena.add.text(0, 0, a.icone, { fontSize: `${Math.round(a.tamanho * ALT)}px` }).setOrigin(0.5);
     im.setPosition(a.x * ALT, a.y * ALT);
     c.add(im);
+    // a capa cai nas costas: vai para tras do corpo
+    if (a.atras) c.sendToBack(im);
   }
 
   c.setScale(escala);

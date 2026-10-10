@@ -16,12 +16,15 @@ function escolherVoz() {
   if (vozes.length === 0) return;
   const pt = vozes.filter((v) => /pt[-_]?br/i.test(v.lang) || /portugu/i.test(v.name));
   const candidatas = pt.length > 0 ? pt : vozes.filter((v) => /^pt/i.test(v.lang));
+  // voz de rede soa bem melhor que a embarcada; dentro delas, o genero escolhido
+  const boas = candidatas.filter((v) => !v.localService);
+  const ordem = [...boas, ...candidatas.filter((v) => v.localService)];
   const quero = vozAdulto === 'm' ? MASCULINAS : FEMININAS;
   const evito = vozAdulto === 'm' ? FEMININAS : MASCULINAS;
   voz =
-    candidatas.find((v) => quero.test(v.name)) ??
-    candidatas.find((v) => !evito.test(v.name)) ??
-    candidatas[0] ??
+    ordem.find((v) => quero.test(v.name)) ??
+    ordem.find((v) => !evito.test(v.name)) ??
+    ordem[0] ??
     null;
 }
 
@@ -51,8 +54,10 @@ function tts(texto: string) {
   if (!voz) escolherVoz();
   const fala = new SpeechSynthesisUtterance(texto);
   fala.lang = 'pt-BR';
-  fala.rate = 0.92;
-  fala.pitch = 1.2;
+  // tom de quem conta historia, nao de desenho animado: 1.2 soava robotico
+  fala.rate = 0.95;
+  fala.pitch = 1.03;
+  fala.volume = 1;
   if (voz) fala.voice = voz;
   sintese.speak(fala);
 }

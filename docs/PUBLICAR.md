@@ -39,10 +39,12 @@ Sai um `android/app/build/outputs/apk/release/app-release-unsigned.apk`.
 A keystore é o que prova que o app é seu. **Se você perder, não consegue mais
 atualizar o app** — nem o Google recupera.
 
-No terminal, dentro da pasta do projeto:
+No PowerShell, dentro da pasta do projeto. O `&` na frente é obrigatório:
+sem ele o PowerShell lê o caminho entre aspas como texto e para com
+*Token '-genkeypair' inesperado*.
 
 ```bash
-"C:\Program Files\Android\Android Studio\jbr\bin\keytool.exe" -genkeypair -v -keystore android/missoes-do-dia.jks -alias missoesdodia -keyalg RSA -keysize 2048 -validity 10000
+& "C:\Program Files\Android\Android Studio\jbr\bin\keytool.exe" -genkeypair -v -keystore android/missoes-do-dia.jks -alias missoesdodia -keyalg RSA -keysize 2048 -validity 10000
 ```
 
 Ele vai pedir:

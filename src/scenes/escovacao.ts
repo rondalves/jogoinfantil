@@ -21,11 +21,12 @@ const PADRAO: Regiao[] = [
 
 /** Onde cada regiao fica dentro da boca desenhada. */
 const LUGARES = [
-  { x: CENTRO_X - 115, y: CENTRO_Y - 95, r: 112 },
-  { x: CENTRO_X + 115, y: CENTRO_Y - 95, r: 112 },
-  { x: CENTRO_X - 115, y: CENTRO_Y + 95, r: 112 },
-  { x: CENTRO_X + 115, y: CENTRO_Y + 95, r: 112 },
-  { x: CENTRO_X, y: CENTRO_Y + 150, r: 105 },
+  // medido nos dentes da arte m01_boca_suja, ja na escala em que ela e desenhada
+  { x: CENTRO_X - 92, y: CENTRO_Y - 55, r: 98 },
+  { x: CENTRO_X + 93, y: CENTRO_Y - 56, r: 98 },
+  { x: CENTRO_X - 89, y: CENTRO_Y + 79, r: 98 },
+  { x: CENTRO_X + 90, y: CENTRO_Y + 80, r: 98 },
+  { x: CENTRO_X, y: CENTRO_Y + 118, r: 88 },
 ];
 
 const PASSOS_POR_REGIAO = 4;
@@ -82,9 +83,10 @@ export function escovar(c: Ctx, e: Etapa) {
     const l = LUGARES[i];
     const g = c.cena.add.graphics();
     g.fillStyle(0xe8c95a, 0.9);
+    // a placa acompanha a fileira de dentes: larga e baixa, nao um circulo
     for (let n = 0; n < 5; n++) {
       const a = (n / 5) * Math.PI * 2;
-      g.fillCircle(l.x + Math.cos(a) * l.r * 0.42, l.y + Math.sin(a) * l.r * 0.42, 17);
+      g.fillCircle(l.x + Math.cos(a) * 54, l.y + Math.sin(a) * 20, 14);
     }
     sujeira.push(g);
     c.camada.add(g);

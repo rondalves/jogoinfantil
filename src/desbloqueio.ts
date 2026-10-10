@@ -34,18 +34,31 @@ export const historiasLiberadas = (p: Perfil): Historia[] => {
   return HISTORIAS.filter((h) => tem.includes(h.mundo));
 };
 
+/**
+ * Mundo em que a crianca ja pode entrar: o anterior fechado e a compra feita.
+ * E a mesma regra do mapa. O joguinho do mundo abre junto com o mundo, nao so
+ * no fim dele -- quem chegou ali tem direito de jogar quando quiser.
+ */
+function disponiveis(p: Perfil): number[] {
+  if (TESTE) return MUNDOS.map((m) => m.id);
+  const concluidos = mundosConcluidos(p);
+  return MUNDOS.filter((m) => (m.id === 1 || concluidos.includes(m.id - 1)) && !mundoPago(m.id)).map(
+    (m) => m.id,
+  );
+}
+
 export const joguinhosLiberados = (p: Perfil): Joguinho[] => {
-  const tem = abertos(p);
+  const tem = disponiveis(p);
   return JOGUINHOS.filter((j) => tem.includes(j.mundo));
 };
 
 /** Vale para o cartao na biblioteca: mostra colorido ou silhueta com cadeado. */
 export const historiaAberta = (p: Perfil, h: Historia) => abertos(p).includes(h.mundo);
-export const joguinhoAberto = (p: Perfil, j: Joguinho) => abertos(p).includes(j.mundo);
+export const joguinhoAberto = (p: Perfil, j: Joguinho) => disponiveis(p).includes(j.mundo);
 
 /** Texto do cadeado: ou falta fechar o mundo, ou falta a compra. */
 export function porQueFechado(p: Perfil, mundo: number) {
   if (mundoPago(mundo)) return 'Peça para um adulto abrir';
-  const m = MUNDOS.find((x) => x.id === mundo);
-  return `Termine o mundo ${mundo}${m ? ` - ${m.nome}` : ''}`;
+  const anterior = MUNDOS.find((x) => x.id === mundo - 1);
+  return anterior ? `Termine o mundo ${anterior.id} - ${anterior.nome}` : 'Ainda não abriu';
 }
