@@ -28,14 +28,13 @@ PEDIDAS_PELO_CODIGO = {
 
 # arte que existe mas esta errada: o arquivo nao falta, o desenho e que nao serve
 ERRADAS = {
-    "acessorio_aparelho_auditivo": "veio recortado rente; precisa vir na moldura 2048 do corpo",
-    # o corpo base virou rosto redondo em 10/10; estas ainda tem a cabeca oval antiga
-    "roupa_macacao_jeans": "cabeca oval antiga; regerar a partir do corpo base novo",
-    "roupa_vestido_rosa": "cabeca oval antiga; regerar a partir do corpo base novo",
-    "roupa_conjunto_roxo": "cabeca oval antiga; regerar a partir do corpo base novo",
-    "roupa_camiseta_azul": "cabeca oval antiga; a de 10/10 veio sem a base e saiu sem os pes",
-    "roupa_moletom_vermelho": "cabeca oval antiga; regerar a partir do corpo base novo",
-    "corpo_cadeira_pele_clara": "cabeca oval antiga; regerar a partir do corpo base novo",
+    # o personagem inteiro vai ser redesenhado a partir de um molde
+    # (docs/PROMPTS_PERSONAGEM.md); as chaves aqui sao so rotulos
+    "corpo_base_pele_clara": "molde novo, com proporcao de crianca de verdade",
+    "crianca_rosto_* (5)": "rostos desenhados em cima do molde",
+    "crianca_cabelo_* (22)": "cabelos desenhados na crianca ja com rosto",
+    "roupa_* e corpo_cadeira (6)": "trocadas em cima do molde",
+    "crianca_acessorio_* (2)": "oculos e aparelho auditivo desenhados no rosto",
 }
 
 

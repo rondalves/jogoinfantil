@@ -1,5 +1,9 @@
 # Fila de geração no Gemini
 
+> **Cabelos, olhos, corpo e roupas daqui estão aposentados.** O personagem
+> agora sai de [PROMPTS_PERSONAGEM.md](PROMPTS_PERSONAGEM.md), desenhado inteiro
+> em cima de um molde. Não gere esses itens por esta fila.
+
 A ordem é a desta página. Gere **um item por vez, de cima para baixo**, e não
 mude a ordem: o renomeador (`tools/renomear_fila.py`) dá nome aos arquivos que
 caem no Downloads seguindo exatamente esta numeração.

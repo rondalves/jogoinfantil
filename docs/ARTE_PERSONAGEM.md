@@ -1,5 +1,9 @@
 # A arte do personagem
 
+> **Em refação.** O personagem vai ser redesenhado inteiro a partir de um
+> molde, e o script vai recortar as camadas sozinho. Prompts em
+> [PROMPTS_PERSONAGEM.md](PROMPTS_PERSONAGEM.md). Abaixo, como funciona hoje.
+
 O personagem é montado por camadas, cada uma um arquivo com **fundo verde
 chapado (#00FF00)**. Depois de salvar na pasta das artes cruas e rodar
 `npm run assets`, o criador acha a opção nova sozinho — não precisa mexer em
