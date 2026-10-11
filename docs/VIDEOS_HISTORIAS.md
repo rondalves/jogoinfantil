@@ -80,3 +80,159 @@ Gentle children's storybook animation in the exact style of the image. [MOVIMENT
 Os trechos vêm das pausas da gravação; se uma cena ficar mais longa que o
 clipe, a montagem desacelera o movimento, o que combina com historinha de
 dormir.
+
+### Prompts prontos (é só copiar)
+
+**historia01_cena01** (0:03–0:18)
+
+Ilustração, com `capa_historia1.jpg` anexada:
+
+```
+Use a raposinha da imagem anexada, com exatamente o mesmo traço, as mesmas cores e o mesmo estilo de livro infantil. Quarto da raposinha bem cedinho, céu azul-escuro na janela, a raposinha dormindo enroladinha na cama com o rabo cobrindo o nariz. Ilustração 2D de livro infantil, contorno fino, cores suaves e pouco saturadas, luz calma e aconchegante. Sem texto, sem letras, sem números. Imagem horizontal 16:9, 1920x1080.
+```
+
+Animação, com a ilustração como primeiro quadro:
+
+```
+Gentle children's storybook animation in the exact style of the image. The little fox sleeps curled up, breathing slowly; stars twinkle softly outside the window. Slow, calm, soothing movement for a bedtime story. Camera almost still, with a very slow push-in. Keep the character and the drawing style exactly the same. No text, no speech, no dialogue.
+```
+
+**historia01_cena02** (0:20–0:35)
+
+Ilustração, com `capa_historia1.jpg` anexada:
+
+```
+Use a raposinha da imagem anexada, com exatamente o mesmo traço, as mesmas cores e o mesmo estilo de livro infantil. Céu azul-escuro sobre colinas; atrás delas, um Sol simpático com rosto, ainda meio escondido, com um olho aberto e o outro fechado. Ilustração 2D de livro infantil, contorno fino, cores suaves e pouco saturadas, luz calma e aconchegante. Sem texto, sem letras, sem números. Imagem horizontal 16:9, 1920x1080.
+```
+
+Animação, com a ilustração como primeiro quadro:
+
+```
+Gentle children's storybook animation in the exact style of the image. The sun slowly opens one eye, then the other, and looks around sleepily from behind the hills. Slow, calm, soothing movement for a bedtime story. Camera almost still, with a very slow push-in. Keep the character and the drawing style exactly the same. No text, no speech, no dialogue.
+```
+
+**historia01_cena03** (0:36–0:56)
+
+Ilustração, com `capa_historia1.jpg` anexada:
+
+```
+Use a raposinha da imagem anexada, com exatamente o mesmo traço, as mesmas cores e o mesmo estilo de livro infantil. Amanhecer bem fraquinho: um passarinho num galho perto da janela e, embaixo, uma flor ainda fechada. Ilustração 2D de livro infantil, contorno fino, cores suaves e pouco saturadas, luz calma e aconchegante. Sem texto, sem letras, sem números. Imagem horizontal 16:9, 1920x1080.
+```
+
+Animação, com a ilustração como primeiro quadro:
+
+```
+Gentle children's storybook animation in the exact style of the image. The little bird chirps once, then tucks its head and dozes again; the flower slowly opens a single petal. Slow, calm, soothing movement for a bedtime story. Camera almost still, with a very slow push-in. Keep the character and the drawing style exactly the same. No text, no speech, no dialogue.
+```
+
+**historia01_cena04** (0:57–1:08)
+
+Ilustração, com `capa_historia1.jpg` anexada:
+
+```
+Use a raposinha da imagem anexada, com exatamente o mesmo traço, as mesmas cores e o mesmo estilo de livro infantil. O vento entrando de mansinho pela janela aberta, a cortina mexendo, a raposinha dormindo com a franja levantada. Ilustração 2D de livro infantil, contorno fino, cores suaves e pouco saturadas, luz calma e aconchegante. Sem texto, sem letras, sem números. Imagem horizontal 16:9, 1920x1080.
+```
+
+Animação, com a ilustração como primeiro quadro:
+
+```
+Gentle children's storybook animation in the exact style of the image. A soft breeze moves the curtain and gently ruffles the fox's fringe while she keeps sleeping. Slow, calm, soothing movement for a bedtime story. Camera almost still, with a very slow push-in. Keep the character and the drawing style exactly the same. No text, no speech, no dialogue.
+```
+
+**historia01_cena05** (1:09–1:20)
+
+Ilustração, com `capa_historia1.jpg` anexada:
+
+```
+Use a raposinha da imagem anexada, com exatamente o mesmo traço, as mesmas cores e o mesmo estilo de livro infantil. A raposinha sentada na cama, se espreguiçando, de olhos fechados. Ilustração 2D de livro infantil, contorno fino, cores suaves e pouco saturadas, luz calma e aconchegante. Sem texto, sem letras, sem números. Imagem horizontal 16:9, 1920x1080.
+```
+
+Animação, com a ilustração como primeiro quadro:
+
+```
+Gentle children's storybook animation in the exact style of the image. The fox stretches her front paws, then her back paws, and gives a big slow yawn. Slow, calm, soothing movement for a bedtime story. Camera almost still, with a very slow push-in. Keep the character and the drawing style exactly the same. No text, no speech, no dialogue.
+```
+
+**historia01_cena06** (1:22–1:38)
+
+Ilustração, com `capa_historia1.jpg` anexada:
+
+```
+Use a raposinha da imagem anexada, com exatamente o mesmo traço, as mesmas cores e o mesmo estilo de livro infantil. A raposinha na janela, de pijama, olhando para o Sol sorridente que aparece atrás das colinas. Ilustração 2D de livro infantil, contorno fino, cores suaves e pouco saturadas, luz calma e aconchegante. Sem texto, sem letras, sem números. Imagem horizontal 16:9, 1920x1080.
+```
+
+Animação, com a ilustração como primeiro quadro:
+
+```
+Gentle children's storybook animation in the exact style of the image. The fox waves good morning to the smiling sun, who smiles back and nods gently. Slow, calm, soothing movement for a bedtime story. Camera almost still, with a very slow push-in. Keep the character and the drawing style exactly the same. No text, no speech, no dialogue.
+```
+
+**historia01_cena07** (1:40–1:53)
+
+Ilustração, com `capa_historia1.jpg` anexada:
+
+```
+Use a raposinha da imagem anexada, com exatamente o mesmo traço, as mesmas cores e o mesmo estilo de livro infantil. A raposinha e o Sol olhando juntos o céu do amanhecer. Ilustração 2D de livro infantil, contorno fino, cores suaves e pouco saturadas, luz calma e aconchegante. Sem texto, sem letras, sem números. Imagem horizontal 16:9, 1920x1080.
+```
+
+Animação, com a ilustração como primeiro quadro:
+
+```
+Gentle children's storybook animation in the exact style of the image. The sky slowly changes color from dark blue to light blue, then pink, then warm yellow. Slow, calm, soothing movement for a bedtime story. Camera almost still, with a very slow push-in. Keep the character and the drawing style exactly the same. No text, no speech, no dialogue.
+```
+
+**historia01_cena08** (1:55–2:04)
+
+Ilustração, com `capa_historia1.jpg` anexada:
+
+```
+Use a raposinha da imagem anexada, com exatamente o mesmo traço, as mesmas cores e o mesmo estilo de livro infantil. A raposinha no banheiro, na frente da pia, escovando os dentes com uma escovinha. Ilustração 2D de livro infantil, contorno fino, cores suaves e pouco saturadas, luz calma e aconchegante. Sem texto, sem letras, sem números. Imagem horizontal 16:9, 1920x1080.
+```
+
+Animação, com a ilustração como primeiro quadro:
+
+```
+Gentle children's storybook animation in the exact style of the image. The fox washes her face with fresh water, then brushes her teeth slowly and carefully. Slow, calm, soothing movement for a bedtime story. Camera almost still, with a very slow push-in. Keep the character and the drawing style exactly the same. No text, no speech, no dialogue.
+```
+
+**historia01_cena09** (2:04–2:14)
+
+Ilustração, com `capa_historia1.jpg` anexada:
+
+```
+Use a raposinha da imagem anexada, com exatamente o mesmo traço, as mesmas cores e o mesmo estilo de livro infantil. A raposinha no quarto ensolarado, arrumando a cama, com a coberta lisinha. Ilustração 2D de livro infantil, contorno fino, cores suaves e pouco saturadas, luz calma e aconchegante. Sem texto, sem letras, sem números. Imagem horizontal 16:9, 1920x1080.
+```
+
+Animação, com a ilustração como primeiro quadro:
+
+```
+Gentle children's storybook animation in the exact style of the image. The fox smooths the blanket on her bed, combs her fringe and smiles; the sun rises a little higher. Slow, calm, soothing movement for a bedtime story. Camera almost still, with a very slow push-in. Keep the character and the drawing style exactly the same. No text, no speech, no dialogue.
+```
+
+**historia01_cena10** (2:15–2:39)
+
+Ilustração, com `capa_historia1.jpg` anexada:
+
+```
+Use a raposinha da imagem anexada, com exatamente o mesmo traço, as mesmas cores e o mesmo estilo de livro infantil. Fim de tarde virando noite sobre a casa da raposinha: o Sol se pondo de um lado e a Lua com rosto tranquilo subindo do outro. Ilustração 2D de livro infantil, contorno fino, cores suaves e pouco saturadas, luz calma e aconchegante. Sem texto, sem letras, sem números. Imagem horizontal 16:9, 1920x1080.
+```
+
+Animação, com a ilustração como primeiro quadro:
+
+```
+Gentle children's storybook animation in the exact style of the image. The sun slowly sets on one side while the smiling moon rises on the other; the sky turns to deep night blue. Slow, calm, soothing movement for a bedtime story. Camera almost still, with a very slow push-in. Keep the character and the drawing style exactly the same. No text, no speech, no dialogue.
+```
+
+**historia01_cena11** (2:40–3:01)
+
+Ilustração, com `capa_historia1.jpg` anexada:
+
+```
+Use a raposinha da imagem anexada, com exatamente o mesmo traço, as mesmas cores e o mesmo estilo de livro infantil. Noite: a Lua na janela, a raposinha enroladinha na cama com o rabo cobrindo o nariz. Ilustração 2D de livro infantil, contorno fino, cores suaves e pouco saturadas, luz calma e aconchegante. Sem texto, sem letras, sem números. Imagem horizontal 16:9, 1920x1080.
+```
+
+Animação, com a ilustração como primeiro quadro:
+
+```
+Gentle children's storybook animation in the exact style of the image. The fox curls up, closes one eye, then the other, and falls asleep; the moon glows softly. Slow, calm, soothing movement for a bedtime story. Camera almost still, with a very slow push-in. Keep the character and the drawing style exactly the same. No text, no speech, no dialogue.
+```
