@@ -214,12 +214,38 @@ export function titulo(cena: Phaser.Scene, texto: string, y = 180) {
       fontSize: `${TEMA.titulo}px`,
       fontStyle: 'bold',
       align: 'center',
-      wordWrap: { width: W - 150 },
+      // o botao de som fica no canto de cima: o titulo nao pode chegar nele
+      wordWrap: { width: W - 250 },
     })
     .setStroke('#ffffff', 10)
     .setOrigin(0.5);
+  // titulo escrito numa linha so nao quebra: em celular estreito ele quebrava
+  // e a segunda linha caia em cima do personagem. Diminui ate 75% para caber;
+  // se nem assim couber (titulo de historinha), ai sim quebra.
+  if (!texto.includes('\n')) {
+    let tam = TEMA.titulo;
+    while (t.getWrappedText(texto).length > 1 && tam > TEMA.titulo * 0.75) {
+      tam -= 2;
+      t.setFontSize(tam);
+    }
+  }
   lerAoPassar(t, texto);
   return t;
+}
+
+/** Brilhinho de quatro pontas desenhado: igual em todo celular, ao contrario do emoji. */
+export function brilhinho(cena: Phaser.Scene, x: number, y: number, raio = 30, cor = 0xfff3b0) {
+  const g = cena.add.graphics({ x, y });
+  const p = (a: number, r: number) => new Phaser.Math.Vector2(Math.cos(a) * r, Math.sin(a) * r);
+  const pontos: Phaser.Math.Vector2[] = [];
+  for (let i = 0; i < 8; i++) pontos.push(p((i * Math.PI) / 4 - Math.PI / 2, i % 2 ? raio * 0.3 : raio));
+  g.fillStyle(cor, 1);
+  g.lineStyle(3, 0xe0b23c, 1);
+  g.fillPoints(pontos, true);
+  g.strokePoints(pontos, true, true);
+  g.fillStyle(0xffffff, 0.9);
+  g.fillCircle(-raio * 0.08, -raio * 0.1, raio * 0.16);
+  return g;
 }
 
 export interface OpcoesBotao {

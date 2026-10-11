@@ -55,7 +55,8 @@ export class Medalha extends Phaser.Scene {
       `${this.p.moedas} moedas`,
       `${this.p.broches.length} de ${MUNDOS.length} broches`,
     ].join('\n');
-    textoEmPainel(this, W / 2, 910, resumo, 36, W - 200);
+    // o confete cai por tras do resumo: por cima ele tapava os numeros
+    textoEmPainel(this, W / 2, 910, resumo, 36, W - 200).setDepth(70);
 
     botao(this, W / 2 + 60, 1080, 'Voltar ao mapa', () => irPara(this, 'Mapa'), {
       icone: '\u{1F5FA}\u{FE0F}',

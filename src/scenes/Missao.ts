@@ -298,20 +298,22 @@ export class Missao extends Phaser.Scene {
   /** A moeda vira 3 fichas, com som e narracao. Maior no fim do mundo. */
   private animarMoeda(fimDeMundo: boolean) {
     const y = 600;
-    const moeda = this.add.text(W / 2, y, '\u{1FA99}', { fontSize: '110px' }).setOrigin(0.5);
+    const moeda = figura(this, W / 2, y, 'moeda', '\u{1FA99}', 120);
+    const tamMoeda = moeda.scale;
     this.camada.add(moeda);
     nota(784);
     fale(fimDeMundo ? 'missao_mundo_completo' : 'missao_moeda');
     this.tweens.add({
       targets: moeda,
-      scale: { from: 0, to: 1 },
+      scale: { from: 0, to: tamMoeda },
       angle: 360,
       duration: 700,
       ease: 'Back.out',
       onComplete: () => {
-        this.tweens.add({ targets: moeda, alpha: 0, scale: 0.4, duration: 300 });
+        this.tweens.add({ targets: moeda, alpha: 0, scale: tamMoeda * 0.4, duration: 300 });
         for (let i = 0; i < CONFIG.FICHAS_POR_MOEDA; i++) {
-          const ficha = this.add.text(W / 2, y, '\u{1F39F}\u{FE0F}', { fontSize: '80px' }).setOrigin(0.5);
+          const ficha = figura(this, W / 2, y, 'ficha', '\u{1F39F}\u{FE0F}', 96);
+          const tamFicha = ficha.scale;
           this.camada.add(ficha);
           nota(660 + i * 110);
           this.tweens.add({
@@ -322,7 +324,7 @@ export class Missao extends Phaser.Scene {
             delay: i * 120,
             ease: 'Cubic.out',
             onComplete: () => {
-              this.tweens.add({ targets: ficha, x: 150, y: 96, scale: 0.4, alpha: 0.2, duration: 600, delay: 700 });
+              this.tweens.add({ targets: ficha, x: 150, y: 96, scale: tamFicha * 0.4, alpha: 0.2, duration: 600, delay: 700 });
             },
           });
         }

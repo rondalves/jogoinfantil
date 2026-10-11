@@ -3,7 +3,7 @@ import { CONFIG } from '../config';
 import { Esfrega } from '../etapasLogica';
 import { narrador } from '../narrador';
 import type { Etapa, Regiao } from '../types';
-import { figura, nota, textoEmPainel, TimerMusical } from '../ui';
+import { brilhinho, figura, nota, textoEmPainel, TimerMusical } from '../ui';
 import type { Ctx } from './etapas';
 
 const W = CONFIG.LARGURA;
@@ -148,7 +148,7 @@ export function escovar(c: Ctx, e: Etapa) {
     foco.clear();
     c.cena.tweens.add({ targets: escova, alpha: 0, y: escova.y + 60, duration: 400 });
     LUGARES.forEach((l, i) => {
-      const b = c.cena.add.text(l.x, l.y - 20, '✨', { fontSize: '64px' }).setOrigin(0.5).setScale(0);
+      const b = brilhinho(c.cena, l.x, l.y - 20, 32).setScale(0);
       c.camada.add(b);
       c.cena.tweens.add({
         targets: b,

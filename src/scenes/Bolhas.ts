@@ -22,8 +22,12 @@ export class Bolhas extends Phaser.Scene {
   }
 
   create() {
-    // ceu liso de proposito: a tela e para descansar o olho
+    // ceu calmo de proposito: a tela e para descansar o olho. Um degrade
+    // suave de azul-claro para creme, sem nada desenhado que puxe atencao.
     fundo(this, TEMA.ceu);
+    const ceu = this.add.graphics().setDepth(-9);
+    ceu.fillGradientStyle(0xcfe6f2, 0xcfe6f2, 0xf7f1e6, 0xf7f1e6, 1);
+    ceu.fillRect(0, TELA.topo, W, TELA.altura);
     botaoVoltar(this, 'Joguinhos');
     narrador.falar('Encoste o dedinho nas bolhas para estourar!', 'jogo_bolhas');
 
