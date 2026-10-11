@@ -31,6 +31,8 @@ ERRADAS = {
     "olhos_grandes": "olho grande demais, fica assustado",
     "olhos_alegres": "olho fechado em arco le como bichinho",
     "corpo_base_pele_clara": "cabeca muito oval; refazer obriga a refazer as 6 roupas",
+    "acessorio_oculos": "veio recortado rente; precisa vir na moldura 2048 do corpo",
+    "acessorio_aparelho_auditivo": "veio recortado rente; precisa vir na moldura 2048 do corpo",
 }
 
 

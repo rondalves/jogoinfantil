@@ -44,7 +44,8 @@ CABELOS = [
     "menino_espetado", "menino_tigelinha", "menino_raspado", "menino_degrade", "menino_risco",
     "menino_moicano",
 ]
-OLHOS = ["redondos", "alegres", "grandes", "sorriso"]
+# "triste" nao entra no criador: e a cara que o personagem faz quando erra
+OLHOS = ["redondos", "alegres", "grandes", "sorriso", "triste"]
 
 # Roupas: sufixo da chave no jogo -> arquivo cru (corpo inteiro vestido, no
 # mesmo enquadramento do corpo base). Tem que bater com ROUPAS de

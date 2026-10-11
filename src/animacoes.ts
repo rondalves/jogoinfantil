@@ -56,6 +56,7 @@ const ROSTOS: Record<string, string> = {
   feliz: 'olhos_alegres',
   surpreso: 'olhos_grandes',
   contente: 'olhos_sorriso',
+  triste: 'olhos_triste',
 };
 
 /**
@@ -220,6 +221,7 @@ export function comemorar(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container
  */
 export function entristecer(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container, ms = 1600) {
   const { cabelo } = pecas(alvo);
+  expressao(alvo, 'triste');
   const y = alvo.y;
   const ey = alvo.scaleY;
   cena.tweens.add({ targets: alvo, scaleY: ey * 0.95, y: y + 12, duration: 420, ease: 'Quad.easeOut' });
