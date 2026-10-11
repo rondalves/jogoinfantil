@@ -194,9 +194,9 @@ const main = async () => {
     window.__jogo.scene
       .getScene('Mapa')
       .children.list.filter((o) => o.type === 'Container')
-      .some((b) => b.list.some((x) => String(x.texture?.key ?? '').startsWith('olhos_'))),
+      .some((b) => ['olhos_', 'boca_'].every((p) => b.list.some((x) => String(x.texture?.key ?? '').startsWith(p)))),
   );
-  if (!temRosto) problemas.push('rosto do personagem: nenhum olhos_* no boneco do mapa');
+  if (!temRosto) problemas.push('rosto do personagem: falta olhos_* ou boca_* no boneco do mapa');
 
   atual = 'medalha';
   await page.evaluate(async (ids) => {

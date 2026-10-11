@@ -1,0 +1,44 @@
+{
+  "": {
+    "cx": -0.001,
+    "largura": 0.3613,
+    "queixo": 0.3965,
+    "topo": 0.0371
+  },
+  "_azul": {
+    "cx": -0.001,
+    "largura": 0.3613,
+    "queixo": 0.4082,
+    "topo": 0.0352
+  },
+  "_macacao": {
+    "cx": -0.001,
+    "largura": 0.3652,
+    "queixo": 0.4238,
+    "topo": 0.0352
+  },
+  "_roxo": {
+    "cx": -0.001,
+    "largura": 0.3574,
+    "queixo": 0.418,
+    "topo": 0.0371
+  },
+  "_sentado": {
+    "cx": 0.0,
+    "largura": 0.3047,
+    "queixo": 0.3613,
+    "topo": 0.0371
+  },
+  "_vermelho": {
+    "cx": -0.001,
+    "largura": 0.3613,
+    "queixo": 0.4238,
+    "topo": 0.0371
+  },
+  "_vestido_rosa": {
+    "cx": -0.001,
+    "largura": 0.3555,
+    "queixo": 0.4082,
+    "topo": 0.0391
+  }
+}

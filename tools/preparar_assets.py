@@ -9,6 +9,7 @@ redimensionados para o tamanho da tela. Fonte: ORIGEM (mude se preciso).
 """
 
 import argparse
+import json
 import os
 import sys
 
@@ -771,6 +772,90 @@ def fazer_opacas():
         print(f"{nome}: {len([r for r in rotulos if r])} pecas")
 
 
+def rosto_do_corpo(rgba):
+    """Onde fica a cabeca careca na arte do corpo, em fracao da altura.
+
+    topo e queixo vao do alto do cranio ao queixo (sem o pescoco); largura e a
+    do cranio acima das orelhas; cx e o desvio do meio da imagem. O jogo usa
+    isso para pôr olhos e boca no lugar em qualquer corpo, mesmo nos de cabeca
+    mais comprida.
+    """
+    a = np.asarray(rgba).astype(np.float32)
+    rgb, al = a[..., :3], a[..., 3]
+    mx, mn = rgb.max(2), rgb.min(2)
+    sat = np.where(mx > 0, (mx - mn) / np.maximum(mx, 1), 0)
+    r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
+    pele = (r > g) & (g > b) & (sat > 0.10) & (sat < 0.66) & (mx > 60) & (al > 40)
+    pele[int(pele.shape[0] * 0.6):] = False
+    rot, n = ndimage.label(pele)
+    if n == 0:
+        return None
+    maior = int(np.argmax(ndimage.sum(pele, rot, range(1, n + 1)))) + 1
+    m = rot == maior
+    larg = m.sum(1)
+    topo = int(np.argmax(larg > 0))
+    testa = float(np.median(larg[topo + 30: topo + 90]))
+    # cabeca nao e mais alta que 1.3x a testa: o peito largo do moletom fica de fora
+    pico = topo + int(np.argmax(larg[topo: topo + int(1.3 * testa)]))
+    # o queixo e onde o rosto afina para o pescoco: a largura cai abaixo de 60%
+    # da testa, ou para de cair e volta a abrir (gola, capuz, decote)
+    queixo = len(larg) - 1
+    for y in range(pico + 3, len(larg)):
+        if larg[y] < 0.6 * testa:
+            queixo = y
+            break
+        if larg[y - 3] < 0.8 * testa and larg[y] > larg[y - 3] + 3:
+            queixo = y - 3
+            break
+    h = queixo - topo
+    faixa = slice(topo + int(0.25 * h), topo + int(0.45 * h))
+    ys, xs = np.where(m[faixa])
+    cx = float(np.median([(xs[ys == y].min() + xs[ys == y].max()) / 2 for y in np.unique(ys)]))
+    alto = rgba.height
+    return {
+        "topo": round(topo / alto, 4),
+        "queixo": round(queixo / alto, 4),
+        "largura": round(int(larg[faixa].max()) / alto, 4),
+        "cx": round((cx - rgba.width / 2) / alto, 4),
+    }
+
+
+def faixas_com_conteudo(rgba):
+    """Bandas de linhas com desenho: sobrancelha, olhos, boca."""
+    tem = (np.asarray(rgba)[..., 3] > 60).any(axis=1)
+    fora, ini = [], None
+    for y, t in enumerate(tem):
+        if t and ini is None:
+            ini = y
+        if not t and ini is not None:
+            fora.append((ini, y - 1))
+            ini = None
+    if ini is not None:
+        fora.append((ini, len(tem) - 1))
+    return [(a, b) for a, b in fora if b - a > 3]
+
+
+def separar_rosto(rgba):
+    """Peca de olhos+boca -> (olhos, boca), para o jogo pôr cada um no lugar.
+
+    O corte e o maior vao em branco abaixo dos olhos. Os olhos saem com a linha
+    dos olhos no meio exato da imagem (sobra transparente embaixo): assim o
+    jogo ancora pelo centro e piscar fecha o olho em volta dele mesmo. As duas
+    pecas mantem a largura inteira, entao o meio do rosto continua no meio.
+    """
+    bs = faixas_com_conteudo(rgba)
+    vaos = [(bs[i + 1][0] - bs[i][1], i) for i in range(len(bs) - 1) if bs[i][1] > rgba.height * 0.45]
+    if not vaos:
+        return rgba, None
+    _, i = max(vaos)
+    corte = (bs[i][1] + bs[i + 1][0]) // 2
+    linha = (bs[i][0] + bs[i][1]) / 2
+    olhos = Image.new("RGBA", (rgba.width, max(corte, round(2 * linha))), (0, 0, 0, 0))
+    olhos.alpha_composite(rgba.crop((0, 0, rgba.width, corte)), (0, 0))
+    boca = rgba.crop((0, bs[i + 1][0], rgba.width, bs[-1][1] + 1))
+    return olhos, boca
+
+
 def fazer_personagem():
     base = apagar_boca(tirar_verde(abrir("corpo_base_pele_clara")))
     caixa_base = pecas(base)[0]
@@ -787,12 +872,18 @@ def fazer_personagem():
             continue
         corpos[sufixo] = encaixada
     feitas = 0
+    cabecas = {}
     for sufixo, arte in corpos.items():
         caixa = caixa_base if sufixo not in ("", "_sentado") else pecas(arte)[0]
         for i, tom in enumerate(PELES, start=1):
-            gravar(recortar(recolorir_pele(arte, tom), caixa, 512), f"corpo{sufixo}_pele{i}")
+            caminho = gravar(recortar(recolorir_pele(arte, tom), caixa, 512), f"corpo{sufixo}_pele{i}")
             feitas += 1
-    print(f"corpo: {feitas} pecas")
+            if i == 3:  # a cabeca e a mesma em todo tom: mede no arquivo pronto
+                cabecas[sufixo] = rosto_do_corpo(Image.open(caminho).convert("RGBA"))
+    with open(os.path.join(RAIZ, "src", "cabecas.json"), "w", encoding="utf-8", newline="\n") as f:
+        json.dump(cabecas, f, indent=2, sort_keys=True)
+        f.write("\n")
+    print(f"corpo: {feitas} pecas, cabecas medidas em src/cabecas.json")
 
     # olhos sao varias manchas (sobrancelhas + olhos): pega a caixa de tudo junto
     feitas = 0
@@ -801,8 +892,14 @@ def fazer_personagem():
         if bruta is None:
             continue
         olhos = tirar_verde(bruta)
-        gravar(recortar(olhos, grade(olhos, 1, 1)[0], 512), f"olhos_{nome}")
+        so_olhos, boca = separar_rosto(recortar(olhos, grade(olhos, 1, 1)[0], 512))
+        gravar(so_olhos, f"olhos_{nome}")
         feitas += 1
+        if boca is None:
+            print(f"  ! olhos_{nome}: nao achei onde separar a boca, ficou tudo junto")
+        else:
+            gravar(boca, f"boca_{nome}")
+            feitas += 1
 
     for nome in CABELOS:
         bruta = abrir(f"cabelo_{nome}_castanho", obrigatorio=False)

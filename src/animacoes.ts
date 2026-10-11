@@ -35,6 +35,7 @@ export type Animacao = (
 export interface Pecas {
   corpo?: Phaser.GameObjects.Image;
   olhos?: Phaser.GameObjects.Image;
+  boca?: Phaser.GameObjects.Image;
   cabelo?: Phaser.GameObjects.Image;
 }
 
@@ -45,6 +46,7 @@ export function pecas(alvo: Phaser.GameObjects.Container): Pecas {
     const chave = typeof im.texture?.key === 'string' ? im.texture.key : '';
     if (chave.startsWith('corpo')) fora.corpo ??= im;
     else if (chave.startsWith('olhos_')) fora.olhos ??= im;
+    else if (chave.startsWith('boca_')) fora.boca ??= im;
     else if (chave.startsWith('cabelo_')) fora.cabelo ??= im;
   }
   return fora;
@@ -60,17 +62,19 @@ const ROSTOS: Record<string, string> = {
 };
 
 /**
- * Troca a cara do personagem. A peca traz olhos e boca juntos, entao e so
- * trocar a textura -- e preciso recalcular a escala porque cada arte tem uma
- * largura diferente e o rosto nao pode mudar de tamanho junto com o humor.
+ * Troca a cara do personagem: olhos e boca do mesmo jeito juntos. E preciso
+ * recalcular a escala porque cada arte tem uma largura diferente e o rosto
+ * nao pode mudar de tamanho junto com o humor.
  */
 export function expressao(alvo: Phaser.GameObjects.Container, humor: keyof typeof ROSTOS | string) {
-  const { olhos } = pecas(alvo);
+  const { olhos, boca } = pecas(alvo);
   const chave = ROSTOS[humor] ?? humor;
   if (!olhos || !olhos.scene.textures.exists(chave) || olhos.texture.key === chave) return;
   const larguraAntes = olhos.displayWidth;
   olhos.setTexture(chave);
   olhos.setScale(larguraAntes / olhos.width);
+  const chaveBoca = chave.replace('olhos_', 'boca_');
+  if (boca && boca.scene.textures.exists(chaveBoca)) boca.setTexture(chaveBoca).setScale(olhos.scaleX);
 }
 
 /**

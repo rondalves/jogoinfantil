@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import CABECAS from './cabecas.json';
 import type { PersonagemCfg } from './storage';
 
 /**
@@ -12,13 +13,32 @@ import type { PersonagemCfg } from './storage';
 /** Altura do personagem em unidades locais (escala 1). */
 const ALT = 512;
 
-/** Onde fica a cabeca dentro da arte do corpo, em fracao da altura. */
-const CABECA = {
-  topo: -ALT / 2 + 0.055 * ALT,
-  altura: 0.275 * ALT,
-  largura: 0.357 * ALT,
-};
-const CENTRO_CABECA = CABECA.topo + CABECA.altura / 2;
+/**
+ * Onde vai o rosto, tirado de fotos de criancas de 2 a 6 anos: a testa e
+ * grande, o olho fica no meio da cabeca (alto do cranio ao queixo) e a boca
+ * perto do queixo. Rosto de adulto e que tem o olho mais para cima.
+ */
+const LINHA_OLHOS = 0.55;
+const LINHA_BOCA = 0.8;
+/** largura da peca dos olhos (de sobrancelha a sobrancelha) sobre a do cranio */
+const LARGURA_OLHOS = 0.74;
+
+interface Cabeca {
+  topo: number;
+  queixo: number;
+  largura: number;
+  cx: number;
+}
+
+/**
+ * A cabeca de cada corpo, medida pelo preparar_assets (src/cabecas.json) em
+ * fracao da altura da arte. Volta em unidades do personagem, com 0 no meio.
+ */
+function cabecaDe(sufixo: string) {
+  const tabela = CABECAS as Record<string, Cabeca>;
+  const c = tabela[sufixo] ?? tabela[''] ?? { topo: 0.037, queixo: 0.396, largura: 0.361, cx: 0 };
+  return { topo: (c.topo - 0.5) * ALT, queixo: (c.queixo - 0.5) * ALT, largura: c.largura * ALT, cx: c.cx * ALT };
+}
 
 /** Cores só para os botões do criador — a arte já vem recolorida. */
 export const PELES = [0xffe0bd, 0xefc9ab, 0xf3c893, 0xe0ac69, 0xc68642, 0x8d5524, 0x5c3317];
@@ -96,6 +116,8 @@ export interface Acessorio {
   broche?: number;
   /** entra atras do corpo (a capa de heroi) */
   atras?: boolean;
+  /** vai na linha dos olhos e cresce com a cabeca: tamanho e fracao da largura dela */
+  rosto?: boolean;
 }
 
 /**
@@ -108,7 +130,7 @@ export interface Acessorio {
  */
 export const ACESSORIOS: Acessorio[] = [
   // medido na arte do corpo: olhos em -0.30, orelha em x 0.155 e y -0.235
-  { id: 'oculos', nome: 'Óculos', icone: '\u{1F453}', x: 0, y: -0.295, tamanho: 0.2 },
+  { id: 'oculos', nome: 'Óculos', icone: '\u{1F453}', x: 0, y: 0, tamanho: 0.55, rosto: true },
   // { id: 'aparelho_auditivo', nome: 'Aparelho auditivo', icone: '\u{1F9BB}', x: 0.155, y: -0.235, tamanho: 0.075 },
   { id: 'bone', nome: 'Boné', icone: '\u{1F9E2}', x: 0, y: -0.45, tamanho: 0.22, estrelas: 3 },
   { id: 'laco', nome: 'Laço', icone: '\u{1F380}', x: -0.15, y: -0.44, tamanho: 0.15, estrelas: 3 },
@@ -123,11 +145,10 @@ export function acessorioLiberado(a: Acessorio, estrelas: number, broches: numbe
 
 export const temArte = (cena: Phaser.Scene) => cena.textures.exists('corpo_pele1');
 
+const sufixoCorpo = (cfg: PersonagemCfg) => (cfg.cadeirante ? '_sentado' : ROUPAS[cfg.roupa % ROUPAS.length].id);
+
 function corpoChave(cfg: PersonagemCfg) {
-  const pele = (cfg.pele % PELES.length) + 1;
-  if (cfg.cadeirante) return `corpo_sentado_pele${pele}`;
-  const roupa = ROUPAS[cfg.roupa % ROUPAS.length].id;
-  return `corpo${roupa}_pele${pele}`;
+  return `corpo${sufixoCorpo(cfg)}_pele${(cfg.pele % PELES.length) + 1}`;
 }
 
 /** Imagem ajustada pela LARGURA, mantendo a proporcao. */
@@ -146,16 +167,23 @@ export function desenharPersonagem(
   const c = cena.add.container(0, 0);
 
   const chave = corpoChave(cfg);
-  const corpo = cena.add.image(0, 0, cena.textures.exists(chave) ? chave : 'corpo_pele1');
+  const temCorpo = cena.textures.exists(chave);
+  const corpo = cena.add.image(0, 0, temCorpo ? chave : 'corpo_pele1');
   corpo.setOrigin(0.5).setScale(ALT / corpo.height);
   c.add(corpo);
 
+  const cab = cabecaDe(temCorpo ? sufixoCorpo(cfg) : '');
+  const altura = cab.queixo - cab.topo;
+  const linhaOlhos = cab.topo + LINHA_OLHOS * altura;
   const chaveOlhos = `olhos_${OLHOS[cfg.olhos % OLHOS.length].id}`;
   if (cena.textures.exists(chaveOlhos)) {
-    const olhos = porLargura(cena, chaveOlhos, CABECA.largura * 0.78);
-    // a peca traz olhos e boca: encaixa no meio do rosto, nao na linha dos olhos
-    olhos.setY(CENTRO_CABECA + CABECA.altura * 0.07);
+    // a peca dos olhos sai do preparar_assets com a linha dos olhos no meio
+    const olhos = porLargura(cena, chaveOlhos, LARGURA_OLHOS * cab.largura).setPosition(cab.cx, linhaOlhos);
     c.add(olhos);
+    const chaveBoca = chaveOlhos.replace('olhos_', 'boca_');
+    if (cena.textures.exists(chaveBoca)) {
+      c.add(cena.add.image(cab.cx, cab.topo + LINHA_BOCA * altura, chaveBoca).setScale(olhos.scaleX));
+    }
   }
 
   const cabelo = CABELOS[cfg.cabelo % CABELOS.length].id;
@@ -171,10 +199,12 @@ export function desenharPersonagem(
     const a = ACESSORIOS.find((x) => x.id === id);
     if (!a) continue;
     const chave = `acessorio_${a.id}`;
+    const largura = a.rosto ? a.tamanho * cab.largura : a.tamanho * ALT;
     const im = cena.textures.exists(chave)
-      ? porLargura(cena, chave, a.tamanho * ALT)
-      : cena.add.text(0, 0, a.icone, { fontSize: `${Math.round(a.tamanho * ALT)}px` }).setOrigin(0.5);
-    im.setPosition(a.x * ALT, a.y * ALT);
+      ? porLargura(cena, chave, largura)
+      : cena.add.text(0, 0, a.icone, { fontSize: `${Math.round(largura)}px` }).setOrigin(0.5);
+    if (a.rosto) im.setPosition(cab.cx + a.x * cab.largura, linhaOlhos + a.y * cab.largura);
+    else im.setPosition(a.x * ALT, a.y * ALT);
     c.add(im);
     // a capa cai nas costas: vai para tras do corpo
     if (a.atras) c.sendToBack(im);

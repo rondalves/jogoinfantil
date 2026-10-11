@@ -27,6 +27,23 @@ mesma imagem base, só trocando o que muda.
 | Cabelo | `cabelo_<id>_castanho` | 9 cores a partir do castanho |
 | Acessório | `acessorio_<id>` | a peça, sem recolorir |
 
+## O rosto se encaixa sozinho
+
+O `npm run assets` mede a cabeça de cada corpo (alto do crânio, queixo e
+largura) e grava em `src/cabecas.json`. Também separa cada peça de rosto em
+olhos e boca. O jogo põe cada um na proporção de criança de verdade, medida
+em fotos de crianças de 2 a 6 anos:
+
+| | onde fica, do alto do crânio ao queixo |
+|---|---|
+| linha dos olhos | 55% |
+| boca | 80% |
+| largura dos olhos | 74% da largura do crânio |
+
+A testa grande é o que faz o rosto parecer de criança. Por isso a arte do
+rosto não precisa sair no lugar certo: basta vir com olhos em cima e boca
+embaixo, com um espaço vazio entre os dois.
+
 O `<id>` tem que bater com o catálogo de
 [src/personagem.ts](../src/personagem.ts) (`CATALOGO_CABELOS`,
 `CATALOGO_OLHOS`, `ACESSORIOS`) e com as listas `CABELOS`, `OLHOS` e `SOLTAS`
