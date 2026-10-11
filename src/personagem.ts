@@ -108,7 +108,7 @@ export interface Acessorio {
  */
 export const ACESSORIOS: Acessorio[] = [
   // medido na arte do corpo: olhos em -0.30, orelha em x 0.155 e y -0.235
-  // { id: 'oculos', nome: 'Óculos', icone: '\u{1F453}', x: 0, y: -0.295, tamanho: 0.2 },
+  { id: 'oculos', nome: 'Óculos', icone: '\u{1F453}', x: 0, y: -0.295, tamanho: 0.2 },
   // { id: 'aparelho_auditivo', nome: 'Aparelho auditivo', icone: '\u{1F9BB}', x: 0.155, y: -0.235, tamanho: 0.075 },
   { id: 'bone', nome: 'Boné', icone: '\u{1F9E2}', x: 0, y: -0.45, tamanho: 0.22, estrelas: 3 },
   { id: 'laco', nome: 'Laço', icone: '\u{1F380}', x: -0.15, y: -0.44, tamanho: 0.15, estrelas: 3 },

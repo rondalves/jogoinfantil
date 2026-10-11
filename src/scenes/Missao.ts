@@ -67,7 +67,7 @@ export class Missao extends Phaser.Scene {
     const das = (itens?: { img?: string }[]) => (itens ?? []).map((i) => i.img);
     // a etapa de escovar usa a arte da boca, que nao esta no JSON
     const boca = d.etapas.some((e) => e.tipo === 'escovar')
-      ? ['m01_boca_suja', 'm01_boca_limpa']
+      ? ['m01_boca_suja', 'm01_boca_limpa', 'm01_espuma']
       : [];
     return [
       ...boca,

@@ -112,6 +112,7 @@ export function escovar(c: Ctx, e: Etapa) {
   let atual = 0;
   let esfrega = new Esfrega(PASSOS_POR_REGIAO, 120);
   let acabou = false;
+  let espuma: ReturnType<typeof figura> | null = null;
 
   const pintarFoco = () => {
     foco.clear();
@@ -157,9 +158,21 @@ export function escovar(c: Ctx, e: Etapa) {
     if (Phaser.Math.Distance.Between(p.x, p.y, l.x, l.y) > l.r + 40) return;
     if (!esfrega.mover(p.x - p.prevPosition.x, p.y - p.prevPosition.y)) return;
     nota(700 + esfrega.limpos * 40);
-    sujeira[atual].setAlpha(1 - esfrega.limpos / PASSOS_POR_REGIAO);
+    const feito = esfrega.limpos / PASSOS_POR_REGIAO;
+    sujeira[atual].setAlpha(1 - feito);
+    // a espuma nasce onde a cerda passa e cresce com o esfregar
+    if (!espuma) {
+      espuma = figura(c.cena, l.x, l.y + 8, 'm01_espuma', '\u{1FAE7}', 150);
+      c.camada.add(espuma);
+      c.camada.moveBelow(espuma, escova);
+    }
+    espuma.setAlpha(0.4 + 0.6 * feito);
     if (esfrega.completo) {
       sujeira[atual].destroy();
+      // enxagua: a espuma se espalha e some
+      const e = espuma;
+      espuma = null;
+      c.cena.tweens.add({ targets: e, alpha: 0, scale: e.scale * 1.3, duration: 450, onComplete: () => e.destroy() });
       proxima();
     }
   });

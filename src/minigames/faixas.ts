@@ -99,23 +99,23 @@ export function correrFaixas(
   }
 
   let faixa = 1;
-  // a crianca entra primeiro, recortada na linha do banco: do banco para
-  // baixo quem aparece e o kart, entao ela fica sentada de verdade
-  // no kart quem leva a crianca e o kart: a cadeira de rodas em cima dele
-  // nao faz sentido nenhum. O corpo em pe entra e o kart tapa da cintura
-  // para baixo, igual a qualquer outra crianca sentada no banco.
+  const heroi = op.heroi(cena, personagem) as Phaser.GameObjects.Image;
+  heroi.setPosition(FAIXAS[faixa], Y_HEROI);
+  // O kart e visto de tras: a crianca entra por cima dele, cortada na linha
+  // do encosto, entao so a cabeca e os ombros aparecem saindo do banco.
+  // No kart quem leva a crianca e o kart: a cadeira de rodas em cima dele
+  // nao faz sentido nenhum.
   const crianca = op.montaria
     ? desenharPersonagem(cena, { ...personagem, cadeirante: false }, 0.48)
     : null;
   if (crianca) {
-    crianca.setPosition(FAIXAS[faixa], Y_HEROI - 54);
+    // medido no mg1_kart_tras: o encosto comeca a 31% da altura do kart
+    crianca.setPosition(FAIXAS[faixa], Y_HEROI - 8);
     const corte = cena.make.graphics({ x: 0, y: 0 });
     corte.fillStyle(0xffffff);
-    corte.fillRect(0, 0, W, Y_HEROI - 6);
+    corte.fillRect(0, 0, W, Y_HEROI - 30);
     crianca.setMask(corte.createGeometryMask());
   }
-  const heroi = op.heroi(cena, personagem) as Phaser.GameObjects.Image;
-  heroi.setPosition(FAIXAS[faixa], Y_HEROI);
   const seguem: Phaser.GameObjects.GameObject[] = crianca ? [heroi, crianca] : [heroi];
 
   const irPara = (nova: number) => {

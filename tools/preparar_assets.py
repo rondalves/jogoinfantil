@@ -182,7 +182,6 @@ FOLHAS = {
     "Gemini_Generated_Image_q6mvumq6mvumq6mv": (["acessorio_bone"], 256, None),
     # o par vermelho sai cortado em qualquer recorte: fica de fora
     "Gemini_Generated_Image_pnlueqpnlueqpnlu": ([None, None], 256, ("grade", 1, 2)),
-    "Gemini_Generated_Image_v2skq3v2skq3v2sk": ([None, "acessorio_oculos"], 256, ("grade", 1, 2)),
     "m12_carro": (
         [None, None, "m12_cinto", "m12_clique", "m12_cadeirinha", "m12_fivela", None, None, None,
          "m12_janela", "m12_janela_nao", "m12_macaneta", "m12_porta"],
@@ -306,6 +305,10 @@ SOLTAS = [
     "acessorio_aparelho_auditivo",
     "acessorio_capa",
     "acessorio_medalha",
+    "acessorio_oculos",
+    "m24_chuveiro",
+    "m01_espuma",
+    "mg1_kart_tras",
 ]
 FOLHAS.update({n: ([n], 320, ("grade", 1, 1)) for n in SOLTAS})
 FOLHAS["m05_mochila_itens"] = (

@@ -28,11 +28,14 @@ PEDIDAS_PELO_CODIGO = {
 
 # arte que existe mas esta errada: o arquivo nao falta, o desenho e que nao serve
 ERRADAS = {
-    "olhos_grandes": "olho grande demais, fica assustado",
-    "olhos_alegres": "olho fechado em arco le como bichinho",
-    "corpo_base_pele_clara": "cabeca muito oval; refazer obriga a refazer as 6 roupas",
-    "acessorio_oculos": "veio recortado rente; precisa vir na moldura 2048 do corpo",
     "acessorio_aparelho_auditivo": "veio recortado rente; precisa vir na moldura 2048 do corpo",
+    # o corpo base virou rosto redondo em 10/10; estas ainda tem a cabeca oval antiga
+    "roupa_macacao_jeans": "cabeca oval antiga; regerar a partir do corpo base novo",
+    "roupa_vestido_rosa": "cabeca oval antiga; regerar a partir do corpo base novo",
+    "roupa_conjunto_roxo": "cabeca oval antiga; regerar a partir do corpo base novo",
+    "roupa_camiseta_azul": "cabeca oval antiga; a de 10/10 veio sem a base e saiu sem os pes",
+    "roupa_moletom_vermelho": "cabeca oval antiga; regerar a partir do corpo base novo",
+    "corpo_cadeira_pele_clara": "cabeca oval antiga; regerar a partir do corpo base novo",
 }
 
 
