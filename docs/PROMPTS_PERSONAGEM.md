@@ -149,7 +149,7 @@ Anexe o **molde**. Nada de roupa amarela, laranja ou bege: o script confunde
 com pele e repinta. Troque só o trecho **[ROUPA]**.
 
 ```
-Use a imagem anexada e mude somente a roupa, mantendo todo o resto idêntico: a mesma criança careca e sem rosto, a cabeça com o mesmo formato, tamanho e posição, a pele da mesma cor, a pose, os braços, as pernas com a mesma grossura, os pés inteiros dentro do quadro, o enquadramento e o fundo verde. [ROUPA] Sem estampa, sem texto e nada de verde na roupa. Mesmo traço fino e escuro e mesmo sombreado chapado do resto do desenho.
+Use a imagem anexada e mude somente a roupa, mantendo todo o resto idêntico: a mesma criança de frente para quem olha, careca, com o rosto liso em branco (sem olhos, nariz nem boca), a cabeça com o mesmo formato, tamanho e posição, a pele exatamente da mesma cor clara, a pose, os braços abertos, as pernas com a mesma grossura, os pés inteiros dentro do quadro e o enquadramento. [ROUPA] Sem estampa, sem texto e nada de verde na roupa. Mesmo traço fino e escuro e mesmo sombreado chapado do resto do desenho. Fundo verde chapado #00FF00, uma cor só. Imagem quadrada 2048x2048.
 ```
 
 | arquivo | **[ROUPA]** |
@@ -187,4 +187,6 @@ Use a imagem anexada e acrescente somente [ACESSÓRIO], mantendo todo o resto id
 | branco em volta da íris inteira | "A pálpebra de cima precisa cobrir um pouco o alto da íris." |
 | cabelo parecendo peruca | "O cabelo nasce na pele da testa e cobre o crânio; não deixe vão entre o cabelo e a cabeça." |
 | desenhou rosto no molde | "Sem rosto: só a pele lisa, sem olhos, nariz nem boca." |
+| virou a criança de costas | "A criança fica de frente para quem olha, como na imagem anexada; o rosto só fica em branco." |
+| fundo verde-escuro ou imagem retangular | "Fundo verde chapado #00FF00 e imagem quadrada 2048x2048." |
 | mudou a roupa ao fazer o cabelo | "Mude só o cabelo; roupa, corpo e rosto idênticos à imagem anexada." |
