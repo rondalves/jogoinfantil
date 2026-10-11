@@ -162,5 +162,13 @@
   "jogo_colorir_pronto": {
     "texto": "Que lindo! Ficou todo colorido!",
     "local": "Joguinho de colorir, desenho todo pintado"
+  },
+  "jogo_moto": {
+    "texto": "Segure o botão verde para acelerar e suba a montanha!",
+    "local": "Joguinho da moto"
+  },
+  "jogo_torre": {
+    "texto": "Toque na tela para soltar a panqueca e montar uma torre bem alta!",
+    "local": "Joguinho da torre de panquecas"
   }
 }

@@ -16,6 +16,8 @@ const ABRIR: Record<string, [string, object?]> = {
   memoria: ['JogoMemoria'],
   colorir: ['Colorir'],
   bolhas: ['Bolhas'],
+  torre: ['TorrePanquecas'],
+  moto: ['MotoMontanha'],
 };
 
 /**

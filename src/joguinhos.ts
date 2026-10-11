@@ -12,7 +12,7 @@ export interface Joguinho {
   id: string;
   titulo: string;
   icone: string;
-  /** qual brincadeira abrir: corrida, memoria, colorir, bolhas (ver ABRIR em scenes/Joguinhos.ts) */
+  /** qual brincadeira abrir: corrida, memoria, colorir, bolhas, torre, moto (ver ABRIR em scenes/Joguinhos.ts) */
   tipo: string;
   /** mundo que precisa estar fechado para abrir este joguinho */
   mundo: number;
