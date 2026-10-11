@@ -37,6 +37,8 @@ export interface Pecas {
   olhos?: Phaser.GameObjects.Image;
   boca?: Phaser.GameObjects.Image;
   cabelo?: Phaser.GameObjects.Image;
+  /** o cabelo de tras da cabeca: anda junto com o cabelo */
+  fundo?: Phaser.GameObjects.Image;
 }
 
 export function pecas(alvo: Phaser.GameObjects.Container): Pecas {
@@ -48,6 +50,7 @@ export function pecas(alvo: Phaser.GameObjects.Container): Pecas {
     else if (chave.startsWith('olhos_')) fora.olhos ??= im;
     else if (chave.startsWith('boca_')) fora.boca ??= im;
     else if (chave.startsWith('cabelo_')) fora.cabelo ??= im;
+    else if (chave.startsWith('cabelofundo_')) fora.fundo ??= im;
   }
   return fora;
 }
@@ -110,7 +113,7 @@ export function piscar(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container) {
  * nao a perna em si. Devolve os tweens para quem chamou poder parar.
  */
 export function andar(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container, passoMs = 300) {
-  const { cabelo } = pecas(alvo);
+  const { cabelo, fundo } = pecas(alvo);
   const base = alvo.y;
   const tweens = [
     cena.tweens.add({
@@ -134,7 +137,7 @@ export function andar(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container, pa
     // o cabelo sai meio passo atrasado: e isso que tira o jeito de bloco so
     tweens.push(
       cena.tweens.add({
-        targets: cabelo,
+        targets: [cabelo, fundo].filter(Boolean),
         y: cabelo.y + 7,
         angle: { from: -3, to: 3 },
         duration: passoMs,
@@ -150,6 +153,7 @@ export function andar(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container, pa
     alvo.setAngle(0);
     alvo.y = base;
     cabelo?.setAngle(0);
+    fundo?.setAngle(0);
   };
 }
 
@@ -184,7 +188,7 @@ export function darVida(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container) 
  * sobe e desce como elevador. O cabelo chega atrasado e o rosto fica feliz.
  */
 export function comemorar(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container) {
-  const { cabelo } = pecas(alvo);
+  const { cabelo, fundo } = pecas(alvo);
   const y = alvo.y;
   const ex = alvo.scaleX;
   const ey = alvo.scaleY;
@@ -206,7 +210,7 @@ export function comemorar(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container
   if (cabelo) {
     const cy = cabelo.y;
     cena.tweens.chain({
-      targets: cabelo,
+      targets: [cabelo, fundo].filter(Boolean),
       tweens: [
         { y: cy + 10, duration: 180, delay: 90, ease: 'Quad.easeOut' },
         { y: cy - 6, duration: 200, ease: 'Sine.easeInOut' },
@@ -224,15 +228,16 @@ export function comemorar(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container
  * e volta sozinho ao normal depois de um tempinho.
  */
 export function entristecer(cena: Phaser.Scene, alvo: Phaser.GameObjects.Container, ms = 1600) {
-  const { cabelo } = pecas(alvo);
+  const { cabelo, fundo } = pecas(alvo);
   expressao(alvo, 'triste');
   const y = alvo.y;
   const ey = alvo.scaleY;
   cena.tweens.add({ targets: alvo, scaleY: ey * 0.95, y: y + 12, duration: 420, ease: 'Quad.easeOut' });
   if (cabelo) {
     const cy = cabelo.y;
-    cena.tweens.add({ targets: cabelo, y: cy + 9, duration: 480, ease: 'Quad.easeOut' });
-    cena.time.delayedCall(ms, () => cena.tweens.add({ targets: cabelo, y: cy, duration: 400 }));
+    const juntos = [cabelo, fundo].filter(Boolean);
+    cena.tweens.add({ targets: juntos, y: cy + 9, duration: 480, ease: 'Quad.easeOut' });
+    cena.time.delayedCall(ms, () => cena.tweens.add({ targets: juntos, y: cy, duration: 400 }));
   }
   cena.time.delayedCall(ms, () => {
     cena.tweens.add({ targets: alvo, scaleY: ey, y, duration: 400, ease: 'Sine.easeInOut' });

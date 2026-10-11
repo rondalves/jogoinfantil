@@ -21,7 +21,7 @@ export const IMAGENS = mapear(
  * a abertura leva uma eternidade no celular.
  */
 const ESSENCIAL =
-  /^(botao_|mundo|broche|estrela|ficha$|moeda$|medalha_final$|mascote_|corpo_|cabelo_|olhos_|boca_|acessorio_|cadeira_de_rodas$|icone_|bg_(menu_inicial|criador_personagem|mapa_mundos)$)/;
+  /^(botao_|mundo|broche|estrela|ficha$|moeda$|medalha_final$|mascote_|corpo_|cabelo_|cabelofundo_|olhos_|boca_|acessorio_|cadeira_de_rodas$|icone_|bg_(menu_inicial|criador_personagem|mapa_mundos)$)/;
 
 export const IMAGENS_BASE = Object.fromEntries(
   Object.entries(IMAGENS).filter(([chave]) => ESSENCIAL.test(chave)),

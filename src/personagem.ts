@@ -189,10 +189,22 @@ export function desenharPersonagem(
   const cabelo = CABELOS[cfg.cabelo % CABELOS.length].id;
   const chaveCabelo = `cabelo_${cabelo}_${(cfg.corCabelo % CORES_CABELO.length) + 1}`;
   if (cabelo !== 'careca' && cena.textures.exists(chaveCabelo)) {
-    // a arte do cabelo ja sai no quadro do corpo, com o vao do rosto no lugar:
-    // so entra por cima, na mesma escala (ver encaixar_cabelo no preparar_assets)
-    const im = cena.add.image(0, 0, chaveCabelo).setOrigin(0.5).setScale(ALT / 512);
-    c.add(im);
+    // a arte do cabelo sai no quadro do corpo base; em outro corpo (a cadeira
+    // de rodas tem a cabeca menor) acompanha a cabeca dele: mesmo alto do
+    // cranio, mesma largura
+    const base = cabecaDe('');
+    const k = cab.largura / base.largura;
+    const x = cab.cx - k * base.cx;
+    const y = cab.topo - k * base.topo;
+    const fundo = `cabelofundo_${cabelo}`;
+    if (cena.textures.exists(fundo)) {
+      // o cabelo de tras da cabeca, mais escuro: preenche o vao entre o
+      // cabelo e o rosto e fica atras do pescoco, como no cabelo de verdade
+      const cor = Phaser.Display.Color.IntegerToColor(CORES_CABELO[cfg.corCabelo % CORES_CABELO.length]);
+      const escuro = Phaser.Display.Color.GetColor(cor.red * 0.45, cor.green * 0.45, cor.blue * 0.45);
+      c.addAt(cena.add.image(x, y, fundo).setScale((k * ALT) / 512).setTint(escuro), 0);
+    }
+    c.add(cena.add.image(x, y, chaveCabelo).setScale((k * ALT) / 512));
   }
 
   for (const id of cfg.acessorios) {

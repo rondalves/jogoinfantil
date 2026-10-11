@@ -856,6 +856,155 @@ def separar_rosto(rgba):
     return olhos, boca
 
 
+def mascara_da_pele(rgba):
+    """A maior mancha de pele da metade de cima: o rosto careca do corpo."""
+    a = np.asarray(rgba).astype(np.float32)
+    rgb, al = a[..., :3], a[..., 3]
+    mx, mn = rgb.max(2), rgb.min(2)
+    sat = np.where(mx > 0, (mx - mn) / np.maximum(mx, 1), 0)
+    r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
+    pele = (r > g) & (g > b) & (sat > 0.10) & (sat < 0.66) & (mx > 60) & (al > 40)
+    pele[int(pele.shape[0] * 0.6):] = False
+    rot, n = ndimage.label(pele)
+    if n == 0:
+        return pele
+    return rot == int(np.argmax(ndimage.sum(pele, rot, range(1, n + 1)))) + 1
+
+
+def janela_do_rosto(corpo, cab):
+    """Onde o cabelo nunca passa na frente: o rosto da sobrancelha para baixo e
+    o pescoco. Devolve a mascara no quadro do cabelo e a geometria da cabeca
+    (cx, topo, queixo, largura) nesse mesmo quadro.
+
+    As pecas de cabelo antigas foram desenhadas como peruca de buraco fechado:
+    com a boca no lugar certo, a borda de baixo do buraco vira barba e a do
+    capacete vira jugular. Aqui isso sai.
+    """
+    alto, larg_img = corpo.height, corpo.width
+    topo, queixo = cab["topo"] * alto, cab["queixo"] * alto
+    h, larg = queixo - topo, cab["largura"] * alto
+    cx = larg_img / 2 + cab["cx"] * alto
+    ys, xs = np.mgrid[0:alto, 0:larg_img]
+    dx = (xs - cx) / (0.5 * larg)
+    # o oval da cabeca (sem as orelhas), da linha do cabelo para baixo: a linha
+    # do cabelo e um arco, alto no meio da testa e descendo nas temporas
+    oval = dx ** 2 / 0.98 ** 2 + ((ys - (topo + queixo) / 2) / (0.51 * h)) ** 2 <= 1
+    rosto = oval & (ys >= topo + h * (0.40 + 0.20 * dx ** 2))
+    # pescoco e gola: abre em diagonal para os ombros, como cabelo comprido cai
+    abre = np.maximum(0.22 * larg, 0.22 * larg + 0.35 * (ys - queixo))
+    pescoco = (ys >= queixo - 0.15 * h) & (ys <= queixo + 0.45 * h) & (np.abs(xs - cx) <= abre)
+    ox, oy = (QUADRO_CABELO - larg_img) // 2, (QUADRO_CABELO - alto) // 2
+    quadros = []
+    for parte in (rosto | pescoco, rosto):
+        q = np.zeros((QUADRO_CABELO, QUADRO_CABELO), bool)
+        q[oy: oy + alto, ox: ox + larg_img] = ndimage.binary_opening(parte, iterations=2)
+        quadros.append(q)
+    # (com pescoco, so o rosto): trancas caem na frente dos ombros, nao cortar
+    return quadros, (cx + ox, topo + oy, queixo + oy, larg)
+
+
+def abrir_rosto(peca, janela):
+    """Apaga o cabelo que cai na frente do rosto e contorna o corte."""
+    a = np.asarray(peca).copy()
+    cabelo = a[..., 3] > 40
+    if not (cabelo & janela).any():
+        return peca
+    a[..., 3][janela] = 0
+    # mecha fina que sobrou rente ao corte vira risco solto: sai junto
+    resto = a[..., 3] > 40
+    perto = ndimage.binary_dilation(janela, iterations=10)
+    fino = resto & ~ndimage.binary_opening(resto, iterations=4) & perto
+    a[..., 3][fino] = 0
+    # e pedaco que ficou ilhado perto do rosto, sem ligar no resto do cabelo
+    rot, n = ndimage.label(a[..., 3] > 40)
+    if n > 1:
+        areas = ndimage.sum(np.ones_like(rot), rot, range(1, n + 1))
+        for i, area in enumerate(areas, start=1):
+            ilha = rot == i
+            if area < 0.02 * areas.max() and (ilha & perto).any():
+                a[..., 3][ilha] = 0
+    cabelo = a[..., 3] > 40
+    # toda borda do desenho tem o traco escuro: o corte tambem precisa ter
+    borda = ndimage.binary_dilation(janela, iterations=3) & ~janela & cabelo
+    a[borda] = (52, 36, 30, 255)
+    return Image.fromarray(a, "RGBA")
+
+
+def fundo_do_cabelo(peca, cx, topo, queixo, larg):
+    """O cabelo de tras da cabeca, em branco para o jogo tingir.
+
+    Linha a linha, preenche entre a ponta esquerda e a direita do cabelo, so
+    perto da cabeca (rabinho de chiquinha nao vira um bloco) e ate um pouco
+    abaixo do queixo. Vai atras do corpo: aparece so no vao entre o cabelo e o
+    rosto e atras do pescoco, que e onde o cabelo de verdade estaria.
+    """
+    al = np.asarray(peca)[..., 3] > 40
+    linhas = np.flatnonzero(al.any(axis=1))
+    if linhas.size == 0:
+        return None
+    x0, x1 = max(0, int(cx - 0.62 * larg)), min(al.shape[1], int(cx + 0.62 * larg))
+    fim = int(min(linhas[-1], queixo + 0.5 * (queixo - topo)))
+    f = np.zeros_like(al)
+    for y in range(linhas[0], fim + 1):
+        xs = np.flatnonzero(al[y, x0:x1])
+        if xs.size:
+            f[y, x0 + xs[0]: x0 + xs[-1] + 1] = True
+    f = ndimage.binary_closing(f, iterations=3) & ndimage.binary_dilation(al, iterations=40)
+    rgba = np.zeros((*al.shape, 4), np.uint8)
+    rgba[f] = (255, 255, 255, 255)
+    return Image.fromarray(rgba, "RGBA")
+
+
+# trancas caem pela frente dos ombros: cortar no pescoco deixa toco de tranca
+SEM_CORTE_NO_PESCOCO = ("trancas", "tranca_unica")
+
+# olho redondo com branco em volta da iris inteira le como olho de bicho
+# quanto da iris a palpebra cobre: o "grandes" e a cara de surpresa, so encosta
+PALPEBRA = {"redondos": 0.15, "grandes": 0.06}
+
+
+def palpebra(rgba, cobre):
+    """Baixa a palpebra de cima ate cobrir o alto da iris, como num olho de gente.
+
+    Apaga o branco e a iris acima de um arco que passa pelos cantos do olho e
+    desce sobre a iris, e risca o arco com o traco escuro. O que some deixa
+    aparecer a pele do rosto, em qualquer tom.
+    """
+    a = np.asarray(rgba).copy()
+    al = a[..., 3] > 40
+    meio = rgba.height / 2  # a linha dos olhos fica no meio da peca (separar_rosto)
+    rot, n = ndimage.label(al)
+    olhos = []
+    for i, fatia in enumerate(ndimage.find_objects(rot), start=1):
+        ys, xs = fatia
+        if ys.start <= meio <= ys.stop:
+            olhos.append(((rot[fatia] == i).sum(), i, fatia))
+    # sobrancelha nunca cruza a linha dos olhos; o resto ate aqui e cilio solto
+    for _, i, (fy, fx) in sorted(olhos, reverse=True)[:2]:
+        y0, y1, x0, x1 = fy.start, fy.stop, fx.start, fx.stop
+        rgb = a[y0:y1, x0:x1, :3].astype(np.float32)
+        mx, mn = rgb.max(2), rgb.min(2)
+        sat = np.where(mx > 0, (mx - mn) / np.maximum(mx, 1), 0)
+        iris = (sat > 0.18) & (mx < 215) & (mx > 60) & al[y0:y1, x0:x1]
+        if not iris.any():
+            continue
+        iy, ix = np.where(iris)
+        it, ib = iy.min() + y0, iy.max() + y0
+        xc = (ix.min() + ix.max()) / 2 + x0
+        tampa = it + cobre * (ib - it)
+        canto = (y0 + y1) / 2
+        meia = (x1 - x0) / 2
+        espessura = max(2, round(0.028 * (x1 - x0)))
+        for x in range(x0, x1):
+            y = tampa + (canto - tampa) * ((x - xc) / meia) ** 2
+            corte = int(round(y))
+            if not al[corte:y1, x].any():
+                continue
+            a[y0:corte, x, 3] = 0
+            a[max(0, corte - espessura): corte + espessura, x] = (45, 32, 28, 255)
+    return Image.fromarray(a, "RGBA")
+
+
 def fazer_personagem():
     base = apagar_boca(tirar_verde(abrir("corpo_base_pele_clara")))
     caixa_base = pecas(base)[0]
@@ -893,6 +1042,8 @@ def fazer_personagem():
             continue
         olhos = tirar_verde(bruta)
         so_olhos, boca = separar_rosto(recortar(olhos, grade(olhos, 1, 1)[0], 512))
+        if nome in PALPEBRA:
+            so_olhos = palpebra(so_olhos, PALPEBRA[nome])
         gravar(so_olhos, f"olhos_{nome}")
         feitas += 1
         if boca is None:
@@ -901,6 +1052,8 @@ def fazer_personagem():
             gravar(boca, f"boca_{nome}")
             feitas += 1
 
+    # o cabelo e encaixado no corpo base: a janela do rosto sai dele
+    (janela, so_rosto), geometria = janela_do_rosto(Image.open(os.path.join(DESTINO, "corpo_pele3.png")).convert("RGBA"), cabecas[""])
     for nome in CABELOS:
         bruta = abrir(f"cabelo_{nome}_castanho", obrigatorio=False)
         if bruta is None:
@@ -909,6 +1062,10 @@ def fazer_personagem():
         if peca is None:
             print(f"  ! cabelo_{nome}: nao achei o vao do rosto, pulando")
             continue
+        fundo = fundo_do_cabelo(peca, *geometria)
+        if fundo is not None:
+            fundo.save(os.path.join(DESTINO, f"cabelofundo_{nome}.png"), optimize=True)
+        peca = abrir_rosto(peca, so_rosto if nome in SEM_CORTE_NO_PESCOCO else janela)
         for i, cor in enumerate(CORES_CABELO, start=1):
             gravar(recolorir_cabelo(peca, cor), f"cabelo_{nome}_{i}")
         feitas += len(CORES_CABELO)
