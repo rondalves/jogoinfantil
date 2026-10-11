@@ -310,6 +310,7 @@ function tranca(x1, y1, x2, y2, gomos, elastico) {
 }
 
 const ROSA = '#ef6f8f';
+const contornoDe = (cor) => escuro(cor, luz(cor) < 0.2 ? 0.45 : 0.42);
 
 /** Marquinhas de cacho espalhadas, so por dentro das `formas` do cabelo. */
 function cachinhos(cor, cx, cy, rx, ry, passo, formas) {
@@ -323,6 +324,34 @@ function cachinhos(cor, cx, cy, rx, ry, passo, formas) {
     }
   }
   return sombra(formas, `<g fill="none" stroke="${cor}" stroke-width="2" stroke-linecap="round">${s}</g>`);
+}
+
+/**
+ * Cachos em espiral, como no icone do app: colunas de ondinhas que descem,
+ * desenhadas so por dentro do cabelo.
+ */
+function espirais(cor, colunas, formas) {
+  let s = '';
+  for (const [x, y0, y1] of colunas) {
+    let d = `M${x},${y0}`;
+    for (let y = y0, i = 0; y < y1; y += 14, i++) d += ` q${i % 2 ? -9 : 9},7 0,14`;
+    s += `<path d="${d}"/>`;
+  }
+  return sombra(formas, `<g fill="none" stroke="${cor}" stroke-width="2.4" stroke-linecap="round">${s}</g>`);
+}
+
+/** Mecha que cai do lado do rosto, ondulando ate a ponta. */
+function mechaLateral(lado, y0, y1, largura) {
+  let s = '';
+  const passos = 6;
+  let xa = X + lado * 62, ya = y0;
+  for (let i = 1; i <= passos; i++) {
+    const t = i / passos;
+    const x = X + lado * (64 + 12 * Math.sin(t * Math.PI * 1.6)), y = y0 + (y1 - y0) * t;
+    s += tubo(xa, ya, x, y, largura * (1 - t * 0.35));
+    xa = x; ya = y;
+  }
+  return s;
 }
 
 /** Pontinhas de mecha descendo da linha do cabelo: cabelo, nao chapeu. */
@@ -377,6 +406,62 @@ function penteado(id, cor) {
       frente = capa(8, 226, 'normal') + caminho(pontas + `L${X + 74},200 Z`);
       break;
     }
+    case 'menino_social':
+      // social classico: repartido de lado, penteado para o lado, testa aberta
+      frente = capa(13, 226, 'parte') +
+        caminho(`M${X - 18},${TOPO - 10} C${X + 30},${TOPO - 16} ${X + 70},${TOPO + 10} ${X + 76},${TOPO + 52} L${X + 60},${TOPO + 40} C${X + 40},${TOPO + 16} ${X + 10},${TOPO + 6} ${X - 18},${TOPO + 8} Z`);
+      det = risco(`M${X - 18},${TOPO - 8} L${X - 16},${TOPO + 30}`, claro(cor, 0.4), 2.2) +
+        mechas(fio, [`M${X - 6},${TOPO + 4} Q${X + 34},${TOPO} ${X + 60},${TOPO + 30}`, `M${X - 10},${TOPO + 18} Q${X + 30},${TOPO + 14} ${X + 54},${TOPO + 44}`]);
+      break;
+    case 'menino_topete':
+      // topete: o cabelo da frente sobe numa onda
+      frente = capa(8, 226, 'alta') +
+        caminho(`M${X - 46},${TOPO + 34} C${X - 46},${TOPO + 6} ${X - 20},${TOPO - 14} ${X + 14},${TOPO - 12} C${X + 44},${TOPO - 10} ${X + 54},${TOPO + 8} ${X + 44},${TOPO + 26} ` +
+          `C${X + 28},${TOPO + 16} ${X},${TOPO + 16} ${X - 24},${TOPO + 38} Z`);
+      det = mechas(fio, [`M${X - 30},${TOPO + 20} C${X - 26},${TOPO - 8} ${X},${TOPO - 20} ${X + 30},${TOPO - 14}`, `M${X - 12},${TOPO + 22} C${X - 4},${TOPO} ${X + 20},${TOPO - 6} ${X + 40},${TOPO + 4}`]);
+      break;
+    case 'menino_militar':
+      // corte militar: curtinho e reto em cima, lados bem baixos
+      frente = `<g opacity="0.6">${capa(2, 228, 'alta')}</g>` + capa(7, 210, 'alta') + pontas(X - 40, X + 40, 13, 10, 5, -6);
+      det = mechas(fio, [`M${X - 44},${TOPO + 4} L${X + 44},${TOPO + 4}`]);
+      break;
+    case 'menino_franjinha':
+      // franjinha reta e curta, estilo cesar
+      frente = capa(8, 226, 'franja', 184) +
+        Array.from({ length: 8 }, (_, i) => `<path d="M${X - 60 + i * 16},182 L${X - 54 + i * 16},190 L${X - 48 + i * 16},182 Z"/>`).join('');
+      det = mechas(fio, [`M${X - 30},184 L${X - 34},${TOPO + 8}`, `M${X},186 L${X},${TOPO + 4}`, `M${X + 30},184 L${X + 34},${TOPO + 8}`]);
+      break;
+    case 'menino_para_tras':
+      // penteado para tras: testa toda aberta, mechas correndo para a nuca
+      frente = capa(10, 226, 'alta');
+      det = mechas(fio, [`M${X - 46},172 C${X - 40},${TOPO + 4} ${X - 20},${TOPO - 4} ${X},${TOPO - 6}`, `M${X},168 C${X + 2},${TOPO + 6} ${X + 4},${TOPO - 2} ${X + 8},${TOPO - 8}`,
+        `M${X + 46},172 C${X + 40},${TOPO + 4} ${X + 26},${TOPO - 2} ${X + 14},${TOPO - 6}`]) +
+        risco(`M${X - 30},${TOPO + 2} Q${X - 16},${TOPO - 6} ${X - 2},${TOPO - 6}`, claro(cor, 0.45), 3, 'opacity="0.8"');
+      break;
+    case 'menino_ondulado':
+      // ondulado curto: ondas grandes em cima e uma mecha caindo na testa
+      frente = capa(12, 226, 'parte') + cachos(X, CY - 6, RX + 12, RY + 12, 15, 200, 340, 7) +
+        caminho(`M${X - 36},176 C${X - 20},164 ${X + 10},170 ${X + 16},184 C${X + 2},180 ${X - 14},186 ${X - 20},196 C${X - 30},192 ${X - 38},186 ${X - 36},176 Z`);
+      det = mechas(fio, [`M${X - 40},${TOPO + 8} q16,-12 32,0 q16,12 32,0`, `M${X - 30},${TOPO + 26} q14,-10 28,0 q14,10 28,0`]);
+      break;
+    case 'menino_nago': {
+      // tranca nago: carreiras de trancinha da testa para a nuca
+      // sem capa: entre uma carreira e outra aparece a pele, e e isso que le
+      // como nago; cada carreira tem o proprio contorno
+      frente = '';
+      for (const dx of [-60, -36, -12, 12, 36, 60]) {
+        let carreira = '';
+        // a carreira nasce na linha do cabelo e sobe pela curva da cabeca
+        const y0 = 176 + 22 * (dx / 63) ** 2;
+        for (let i = 0; i < 9; i++) {
+          const t = i / 8;
+          const x = X + dx * (1 - 0.45 * t), y = y0 - (y0 - (TOPO + 2)) * t;
+          carreira += elipse(x.toFixed(1), y.toFixed(1), 6.5, 6.5);
+        }
+        solto += grupo(carreira, cor, contornoDe(cor), 1.8);
+      }
+      break;
+    }
     case 'menino_tigelinha':
       frente = capa(10, 236, 'franja', 198) + Array.from({ length: 9 }, (_, i) => `<path d="M${X - 64 + i * 16},196 L${X - 58 + i * 16},206 L${X - 52 + i * 16},196 Z"/>`).join('');
       det = mechas(fio, [`M${X - 40},198 L${X - 42},184`, `M${X},202 L${X},186`, `M${X + 40},198 L${X + 42},184`]);
@@ -399,9 +484,27 @@ function penteado(id, cor) {
       frente = capa(18, 230, 'normal') + cachos(X, CY, RX + 14, RY + 14, 12, 190, 350) + cachos(X, 180, 50, 10, 8, 180, 360);
       textura = (f) => cachinhos(fio, X, 214, 120, 114, 16, f);
       break;
-    case 'cacheado':
+    case 'cacheado': {
+      // referencia: o cabelo do icone do app. Cacho em espiral, volume largo
+      // na altura das bochechas, ate o ombro, e mechas caindo do lado do rosto
+      tras = caminho(`M${X - 80},172 C${X - 116},206 ${X - 118},272 ${X - 104},322 C${X - 96},342 ${X - 66},346 ${X - 36},338 ` +
+        `L${X + 36},338 C${X + 66},346 ${X + 96},342 ${X + 104},322 C${X + 118},272 ${X + 116},206 ${X + 80},172 C${X + 66},118 ${X - 66},118 ${X - 80},172 Z`) +
+        cachos(X, 236, 106, 104, 16, 110, 430);
+      frente = capa(12, 222, 'normal') + cachos(X, CY, RX + 10, RY + 10, 14, 196, 344) +
+        mechaLateral(-1, 196, 296, 32) + mechaLateral(1, 196, 296, 32);
+      textura = (f) =>
+        espirais(fio, [
+          [X - 96, 200, 320], [X - 80, 214, 330], [X + 80, 214, 330], [X + 96, 200, 320],
+          [X - 66, 202, 300], [X + 66, 202, 300], [X - 104, 230, 300], [X + 104, 230, 300],
+        ], f) + cachinhos(fio, X, 160, 70, 34, 14, f);
+      // cachinhos soltos saindo do contorno, como no icone
+      det = risco(`M${X - 40},${TOPO - 12} q-8,-10 2,-16`, contornoDe(cor), 2.4) +
+        risco(`M${X + 34},${TOPO - 10} q10,-8 2,-17`, contornoDe(cor), 2.4) +
+        risco(`M${X - 104},196 q-12,-2 -10,-14`, contornoDe(cor), 2.4);
+      break;
+    }
     case 'enrolado': {
-      const g = id === 'enrolado' ? 1.12 : 1;
+      const g = 1.12;
       const fundo = caminho(`M${X - 84 * g},180 C${X - 104 * g},250 ${X - 104 * g},310 ${X - 92 * g},${340 * g} L${X + 92 * g},${340 * g} C${X + 104 * g},310 ${X + 104 * g},250 ${X + 84 * g},180 C${X + 70},126 ${X - 70},126 ${X - 84 * g},180 Z`);
       tras = fundo + cachos(X, 250, 96 * g, 96 * g, 17 * g, 130, 410);
       frente = capa(12, 226, 'normal') + cachos(X, CY, RX + 10, RY + 10, 13, 190, 350);
@@ -501,7 +604,8 @@ const CABELOS = [
   'cacheado', 'crespo', 'ondulado', 'enrolado', 'liso_longo', 'liso_curto', 'trancas', 'tranca_unica',
   'coque', 'maria_chiquinha', 'box_braids', 'dreads', 'menino_curto', 'menino_cacheado', 'menino_crespo',
   'menino_black_power', 'menino_espetado', 'menino_tigelinha', 'menino_raspado', 'menino_degrade',
-  'menino_risco', 'menino_moicano',
+  'menino_risco', 'menino_moicano', 'menino_social', 'menino_topete', 'menino_militar', 'menino_franjinha',
+  'menino_para_tras', 'menino_ondulado', 'menino_nago',
 ];
 const CORPOS = ['', '_macacao', '_vestido_rosa', '_roxo', '_azul', '_vermelho', '_sentado'];
 
