@@ -1,5 +1,9 @@
 # Vídeos das historinhas, cena a cena
 
+> **Decidido em 11/10/2026: livro animado.** Só as ilustrações são geradas; o
+> movimento (zoom e panorâmica lentos), as transições e os brilhinhos são
+> feitos na montagem. Os prompts de animação do Veo ficam como alternativa.
+
 Cada historinha vira um vídeo que acompanha a narração: uma cena animada para
 cada trecho, trocando nas pausas que já estão no roteiro. A voz e a música são
 as gravações que já temos; o som do vídeo gerado é descartado.
