@@ -89,7 +89,7 @@ def main():
             print(f"  {k:30s} {', '.join(sorted(falta[k]))}")
     erradas = {k: v for k, v in ERRADAS.items() if k in tem or k not in onde}
     if erradas:
-        print("\nEXISTE MAS PRECISA SER REFEITA:")
+        print("\nPRECISA SER REFEITO (prompts em docs/PROMPTS_PERSONAGEM.md):")
         for k, motivo in sorted(erradas.items()):
             print(f"  {k:30s} {motivo}")
 
