@@ -25,7 +25,7 @@ Tiradas das fotos que você mandou, das duas crianças, de frente:
 
 | | criança de verdade | no desenho |
 |---|---|---|
-| cabeça | 1/5 da altura aos 2 anos, quase 1/6 aos 6 | **1/4**, um pouco maior para o rosto ler bem no celular |
+| cabeça | 1/5 da altura aos 2 anos, quase 1/6 aos 6 | **1/3**, como no molde aprovado: maior para o rosto ler bem no celular |
 | olhos | na linha do meio da cabeça, contando do alto do crânio | igual |
 | distância entre os olhos | a largura de um olho | igual |
 | pálpebra | cobre o alto da íris; não aparece branco em volta dela | igual: é o que tira a cara de bicho |
@@ -42,6 +42,10 @@ parecido com elas, e ele vai para uma loja pública.
 
 Use o Gem de [GEM_ESTILO.md](GEM_ESTILO.md), com as instruções novas.
 **Sempre anexe a imagem que o prompt pede**: é ela que garante o encaixe.
+
+**Anexe sempre o molde aprovado**, que está em
+`personagem_novo\corpo_base_pele_clara.jpg` na pasta das imagens. A cabeça dele
+ocupa 1/3 da altura: é essa proporção que todas as outras imagens precisam manter.
 
 Antes de aceitar cada imagem, confira:
 
@@ -149,7 +153,7 @@ Anexe o **molde**. Nada de roupa amarela, laranja ou bege: o script confunde
 com pele e repinta. Troque só o trecho **[ROUPA]**.
 
 ```
-Use a imagem anexada e mude somente a roupa, mantendo todo o resto idêntico: a mesma criança de frente para quem olha, careca, com o rosto liso em branco (sem olhos, nariz nem boca), a cabeça com o mesmo formato, tamanho e posição, a pele exatamente da mesma cor clara, a pose, os braços abertos, as pernas com a mesma grossura, os pés inteiros dentro do quadro e o enquadramento. [ROUPA] Sem estampa, sem texto e nada de verde na roupa. Mesmo traço fino e escuro e mesmo sombreado chapado do resto do desenho. Fundo verde chapado #00FF00, uma cor só. Imagem quadrada 2048x2048.
+Use a imagem anexada e mude somente a roupa, mantendo todo o resto idêntico: a mesma criança de frente para quem olha, careca, com o rosto liso da mesma cor de pele do resto do corpo e sem olhos, nariz nem boca, a cabeça com exatamente o mesmo formato, tamanho e posição (a cabeça não diminui), a pele exatamente da mesma cor clara, a pose, os braços abertos, as pernas com a mesma grossura, os pés inteiros dentro do quadro e o enquadramento. [ROUPA] Sem estampa, sem texto e nada de verde na roupa. Mesmo traço fino e escuro e mesmo sombreado chapado do resto do desenho. Fundo verde chapado #00FF00, uma cor só. Imagem quadrada 2048x2048.
 ```
 
 | arquivo | **[ROUPA]** |
@@ -187,6 +191,8 @@ Use a imagem anexada e acrescente somente [ACESSÓRIO], mantendo todo o resto id
 | branco em volta da íris inteira | "A pálpebra de cima precisa cobrir um pouco o alto da íris." |
 | cabelo parecendo peruca | "O cabelo nasce na pele da testa e cobre o crânio; não deixe vão entre o cabelo e a cabeça." |
 | desenhou rosto no molde | "Sem rosto: só a pele lisa, sem olhos, nariz nem boca." |
-| virou a criança de costas | "A criança fica de frente para quem olha, como na imagem anexada; o rosto só fica em branco." |
+| virou a criança de costas | "A criança fica de frente para quem olha, como na imagem anexada, com o rosto liso da cor da pele." |
+| rosto pintado de branco | "O rosto é da mesma cor de pele do pescoço e dos braços, só sem olhos, nariz e boca." |
+| a cabeça ficou menor | "A cabeça tem exatamente o tamanho da imagem anexada; não mude as proporções." |
 | fundo verde-escuro ou imagem retangular | "Fundo verde chapado #00FF00 e imagem quadrada 2048x2048." |
 | mudou a roupa ao fazer o cabelo | "Mude só o cabelo; roupa, corpo e rosto idênticos à imagem anexada." |

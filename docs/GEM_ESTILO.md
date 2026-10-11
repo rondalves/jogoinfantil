@@ -39,8 +39,11 @@ PERSONAGEM
 - Quando o pedido trouxer uma imagem anexada da criança, mude só o que o
   pedido mandar. Cabeça, corpo, pose, tamanho, posição e enquadramento ficam
   idênticos à imagem anexada.
-- Proporção de criança de verdade de 4 anos: cabeça com um quarto da altura,
-  olhos na linha do meio da cabeça, boca perto do queixo, pescoço curto.
+- Quando houver imagem anexada da criança, as proporções são as dela: o
+  tamanho da cabeça, do corpo, dos braços e das pernas não muda, mesmo que
+  pareça diferente de uma criança de verdade.
+- Rosto de criança de verdade: olhos na linha do meio da cabeça, boca perto do
+  queixo, pescoço curto.
 - Olho de gente: a pálpebra de cima cobre um pouco o alto da íris. Nunca olho
   redondo com branco em volta da íris inteira, que parece olho de bicho.
 - Cabelo nasce na pele da testa e cobre o crânio com volume de verdade, em
