@@ -70,6 +70,13 @@ const CATALOGO_CABELOS = [
   { id: 'menino_degrade', nome: 'Degradê' },
   { id: 'menino_risco', nome: 'Risquinho' },
   { id: 'menino_moicano', nome: 'Moicano' },
+  { id: 'menino_social', nome: 'Social' },
+  { id: 'menino_topete', nome: 'Topete' },
+  { id: 'menino_militar', nome: 'Militar' },
+  { id: 'menino_franjinha', nome: 'Franjinha' },
+  { id: 'menino_para_tras', nome: 'Para trás' },
+  { id: 'menino_ondulado', nome: 'Ondulado curto' },
+  { id: 'menino_nago', nome: 'Trança nagô' },
 ];
 
 const CATALOGO_OLHOS = [
@@ -132,7 +139,7 @@ export const ACESSORIOS: Acessorio[] = [
   // medido na arte do corpo: olhos em -0.30, orelha em x 0.155 e y -0.235
   { id: 'oculos', nome: 'Óculos', icone: '\u{1F453}', x: 0, y: 0, tamanho: 0.55, rosto: true },
   // { id: 'aparelho_auditivo', nome: 'Aparelho auditivo', icone: '\u{1F9BB}', x: 0.155, y: -0.235, tamanho: 0.075 },
-  { id: 'bone', nome: 'Boné', icone: '\u{1F9E2}', x: 0, y: -0.45, tamanho: 0.22, estrelas: 3 },
+  { id: 'bone', nome: 'Boné', icone: '\u{1F9E2}', x: 0, y: -0.44, tamanho: 0.27, estrelas: 3 },
   { id: 'laco', nome: 'Laço', icone: '\u{1F380}', x: -0.15, y: -0.44, tamanho: 0.15, estrelas: 3 },
   { id: 'capa', nome: 'Capa de herói', icone: '\u{1F9E3}', x: 0, y: 0.02, tamanho: 0.42, broche: 1, atras: true },
   { id: 'medalha', nome: 'Medalha', icone: '\u{1F3C5}', x: 0, y: -0.015, tamanho: 0.13, broche: 2 },
@@ -196,14 +203,10 @@ export function desenharPersonagem(
     const k = cab.largura / base.largura;
     const x = cab.cx - k * base.cx;
     const y = cab.topo - k * base.topo;
-    const fundo = `cabelofundo_${cabelo}`;
-    if (cena.textures.exists(fundo)) {
-      // o cabelo de tras da cabeca, mais escuro: preenche o vao entre o
-      // cabelo e o rosto e fica atras do pescoco, como no cabelo de verdade
-      const cor = Phaser.Display.Color.IntegerToColor(CORES_CABELO[cfg.corCabelo % CORES_CABELO.length]);
-      const escuro = Phaser.Display.Color.GetColor(cor.red * 0.45, cor.green * 0.45, cor.blue * 0.45);
-      c.addAt(cena.add.image(x, y, fundo).setScale((k * ALT) / 512).setTint(escuro), 0);
-    }
+    // o volume de tras da cabeca (cabelo comprido, black power): vai atras do
+    // corpo, ja desenhado na cor certa por tools/personagem.mjs
+    const fundo = `cabelofundo_${cabelo}_${(cfg.corCabelo % CORES_CABELO.length) + 1}`;
+    if (cena.textures.exists(fundo)) c.addAt(cena.add.image(x, y, fundo).setScale((k * ALT) / 512), 0);
     c.add(cena.add.image(x, y, chaveCabelo).setScale((k * ALT) / 512));
   }
 

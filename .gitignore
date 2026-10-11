@@ -14,3 +14,6 @@ android/app/src/main/assets/public
 android/app/src/main/assets/capacitor*
 assets-loja
 store/_conferir.png
+
+# APKs de teste guardados para comparar versoes
+apks/

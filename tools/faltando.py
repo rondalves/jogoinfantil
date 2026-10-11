@@ -27,15 +27,7 @@ PEDIDAS_PELO_CODIGO = {
 }
 
 # arte que existe mas esta errada: o arquivo nao falta, o desenho e que nao serve
-ERRADAS = {
-    # o personagem inteiro vai ser redesenhado a partir de um molde
-    # (docs/PROMPTS_PERSONAGEM.md); as chaves aqui sao so rotulos
-    "corpo_base_pele_clara": "molde novo, com proporcao de crianca de verdade",
-    "crianca_rosto_* (5)": "rostos desenhados em cima do molde",
-    "crianca_cabelo_* (22)": "cabelos desenhados na crianca ja com rosto",
-    "roupa_* e corpo_cadeira (6)": "trocadas em cima do molde",
-    "crianca_acessorio_* (2)": "oculos e aparelho auditivo desenhados no rosto",
-}
+ERRADAS = {}  # o personagem e desenhado por codigo (tools/personagem.mjs)
 
 
 def pedidas():

@@ -1090,7 +1090,8 @@ def main():
         return
     fazer_folhas()
     fazer_opacas()
-    fazer_personagem()
+    # o personagem e desenhado por codigo: npm run personagem (tools/personagem.mjs).
+    # fazer_personagem() so serve para voltar a arte antiga: git checkout personagem-antigo
     fazer_cenarios()
     print("pronto ->", DESTINO)
 

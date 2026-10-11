@@ -1,5 +1,8 @@
 # O personagem novo: prompts
 
+> **Não é mais usado.** Em 11/10/2026 o personagem passou a ser desenhado por
+> código (`tools/personagem.mjs`). Fica aqui só como registro.
+
 ## Por que refazer
 
 Hoje cada parte da criança foi desenhada sozinha: o cabelo como uma peruca sem

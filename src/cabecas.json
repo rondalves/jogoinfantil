@@ -1,44 +1,44 @@
 {
   "": {
-    "cx": -0.001,
-    "largura": 0.3613,
-    "queixo": 0.3965,
-    "topo": 0.0371
-  },
-  "_azul": {
-    "cx": -0.001,
-    "largura": 0.3613,
-    "queixo": 0.4082,
-    "topo": 0.0352
+    "topo": 0.0234375,
+    "queixo": 0.328125,
+    "largura": 0.2578125,
+    "cx": 0
   },
   "_macacao": {
-    "cx": -0.001,
-    "largura": 0.3652,
-    "queixo": 0.4238,
-    "topo": 0.0352
-  },
-  "_roxo": {
-    "cx": -0.001,
-    "largura": 0.3574,
-    "queixo": 0.418,
-    "topo": 0.0371
-  },
-  "_sentado": {
-    "cx": 0.0,
-    "largura": 0.3047,
-    "queixo": 0.3613,
-    "topo": 0.0371
-  },
-  "_vermelho": {
-    "cx": -0.001,
-    "largura": 0.3613,
-    "queixo": 0.4238,
-    "topo": 0.0371
+    "topo": 0.0234375,
+    "queixo": 0.328125,
+    "largura": 0.2578125,
+    "cx": 0
   },
   "_vestido_rosa": {
-    "cx": -0.001,
-    "largura": 0.3555,
-    "queixo": 0.4082,
-    "topo": 0.0391
+    "topo": 0.0234375,
+    "queixo": 0.328125,
+    "largura": 0.2578125,
+    "cx": 0
+  },
+  "_roxo": {
+    "topo": 0.0234375,
+    "queixo": 0.328125,
+    "largura": 0.2578125,
+    "cx": 0
+  },
+  "_azul": {
+    "topo": 0.0234375,
+    "queixo": 0.328125,
+    "largura": 0.2578125,
+    "cx": 0
+  },
+  "_vermelho": {
+    "topo": 0.0234375,
+    "queixo": 0.328125,
+    "largura": 0.2578125,
+    "cx": 0
+  },
+  "_sentado": {
+    "topo": 0.09765625,
+    "queixo": 0.40234375,
+    "largura": 0.2578125,
+    "cx": 0
   }
 }

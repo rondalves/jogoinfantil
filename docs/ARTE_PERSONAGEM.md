@@ -1,8 +1,17 @@
 # A arte do personagem
 
-> **Em refação.** O personagem vai ser redesenhado inteiro a partir de um
-> molde, e o script vai recortar as camadas sozinho. Prompts em
-> [PROMPTS_PERSONAGEM.md](PROMPTS_PERSONAGEM.md). Abaixo, como funciona hoje.
+> **Desde 11/10/2026 o personagem é desenhado por código.** Corpo, roupas,
+> cadeira de rodas, rostos e os 29 cabelos em 9 cores saem de
+> `tools/personagem.mjs` (`npm run personagem`), todos sobre a mesma cabeça. O
+> `npm run assets` não mexe mais no personagem.
+>
+> **Para voltar à arte antiga**, a versão de antes está guardada na marca
+> `personagem-antigo` do git, e o APK dela em `apks/Rotininha-personagem-antigo.apk`.
+> Voltar só o personagem é desfazer o commit da troca; os perfis já convertidos
+> guardam o penteado pela posição nova da lista, então peça a conversão de volta
+> junto.
+>
+> O texto abaixo descreve o jeito antigo, com arte do Gemini.
 
 O personagem é montado por camadas, cada uma um arquivo com **fundo verde
 chapado (#00FF00)**. Depois de salvar na pasta das artes cruas e rodar
