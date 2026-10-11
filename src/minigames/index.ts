@@ -27,7 +27,12 @@ export interface MiniGame {
   iconePonto: string;
   /** arte que este jogo precisa (carregada na hora de abrir) */
   arte: string[];
-  iniciar(cena: Phaser.Scene, personagem: PersonagemCfg, dificuldade: number): Promise<ResultadoMiniGame>;
+  iniciar(
+    cena: Phaser.Scene,
+    personagem: PersonagemCfg,
+    dificuldade: number,
+    opcoes?: { infinito?: boolean },
+  ): Promise<ResultadoMiniGame>;
 }
 
 export const MINIGAMES: MiniGame[] = [corrida, escalada, corredor, memoria, estrelas];

@@ -1,3 +1,4 @@
+import type { TempoJogo } from './tempoDeJogo';
 import { CONFIG } from './config';
 
 export interface PersonagemCfg {
@@ -32,6 +33,10 @@ export interface Perfil {
   voz?: 'f' | 'm';
   /** musica de fundo (padrao ligada) */
   musica?: boolean;
+  /** tempo de joguinho de hoje (ver tempoDeJogo.ts) */
+  tempoJogo?: TempoJogo;
+  /** minutos de joguinho por dia antes do aviso; padrao em tempoDeJogo.ts */
+  limiteJogoMin?: number;
 }
 
 const CHAVE = 'missoes-do-dia:perfis';

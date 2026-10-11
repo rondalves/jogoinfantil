@@ -10,6 +10,9 @@ import { Historinhas } from './scenes/Historinhas';
 import { Joguinhos } from './scenes/Joguinhos';
 import { Mapa } from './scenes/Mapa';
 import { Medalha } from './scenes/Medalha';
+import { AvisoTempo } from './scenes/AvisoTempo';
+import { Colorir } from './scenes/Colorir';
+import { JogoMemoria } from './scenes/JogoMemoria';
 import { MiniGame } from './scenes/MiniGame';
 import { Missao } from './scenes/Missao';
 import { Pais } from './scenes/Pais';
@@ -38,7 +41,7 @@ carregarFonte().then(() => {
     input: { activePointers: 2 },
     scene: [
       Boot, Perfis, Criador, Tutorial, Mapa, Missao, MiniGame, Medalha, Pais,
-      Historinhas, Historia, Joguinhos, Bolhas, Cantinho,
+      Historinhas, Historia, Joguinhos, Bolhas, Cantinho, JogoMemoria, Colorir, AvisoTempo,
     ],
   });
   // tools/capturas.mjs espera a cena ficar pronta por aqui

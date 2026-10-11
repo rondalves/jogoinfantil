@@ -10,8 +10,13 @@ import { area, botaoOuvir, fundo, irPara, nota, titulo } from '../ui';
 
 const W = CONFIG.LARGURA;
 
-/** Brincadeira pronta para jogar; o resto ainda esta sendo feito. */
-const PRONTOS = ['bolhas'];
+/** Que cena abre cada tipo de joguinho. Tipo fora daqui aparece "em breve". */
+const ABRIR: Record<string, [string, object?]> = {
+  corrida: ['MiniGame', { id: 'corrida', livre: true }],
+  memoria: ['JogoMemoria'],
+  colorir: ['Colorir'],
+  bolhas: ['Bolhas'],
+};
 
 /**
  * A prateleira de joguinhos.
@@ -50,7 +55,7 @@ export class Joguinhos extends Phaser.Scene {
 
   private cartao(j: Joguinho, x: number, y: number, larg: number, alt: number) {
     const aberto = joguinhoAberto(this.p, j);
-    const pronto = PRONTOS.includes(j.tipo);
+    const pronto = j.tipo in ABRIR;
 
     const g = this.add.graphics();
     g.fillStyle(0xffffff, aberto ? 0.97 : 0.6);
@@ -87,7 +92,8 @@ export class Joguinhos extends Phaser.Scene {
         return;
       }
       nota(740);
-      irPara(this, 'Bolhas');
+      const [cena, dados] = ABRIR[j.tipo];
+      irPara(this, cena, dados);
     }, fala);
   }
 }

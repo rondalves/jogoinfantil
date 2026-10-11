@@ -267,6 +267,8 @@ export function correrFaixas(
       }
 
       barra.clear();
+      // corrida sem fim nao tem chegada para mostrar
+      if (!Number.isFinite(op.duracao)) return;
       barra.fillStyle(0xffffff, 0.6);
       barra.fillRoundedRect(W - 250, 176, 220, 28, 14);
       barra.fillStyle(0x9cbfa6, 1);

@@ -68,7 +68,7 @@ export const corrida: MiniGame = {
     'pista_parque',
     'pista_praia',
   ],
-  iniciar(cena, personagem: PersonagemCfg) {
+  iniciar(cena, personagem: PersonagemCfg, _dificuldade, opcoes) {
     return new Promise<ResultadoMiniGame>((resolve) => {
       escolherPista(cena, (pista) => {
         fale('mg1_como_jogar');
@@ -89,7 +89,8 @@ export const corrida: MiniGame = {
               { arte: 'mg1_cone', emoji: '\u{1F6A7}' },
               { arte: 'mg1_poca', emoji: '\u{1F4A7}' },
             ],
-            duracao: 75,
+            // no joguinho a corrida vai ate acabarem as vidas
+            duracao: opcoes?.infinito ? Infinity : 75,
             vidas: 3,
             velocidade: 24,
             aviso: 'Opa! Devagar nessa curva!',

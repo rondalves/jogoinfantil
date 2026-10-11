@@ -1,3 +1,4 @@
+import { LIMITES_MIN, limiteDoPerfil } from '../tempoDeJogo';
 import Phaser from 'phaser';
 import { comprar, lojaDisponivel, PRECO, restaurar, temTudo } from '../compras';
 import { CONFIG, MUNDOS } from '../config';
@@ -121,34 +122,40 @@ export class Pais extends Phaser.Scene {
     );
 
     const limite = this.add
-      .text(56, 890, `Limite: ${this.p.limiteDiario} partidas por dia`, { fontSize: '30px', color: '#2b3a4a' })
+      .text(56, 890, `Limite: ${this.p.limiteDiario} partidas/dia`, { fontSize: '30px', color: '#2b3a4a' })
       .setOrigin(0, 0.5);
     const muda = (d: number) => {
       this.p.limiteDiario = Phaser.Math.Clamp(this.p.limiteDiario + d, 0, 20);
       salvar(this.p);
-      limite.setText(`Limite: ${this.p.limiteDiario} partidas por dia`);
+      limite.setText(`Limite: ${this.p.limiteDiario} partidas/dia`);
     };
     botao(this, W - 230, 890, '-1', () => muda(-1), { largura: 120, cor: 0xbfd4e8, altura: 86 });
     botao(this, W - 96, 890, '+1', () => muda(1), { largura: 120, cor: 0xbfd4e8, altura: 86 });
-    this.add
-      .text(56, 950, `Padrão: ${CONFIG.PARTIDAS_POR_DIA} por dia. 0 desliga os mini games.`, {
-        fontSize: '24px',
-        color: '#6b7a8a',
-      })
-      .setOrigin(0, 0.5);
+    // joguinho nao acaba sozinho: passou deste tempo no dia, aparece o aviso
+    // "ja fez as suas tarefas?" e so um adulto libera mais
+    ajuste(
+      986,
+      () => `Joguinhos: ${limiteDoPerfil()} min/dia`,
+      (r) => {
+        const i = LIMITES_MIN.indexOf(limiteDoPerfil());
+        this.p.limiteJogoMin = LIMITES_MIN[(i + 1) % LIMITES_MIN.length];
+        salvar(this.p);
+        r.setText(`Joguinhos: ${limiteDoPerfil()} min/dia`);
+      },
+    );
 
-    botao(this, W / 2, 1036, 'Zerar progresso', () => this.confirmar('zerar'), {
+    botao(this, W / 2, 1086, 'Zerar progresso', () => this.confirmar('zerar'), {
       largura: 520,
       cor: 0xffb0a0,
       altura: 96,
     });
-    botao(this, W / 2 - 170, 1146, 'Apagar perfil', () => this.confirmar('apagar'), {
+    botao(this, W / 2 - 170, 1190, 'Apagar perfil', () => this.confirmar('apagar'), {
       largura: 300,
       cor: 0xff8f7a,
       altura: 96,
     });
     const link = this.add
-      .text(W / 2 + 180, 1146, 'Privacidade', { fontSize: '30px', color: '#1f6fb2', fontStyle: 'bold' })
+      .text(W / 2 + 180, 1190, 'Privacidade', { fontSize: '30px', color: '#1f6fb2', fontStyle: 'bold' })
       .setOrigin(0.5);
     toque(link, () => window.open(CONFIG.URL_PRIVACIDADE, '_blank', 'noopener'));
   }

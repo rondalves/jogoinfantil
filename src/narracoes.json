@@ -134,5 +134,33 @@
   "medalha_final": {
     "texto": "Parabéns! Você cuidou do seu dia inteirinho. Você é o Super Ajudante do Dia!",
     "local": "Tela da medalha final"
+  },
+  "tempo_aviso": {
+    "texto": "Você está jogando há bastante tempo! Já fez as suas tarefas?",
+    "local": "Aviso de tempo de joguinho"
+  },
+  "tempo_adulto": {
+    "texto": "Chame um adulto para liberar mais um pouquinho.",
+    "local": "Aviso de tempo, botão do adulto"
+  },
+  "tempo_liberado": {
+    "texto": "Pronto! Mais um pouquinho de joguinho.",
+    "local": "Aviso de tempo, depois do adulto liberar"
+  },
+  "jogo_memoria": {
+    "texto": "Ache os pares! Toque em duas cartas.",
+    "local": "Joguinho da memória"
+  },
+  "jogo_memoria_rodada": {
+    "texto": "Muito bem! Vamos de novo, com outras figuras!",
+    "local": "Joguinho da memória, fim da rodada"
+  },
+  "jogo_colorir": {
+    "texto": "Escolha uma cor e toque no desenho para pintar!",
+    "local": "Joguinho de colorir"
+  },
+  "jogo_colorir_pronto": {
+    "texto": "Que lindo! Ficou todo colorido!",
+    "local": "Joguinho de colorir, desenho todo pintado"
   }
 }

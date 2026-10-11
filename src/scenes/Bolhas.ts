@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { CONFIG } from '../config';
 import { narrador } from '../narrador';
 import { TEMA } from '../theme';
+import { vigiarTempo } from '../tempoDeJogo';
 import { botaoVoltar, fundo, nota, TELA } from '../ui';
 
 const W = CONFIG.LARGURA;
@@ -29,6 +30,7 @@ export class Bolhas extends Phaser.Scene {
     ceu.fillGradientStyle(0xcfe6f2, 0xcfe6f2, 0xf7f1e6, 0xf7f1e6, 1);
     ceu.fillRect(0, TELA.topo, W, TELA.altura);
     botaoVoltar(this, 'Joguinhos');
+    vigiarTempo(this);
     narrador.falar('Encoste o dedinho nas bolhas para estourar!', 'jogo_bolhas');
 
     this.time.addEvent({ delay: 520, loop: true, callback: () => this.soltar() });
