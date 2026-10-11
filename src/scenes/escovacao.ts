@@ -38,10 +38,20 @@ function desenharBoca(cena: Phaser.Scene): Phaser.GameObjects.GameObject[] {
     suja.setScale(560 / suja.width);
     const pecas: Phaser.GameObjects.GameObject[] = [suja];
     if (cena.textures.exists('m01_boca_limpa')) {
+      // a arte do sorriso limpo e uma cena quadrada com fundo de pele: solta
+      // por cima do banheiro parecia um recorte. Entra como cartao de premio,
+      // de canto redondo e borda branca.
       const limpa = cena.add.image(CENTRO_X, CENTRO_Y, 'm01_boca_limpa').setAlpha(0);
       limpa.setScale(560 / limpa.width);
+      const w = limpa.displayWidth, h = limpa.displayHeight;
+      const x = CENTRO_X - w / 2, y = CENTRO_Y - h / 2;
+      const forma = cena.make.graphics({}).fillStyle(0xffffff).fillRoundedRect(x, y, w, h, 48);
+      limpa.setMask(forma.createGeometryMask());
+      const moldura = cena.add.graphics().setAlpha(0);
+      moldura.lineStyle(12, 0xffffff, 1).strokeRoundedRect(x, y, w, h, 48);
       limpa.setData('limpa', true);
-      pecas.push(limpa);
+      moldura.setData('limpa', true);
+      pecas.push(limpa, moldura);
     }
     return pecas;
   }
@@ -75,7 +85,7 @@ export function escovar(c: Ctx, e: Etapa) {
   const total = Math.min(regioes.length, LUGARES.length);
   const boca = desenharBoca(c.cena);
   c.camada.add(boca);
-  const bocaLimpa = boca.find((o) => o.getData?.('limpa')) as Phaser.GameObjects.Image | undefined;
+  const bocaLimpa = boca.filter((o) => o.getData?.('limpa'));
 
   // placas de sujeira de cada regiao
   const sujeira: Phaser.GameObjects.Graphics[] = [];
@@ -99,9 +109,10 @@ export function escovar(c: Ctx, e: Etapa) {
   escova.setDepth(5);
   // a cerda tem de encostar no dente, nao o cabo: a arte de m01_escova sai
   // deitada, com a cerda a 41 graus acima da horizontal (medido em 194,81 de
-  // 250x256). Girando para cima e ancorando na cerda, ela escova de verdade.
+  // 250x256). Girada 42 graus, a escova fica deitada com as cerdas para cima,
+  // viradas para os dentes, e ancorada na cerda ela escova de verdade.
   if (escova instanceof Phaser.GameObjects.Image && escova.texture.key === 'm01_escova') {
-    escova.setOrigin(0.776, 0.316).setAngle(-48);
+    escova.setOrigin(0.776, 0.316).setAngle(42);
   }
   c.camada.add(escova);
 
@@ -124,12 +135,32 @@ export function escovar(c: Ctx, e: Etapa) {
   pintarFoco();
   c.cena.tweens.add({ targets: foco, alpha: { from: 0.4, to: 1 }, duration: 600, yoyo: true, repeat: -1 });
 
-  const terminar = () => {
+  const terminar = (espera = 700) => {
     if (acabou) return;
     acabou = true;
     timer.destruir();
     nota(1047);
-    c.cena.time.delayedCall(700, c.fim);
+    c.cena.time.delayedCall(espera, c.fim);
+  };
+
+  /** Sorriso limpo com brilhinhos piscando nos dentes: a recompensa de escovar. */
+  const brilhar = () => {
+    foco.clear();
+    c.cena.tweens.add({ targets: escova, alpha: 0, y: escova.y + 60, duration: 400 });
+    LUGARES.forEach((l, i) => {
+      const b = c.cena.add.text(l.x, l.y - 20, '✨', { fontSize: '64px' }).setOrigin(0.5).setScale(0);
+      c.camada.add(b);
+      c.cena.tweens.add({
+        targets: b,
+        scale: { from: 0.4, to: 1.15 },
+        alpha: { from: 1, to: 0.35 },
+        duration: 520,
+        delay: 300 + i * 160,
+        yoyo: true,
+        repeat: 2,
+      });
+    });
+    [0, 260, 520].forEach((t, i) => c.cena.time.delayedCall(400 + t, () => nota(1047 + i * 262)));
   };
 
   const timer = new TimerMusical(c.cena, W - 112, 252, e.segundos ?? 60, terminar, 66);
@@ -139,9 +170,12 @@ export function escovar(c: Ctx, e: Etapa) {
     atual += 1;
     if (atual >= total) {
       rotulo.setText('Tudo limpinho!');
-      // o sorriso limpo aparece por cima da boca suja
-      if (bocaLimpa) c.cena.tweens.add({ targets: bocaLimpa, alpha: 1, duration: 500 });
-      terminar();
+      narrador.falar('Tudo limpinho!');
+      // o sorriso limpo aparece por cima da boca suja e fica na tela um tempo:
+      // e a parte que a crianca quer ver
+      if (bocaLimpa.length) c.cena.tweens.add({ targets: bocaLimpa, alpha: 1, duration: 500 });
+      brilhar();
+      terminar(3400);
       return;
     }
     esfrega = new Esfrega(PASSOS_POR_REGIAO, 120);

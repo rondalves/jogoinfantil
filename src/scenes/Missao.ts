@@ -327,9 +327,12 @@ export class Missao extends Phaser.Scene {
           });
         }
         if (fimDeMundo) {
-          const broche = this.add.text(W / 2, y - 140, '\u{1F396}\u{FE0F}', { fontSize: '140px' }).setOrigin(0.5);
+          // o broche do mundo entra onde a moeda estava: em cima da estrela do
+          // meio ele ficava torto e escondia a estrela
+          const broche = figura(this, W / 2, y, `broche${this.def.mundo}`, '\u{1F396}\u{FE0F}', 170);
           this.camada.add(broche);
-          this.tweens.add({ targets: broche, scale: { from: 0, to: 1 }, angle: 360, duration: 900, ease: 'Back.out' });
+          const tamanho = broche.scale;
+          this.tweens.add({ targets: broche, scale: { from: 0, to: tamanho }, angle: { from: -180, to: 0 }, duration: 900, ease: 'Back.out' });
         }
       },
     });
