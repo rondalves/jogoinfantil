@@ -19,8 +19,6 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PEDIDAS_PELO_CODIGO = {
     "olhos_redondos": "criador (rosto padrao)",
     "olhos_triste": "animacoes.ts, expressao('triste')",
-    "acessorio_oculos": "criador (fora da lista ate encaixar)",
-    "acessorio_aparelho_auditivo": "criador (fora da lista ate encaixar)",
     "m01_espuma": "escovacao, espuma da pasta",
     "mg1_kart_tras": "corrida de kart, banco vazio",
     "logo": "abertura e ficha da loja",

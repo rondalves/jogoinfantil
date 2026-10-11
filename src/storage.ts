@@ -7,7 +7,6 @@ export interface PersonagemCfg {
   corCabelo: number;
   roupa: number;
   acessorios: string[];
-  cadeirante: boolean;
 }
 
 export interface Perfil {
@@ -39,7 +38,7 @@ const CHAVE = 'missoes-do-dia:perfis';
 const CHAVE_ATIVO = 'missoes-do-dia:ativo';
 
 export function personagemPadrao(): PersonagemCfg {
-  return { pele: 0, olhos: 0, cabelo: 0, corCabelo: 0, roupa: 0, acessorios: [], cadeirante: false };
+  return { pele: 0, olhos: 0, cabelo: 0, corCabelo: 0, roupa: 0, acessorios: [] };
 }
 
 /** Puro: não toca no localStorage (usado também nos testes). */

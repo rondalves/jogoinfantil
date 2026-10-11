@@ -20,7 +20,7 @@ const URL_JOGO = process.env.URL_JOGO ?? 'http://localhost:4173/';
 const PERFIL = {
   id: 'psmoke',
   nome: 'Teste',
-  personagem: { pele: 2, olhos: 0, cabelo: 0, corCabelo: 1, roupa: 1, acessorios: ['oculos'], cadeirante: false },
+  personagem: { pele: 2, olhos: 0, cabelo: 0, corCabelo: 1, roupa: 1, acessorios: ['laco'] },
   moedas: 30,
   fichas: 90,
   fichasGastas: 0,

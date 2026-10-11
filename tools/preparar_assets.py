@@ -180,7 +180,6 @@ FOLHAS = {
     "Gemini_Generated_Image_t7s27lt7s27lt7s2": (["m01_prato"], 320, None),
     "Gemini_Generated_Image_ry14i8ry14i8ry14": (["m05_mochila"], 320, None),
     "Gemini_Generated_Image_njmxgxnjmxgxnjmx": (["acessorio_laco"], 256, None),
-    "Gemini_Generated_Image_q6mvumq6mvumq6mv": (["acessorio_bone"], 256, None),
     # o par vermelho sai cortado em qualquer recorte: fica de fora
     "Gemini_Generated_Image_pnlueqpnlueqpnlu": ([None, None], 256, ("grade", 1, 2)),
     "m12_carro": (
@@ -303,10 +302,7 @@ SOLTAS = [
     "m10_bater",
     "mg2_pedra",
     "logo",
-    "acessorio_aparelho_auditivo",
     "acessorio_capa",
-    "acessorio_medalha",
-    "acessorio_oculos",
     "m24_chuveiro",
     "m01_espuma",
     "mg1_kart_tras",

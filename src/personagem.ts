@@ -123,26 +123,16 @@ export interface Acessorio {
   broche?: number;
   /** entra atras do corpo (a capa de heroi) */
   atras?: boolean;
-  /** vai na linha dos olhos e cresce com a cabeca: tamanho e fracao da largura dela */
-  rosto?: boolean;
 }
 
 /**
- * So entra aqui o acessorio que encaixa bem em todas as cabecas.
- *
- * Oculos e aparelho auditivo sairam por enquanto: a arte nao bate com o
- * rosto (o oculos flutua acima dos olhos, o aparelho descola da orelha), e
- * acessorio torto e pior que nenhum. Voltam assim que chegar arte na
- * moldura certa -- prompt em PROMPTS_PENDENTES.md, e e so descomentar.
+ * So entra aqui o acessorio que encaixa bem em todas as cabecas. Bone, oculos
+ * e medalha sairam em 11/10/2026: nao encaixavam direito no personagem novo.
+ * Perfil que ja tinha um deles so deixa de mostrar.
  */
 export const ACESSORIOS: Acessorio[] = [
-  // medido na arte do corpo: olhos em -0.30, orelha em x 0.155 e y -0.235
-  { id: 'oculos', nome: 'Óculos', icone: '\u{1F453}', x: 0, y: 0, tamanho: 0.55, rosto: true },
-  // { id: 'aparelho_auditivo', nome: 'Aparelho auditivo', icone: '\u{1F9BB}', x: 0.155, y: -0.235, tamanho: 0.075 },
-  { id: 'bone', nome: 'Boné', icone: '\u{1F9E2}', x: 0, y: -0.44, tamanho: 0.27, estrelas: 3 },
   { id: 'laco', nome: 'Laço', icone: '\u{1F380}', x: -0.15, y: -0.44, tamanho: 0.15, estrelas: 3 },
   { id: 'capa', nome: 'Capa de herói', icone: '\u{1F9E3}', x: 0, y: 0.02, tamanho: 0.42, broche: 1, atras: true },
-  { id: 'medalha', nome: 'Medalha', icone: '\u{1F3C5}', x: 0, y: -0.015, tamanho: 0.13, broche: 2 },
 ];
 
 export function acessorioLiberado(a: Acessorio, estrelas: number, broches: number[]) {
@@ -152,7 +142,8 @@ export function acessorioLiberado(a: Acessorio, estrelas: number, broches: numbe
 
 export const temArte = (cena: Phaser.Scene) => cena.textures.exists('corpo_pele1');
 
-const sufixoCorpo = (cfg: PersonagemCfg) => (cfg.cadeirante ? '_sentado' : ROUPAS[cfg.roupa % ROUPAS.length].id);
+// a cadeira de rodas saiu do criador em 11/10/2026: todo perfil fica em pe
+const sufixoCorpo = (cfg: PersonagemCfg) => ROUPAS[cfg.roupa % ROUPAS.length].id;
 
 function corpoChave(cfg: PersonagemCfg) {
   return `corpo${sufixoCorpo(cfg)}_pele${(cfg.pele % PELES.length) + 1}`;
@@ -196,9 +187,8 @@ export function desenharPersonagem(
   const cabelo = CABELOS[cfg.cabelo % CABELOS.length].id;
   const chaveCabelo = `cabelo_${cabelo}_${(cfg.corCabelo % CORES_CABELO.length) + 1}`;
   if (cabelo !== 'careca' && cena.textures.exists(chaveCabelo)) {
-    // a arte do cabelo sai no quadro do corpo base; em outro corpo (a cadeira
-    // de rodas tem a cabeca menor) acompanha a cabeca dele: mesmo alto do
-    // cranio, mesma largura
+    // a arte do cabelo sai no quadro do corpo base; em outro corpo acompanha a
+    // cabeca dele: mesmo alto do cranio, mesma largura
     const base = cabecaDe('');
     const k = cab.largura / base.largura;
     const x = cab.cx - k * base.cx;
@@ -214,12 +204,11 @@ export function desenharPersonagem(
     const a = ACESSORIOS.find((x) => x.id === id);
     if (!a) continue;
     const chave = `acessorio_${a.id}`;
-    const largura = a.rosto ? a.tamanho * cab.largura : a.tamanho * ALT;
+    const largura = a.tamanho * ALT;
     const im = cena.textures.exists(chave)
       ? porLargura(cena, chave, largura)
       : cena.add.text(0, 0, a.icone, { fontSize: `${Math.round(largura)}px` }).setOrigin(0.5);
-    if (a.rosto) im.setPosition(cab.cx + a.x * cab.largura, linhaOlhos + a.y * cab.largura);
-    else im.setPosition(a.x * ALT, a.y * ALT);
+    im.setPosition(a.x * ALT, a.y * ALT);
     c.add(im);
     // a capa cai nas costas: vai para tras do corpo
     if (a.atras) c.sendToBack(im);

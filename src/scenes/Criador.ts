@@ -24,7 +24,7 @@ const W = CONFIG.LARGURA;
 /** Opcoes por pagina: 2 linhas de 3, o que cabe entre o personagem e os botoes. */
 const POR_PAGINA = 6;
 
-type Aba = 'pele' | 'olhos' | 'cabelo' | 'corCabelo' | 'roupa' | 'extras' | 'cadeira';
+type Aba = 'pele' | 'olhos' | 'cabelo' | 'corCabelo' | 'roupa' | 'extras';
 
 const ABAS: { id: Aba; icone: string; nome: string }[] = [
   { id: 'pele', icone: '\u{1F91B}', nome: 'Pele' },
@@ -32,9 +32,14 @@ const ABAS: { id: Aba; icone: string; nome: string }[] = [
   { id: 'cabelo', icone: '\u{1F487}', nome: 'Cabelo' },
   { id: 'corCabelo', icone: '\u{1F3A8}', nome: 'Cor' },
   { id: 'roupa', icone: '\u{1F455}', nome: 'Roupa' },
-  { id: 'extras', icone: '\u{1F453}', nome: 'Extras' },
-  { id: 'cadeira', icone: '\u{1F9BD}', nome: 'Rodas' },
+  { id: 'extras', icone: '\u{1F380}', nome: 'Extras' },
 ];
+
+/**
+ * O pedaco da arte do corpo que e roupa (da gola ao tenis, com os bracos), em
+ * px do corpo de 360x512 que sai de tools/personagem.mjs.
+ */
+const CORTE_ROUPA = { x: 66, y: 180, w: 228, h: 320 };
 
 export class Criador extends Phaser.Scene {
   private cfg!: PersonagemCfg;
@@ -216,11 +221,29 @@ export class Criador extends Phaser.Scene {
           this.opcao(i, CORES_CABELO.length, cor(c), this.cfg.corCabelo === i, () => (this.cfg.corCabelo = i)),
         );
         break;
-      case 'roupa':
+      case 'roupa': {
+        // cada botao mostra a propria roupa, no tom de pele escolhido: com o
+        // mesmo emoji em todas, so dava para ver a roupa depois de aplicar
+        const pele = (this.cfg.pele % PELES.length) + 1;
+        const roupa = (id: string, nome: string) => (x: number, y: number) => {
+          const chave = `corpo${id}_pele${pele}`;
+          if (!this.textures.exists(chave)) return texto(nome, '\u{1F455}')(x, y);
+          const { x: cx, y: cy, w, h } = CORTE_ROUPA;
+          const im = this.add.image(0, 0, chave).setCrop(cx, cy, w, h);
+          const s = 86 / h;
+          // o recorte nao muda o centro da imagem: desloca para o meio da roupa
+          // cair no meio do botao
+          im.setScale(s).setPosition(x + (im.width / 2 - (cx + w / 2)) * s, y - 22 + (im.height / 2 - (cy + h / 2)) * s);
+          this.opcoes.add(im);
+          this.opcoes.add(
+            this.add.text(x, y + 38, nome, { fontSize: '24px', color: '#2b3a4a', align: 'center' }).setOrigin(0.5),
+          );
+        };
         ROUPAS.forEach((o, i) =>
-          this.opcao(i, ROUPAS.length, texto(o.nome, '\u{1F455}'), this.cfg.roupa === i, () => (this.cfg.roupa = i)),
+          this.opcao(i, ROUPAS.length, roupa(o.id, o.nome), this.cfg.roupa === i, () => (this.cfg.roupa = i)),
         );
         break;
+      }
       case 'extras': {
         const p = ativo();
         const estrelas = p ? estrelasTotais(p) : 0;
@@ -245,10 +268,6 @@ export class Criador extends Phaser.Scene {
         });
         break;
       }
-      case 'cadeira':
-        this.opcao(0, 2, texto('Em pé', '\u{1F9D2}'), !this.cfg.cadeirante, () => (this.cfg.cadeirante = false));
-        this.opcao(1, 2, texto('Cadeira de rodas', '\u{1F9BD}'), this.cfg.cadeirante, () => (this.cfg.cadeirante = true));
-        break;
     }
     this.desenharPaginas();
   }

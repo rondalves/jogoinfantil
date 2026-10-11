@@ -3,7 +3,7 @@
  *
  *   npm run personagem
  *
- * Corpo (6 roupas e a cadeira de rodas, 7 tons de pele), rostos (olhos e boca
+ * Corpo (6 roupas, 7 tons de pele), rostos (olhos e boca
  * separados) e os 22 cabelos em 9 cores saem todos da mesma cabeca, entao
  * encaixam por construcao. Os nomes sao os que o jogo ja usa; a geometria da
  * cabeca vai para src/cabecas.json.
@@ -179,42 +179,7 @@ function corpoEmPe(roupa, pele) {
   return s;
 }
 
-/** Cadeira de rodas vista de frente: as rodas grandes aparecem de lado, finas. */
-function corpoSentado(pele) {
-  const r = ROUPAS[''];
-  const dy = 38;
-  const azul = '#4f8fd3', metal = '#a7b2bd', pneu = '#3c4148';
-  let s = '';
-  // encosto e rodas grandes, atras de tudo
-  s += grupo(`<rect x="128" y="${236}" width="104" height="${110}" rx="10"/>`, azul);
-  for (const x of [88, 272]) {
-    s += grupo(elipse(x, 398, 17, 86), pneu);
-    s += grupo(elipse(x, 398, 10, 76), '#dfe5ea');
-    s += risco(`M${x},326 L${x},470`, metal, 2.4);
-  }
-  // pernas dobradas: a coxa vem na direcao de quem olha, so a canela aparece
-  s += grupo(tubo(154, 352, 152, 452, 30) + tubo(206, 352, 208, 452, 30), pele);
-  s += grupo(`<rect x="137" y="438" width="31" height="20" rx="3"/><rect x="193" y="438" width="31" height="20" rx="3"/>`, r.meia);
-  // apoio dos pes, com as rodinhas da frente
-  s += grupo(tubo(124, 352, 132, 482, 9) + tubo(236, 352, 228, 482, 9), metal);
-  s += grupo(`<rect x="112" y="482" width="136" height="10" rx="5"/>`, '#5d6874');
-  s += grupo(`<circle cx="120" cy="500" r="9"/><circle cx="240" cy="500" r="9"/>`, pneu);
-  s += sapato(130, 450, r.tenis) + espelho(W, sapato(130, 450, r.tenis));
-  // short e assento: a coxa dobrada vira uma faixa
-  s += grupo(`<rect x="110" y="338" width="140" height="16" rx="6"/>`, escuro(azul, 0.85));
-  s += grupo(caminho('M124,318 L236,318 L246,358 L114,358 Z'), r.calca);
-  // bracos ate o aro da roda, e o tronco por cima
-  s += braco(136, 210 + dy, 98, 344, pele) + braco(224, 210 + dy, 262, 344, pele);
-  s += grupo(caminho(`M128,${200 + dy} C142,${191 + dy} 152,${188 + dy} 162,${188 + dy} Q180,${202 + dy} 198,${188 + dy} ` +
-    `C208,${188 + dy} 218,${191 + dy} 232,${200 + dy} L238,${326} Q180,${332} 122,${326} Z`) +
-    tubo(138, 206 + dy, 120, 242 + dy, 34) + tubo(222, 206 + dy, 240, 242 + dy, 34), r.camisa);
-  // aro de empurrar, por cima da mao
-  for (const x of [72, 288]) s += risco(`M${x},336 Q${x - Math.sign(180 - x) * 4},398 ${x},460`, metal, 3.2);
-  return s + cabecaEPescoco(pele, dy);
-}
-
 function corpo(roupa, pele) {
-  if (roupa === '_sentado') return svg(W, H, corpoSentado(pele));
   return svg(W, H, corpoEmPe(roupa, pele) + cabecaEPescoco(pele, 0));
 }
 
@@ -607,7 +572,7 @@ const CABELOS = [
   'menino_risco', 'menino_moicano', 'menino_social', 'menino_topete', 'menino_militar', 'menino_franjinha',
   'menino_para_tras', 'menino_ondulado', 'menino_nago',
 ];
-const CORPOS = ['', '_macacao', '_vestido_rosa', '_roxo', '_azul', '_vermelho', '_sentado'];
+const CORPOS = ['', '_macacao', '_vestido_rosa', '_roxo', '_azul', '_vermelho'];
 
 // ---------------------------------------------------------------- saida
 async function main() {
@@ -644,7 +609,7 @@ async function main() {
     // o fundo de cabelo antigo era um so por penteado, branco para tingir
     for (const f of readdirSync(IMG)) if (/^cabelofundo_[a-z_]+?\.png$/.test(f) && !/_\d\.png$/.test(f)) unlinkSync(join(IMG, f));
     const cab = (dy) => ({ topo: (CABECA.topo + dy) / H, queixo: (CABECA.queixo + dy) / H, largura: CABECA.larg / H, cx: 0 });
-    const cabecas = Object.fromEntries(CORPOS.map((c) => [c, cab(c === '_sentado' ? 38 : 0)]));
+    const cabecas = Object.fromEntries(CORPOS.map((c) => [c, cab(0)]));
     writeFileSync(join(RAIZ, 'src', 'cabecas.json'), JSON.stringify(cabecas, null, 2) + '\n');
   }
   // PNG de paleta: arte chapada fica varias vezes menor sem diferenca visivel

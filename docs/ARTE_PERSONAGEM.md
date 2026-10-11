@@ -1,7 +1,7 @@
 # A arte do personagem
 
 > **Desde 11/10/2026 o personagem é desenhado por código.** Corpo, roupas,
-> cadeira de rodas, rostos e os 29 cabelos em 9 cores saem de
+> rostos e os 29 cabelos em 9 cores saem de
 > `tools/personagem.mjs` (`npm run personagem`), todos sobre a mesma cabeça. O
 > `npm run assets` não mexe mais no personagem.
 >

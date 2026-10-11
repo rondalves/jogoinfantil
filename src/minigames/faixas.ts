@@ -106,7 +106,7 @@ export function correrFaixas(
   // No kart quem leva a crianca e o kart: a cadeira de rodas em cima dele
   // nao faz sentido nenhum.
   const crianca = op.montaria
-    ? desenharPersonagem(cena, { ...personagem, cadeirante: false }, 0.48)
+    ? desenharPersonagem(cena, personagem, 0.48)
     : null;
   if (crianca) {
     // medido no mg1_kart_tras: o encosto comeca a 31% da altura do kart

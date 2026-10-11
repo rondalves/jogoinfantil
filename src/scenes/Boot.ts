@@ -25,7 +25,7 @@ export class Boot extends Phaser.Scene {
     this.add.rectangle(W / 2, H, W * 1.6, 520, 0x8ccf6f).setOrigin(0.5, 0.5).setAngle(0);
 
     this.add
-      .text(W / 2, 330, 'Missões\ndo Dia', {
+      .text(W / 2, 330, 'Rotina\nFeliz', {
         fontSize: '104px',
         fontStyle: 'bold',
         align: 'center',
