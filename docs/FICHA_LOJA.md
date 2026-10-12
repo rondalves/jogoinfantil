@@ -22,14 +22,14 @@ Rotina Feliz transforma a rotina da criança em missões.
 
 Acordar e escovar os dentes, arrumar a mochila, atravessar a rua de mãos dadas, esperar a vez, pedir com licença, guardar os brinquedos, jantar à mesa, tomar banho e dormir: cada hora do dia vira uma aventura curta, narrada em voz alta, para quem ainda não sabe ler.
 
-São 28 missões em 6 mundos, do "Manhã em Casa" ao "Banho e Cama", mais 5 joguinhos que abrem conforme a criança avança: corrida de kart, escalada, corredor, jogo da memória e o céu das estrelas.
+São 28 missões em 6 mundos, do "Manhã em Casa" ao "Banho e Cama". Cada mundo terminado abre um joguinho: colorir, jogo da memória, corrida de kart, encaixe os blocos, moto na montanha e estoura-bolhas. E uma historinha de dormir para cada mundo.
 
-A criança monta o próprio personagem: 7 tons de pele, 20 penteados em 9 cores, óculos, aparelho auditivo, boné, laço, capa de herói e cadeira de rodas.
+A criança monta o próprio personagem: 7 tons de pele, 6 roupas, 29 penteados em 9 cores, laço e capa de herói.
 
 Para os adultos:
 • Sem anúncios, sem compras e sem internet — o jogo funciona no modo avião.
 • Nenhum dado sai do aparelho. Não há cadastro, login nem coleta de informação.
-• Área dos adultos protegida por uma conta de multiplicação, com limite diário de partidas e a opção de apagar o progresso.
+• Área dos adultos protegida por uma conta de multiplicação, com limite de tempo de joguinho por dia e a opção de apagar o progresso.
 • Narração em português do Brasil em todas as telas.
 
 Feito para crianças de 4 a 7 anos, com botões grandes, leitura em voz alta e nenhuma tela que puna o erro: errar só faz a raposinha explicar de novo.

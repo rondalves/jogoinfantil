@@ -22,16 +22,14 @@ const URL_JOGO = process.env.URL_JOGO ?? 'http://localhost:4173/';
 const PERFIL = {
   id: 'pcapt',
   nome: 'Ana',
-  personagem: { pele: 2, olhos: 0, cabelo: 0, corCabelo: 1, roupa: 1, acessorios: [], cadeirante: false },
+  personagem: { pele: 2, olhos: 0, cabelo: 0, corCabelo: 1, roupa: 1, acessorios: [] },
   moedas: 12,
-  fichas: 24,
-  fichasGastas: 3,
   missoes: { '01': 3, '02': 3, '03': 3, '04': 3 },
   bonusMundo: [1],
   broches: [1],
-  limiteDiario: 20,
-  partidas: { dia: '', n: 0 },
   viuTutorial: true,
+  // o joguinho do mundo 1 ja foi aberto: o selo de "novo" nao entra na foto
+  joguinhosVistos: ['01'],
 };
 
 const FAIXAS = {
@@ -39,8 +37,8 @@ const FAIXAS = {
   '02-mapa': 'Uma aventura para cada hora do dia',
   '03-escova': 'Aprender fazendo',
   '04-pode-ou-nao': 'Pode ou Não Pode?',
-  '05-corrida': 'Jogue e se divirta',
-  '06-moedas': 'Ganhe moedas e fichas',
+  '05-joguinhos': 'Cada mundo abre um joguinho',
+  '06-medalha': 'Termine o dia com medalha',
 };
 
 /** Posicao de tela (CSS) a partir das coordenadas do jogo (720x1280). */
@@ -121,14 +119,16 @@ const main = async () => {
   await toca(page, 520, 730, 2500); // chamar um adulto
   await grava(page, '04-pode-ou-nao');
 
-  // 05 corrida de kart
+  // 05 a prateleira de joguinhos, com o colorir aberto e o resto por vir
   await page.goto(URL_JOGO);
   await pronto(page);
-  await toca(page, 185, 430, 2000);
-  await toca(page, 360, 1200, 2000); // Jogar
-  await toca(page, 360, 710, 3500); // pista do quintal
-  await page.waitForTimeout(2500);
-  await grava(page, '05-corrida');
+  await page.evaluate(async () => {
+    const j = window.__jogo;
+    j.scene.scenes.forEach((s) => s.scene.key !== 'Boot' && j.scene.stop(s.scene.key));
+    j.scene.start('Joguinhos');
+    await new Promise((r) => setTimeout(r, 2000));
+  });
+  await grava(page, '05-joguinhos');
 
   // 06 a medalha do fim: o mapa ja aparece na 02, repetir nao vende nada
   await page.goto(URL_JOGO);

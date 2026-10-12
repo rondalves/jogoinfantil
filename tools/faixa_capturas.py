@@ -23,7 +23,7 @@ TEXTOS = {
     '02-mapa': 'Uma aventura para cada hora do dia',
     '03-escova': 'Aprender fazendo',
     '04-pode-ou-nao': 'Pode ou Não Pode?',
-    '05-corrida': 'Jogue e se divirta',
+    '05-joguinhos': 'Cada mundo abre um joguinho',
     '06-medalha': 'Termine o dia com medalha',
 }
 

@@ -309,7 +309,13 @@ export function botaoOuvir(cena: Phaser.Scene, x = W - 86, y = 96) {
   return toque(b, () => narrador.repetir());
 }
 
+/** Para onde o botao de voltar de cada cena leva: o voltar do celular usa o mesmo. */
+const VOLTA = new WeakMap<Phaser.Scene, [string, object?]>();
+export const destinoDoVoltar = (cena: Phaser.Scene) => VOLTA.get(cena);
+
 export function botaoVoltar(cena: Phaser.Scene, destino: string, dados?: object) {
+  VOLTA.set(cena, [destino, dados]);
+  cena.events.once('shutdown', () => VOLTA.delete(cena));
   const b = figura(cena, 86, 96, 'botao_voltar', '\u{2B05}\u{FE0F}', 96).setDepth(50);
   return toque(b, () => irPara(cena, destino, dados));
 }

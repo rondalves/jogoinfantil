@@ -1,6 +1,7 @@
-# Próximos passos
+# Próximos passos: o beta
 
-O que falta para o jogo ficar pronto. Conferido no código em 11/10/2026.
+Conferido no código em 12/10/2026. O jogo está jogável de ponta a ponta, sem
+arte faltando. O que falta está em três grupos.
 
 ## Onde estamos
 
@@ -9,47 +10,41 @@ O que falta para o jogo ficar pronto. Conferido no código em 11/10/2026.
 | Conteúdo | 28 missões em 6 mundos, 6 joguinhos (um por mundo), 6 historinhas |
 | Arte | 646 arquivos em `assets/img` (8,3 MB); nenhuma arte pedida faltando |
 | Personagem | desenhado por código: 7 tons de pele, 6 roupas, 5 rostos, 29 cabelos × 9 cores, laço e capa |
-| Android | `com.colostudio.rotinafeliz`, versionCode 1, targetSdk 36, chave de assinatura criada |
+| Android | `com.colostudio.rotinafeliz`, versionCode 1, targetSdk 36, chave de assinatura criada, voltar do celular tratado |
+| Loja | ficha, ícone, imagem de destaque e 6 capturas em `store/screenshots/` prontos com o nome Rotina Feliz |
 | Verificação | `tsc` ✅ · `npm test` 33 ✅ · `npm run smoke` 28 missões e 14 telas ✅ |
 
-## 1. O jogo em si
+## 1. Para enviar o beta (Play Console)
 
-| o que | situação | o que fazer |
+- [ ] `npm run android:build` gera o `.aab` assinado em `android/app/build/outputs/bundle/release/`.
+      Cada envio novo precisa de um `versionCode` maior em `android/app/build.gradle`.
+- [ ] Instalar o APK de lançamento (`npm run android:apk`) uma vez no celular antes de subir.
+- [ ] Criar o app na Play Console, colar a ficha de [FICHA_LOJA.md](FICHA_LOJA.md),
+      subir ícone, destaque (`assets-loja/`) e as capturas.
+- [ ] Questionários: segurança dos dados (não coleta nada), público infantil
+      (Famílias), classificação (Livre), sem anúncios.
+- [ ] Teste interno primeiro. Se a conta de desenvolvedor for pessoal e nova,
+      a produção exige **teste fechado com 12 testadores por 14 dias** ([PUBLICAR.md](PUBLICAR.md)).
+
+Mundos livres e compra desligada ficam assim no beta: o painel dos pais
+esconde a oferta enquanto tudo é livre.
+
+## 2. O que muda o que os testadores vão achar
+
+| o que | situação | roteiro |
 |---|---|---|
-| **Joguinhos** | um por mundo, liberado quando a criança fecha o mundo: colorir (10 bichinhos), jogo da memória (4 a 16 cartas), corrida de kart, encaixe os blocos (estilo Tetris), moto na montanha (estilo Hill Climb, com fases e 3 vidas) e estoura-bolhas. Joguinho novo ganha selo na aba e no cartão até a criança abrir. As fichas e o botão Jogar do mapa saíram. Passou do tempo do dia (padrão 15 min), aparece "já fez as suas tarefas?" e só um adulto libera mais 10 min | ajustes depois do teste com as crianças |
-| **Nome** | **Rotina Feliz** em tudo: abertura, ícone, loja, política de privacidade e pacote `com.colostudio.rotinafeliz` | publicar a política de privacidade atualizada (é um push) |
-| **Compra dos mundos** | os 6 mundos estão livres de propósito, para o teste; o pagamento não está ligado | se for cobrar: plugin de compra no Android, produto `rotinafeliz.mundos.completos` na Play Console e `MUNDOS_LIVRES` de volta para 2. Dá também para lançar grátis e cobrar numa atualização |
+| Testar no celular os joguinhos novos | moto, encaixe e memória de 16 cartas foram conferidos só no navegador, com mouse | tocar com os dois dedos na moto (freio + acelerador) |
+| Voz | 0 de 459 falas gravadas; sai a voz do celular (TTS), que varia por aparelho | gravar primeiro as ~200 frases de interface, tutorial e joguinhos (`assets/audio/narracao.csv`, [GRAVAR_VOZES.md](GRAVAR_VOZES.md)); as 255 das missões vão chegando |
+| Música | silêncio em todas as telas | a do menu e uma de mundo já mudam a sensação; prompts em [MUSICA.md](MUSICA.md) |
+| Historinhas | 6 gravadas, com cantiga por baixo; vão ser regravadas | [HISTORIAS.md](HISTORIAS.md) |
 
-## 2. Áudio (o principal que falta)
+## 3. Depois do beta
 
-Sem gravação, cada fala sai na voz do celular, que muda de aparelho para
-aparelho; sem música, as telas ficam em silêncio. Nada quebra.
-
-| o que | quanto | roteiro |
-|---|---|---|
-| Falas do jogo | 450: 364 de adulto e 86 da raposinha | `assets/audio/narracao.csv`, [GRAVAR_VOZES.md](GRAVAR_VOZES.md) |
-| Voz masculina | as mesmas 364 de adulto, com `_m` no nome | opcional: dá para lançar só com a feminina |
-| Música | 7 faixas em loop e 1 de 30 s para o timer | [MUSICA.md](MUSICA.md), com prompt de gerador por faixa |
-| Historinhas | 6, que vão ser regravadas | [HISTORIAS.md](HISTORIAS.md) |
-
-## 3. Para publicar
-
-1. Gerar o `.aab` assinado e subir para **teste interno** ([PUBLICAR.md](PUBLICAR.md)).
-2. Refazer as capturas da loja: as de `store/screenshots/` são de 10/10, com o
-   personagem antigo (`npm run capturas`).
-3. Ficha da loja ([FICHA_LOJA.md](FICHA_LOJA.md)) com o nome decidido.
-4. Questionários da Play Console: segurança dos dados (não coleta nada), público
-   infantil (Famílias), classificação indicativa, sem anúncios. A política de
-   privacidade já está no ar.
-5. Se a conta de desenvolvedor for pessoal e nova, a Play exige um **teste
-   fechado com pelo menos 12 pessoas por 14 dias** antes de liberar a produção.
-
-## 4. Refinamento, depois
-
-- Ajustes de arte que aparecerem no teste com as crianças.
-- `m07_professora` está pronta mas nenhuma missão mostra; o `logo` existe mas a
-  abertura escreve o nome em texto.
-- O código antigo de recorte do personagem em `tools/preparar_assets.py` não é
-  mais usado (o personagem sai de `tools/personagem.mjs`) e pode sair.
-- Os vídeos das historinhas em livro animado ([VIDEOS_HISTORIAS.md](VIDEOS_HISTORIAS.md)),
+- Compra de R$ 4,99: plugin de compra no Android, produto
+  `rotinafeliz.mundos.completos` na Play Console e `MUNDOS_LIVRES` de volta para 2
+  ([MONETIZACAO.md](MONETIZACAO.md)).
+- Vídeos das historinhas em livro animado ([VIDEOS_HISTORIAS.md](VIDEOS_HISTORIAS.md)),
   depois da regravação.
+- `m07_professora` está pronta mas nenhuma missão mostra; o `logo` existe mas a
+  abertura escreve o nome em texto; o código antigo de recorte do personagem em
+  `tools/preparar_assets.py` pode sair.
