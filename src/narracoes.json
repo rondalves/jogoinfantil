@@ -164,11 +164,23 @@
     "local": "Joguinho de colorir, desenho todo pintado"
   },
   "jogo_moto": {
-    "texto": "Segure o botão verde para acelerar e suba a montanha!",
+    "texto": "Verde acelera, vermelho freia. Cuidado nas descidas e pule os buracos!",
     "local": "Joguinho da moto"
   },
   "jogo_torre": {
     "texto": "Toque na tela para soltar a panqueca e montar uma torre bem alta!",
     "local": "Joguinho da torre de panquecas"
+  },
+  "jogo_moto_capotou": {
+    "texto": "Opa, capotou! Vamos de novo, daqui da bandeira.",
+    "local": "Joguinho da moto, perdeu uma vida"
+  },
+  "jogo_moto_buraco": {
+    "texto": "Opa, caiu no buraco! Vamos de novo, daqui da bandeira.",
+    "local": "Joguinho da moto, perdeu uma vida"
+  },
+  "jogo_moto_fim": {
+    "texto": "Que passeio! Quantas notinhas você pegou! Vamos de novo?",
+    "local": "Joguinho da moto, acabaram as vidas"
   }
 }
