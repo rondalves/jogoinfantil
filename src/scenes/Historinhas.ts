@@ -35,7 +35,12 @@ export class Historinhas extends Phaser.Scene {
     titulo(this, 'Historinhas', 170);
     narrador.falar('Escolha uma historinha para ouvir.', 'biblioteca_historias');
 
-    carregarCapas(this, HISTORIAS.map((h) => h.capa), () => this.cartoes());
+    carregarCapas(this, HISTORIAS.map((h) => h.capa), () => {
+      this.cartoes();
+      // fundo do player ja fica pronto aqui: la, fundo() so desenha a imagem se a textura existir.
+      // Depois dos cartoes, para eles nao esperarem uma imagem que esta tela nem mostra.
+      carregarCapas(this, ['bg_quarto_noite'], () => undefined);
+    });
     abas(this, 'Historinhas');
   }
 

@@ -4,6 +4,160 @@
   "icone": "🦊",
   "capa": "capa_historia6",
   "audio": "historias/06-raposinha-vai-dormir",
-  "duracao": 0,
-  "mundo": 6
+  "duracao": 202,
+  "mundo": 6,
+  "paginas": [
+    {
+      "t": 0,
+      "capa": true
+    },
+    {
+      "t": 2.4,
+      "texto": "A raposinha estava de pijama.\nEra um pijama macio, com estrelinhas, e as mangas eram um pouquinho grandes.",
+      "arte": "hist06_p01",
+      "fundo": "bg_quarto_noite",
+      "pecas": [
+        "m19_pijama"
+      ],
+      "clima": "noite",
+      "raposa": "centro"
+    },
+    {
+      "t": 19.95,
+      "texto": "Ela já tinha tomado banho.\nA pele estava cheirosa.\nO cabelo estava penteado.\nEla já tinha escovado os dentes, um por um, os de cima e os de baixo.\nAgora era hora de dormir.",
+      "arte": "hist06_p02",
+      "fundo": "bg_banheiro_banho",
+      "pecas": [
+        "m19_escova",
+        "m25_pente"
+      ],
+      "clima": "calmo",
+      "raposa": "dir"
+    },
+    {
+      "t": 42.4,
+      "texto": "A mamãe raposa apagou a luz grande e acendeu a luzinha pequena, que fazia um brilho amarelo bem fraquinho no canto do quarto.\nA raposinha deitou.\nA mamãe puxou a coberta até o queixo dela.",
+      "arte": "hist06_p03",
+      "fundo": "bg_quarto_noite",
+      "pecas": [
+        "m19_luz_acesa"
+      ],
+      "clima": "noite",
+      "raposa": "sono"
+    },
+    {
+      "t": 71.1,
+      "texto": "\"Agora vamos dizer boa noite para tudo\", disse a mamãe.\n\"Boa noite, janela\", disse a raposinha.\n\"Boa noite, cortina.\"\n\"Boa noite, ursinho.\"\n\"Boa noite, carrinho azul.\"\n\"Boa noite, sapatos.\"\n\"Boa noite, luzinha.\"\n\"Boa noite, Lua.\"",
+      "arte": "hist06_p04",
+      "fundo": "bg_quarto_noite",
+      "pecas": [
+        "m12_janela",
+        "m15_urso",
+        "🚙"
+      ],
+      "clima": "noite",
+      "raposa": "sono"
+    },
+    {
+      "t": 102.05,
+      "texto": "A mamãe fez carinho na cabeça da raposinha.\nDevagar… devagar…",
+      "arte": "hist06_p05",
+      "fundo": "bg_quarto_noite",
+      "pecas": [
+        "m10_coracao"
+      ],
+      "clima": "noite",
+      "raposa": "sono"
+    },
+    {
+      "t": 109.55,
+      "texto": "\"Agora vamos relaxar o corpo\", disse a mamãe.\n\"Primeiro as patinhas dos pés. Elas estão pesadas… pesadas… e quentinhas.\"\nA raposinha sentiu as patinhas ficarem pesadas.",
+      "arte": "hist06_p06",
+      "fundo": "bg_quarto_noite",
+      "pecas": [],
+      "clima": "sono",
+      "raposa": "sono"
+    },
+    {
+      "t": 125.85,
+      "texto": "\"Agora as pernas. Pesadas… quentinhas.\"",
+      "arte": "hist06_p07",
+      "fundo": "bg_quarto_noite",
+      "pecas": [],
+      "clima": "sono",
+      "raposa": "sono"
+    },
+    {
+      "t": 132.9,
+      "texto": "\"Agora a barriga. Sobe… e desce… sobe… e desce…\"",
+      "arte": "hist06_p08",
+      "fundo": "bg_quarto_noite",
+      "pecas": [],
+      "clima": "respira",
+      "raposa": "sono"
+    },
+    {
+      "t": 139.15,
+      "texto": "\"Agora as patas da frente. Soltinhas.\"",
+      "arte": "hist06_p09",
+      "fundo": "bg_quarto_noite",
+      "pecas": [],
+      "clima": "sono",
+      "raposa": "sono"
+    },
+    {
+      "t": 142.55,
+      "texto": "\"Agora o rostinho. Soltinho. A boca fecha. Os olhos fecham.\"",
+      "arte": "hist06_p10",
+      "fundo": "bg_quarto_noite",
+      "pecas": [],
+      "clima": "sono",
+      "raposa": "sono"
+    },
+    {
+      "t": 152.9,
+      "texto": "A raposinha respirou fundo.\nLá fora, o vento passou de mansinho pela janela.\nUm grilo cantou bem baixinho.\nA Lua ficou olhando.",
+      "arte": "hist06_p11",
+      "fundo": "bg_quarto_noite",
+      "pecas": [
+        "m19_lua",
+        "🦗"
+      ],
+      "clima": "noite",
+      "raposa": "sono"
+    },
+    {
+      "t": 165.0,
+      "texto": "A mamãe deu um beijo na testa da raposinha.\n\"Boa noite, raposinha. Eu te amo.\"\n\"Boa noite, mamãe\", disse a raposinha, com a voz já bem pequenininha.",
+      "arte": "hist06_p12",
+      "fundo": "bg_quarto_noite",
+      "pecas": [
+        "m10_coracao"
+      ],
+      "clima": "noite",
+      "raposa": "sono"
+    },
+    {
+      "t": 187.45,
+      "texto": "E a raposinha…\ndevagar…\ndevagarinho…",
+      "arte": "hist06_p13",
+      "fundo": "bg_quarto_noite",
+      "pecas": [],
+      "clima": "sono",
+      "raposa": "sono"
+    },
+    {
+      "t": 193.6,
+      "texto": "Dormiu.",
+      "arte": "hist06_p14",
+      "fundo": "bg_quarto_noite",
+      "pecas": [],
+      "clima": "sono",
+      "raposa": "sono"
+    },
+    {
+      "t": 195.95,
+      "fim": true
+    }
+  ]
 }

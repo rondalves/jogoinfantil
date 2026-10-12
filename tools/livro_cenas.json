@@ -1,0 +1,78 @@
+{
+  "01": [
+    {"fundo": "bg_quarto_noite", "pecas": ["m19_lua", "m19_estrelas"], "clima": "noite", "raposa": "sono", "desc": "Quarto azul-escuro de madrugada; a raposinha dorme enroladinha na cama, com o rabo cobrindo o nariz."},
+    {"fundo": "bg_quarto_manha", "pecas": ["☀️"], "clima": "aurora", "raposa": "nao", "desc": "O Sol, com rostinho sonolento, espia acima das colinas e abre um olho no céu ainda escuro."},
+    {"fundo": "bg_quarto_manha", "pecas": ["🐦", "🌸", "🍃"], "clima": "aurora", "raposa": "nao", "desc": "Um passarinho piando baixinho num galho, uma flor abrindo uma pétala e o vento passando pela janela."},
+    {"fundo": "bg_quarto_manha", "pecas": [], "clima": "manha", "raposa": "centro", "desc": "A raposinha se espreguiçando na cama, patas esticadas, bocejando grande."},
+    {"fundo": "bg_quarto_manha", "pecas": ["☀️"], "clima": "manha", "raposa": "esq", "desc": "A raposinha na janela olhando o céu ficar cor-de-rosa e amarelinho, com o Sol sorrindo."},
+    {"fundo": "bg_banheiro", "pecas": ["m01_escova", "m25_pente", "m02_cama_arrumada"], "clima": "manha", "raposa": "dir", "desc": "A raposinha lavando o rosto na pia, com escova de dentes e pente por perto."},
+    {"fundo": "bg_quarto_noite", "pecas": ["m19_lua"], "clima": "noite", "raposa": "nao", "desc": "A mesma janela agora de noite: o Sol foi embora e a Lua cuida do quarto."},
+    {"fundo": "bg_quarto_noite", "pecas": ["m19_estrelas"], "clima": "noite", "raposa": "sono", "desc": "A raposinha enrolada de novo na cama, fechando os olhos."},
+    {"fundo": "bg_quarto_noite", "pecas": [], "clima": "sono", "raposa": "sono", "desc": "A raposinha dormindo, bem pequena no quarto escuro, com estrelas na janela."}
+  ],
+  "02": [
+    {"fundo": "bg_quarto_manha", "pecas": ["m05_mochila", "m05_lapis", "m01_maca"], "clima": "manha", "raposa": "esq", "desc": "A raposinha mostrando a mochila vermelha nova, com lápis, caderno e uma maçã."},
+    {"fundo": "bg_porta_casa", "pecas": ["m11_medo"], "clima": "manha", "raposa": "centro", "desc": "A raposinha com a mamãe raposa na porta de casa, a patinha na barriga, um friozinho por dentro."},
+    {"fundo": "bg_corredor", "pecas": ["m06_sinal_verde"], "clima": "manha", "raposa": "esq", "desc": "Mamãe e raposinha de mãos dadas atravessando a rua, olhando para os dois lados."},
+    {"fundo": "bg_escola_entrada", "pecas": ["👋"], "clima": "manha", "raposa": "esq", "desc": "Na porta da escola, uma professora sorridente se abaixa para dar bom dia à raposinha."},
+    {"fundo": "bg_sala_aula", "pecas": ["m15_urso"], "clima": "calmo", "raposa": "esq", "desc": "Na sala de aula, a raposinha e um ursinho tímido sentados lado a lado, olhando para os pés."},
+    {"fundo": "bg_sala_aula", "pecas": ["m01_maca", "🍎"], "clima": "calmo", "raposa": "esq", "desc": "A raposinha oferecendo um pedaço de maçã ao ursinho, que sorri."},
+    {"fundo": "bg_sala_aula", "pecas": ["m05_lapis", "🐟"], "clima": "calmo", "raposa": "centro", "desc": "Os dois desenhando juntos enquanto a professora conta a história de um peixe que queria voar."},
+    {"fundo": "bg_escola_entrada", "pecas": ["m11_abraco"], "clima": "tarde", "raposa": "centro", "desc": "A raposinha correndo para abraçar a mamãe na saída da escola."},
+    {"fundo": "bg_quarto_noite", "pecas": ["m15_urso", "🐟"], "clima": "noite", "raposa": "sono", "desc": "A raposinha deitada, lembrando do ursinho, da professora e do peixe que queria voar."},
+    {"fundo": "bg_quarto_noite", "pecas": ["m10_coracao"], "clima": "noite", "raposa": "sono", "desc": "Um coraçãozinho quente brilhando no peito da raposinha deitada."},
+    {"fundo": "bg_quarto_noite", "pecas": [], "clima": "sono", "raposa": "sono", "desc": "A raposinha dormindo, coberta até o queixo."}
+  ],
+  "03": [
+    {"fundo": "bg_carro_interior", "pecas": ["m12_cadeirinha", "m12_cinto"], "clima": "tarde", "raposa": "dir", "desc": "A raposinha na cadeirinha do carro, com o cinto afivelado, no fim da tarde."},
+    {"fundo": "bg_carro_interior", "pecas": ["m19_lua"], "clima": "crepusculo", "raposa": "dir", "desc": "Pela janela do carro, o céu laranja vira roxo e aparece a Lua redonda em cima de uma árvore."},
+    {"fundo": "bg_carro_interior", "pecas": ["m19_lua", "m06_carro"], "clima": "crepusculo", "raposa": "dir", "desc": "A Lua acompanhando o carro pela estrada; a raposinha aponta para ela."},
+    {"fundo": "bg_carro_interior", "pecas": ["m19_lua", "🏠", "🐶"], "clima": "noite", "raposa": "dir", "desc": "A Lua passando por cima de uma casa amarela, de um poste e de um cachorro que late."},
+    {"fundo": "bg_carro_interior", "pecas": ["💡", "💡"], "clima": "noite", "raposa": "dir", "desc": "A raposinha bocejando enquanto as luzes da rua passam pela janela."},
+    {"fundo": "bg_carro_interior", "pecas": ["m19_lua"], "clima": "sono", "raposa": "sono", "desc": "A raposinha cochilando encostada na cadeirinha, a Lua ainda na janela."},
+    {"fundo": "bg_porta_casa", "pecas": ["m19_lua"], "clima": "noite", "raposa": "centro", "desc": "O carro parado na frente de casa, e a Lua redondinha bem em cima do telhado."},
+    {"fundo": "bg_porta_casa", "pecas": ["m11_abraco"], "clima": "noite", "raposa": "nao", "desc": "A mamãe entrando em casa devagar com a raposinha adormecida no colo."},
+    {"fundo": "bg_quarto_noite", "pecas": ["m19_lua"], "clima": "noite", "raposa": "sono", "desc": "Pela janela do quarto, a Lua olhando quietinha a raposinha na cama."},
+    {"fundo": "bg_quarto_noite", "pecas": [], "clima": "sono", "raposa": "sono", "desc": "A raposinha dormindo, a Lua prateando o quarto."}
+  ],
+  "04": [
+    {"fundo": "bg_quarto_brincar", "pecas": ["🚙", "m16_caixa_cheia"], "clima": "tarde", "raposa": "nao", "desc": "Um carrinho azul sorridente saindo de uma caixa de brinquedos."},
+    {"fundo": "bg_quarto_brincar", "pecas": ["🚙"], "clima": "tarde", "raposa": "esq", "desc": "O carrinho azul subindo o sofá como montanha e descendo a almofada como escorregador."},
+    {"fundo": "bg_sala_almoco", "pecas": ["🚙"], "clima": "tarde", "raposa": "nao", "desc": "O carrinho esquecido embaixo do sofá, no escurinho, enquanto a janta fica pronta."},
+    {"fundo": "bg_quarto_brincar", "pecas": ["🚙", "m15_urso"], "clima": "calmo", "raposa": "nao", "desc": "O ursinho, de dentro da caixa, conversando com o carrinho: ela só foi jantar."},
+    {"fundo": "bg_sala_janta", "pecas": ["m13_prato_cheio", "m19_banheira"], "clima": "calmo", "raposa": "dir", "desc": "A raposinha rindo na cozinha, pratos tilintando, depois a água do banho."},
+    {"fundo": "bg_sala_almoco", "pecas": ["🚙"], "clima": "noite", "raposa": "centro", "desc": "A raposinha de pijama olhando embaixo do sofá e achando o carrinho."},
+    {"fundo": "bg_quarto_brincar", "pecas": ["m16_caixa_cheia"], "clima": "noite", "raposa": "esq", "desc": "A raposinha fechando com cuidado a tampa da caixa de brinquedos."},
+    {"fundo": "bg_quarto_noite", "pecas": ["🚙", "m15_urso", "m15_boneca"], "clima": "noite", "raposa": "nao", "desc": "Dentro da caixa, escurinho: carrinho, ursinho, boneca e bola encostadinhos dormindo."},
+    {"fundo": "bg_quarto_noite", "pecas": ["🚙"], "clima": "noite", "raposa": "sono", "desc": "A raposinha na cama sonhando com o carrinho subindo uma montanha."},
+    {"fundo": "bg_quarto_noite", "pecas": [], "clima": "sono", "raposa": "sono", "desc": "A raposinha dormindo; a caixa de brinquedos fechada no canto."}
+  ],
+  "05": [
+    {"fundo": "bg_cozinha_cafe", "pecas": ["🍲", "m13_colher"], "clima": "tarde", "raposa": "nao", "desc": "A vovó raposa mexendo uma panela grande com colher de madeira; o cheiro sai pela casa."},
+    {"fundo": "bg_cozinha_cafe", "pecas": ["🍲"], "clima": "tarde", "raposa": "esq", "desc": "A raposinha subindo no banquinho para espiar a panela, olhos arregalados."},
+    {"fundo": "bg_cozinha_cafe", "pecas": ["⭐", "⭐", "⭐"], "clima": "estrelas", "raposa": "esq", "desc": "Dentro da panela, macarrãozinho em forma de estrela boiando no caldo dourado."},
+    {"fundo": "bg_sala_janta", "pecas": ["m13_prato_vazio", "m13_colher", "m13_suco"], "clima": "calmo", "raposa": "dir", "desc": "A raposinha pondo a mesa: dois pratos, duas colheres, um copo de água."},
+    {"fundo": "bg_sala_janta", "pecas": ["🍲"], "clima": "calmo", "raposa": "dir", "desc": "A raposinha soprando a sopa quentinha antes da primeira colherada."},
+    {"fundo": "bg_sala_janta", "pecas": ["🍲", "⭐"], "clima": "calmo", "raposa": "dir", "desc": "Vovó e raposinha conversando à mesa sobre o dia."},
+    {"fundo": "bg_sala_janta", "pecas": ["m17_prato"], "clima": "noite", "raposa": "centro", "desc": "A raposinha levando o prato para a pia e dando um beijo na vovó."},
+    {"fundo": "bg_quarto_noite", "pecas": ["m19_estrelas"], "clima": "estrelas", "raposa": "esq", "desc": "A raposinha na janela olhando o céu cheio de estrelinhas amarelas."},
+    {"fundo": "bg_quarto_noite", "pecas": ["🍲"], "clima": "estrelas", "raposa": "sono", "desc": "O céu noturno parecendo uma grande sopa de estrelas sobre a casa."},
+    {"fundo": "bg_quarto_noite", "pecas": [], "clima": "sono", "raposa": "sono", "desc": "A raposinha dormindo, estrelas na janela."}
+  ],
+  "06": [
+    {"fundo": "bg_quarto_noite", "pecas": ["m19_pijama"], "clima": "noite", "raposa": "centro", "desc": "A raposinha de pijama macio com estrelinhas e mangas um pouco grandes."},
+    {"fundo": "bg_banheiro_banho", "pecas": ["m19_escova", "m25_pente"], "clima": "calmo", "raposa": "dir", "desc": "A raposinha cheirosa depois do banho, cabelo penteado, dentes escovados."},
+    {"fundo": "bg_quarto_noite", "pecas": ["m19_luz_acesa"], "clima": "noite", "raposa": "sono", "desc": "A mamãe acendendo a luzinha amarela no canto e cobrindo a raposinha até o queixo."},
+    {"fundo": "bg_quarto_noite", "pecas": ["m12_janela", "m15_urso", "🚙"], "clima": "noite", "raposa": "sono", "desc": "A raposinha dando boa noite para a janela, o ursinho, o carrinho azul e a Lua."},
+    {"fundo": "bg_quarto_noite", "pecas": ["m10_coracao"], "clima": "noite", "raposa": "sono", "desc": "A mamãe fazendo carinho na cabeça da raposinha, devagar."},
+    {"fundo": "bg_quarto_noite", "pecas": [], "clima": "sono", "raposa": "sono", "desc": "As patinhas da raposinha ficando pesadas e quentinhas embaixo da coberta."},
+    {"fundo": "bg_quarto_noite", "pecas": [], "clima": "sono", "raposa": "sono", "desc": "As pernas relaxadas, a coberta subindo e descendo devagar."},
+    {"fundo": "bg_quarto_noite", "pecas": [], "clima": "respira", "raposa": "sono", "desc": "A barriga da raposinha subindo e descendo, como ondas calmas."},
+    {"fundo": "bg_quarto_noite", "pecas": [], "clima": "sono", "raposa": "sono", "desc": "As patas da frente soltinhas em cima da coberta."},
+    {"fundo": "bg_quarto_noite", "pecas": [], "clima": "sono", "raposa": "sono", "desc": "O rostinho tranquilo da raposinha, olhos fechando."},
+    {"fundo": "bg_quarto_noite", "pecas": ["m19_lua", "🦗"], "clima": "noite", "raposa": "sono", "desc": "Lá fora o vento, um grilo cantando e a Lua olhando pela janela."},
+    {"fundo": "bg_quarto_noite", "pecas": ["m10_coracao"], "clima": "noite", "raposa": "sono", "desc": "A mamãe beijando a testa da raposinha: eu te amo."},
+    {"fundo": "bg_quarto_noite", "pecas": [], "clima": "sono", "raposa": "sono", "desc": "A raposinha quase dormindo, a luzinha bem fraquinha."},
+    {"fundo": "bg_quarto_noite", "pecas": [], "clima": "sono", "raposa": "sono", "desc": "A raposinha dormindo profundamente, o quarto todo em paz."}
+  ]
+}

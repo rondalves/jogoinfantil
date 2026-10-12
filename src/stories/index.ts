@@ -17,6 +17,23 @@ export interface Historia {
   duracao: number;
   /** mundo que precisa estar fechado para abrir esta historinha */
   mundo: number;
+  /** livro animado: gerado por tools/livro.py; sem ele o player mostra so a capa */
+  paginas?: Pagina[];
+}
+
+/** Uma pagina do livro animado. Vira quando o audio passa de `t` segundos. */
+export interface Pagina {
+  t: number;
+  capa?: boolean;
+  fim?: boolean;
+  texto?: string;
+  /** ilustracao propria da pagina; quando existir em assets/img, substitui a cena montada */
+  arte?: string;
+  fundo?: string;
+  /** chaves de arte em assets/img ou emoji */
+  pecas?: string[];
+  clima?: string;
+  raposa?: 'centro' | 'esq' | 'dir' | 'nao' | 'sono';
 }
 
 const mods = import.meta.glob('./*.json', { eager: true, import: 'default' }) as Record<string, Historia>;

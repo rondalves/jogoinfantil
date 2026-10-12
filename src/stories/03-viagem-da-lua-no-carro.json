@@ -4,6 +4,129 @@
   "icone": "🌙",
   "capa": "capa_historia3",
   "audio": "historias/03-viagem-da-lua-no-carro",
-  "duracao": 0,
-  "mundo": 3
+  "duracao": 176,
+  "mundo": 3,
+  "paginas": [
+    {
+      "t": 0,
+      "capa": true
+    },
+    {
+      "t": 2.4,
+      "texto": "Era fim de tarde, e a raposinha ia voltando para casa de carro.\nEla estava na cadeirinha, com o cinto bem afivelado.\nClique.",
+      "arte": "hist03_p01",
+      "fundo": "bg_carro_interior",
+      "pecas": [
+        "m12_cadeirinha",
+        "m12_cinto"
+      ],
+      "clima": "tarde",
+      "raposa": "dir"
+    },
+    {
+      "t": 14.3,
+      "texto": "Pela janela, o céu estava ficando cor de laranja.\nDepois cor de uva.\nDepois azul-escuro.\nE aí a raposinha viu a Lua.\nA Lua estava redondinha, bem em cima de uma árvore.",
+      "arte": "hist03_p02",
+      "fundo": "bg_carro_interior",
+      "pecas": [
+        "m19_lua"
+      ],
+      "clima": "crepusculo",
+      "raposa": "dir"
+    },
+    {
+      "t": 41.05,
+      "texto": "O carro andou… e a Lua andou junto.\nO carro virou a esquina… e a Lua virou junto.\n\"Mamãe, a Lua está vindo com a gente?\", perguntou a raposinha.\n\"Parece que sim\", disse a mamãe, sorrindo. \"Ela quer ver onde você mora.\"",
+      "arte": "hist03_p03",
+      "fundo": "bg_carro_interior",
+      "pecas": [
+        "m19_lua",
+        "m06_carro"
+      ],
+      "clima": "crepusculo",
+      "raposa": "dir"
+    },
+    {
+      "t": 64.1,
+      "texto": "A raposinha ficou olhando.\nA Lua passou por cima de uma casa amarela.\nPassou por cima de um poste.\nPassou por cima de um cachorro que latiu para ela, e ela nem ligou.",
+      "arte": "hist03_p04",
+      "fundo": "bg_carro_interior",
+      "pecas": [
+        "m19_lua",
+        "🏠",
+        "🐶"
+      ],
+      "clima": "noite",
+      "raposa": "dir"
+    },
+    {
+      "t": 84.05,
+      "texto": "A raposinha bocejou.\nO carro fazia um barulhinho baixinho: rrrrum… rrrrum…\nE o balanço era gostoso, como um colo.\nAs luzes da rua iam passando pela janela: uma luz… outra luz… outra luz…",
+      "arte": "hist03_p05",
+      "fundo": "bg_carro_interior",
+      "pecas": [
+        "💡",
+        "💡"
+      ],
+      "clima": "noite",
+      "raposa": "dir"
+    },
+    {
+      "t": 106.1,
+      "texto": "A raposinha encostou a cabeça na cadeirinha.\nOs olhos foram ficando pesados.\nMas ela queria ver se a Lua ia chegar junto.\nMais uma luz… mais uma luz…",
+      "arte": "hist03_p06",
+      "fundo": "bg_carro_interior",
+      "pecas": [
+        "m19_lua"
+      ],
+      "clima": "sono",
+      "raposa": "sono"
+    },
+    {
+      "t": 119.4,
+      "texto": "O carro parou.\n\"Chegamos\", disse a mamãe, bem baixinho.\nA raposinha abriu um olho.\nLá fora, em cima da casa dela, bem redondinha, estava a Lua.\n\"Ela chegou\", disse a raposinha.",
+      "arte": "hist03_p07",
+      "fundo": "bg_porta_casa",
+      "pecas": [
+        "m19_lua"
+      ],
+      "clima": "noite",
+      "raposa": "centro"
+    },
+    {
+      "t": 141.25,
+      "texto": "A mamãe soltou o cinto, pegou a raposinha no colo e entrou em casa devagar, sem fazer barulho.\nA raposinha nem lembrou de tirar o sapato.\nA mamãe tirou por ela.",
+      "arte": "hist03_p08",
+      "fundo": "bg_porta_casa",
+      "pecas": [
+        "m11_abraco"
+      ],
+      "clima": "noite",
+      "raposa": "nao"
+    },
+    {
+      "t": 160.9,
+      "texto": "E pela janela do quarto, a Lua ficou olhando…\nbem quietinha…",
+      "arte": "hist03_p09",
+      "fundo": "bg_quarto_noite",
+      "pecas": [
+        "m19_lua"
+      ],
+      "clima": "noite",
+      "raposa": "sono"
+    },
+    {
+      "t": 168.3,
+      "texto": "Até a raposinha dormir.",
+      "arte": "hist03_p10",
+      "fundo": "bg_quarto_noite",
+      "pecas": [],
+      "clima": "sono",
+      "raposa": "sono"
+    },
+    {
+      "t": 170.3,
+      "fim": true
+    }
+  ]
 }

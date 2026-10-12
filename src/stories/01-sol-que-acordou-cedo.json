@@ -4,6 +4,116 @@
   "icone": "🌅",
   "capa": "capa_historia1",
   "audio": "historias/01-sol-que-acordou-cedo",
-  "duracao": 0,
-  "mundo": 1
+  "duracao": 184,
+  "mundo": 1,
+  "paginas": [
+    {
+      "t": 0,
+      "capa": true
+    },
+    {
+      "t": 2.4,
+      "texto": "Era bem cedinho, e o céu ainda estava azul-escuro.\nA raposinha dormia enroladinha, com o rabo cobrindo o nariz.",
+      "arte": "hist01_p01",
+      "fundo": "bg_quarto_noite",
+      "pecas": [
+        "m19_lua",
+        "m19_estrelas"
+      ],
+      "clima": "noite",
+      "raposa": "sono"
+    },
+    {
+      "t": 19.55,
+      "texto": "Lá no alto, o Sol abriu um olho.\nDepois o outro.\nE pensou: \"Hoje eu acordei cedo demais.\"\nEle ficou ali, quietinho, esperando a hora de subir.",
+      "arte": "hist01_p02",
+      "fundo": "bg_quarto_manha",
+      "pecas": [
+        "☀️"
+      ],
+      "clima": "aurora",
+      "raposa": "nao"
+    },
+    {
+      "t": 36.15,
+      "texto": "Enquanto esperava, o Sol foi acordando o mundo devagarzinho.\nPrimeiro acordou um passarinho, que fez um \"piu\" pequenininho… e dormiu de novo.\nDepois acordou uma flor, que abriu só uma pétala… e esperou.\nDepois acordou o vento, que passou de mansinho pela janela da raposinha e bagunçou um pouquinho a franja dela.",
+      "arte": "hist01_p03",
+      "fundo": "bg_quarto_manha",
+      "pecas": [
+        "🐦",
+        "🌸",
+        "🍃"
+      ],
+      "clima": "aurora",
+      "raposa": "nao"
+    },
+    {
+      "t": 69.4,
+      "texto": "A raposinha se espreguiçou.\nEsticou as patas da frente… esticou as patas de trás… e bocejou bem grande.\n\"Bom dia, Sol\", ela disse.\n\"Bom dia, raposinha\", disse o Sol. \"Hoje eu acordei cedo. Posso te fazer companhia?\"\n\"Pode\", disse a raposinha.",
+      "arte": "hist01_p04",
+      "fundo": "bg_quarto_manha",
+      "pecas": [],
+      "clima": "manha",
+      "raposa": "centro"
+    },
+    {
+      "t": 99.6,
+      "texto": "E os dois ficaram olhando o céu mudar de cor.\nAzul-escuro… azul-claro… cor-de-rosa… e depois amarelinho, bem quente.",
+      "arte": "hist01_p05",
+      "fundo": "bg_quarto_manha",
+      "pecas": [
+        "☀️"
+      ],
+      "clima": "manha",
+      "raposa": "esq"
+    },
+    {
+      "t": 115.25,
+      "texto": "A raposinha lavou o rosto com a água fresca.\nEscovou os dentes bem devagar, um por um.\nPenteou a franja que o vento bagunçou.\nE arrumou a cama, puxando a coberta até ficar lisinha.\n\"Agora eu estou pronta\", ela disse.\nO Sol sorriu e subiu mais um pouquinho no céu.",
+      "arte": "hist01_p06",
+      "fundo": "bg_banheiro",
+      "pecas": [
+        "m01_escova",
+        "m25_pente",
+        "m02_cama_arrumada"
+      ],
+      "clima": "manha",
+      "raposa": "dir"
+    },
+    {
+      "t": 145.95,
+      "texto": "Mas isso foi de manhã.\nAgora já é noite.\nO Sol foi dormir do outro lado do mundo… e deixou a Lua cuidando da raposinha.",
+      "arte": "hist01_p07",
+      "fundo": "bg_quarto_noite",
+      "pecas": [
+        "m19_lua"
+      ],
+      "clima": "noite",
+      "raposa": "nao"
+    },
+    {
+      "t": 159.75,
+      "texto": "A raposinha se enrolou de novo, com o rabo cobrindo o nariz.\nFechou um olho…\nfechou o outro…",
+      "arte": "hist01_p08",
+      "fundo": "bg_quarto_noite",
+      "pecas": [
+        "m19_estrelas"
+      ],
+      "clima": "noite",
+      "raposa": "sono"
+    },
+    {
+      "t": 176.1,
+      "texto": "E dormiu.",
+      "arte": "hist01_p09",
+      "fundo": "bg_quarto_noite",
+      "pecas": [],
+      "clima": "sono",
+      "raposa": "sono"
+    },
+    {
+      "t": 177.75,
+      "fim": true
+    }
+  ]
 }
