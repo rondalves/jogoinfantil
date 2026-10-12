@@ -122,7 +122,7 @@ def missao(m):
     return fora
 
 
-CABECALHO = """# Todas as missoes do Rotininha
+CABECALHO = """# Todas as missoes do Rotina Feliz
 
 Gerado por `python tools/listar_missoes.py`. **Nao edite este arquivo:** ele e
 reescrito a cada vez. Quem manda e `src/missions/NN-nome.json`.

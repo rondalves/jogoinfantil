@@ -1,4 +1,4 @@
-package com.rotininha.missoesdodia;
+package com.colostudio.rotinafeliz;
 
 import com.getcapacitor.BridgeActivity;
 

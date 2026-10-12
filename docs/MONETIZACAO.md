@@ -13,8 +13,8 @@ Metade do caminho já está no código. Falta ligar o pagamento de verdade.
 | Regra de "mundo pago" | `mundoPago()` em [src/compras.ts](../src/compras.ts) | pronta |
 | Recibo no aparelho | `localStorage` fora do perfil — quem pagou pagou pela família | pronto |
 | Botão de comprar e "já comprei, restaurar" | painel dos adultos, atrás da conta de multiplicação | pronto, some sozinho enquanto tudo estiver livre |
-| Produto | `rotininha.mundos.completos`, R$ 4,99 | só o nome; não existe na Play ainda |
-| Ponte com a loja | `window.RotininhaLoja` | **não existe** — é o que falta |
+| Produto | `rotinafeliz.mundos.completos`, R$ 4,99 | só o nome; não existe na Play ainda |
+| Ponte com a loja | `window.RotinaFelizLoja` | **não existe** — é o que falta |
 
 A criança nunca vê preço nem botão de compra: tudo fica na área dos adultos.
 Isso não é detalhe, é exigência da política Families da Play.
@@ -27,7 +27,7 @@ Isso não é detalhe, é exigência da política Families da Play.
 
 | campo | valor |
 |---|---|
-| ID do produto | `rotininha.mundos.completos` (igual ao `PRODUTO` do código) |
+| ID do produto | `rotinafeliz.mundos.completos` (igual ao `PRODUTO` do código) |
 | Nome | Todos os mundos |
 | Descrição | Abre os mundos 3 a 6, com todas as missões, joguinhos e historinhas. |
 | Preço | R$ 4,99 |
@@ -45,11 +45,11 @@ npx cap sync android
 
 ### 3. Escrever a ponte
 
-Um arquivo só, carregado antes do jogo, que publica `window.RotininhaLoja` com
+Um arquivo só, carregado antes do jogo, que publica `window.RotinaFelizLoja` com
 os dois métodos que [src/compras.ts](../src/compras.ts) já chama:
 
 ```ts
-window.RotininhaLoja = {
+window.RotinaFelizLoja = {
   async comprar(produto) {
     const { purchase } = await InAppPurchases.purchaseProduct({ productIdentifier: produto });
     return purchase?.state === 'purchased';

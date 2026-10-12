@@ -1,4 +1,4 @@
-# Rotininha
+# Rotina Feliz
 
 Jogo educativo infantil (4–7 anos, pt-BR) da **Colo Studio**. 2D cartoon,
 retrato, mobile-first. Vite + TypeScript + Phaser 3. Sem backend, sem anúncios

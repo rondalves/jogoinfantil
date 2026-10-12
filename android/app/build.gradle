@@ -9,10 +9,10 @@ if (arquivoChaves.exists()) {
 }
 
 android {
-    namespace = "com.rotininha.missoesdodia"
+    namespace = "com.colostudio.rotinafeliz"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.rotininha.missoesdodia"
+        applicationId "com.colostudio.rotinafeliz"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

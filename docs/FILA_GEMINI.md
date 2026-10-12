@@ -244,7 +244,7 @@ Ilustração 2D cartoon infantil de apenas uma pedra cinza arredondada vista de 
 Único item em que **o texto é obrigatório**. Confira a grafia antes de salvar.
 
 ```
-Logotipo cartoon infantil com as palavras "Missões do Dia" em duas linhas, letras gordinhas e arredondadas, amarelo com contorno escuro grosso, levemente em arco. Acima das palavras, uma estrela e uma raposinha laranja pequena espiando por trás da letra. Sem moldura e sem fundo decorado. Grafia exata: Missões do Dia, com acento no "o" de Missões. Estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048, o logotipo centralizado.
+Logotipo cartoon infantil com as palavras "Rotina Feliz" em duas linhas, letras gordinhas e arredondadas, amarelo com contorno escuro grosso, levemente em arco. Acima das palavras, uma estrela e uma raposinha laranja pequena espiando por trás da letra. Sem moldura e sem fundo decorado. Grafia exata: Rotina Feliz. Estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048, o logotipo centralizado.
 ```
 
 ---

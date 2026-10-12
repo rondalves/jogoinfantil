@@ -6,7 +6,7 @@
 > `npm run assets` não mexe mais no personagem.
 >
 > **Para voltar à arte antiga**, a versão de antes está guardada na marca
-> `personagem-antigo` do git, e o APK dela em `apks/Rotininha-personagem-antigo.apk`.
+> `personagem-antigo` do git, e o APK dela em `apks/RotinaFeliz-personagem-antigo.apk`.
 > Voltar só o personagem é desfazer o commit da troca; os perfis já convertidos
 > guardam o penteado pela posição nova da lista, então peça a conversão de volta
 > junto.

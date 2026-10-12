@@ -6,7 +6,7 @@ Quando o pagamento entrar, revise as linhas marcadas.
 ## Nome do app
 
 ```
-Rotininha
+Rotina Feliz
 ```
 
 ## Descrição curta (máximo 80 caracteres)
@@ -18,7 +18,7 @@ Missões do dia a dia para crianças de 4 a 7 anos. Sem anúncios e sem internet
 ## Descrição completa
 
 ```
-Rotininha transforma a rotina da criança em missões.
+Rotina Feliz transforma a rotina da criança em missões.
 
 Acordar e escovar os dentes, arrumar a mochila, atravessar a rua de mãos dadas, esperar a vez, pedir com licença, guardar os brinquedos, jantar à mesa, tomar banho e dormir: cada hora do dia vira uma aventura curta, narrada em voz alta, para quem ainda não sabe ler.
 

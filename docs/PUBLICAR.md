@@ -1,6 +1,6 @@
-# Publicar o Rotininha na Google Play
+# Publicar o Rotina Feliz na Google Play
 
-App: **Rotininha** · Pacote: **com.rotininha.missoesdodia** (definitivo)
+App: **Rotina Feliz** · Pacote: **com.colostudio.rotinafeliz** (definitivo)
 Alvo: **API 36 (Android 16)**, que é o mínimo exigido hoje · Orientação: retrato
 Permissões: **nenhuma** — o jogo roda inteiro no aparelho, sem rede.
 
@@ -98,7 +98,7 @@ e instale o `app-release.apk` de `android/app/build/outputs/apk/release/`.
 
 ### 3.1 Criar o app
 **Todos os apps → Criar app**
-- Nome: `Rotininha`
+- Nome: `Rotina Feliz`
 - Idioma padrão: Português (Brasil)
 - Tipo: **Jogo** · Gratuito
 - Aceite as declarações de diretrizes

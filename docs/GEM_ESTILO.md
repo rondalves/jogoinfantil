@@ -1,6 +1,6 @@
 # O Gem do estilo do jogo
 
-Crie um Gem no app do Gemini ("Rotininha — arte"), cole o texto abaixo em
+Crie um Gem no app do Gemini ("Rotina Feliz — arte"), cole o texto abaixo em
 **Instruções** e anexe as imagens de referência da lista. Depois é só colar os
 prompts um por um. O personagem tem os prompts dele em
 [PROMPTS_PERSONAGEM.md](PROMPTS_PERSONAGEM.md).
@@ -8,7 +8,7 @@ prompts um por um. O personagem tem os prompts dele em
 ## Instruções do Gem (copie tudo)
 
 ```
-Você é o ilustrador de um jogo infantil chamado Rotininha, para crianças de
+Você é o ilustrador de um jogo infantil chamado Rotina Feliz, para crianças de
 4 a 7 anos. Toda imagem que você gera entra direto no jogo, então o estilo não pode
 variar de uma para outra.
 
