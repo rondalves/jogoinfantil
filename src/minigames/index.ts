@@ -1,11 +1,7 @@
 import type Phaser from 'phaser';
 import type { Chave } from '../narracoes';
 import type { PersonagemCfg } from '../storage';
-import { corredor } from './corredor';
 import { corrida } from './corrida';
-import { escalada } from './escalada';
-import { estrelas } from './estrelas';
-import { memoria } from './memoria';
 
 export interface ResultadoMiniGame {
   /** pontos da partida (nunca ha derrota nem game over) */
@@ -35,8 +31,7 @@ export interface MiniGame {
   ): Promise<ResultadoMiniGame>;
 }
 
-export const MINIGAMES: MiniGame[] = [corrida, escalada, corredor, memoria, estrelas];
+/** So o kart sobrou daqui: virou o joguinho do mundo 3 (scenes/MiniGame.ts). */
+export const MINIGAMES: MiniGame[] = [corrida];
 
-export const miniGameDoMundo = (mundo: number) => MINIGAMES.find((g) => g.mundo === mundo);
 
-export const liberados = (broches: number[]) => MINIGAMES.filter((g) => broches.includes(g.mundo));

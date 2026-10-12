@@ -86,12 +86,12 @@ gastam ficha, nao dao estrela e nao tem como errar.
 
 | mundo | | historinha | joguinho |
 |---|---|---|---|
-| 1 | Manha em Casa (livre) | A raposinha e o sol que acordou cedo | Estoura-bolhas |
-| 2 | Escola (livre) | O primeiro dia de aula | Memória das palavras mágicas |
-| 3 | Volta para Casa (paga) | A viagem da lua no carro | Trânsito colorido |
-| 4 | Tarde (paga) | O brinquedo que queria brincar | Quebra-cabeça de brinquedos |
-| 5 | Janta (paga) | A sopa de estrelas | Monte o prato colorido |
-| 6 | Banho e Cama (paga) | A raposinha vai dormir | Ligar as estrelinhas |
+| 1 | Manha em Casa (livre) | A raposinha e o sol que acordou cedo | Colorir |
+| 2 | Escola (livre) | O primeiro dia de aula | Jogo da memória |
+| 3 | Volta para Casa (paga) | A viagem da lua no carro | Corrida de kart |
+| 4 | Tarde (paga) | O brinquedo que queria brincar | Encaixe os blocos |
+| 5 | Janta (paga) | A sopa de estrelas | Moto na montanha |
+| 6 | Banho e Cama (paga) | A raposinha vai dormir | Estoura-bolhas |
 
 ---
 

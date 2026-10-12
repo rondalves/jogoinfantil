@@ -40,7 +40,7 @@ export class Perfis extends Phaser.Scene {
       card.add(this.add.text(0, 100, p.nome, { fontSize: '42px', color: '#2b3a4a', fontStyle: 'bold' }).setOrigin(0.5));
       card.add(
         this.add
-          .text(0, 146, `\u{2B50} ${estrelasTotais(p)}   \u{1F39F}\u{FE0F} ${p.fichas}`, {
+          .text(0, 146, `\u{2B50} ${estrelasTotais(p)}   \u{1FA99} ${p.moedas}`, {
             fontSize: '32px',
             color: '#6b7a8a',
           })

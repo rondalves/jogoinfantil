@@ -1,10 +1,10 @@
 import Phaser from 'phaser';
-import { abas, TOPO_ABAS } from '../abas';
+import { abas, seloNovo, TOPO_ABAS } from '../abas';
 import { CONFIG } from '../config';
 import { joguinhoAberto, porQueFechado } from '../desbloqueio';
 import { JOGUINHOS, type Joguinho } from '../joguinhos';
 import { narrador } from '../narrador';
-import { ativo, type Perfil } from '../storage';
+import { ativo, type Perfil, salvar } from '../storage';
 import { TEMA } from '../theme';
 import { area, botaoOuvir, fundo, irPara, nota, titulo } from '../ui';
 
@@ -12,12 +12,12 @@ const W = CONFIG.LARGURA;
 
 /** Que cena abre cada tipo de joguinho. Tipo fora daqui aparece "em breve". */
 const ABRIR: Record<string, [string, object?]> = {
-  corrida: ['MiniGame', { id: 'corrida', livre: true }],
-  memoria: ['JogoMemoria'],
   colorir: ['Colorir'],
-  bolhas: ['Bolhas'],
-  torre: ['TorrePanquecas'],
+  memoria: ['JogoMemoria'],
+  corrida: ['MiniGame', { id: 'corrida' }],
+  encaixe: ['Encaixe'],
   moto: ['MotoMontanha'],
+  bolhas: ['Bolhas'],
 };
 
 /**
@@ -58,6 +58,7 @@ export class Joguinhos extends Phaser.Scene {
   private cartao(j: Joguinho, x: number, y: number, larg: number, alt: number) {
     const aberto = joguinhoAberto(this.p, j);
     const pronto = j.tipo in ABRIR;
+    const novo = aberto && !(this.p.joguinhosVistos ?? []).includes(j.id);
 
     const g = this.add.graphics();
     g.fillStyle(0xffffff, aberto ? 0.97 : 0.6);
@@ -82,6 +83,8 @@ export class Joguinhos extends Phaser.Scene {
         .setOrigin(0.5);
     }
 
+    if (novo) seloNovo(this, x + larg / 2 - 34, y - alt / 2 + 30);
+
     const fala = aberto
       ? pronto
         ? j.titulo
@@ -94,6 +97,10 @@ export class Joguinhos extends Phaser.Scene {
         return;
       }
       nota(740);
+      if (novo) {
+        this.p.joguinhosVistos = [...(this.p.joguinhosVistos ?? []), j.id];
+        salvar(this.p);
+      }
       const [cena, dados] = ABRIR[j.tipo];
       irPara(this, cena, dados);
     }, fala);

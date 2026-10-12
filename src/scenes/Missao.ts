@@ -2,8 +2,8 @@ import Phaser from 'phaser';
 import { ANIMACOES, ARTE_ANIMACAO, darVida } from '../animacoes';
 import { carregar } from '../assets';
 import { CONFIG } from '../config';
-import { bonusMundo, concluirMissao, gastarFicha, podeJogar } from '../economia';
-import { miniGameDoMundo } from '../minigames';
+import { bonusMundo, concluirMissao } from '../economia';
+import { joguinhoDoMundo } from '../joguinhos';
 import { jogoCompleto, MISSOES, missaoPorId, missoesDoMundo } from '../missions';
 import { narrador } from '../narrador';
 import { fale } from '../narracoes';
@@ -43,6 +43,8 @@ const W = CONFIG.LARGURA;
  * -> estrelas e recompensa. Missao nova = JSON novo, sem mexer aqui.
  */
 export class Missao extends Phaser.Scene {
+  /** a missao que acabou de terminar fechou o mundo (e abriu o joguinho dele) */
+  private fechouMundo = false;
   private def!: MissaoDef;
   private perfil!: Perfil;
   private erros = 0;
@@ -278,6 +280,7 @@ export class Missao extends Phaser.Scene {
     const estrelas = concluirMissao(this.perfil, this.def.id, this.erros, this.def.estrelas_max);
     const ids = missoesDoMundo(this.def.mundo).map((m) => m.id);
     const bonus = bonusMundo(this.perfil, this.def.mundo, ids);
+    this.fechouMundo = bonus > 0;
     salvar(this.perfil);
     this.barra.destroy();
     this.barra = hud(this, this.perfil, 96, W / 2, 0.5);
@@ -295,7 +298,7 @@ export class Missao extends Phaser.Scene {
     });
   }
 
-  /** A moeda vira 3 fichas, com som e narracao. Maior no fim do mundo. */
+  /** A moeda aparece girando, com som e narracao; no fim do mundo vem o broche junto. */
   private animarMoeda(fimDeMundo: boolean) {
     const y = 600;
     const moeda = figura(this, W / 2, y, 'moeda', '\u{1FA99}', 120);
@@ -311,23 +314,6 @@ export class Missao extends Phaser.Scene {
       ease: 'Back.out',
       onComplete: () => {
         this.tweens.add({ targets: moeda, alpha: 0, scale: tamMoeda * 0.4, duration: 300 });
-        for (let i = 0; i < CONFIG.FICHAS_POR_MOEDA; i++) {
-          const ficha = figura(this, W / 2, y, 'ficha', '\u{1F39F}\u{FE0F}', 96);
-          const tamFicha = ficha.scale;
-          this.camada.add(ficha);
-          nota(660 + i * 110);
-          this.tweens.add({
-            targets: ficha,
-            x: W / 2 + (i - 1) * 150,
-            y: y + 90,
-            duration: 500,
-            delay: i * 120,
-            ease: 'Cubic.out',
-            onComplete: () => {
-              this.tweens.add({ targets: ficha, x: 150, y: 96, scale: tamFicha * 0.4, alpha: 0.2, duration: 600, delay: 700 });
-            },
-          });
-        }
         if (fimDeMundo) {
           // o broche do mundo entra onde a moeda estava: em cima da estrela do
           // meio ele ficava torto e escondia a estrela
@@ -351,39 +337,24 @@ export class Missao extends Phaser.Scene {
       );
       return;
     }
-    const jogo = miniGameDoMundo(this.def.mundo);
-    const liberado = jogo && this.perfil.broches.includes(this.def.mundo);
-    if (!liberado) {
+    const jogo = joguinhoDoMundo(this.def.mundo);
+    if (this.fechouMundo && jogo) {
+      // fechou o mundo: o joguinho do mundo acabou de abrir
+      fale('missao_joguinho_novo');
       this.camada.add(
-        botao(this, W / 2, 1120, 'Voltar ao mapa', () => irPara(this, 'Mapa'), { icone: '\u{1F5FA}\u{FE0F}' }),
+        botao(this, W / 2, 1060, `Jogar: ${jogo.titulo}`, () => irPara(this, 'Joguinhos'), {
+          icone: jogo.icone,
+          cor: 0x7ddc8a,
+          largura: 560,
+        }),
+      );
+      this.camada.add(
+        botao(this, W / 2, 1200, 'Voltar ao mapa', () => irPara(this, 'Mapa'), { icone: '\u{1F5FA}\u{FE0F}', largura: 560 }),
       );
       return;
     }
-    // O mini game nunca abre sozinho: a crianca escolhe.
     this.camada.add(
-      botao(
-        this,
-        W / 2,
-        1060,
-        'Jogar agora',
-        () => {
-          const motivo = podeJogar(this.perfil);
-          if (motivo !== 'ok') {
-            fale(motivo === 'limite' ? 'missao_limite' : 'missao_sem_fichas');
-            return;
-          }
-          gastarFicha(this.perfil);
-          salvar(this.perfil);
-          irPara(this, 'MiniGame', { id: jogo!.id });
-        },
-        { icone: '\u{1F3AE}', cor: 0x7ddc8a, largura: 420 },
-      ),
-    );
-    this.camada.add(
-      botao(this, W / 2, 1200, 'Guardar fichas', () => irPara(this, 'Mapa'), {
-        icone: '\u{1F39F}\u{FE0F}',
-        largura: 420,
-      }),
+      botao(this, W / 2, 1120, 'Voltar ao mapa', () => irPara(this, 'Mapa'), { icone: '\u{1F5FA}\u{FE0F}' }),
     );
   }
 }

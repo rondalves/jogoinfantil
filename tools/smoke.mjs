@@ -131,7 +131,7 @@ const main = async () => {
     for (const e of await page.evaluate(conferirLayout)) problemas.push(`${atual}: ${e}`);
   }
 
-  const jogos = ['corrida', 'escalada', 'corredor', 'memoria', 'estrelas'];
+  const jogos = ['corrida'];
   for (const id of jogos) {
     atual = `mini game ${id}`;
     const ok = await page.evaluate(async (jogo) => {
@@ -171,12 +171,12 @@ const main = async () => {
     await page.mouse.click(alvo.x, alvo.y);
     await page.waitForTimeout(700);
     const abriu = await page.evaluate(() =>
-      window.__jogo.scene.getScene('Pais').children.list.some((o) => o.type === 'Text' && /Limite:/.test(o.text)),
+      window.__jogo.scene.getScene('Pais').children.list.some((o) => o.type === 'Text' && /Joguinhos:/.test(o.text)),
     );
     if (abriu) break;
   }
   const abriuPainel = await page.evaluate(() =>
-    window.__jogo.scene.getScene('Pais').children.list.some((o) => o.type === 'Text' && /Limite:/.test(o.text)),
+    window.__jogo.scene.getScene('Pais').children.list.some((o) => o.type === 'Text' && /Joguinhos:/.test(o.text)),
   );
   if (!abriuPainel) problemas.push(`${atual}: nao passei da conta, o painel nao foi conferido`);
   for (const e of await page.evaluate(conferirLayout)) problemas.push(`${atual}: ${e}`);
@@ -212,7 +212,7 @@ const main = async () => {
   }, ids);
   for (const e of await page.evaluate(conferirLayout)) problemas.push(`${atual}: ${e}`);
 
-  for (const tela of ['Perfis', 'Criador', 'Mapa', 'Pais', 'Tutorial', 'Historinhas', 'Joguinhos', 'Cantinho', 'Bolhas', 'JogoMemoria', 'Colorir', 'TorrePanquecas', 'MotoMontanha']) {
+  for (const tela of ['Perfis', 'Criador', 'Mapa', 'Pais', 'Tutorial', 'Historinhas', 'Joguinhos', 'Cantinho', 'Bolhas', 'JogoMemoria', 'Colorir', 'Encaixe', 'MotoMontanha']) {
     atual = `tela ${tela}`;
     await page.evaluate(async (chave) => {
       const j = window.__jogo;
@@ -226,7 +226,7 @@ const main = async () => {
   await navegador.close();
 
   if (problemas.length === 0) {
-    console.log(`tudo certo: ${ids.length} missoes, ${jogos.length} mini games e ${['Perfis','Criador','Mapa','Pais','Tutorial','Historinhas','Joguinhos','Cantinho','Bolhas','JogoMemoria','Colorir','TorrePanquecas','MotoMontanha'].length + 1} telas sem erro`);
+    console.log(`tudo certo: ${ids.length} missoes, ${jogos.length} mini games e ${['Perfis','Criador','Mapa','Pais','Tutorial','Historinhas','Joguinhos','Cantinho','Bolhas','JogoMemoria','Colorir','Encaixe','MotoMontanha'].length + 1} telas sem erro`);
     return;
   }
   console.error(`${problemas.length} problema(s):`);

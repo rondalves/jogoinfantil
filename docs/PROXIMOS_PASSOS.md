@@ -6,17 +6,17 @@ O que falta para o jogo ficar pronto. Conferido no código em 11/10/2026.
 
 | | |
 |---|---|
-| Conteúdo | 28 missões em 6 mundos, 5 mini games de ficha, 6 joguinhos de prêmio, 6 historinhas |
+| Conteúdo | 28 missões em 6 mundos, 6 joguinhos (um por mundo), 6 historinhas |
 | Arte | 646 arquivos em `assets/img` (8,3 MB); nenhuma arte pedida faltando |
 | Personagem | desenhado por código: 7 tons de pele, 6 roupas, 5 rostos, 29 cabelos × 9 cores, laço e capa |
 | Android | `com.rotininha.missoesdodia`, versionCode 1, targetSdk 36, chave de assinatura criada |
-| Verificação | `tsc` ✅ · `npm test` 32 ✅ · `npm run smoke` 28 missões, 5 mini games e 14 telas ✅ |
+| Verificação | `tsc` ✅ · `npm test` 33 ✅ · `npm run smoke` 28 missões e 14 telas ✅ |
 
 ## 1. O jogo em si
 
 | o que | situação | o que fazer |
 |---|---|---|
-| **Joguinhos de prêmio** | prontos, um por mundo: corrida de kart sem fim, jogo da memória, colorir (6 bichinhos), estoura-bolhas, torre de panquecas (estilo Stack) e moto na montanha (estilo Hill Climb). Passou do tempo do dia (padrão 15 min, ajustável no painel dos pais), aparece "já fez as suas tarefas?" e só um adulto libera mais 10 min | ajustes depois do teste com as crianças |
+| **Joguinhos** | um por mundo, liberado quando a criança fecha o mundo: colorir (10 bichinhos), jogo da memória (4 a 16 cartas), corrida de kart, encaixe os blocos (estilo Tetris), moto na montanha (estilo Hill Climb, com fases e 3 vidas) e estoura-bolhas. Joguinho novo ganha selo na aba e no cartão até a criança abrir. As fichas e o botão Jogar do mapa saíram. Passou do tempo do dia (padrão 15 min), aparece "já fez as suas tarefas?" e só um adulto libera mais 10 min | ajustes depois do teste com as crianças |
 | **Nome** | a abertura diz "Rotina Feliz"; o ícone, a loja e os textos ainda dizem "Rotininha" | decidir o nome e trocar tudo junto (o id do pacote não muda) |
 | **Compra dos mundos** | os 6 mundos estão livres de propósito, para o teste; o pagamento não está ligado | se for cobrar: plugin de compra no Android, produto `rotininha.mundos.completos` na Play Console e `MUNDOS_LIVRES` de volta para 2. Dá também para lançar grátis e cobrar numa atualização |
 

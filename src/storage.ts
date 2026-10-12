@@ -37,6 +37,8 @@ export interface Perfil {
   tempoJogo?: TempoJogo;
   /** minutos de joguinho por dia antes do aviso; padrao em tempoDeJogo.ts */
   limiteJogoMin?: number;
+  /** joguinhos que a crianca ja abriu (o resto dos liberados ganha selo de novo) */
+  joguinhosVistos?: string[];
 }
 
 const CHAVE = 'missoes-do-dia:perfis';

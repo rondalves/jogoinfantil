@@ -1,8 +1,10 @@
 import { LIMITES_MIN, limiteDoPerfil } from '../tempoDeJogo';
+import { JOGUINHOS } from '../joguinhos';
+import { joguinhosLiberados } from '../desbloqueio';
 import Phaser from 'phaser';
 import { comprar, lojaDisponivel, PRECO, restaurar, temTudo } from '../compras';
 import { CONFIG, MUNDOS } from '../config';
-import { estrelasTotais, partidasHoje } from '../economia';
+import { estrelasTotais } from '../economia';
 import { MISSOES } from '../missions';
 import { narrador } from '../narrador';
 import { TEMA } from '../theme';
@@ -77,10 +79,8 @@ export class Pais extends Phaser.Scene {
       `Missões concluídas: ${feitas} de ${MISSOES.length}`,
       `Estrelas: ${estrelasTotais(this.p)}`,
       `Moedas ganhas: ${this.p.moedas}`,
-      `Fichas gastas: ${this.p.fichasGastas}`,
-      `Fichas no saldo: ${this.p.fichas}`,
       `Broches de mundo: ${this.p.broches.length} de ${MUNDOS.length}`,
-      `Partidas hoje: ${partidasHoje(this.p)} de ${this.p.limiteDiario}`,
+      `Joguinhos liberados: ${joguinhosLiberados(this.p).length} de ${JOGUINHOS.length}`,
     ];
     this.add
       .text(60, 372, linhas.join('\n'), { fontSize: '28px', color: '#2b3a4a', lineSpacing: 8 })
@@ -121,20 +121,10 @@ export class Pais extends Phaser.Scene {
       },
     );
 
-    const limite = this.add
-      .text(56, 890, `Limite: ${this.p.limiteDiario} partidas/dia`, { fontSize: '30px', color: '#2b3a4a' })
-      .setOrigin(0, 0.5);
-    const muda = (d: number) => {
-      this.p.limiteDiario = Phaser.Math.Clamp(this.p.limiteDiario + d, 0, 20);
-      salvar(this.p);
-      limite.setText(`Limite: ${this.p.limiteDiario} partidas/dia`);
-    };
-    botao(this, W - 230, 890, '-1', () => muda(-1), { largura: 120, cor: 0xbfd4e8, altura: 86 });
-    botao(this, W - 96, 890, '+1', () => muda(1), { largura: 120, cor: 0xbfd4e8, altura: 86 });
     // joguinho nao acaba sozinho: passou deste tempo no dia, aparece o aviso
     // "ja fez as suas tarefas?" e so um adulto libera mais
     ajuste(
-      986,
+      890,
       () => `Joguinhos: ${limiteDoPerfil()} min/dia`,
       (r) => {
         const i = LIMITES_MIN.indexOf(limiteDoPerfil());
@@ -144,18 +134,18 @@ export class Pais extends Phaser.Scene {
       },
     );
 
-    botao(this, W / 2, 1086, 'Zerar progresso', () => this.confirmar('zerar'), {
+    botao(this, W / 2, 1010, 'Zerar progresso', () => this.confirmar('zerar'), {
       largura: 520,
       cor: 0xffb0a0,
       altura: 96,
     });
-    botao(this, W / 2 - 170, 1190, 'Apagar perfil', () => this.confirmar('apagar'), {
+    botao(this, W / 2 - 170, 1120, 'Apagar perfil', () => this.confirmar('apagar'), {
       largura: 300,
       cor: 0xff8f7a,
       altura: 96,
     });
     const link = this.add
-      .text(W / 2 + 180, 1190, 'Privacidade', { fontSize: '30px', color: '#1f6fb2', fontStyle: 'bold' })
+      .text(W / 2 + 180, 1120, 'Privacidade', { fontSize: '30px', color: '#1f6fb2', fontStyle: 'bold' })
       .setOrigin(0.5);
     toque(link, () => window.open(CONFIG.URL_PRIVACIDADE, '_blank', 'noopener'));
   }

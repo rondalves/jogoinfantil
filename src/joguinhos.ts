@@ -1,9 +1,9 @@
 /**
- * Os joguinhos livres da biblioteca.
+ * Os joguinhos: um por mundo, liberado quando a crianca fecha o mundo.
  *
- * Diferentes dos mini games de ficha: estes sao premio de mundo fechado, nao
- * gastam nada, nao tem derrota, nao tem erro que pune e nao dao estrela. A
- * crianca volta a jogar quantas vezes quiser.
+ * Sao o premio do mundo (nao existe mais mini game de ficha). Nao gastam
+ * nada; a crianca volta a jogar quantas vezes quiser, ate o tempo do dia
+ * (tempoDeJogo.ts).
  *
  * O catalogo e JSON (src/minigames/NN-nome.json); quem desenha cada tipo e o
  * `tipo`, lido pela tela do joguinho.
@@ -12,9 +12,9 @@ export interface Joguinho {
   id: string;
   titulo: string;
   icone: string;
-  /** qual brincadeira abrir: corrida, memoria, colorir, bolhas, torre, moto (ver ABRIR em scenes/Joguinhos.ts) */
+  /** qual brincadeira abrir: colorir, memoria, corrida, encaixe, moto, bolhas (ver ABRIR em scenes/Joguinhos.ts) */
   tipo: string;
-  /** mundo que precisa estar fechado para abrir este joguinho */
+  /** mundo que, fechado, libera este joguinho */
   mundo: number;
 }
 

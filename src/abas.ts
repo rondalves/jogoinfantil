@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import { joguinhosNovos } from './desbloqueio';
+import { ativo } from './storage';
 import { CONFIG } from './config';
 import { narrador } from './narrador';
 import { irPara, nota, TELA } from './ui';
@@ -26,6 +28,17 @@ export const ABAS: Aba[] = [
 ];
 
 export const ALTURA_ABAS = 150;
+
+/** Bolinha vermelha de "tem coisa nova", com um numero ou uma exclamacao. */
+export function seloNovo(cena: Phaser.Scene, x: number, y: number, texto = '!') {
+  const c = cena.add.container(x, y);
+  const g = cena.add.graphics();
+  g.fillStyle(0xe8483f, 1).fillCircle(0, 0, 24);
+  g.lineStyle(4, 0xffffff, 1).strokeCircle(0, 0, 24);
+  c.add([g, cena.add.text(0, 1, texto, { fontSize: '28px', color: '#ffffff', fontStyle: 'bold' }).setOrigin(0.5)]);
+  cena.tweens.add({ targets: c, scale: 1.15, duration: 600, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
+  return c;
+}
 /** Onde o conteudo de cada tela precisa parar para nao sumir atras da barra. */
 export const TOPO_ABAS = TELA.baixo - ALTURA_ABAS;
 
@@ -78,6 +91,10 @@ export function abas(cena: Phaser.Scene, ativa: string) {
         irPara(cena, aba.cena);
       });
     c.add(z);
+    // joguinho liberado e ainda nao aberto: o selo fica na aba ate a crianca abrir
+    const p = aba.cena === 'Joguinhos' ? ativo() : null;
+    const novos = p ? joguinhosNovos(p).length : 0;
+    if (novos > 0) c.add(seloNovo(cena, x + 34, TOPO_ABAS + 28, String(novos)));
   });
   return c;
 }

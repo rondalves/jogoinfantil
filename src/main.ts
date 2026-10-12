@@ -14,7 +14,7 @@ import { AvisoTempo } from './scenes/AvisoTempo';
 import { Colorir } from './scenes/Colorir';
 import { JogoMemoria } from './scenes/JogoMemoria';
 import { MotoMontanha } from './scenes/MotoMontanha';
-import { TorrePanquecas } from './scenes/TorrePanquecas';
+import { Encaixe } from './scenes/Encaixe';
 import { MiniGame } from './scenes/MiniGame';
 import { Missao } from './scenes/Missao';
 import { Pais } from './scenes/Pais';
@@ -44,7 +44,7 @@ carregarFonte().then(() => {
     scene: [
       Boot, Perfis, Criador, Tutorial, Mapa, Missao, MiniGame, Medalha, Pais,
       Historinhas, Historia, Joguinhos, Bolhas, Cantinho, JogoMemoria, Colorir, AvisoTempo,
-      TorrePanquecas, MotoMontanha,
+      Encaixe, MotoMontanha,
     ],
   });
   // tools/capturas.mjs espera a cena ficar pronta por aqui

@@ -1,23 +1,21 @@
 import Phaser from 'phaser';
 import { darVida } from '../animacoes';
-import { abas } from '../abas';
+import { abas, TOPO_ABAS } from '../abas';
 import { mundoPago } from '../compras';
 import { CONFIG, MUNDOS } from '../config';
-import { gastarFicha, partidasHoje, podeJogar } from '../economia';
-import { liberados, type MiniGame } from '../minigames';
 import { jogoCompleto, missoesBonus, missoesDoMundo, mundoCompleto } from '../missions';
 import { narrador } from '../narrador';
 import { TEMA } from '../theme';
-import { fale } from '../narracoes';
 import { desenharPersonagem } from '../personagem';
-import { ativo, salvar, type Perfil } from '../storage';
-import { balao, botao, botaoOuvir, cobrirTela, figura, fundo, hud, irPara, textoEmPainel, titulo, toque } from '../ui';
+import { ativo, type Perfil } from '../storage';
+import { botaoOuvir, figura, fundo, hud, irPara, textoEmPainel, toque } from '../ui';
 import type { Missao as MissaoDef } from '../types';
 import { musicaDoMundo } from '../musica';
 
 const W = CONFIG.LARGURA;
 const TOPO = 330;
-const BASE = 1080;
+/** onde a lista de missoes acaba: logo acima das abas */
+const BASE = TOPO_ABAS - 20;
 
 export class Mapa extends Phaser.Scene {
   private p!: Perfil;
@@ -70,7 +68,6 @@ export class Mapa extends Phaser.Scene {
     this.lista = this.add.container(0, TOPO).setName('rola');
     this.montarLista();
     this.scroll();
-    this.barraInferior();
     abas(this, 'Mapa');
   }
 
@@ -226,67 +223,4 @@ export class Mapa extends Phaser.Scene {
     });
   }
 
-  private barraInferior() {
-    this.add.rectangle(W / 2, 1090, W, 150, 0xffffff, 0.92).setDepth(40);
-    const jogos = liberados(this.p.broches);
-    botao(this, W / 2, 1090, `Jogar  (${this.p.fichas})`, () => this.abrirJogos(jogos), {
-      icone: '\u{1F3AE}',
-      largura: 460,
-      cor: 0x7ddc8a,
-    }).setDepth(41);
-  }
-
-  private abrirJogos(jogos: MiniGame[]) {
-    const motivo = podeJogar(this.p);
-    if (jogos.length === 0) {
-      fale('mapa_termine_mundo');
-      this.aviso('Termine um mundo para abrir um jogo!');
-      return;
-    }
-    if (motivo === 'limite') {
-      fale('mapa_limite');
-      this.aviso(`Hoje já foram ${partidasHoje(this.p)} partidas. Amanhã tem mais!`);
-      return;
-    }
-    if (motivo === 'sem_fichas') {
-      fale('mapa_sem_fichas');
-      this.aviso('Sem fichas. Faça uma missão para ganhar mais!');
-      return;
-    }
-    if (jogos.length === 1) {
-      this.jogar(jogos[0].id);
-      return;
-    }
-    this.escolherJogo(jogos);
-  }
-
-  /** Com mais de um jogo aberto, a crianca escolhe qual quer. */
-  private escolherJogo(jogos: MiniGame[]) {
-    const capa = this.add.container(0, 0).setDepth(80);
-    capa.add(cobrirTela(this, 0x12263a, 0.9));
-    capa.add(titulo(this, 'Qual jogo?', 260));
-    jogos.forEach((j, i) => {
-      capa.add(
-        botao(this, W / 2, 480 + i * 170, j.nome, () => this.jogar(j.id), {
-          icone: j.icone,
-          largura: 560,
-          cor: 0x7ddc8a,
-        }),
-      );
-    });
-    capa.add(
-      botao(this, W / 2, 480 + jogos.length * 170, 'Agora não', () => capa.destroy(), { largura: 560 }),
-    );
-  }
-
-  private jogar(id: string) {
-    gastarFicha(this.p);
-    salvar(this.p);
-    irPara(this, 'MiniGame', { id });
-  }
-
-  private aviso(texto: string) {
-    const b = balao(this, texto, 1000).setDepth(60);
-    this.time.delayedCall(3200, () => b.destroy());
-  }
 }

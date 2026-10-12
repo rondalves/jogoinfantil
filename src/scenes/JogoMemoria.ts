@@ -38,6 +38,10 @@ function baralho(pares: number) {
   return Phaser.Utils.Array.Shuffle([...escolhidas, ...escolhidas]);
 }
 
+const CARTAS_POR_RODADA = [4, 6, 8, 10, 12, 16];
+/** cartas por fileira em cada tamanho de mesa */
+const COLUNAS: Record<number, number> = { 4: 2, 6: 3, 8: 4, 10: 5, 12: 4, 16: 4 };
+
 interface Carta {
   figura: number;
   frente: Phaser.GameObjects.Image | Phaser.GameObjects.Text;
@@ -48,8 +52,8 @@ interface Carta {
 
 /**
  * Joguinho da memoria, sem fim: acabou uma rodada, vem outra com figuras
- * novas. A primeira rodada tem 4 pares; as seguintes, 6. Errar so vira as
- * cartas de volta. Quem para e a crianca (ou o aviso de tempo).
+ * novas e mais cartas (4, 6, 8, 10, 12 e depois 16). Errar so vira as cartas
+ * de volta. Quem para e a crianca (ou o aviso de tempo).
  */
 export class JogoMemoria extends Phaser.Scene {
   private rodada = 0;
@@ -89,14 +93,15 @@ export class JogoMemoria extends Phaser.Scene {
   private novaRodada() {
     this.mesa.removeAll(true);
     this.rodada += 1;
-    const pares = this.rodada === 1 ? 4 : 6;
+    // cada rodada com mais cartas: 4, 6, 8, 10, 12 e depois sempre 16
+    const total = CARTAS_POR_RODADA[Math.min(this.rodada, CARTAS_POR_RODADA.length) - 1];
+    const pares = total / 2;
     const cartas = baralho(pares);
-    // quatro por fileira: em pe, com duas colunas, a mesa subia ate o titulo
-    const cols = 4;
-    const lado = pares === 4 ? 160 : 150;
-    const passo = lado + 18;
-    const linhas = Math.ceil(cartas.length / cols);
-    const y0 = 660 - ((linhas - 1) * passo) / 2;
+    const cols = COLUNAS[total];
+    const linhas = Math.ceil(total / cols);
+    const lado = Math.min(200, (660 - (cols - 1) * 16) / cols, (780 - (linhas - 1) * 16) / linhas);
+    const passo = lado + 16;
+    const y0 = 690 - ((linhas - 1) * passo) / 2;
     this.mesa.add(textoEmPainel(this, W / 2, 230, 'Ache os pares!', 40, W - 220));
     this.atualizarPlacar();
 

@@ -6,13 +6,8 @@ ui_nome_bonito.mp3;mascote;Oi! Que nome bonito!;Depois de confirmar o nome
 ui_primeiro_nome.mp3;adulto;Primeiro escreva seu nome!;Criador, ao salvar sem nome
 ui_item_guardado.mp3;adulto;Esse ainda está guardado. Junte estrelas e broches!;Criador, acessório bloqueado
 ui_perfis_cheios.mp3;adulto;Já tem quatro personagens aqui. Peça para um adulto apagar um.;Tela de perfis cheia
-mapa_termine_mundo.mp3;mascote;Termine um mundo inteiro para abrir um jogo novo!;Mapa, botão Jogar sem mini game
-mapa_limite.mp3;adulto;As partidas de hoje acabaram. Vamos desenhar ou brincar lá fora?;Mapa, limite diário
-mapa_sem_fichas.mp3;adulto;Suas fichas acabaram. Faça uma missão para ganhar mais!;Mapa, saldo zerado
-missao_moeda.mp3;mascote;Você ganhou uma moeda! Ela virou três fichas!;Fim da missão
-missao_mundo_completo.mp3;mascote;Mundo completo! Você ganhou um broche e cinco moedas, que viraram quinze fichas!;Fim do mundo
-missao_sem_fichas.mp3;adulto;Suas fichas acabaram. Faça outra missão para ganhar mais!;Fim da missão, sem fichas
-missao_limite.mp3;adulto;As partidas de hoje acabaram. Vamos brincar de outra coisa?;Fim da missão, limite diário
+missao_moeda.mp3;mascote;Você ganhou uma moeda!;Fim da missão
+missao_mundo_completo.mp3;mascote;Mundo completo! Você ganhou um broche e cinco moedas!;Fim da missão que fecha o mundo
 etapa_sopre.mp3;adulto;Sopre bem devagar, bem longo. Vamos de novo!;Etapa de respirar
 mg1_escolha_pista.mp3;adulto;Escolha a pista da corrida!;Corrida de kart, escolha da pista
 mg1_como_jogar.mp3;adulto;Pegue as moedas e desvie dos cones. Pode tocar na tela ou inclinar o celular!;Corrida de kart, começo
@@ -21,7 +16,7 @@ mg1_fim.mp3;mascote;Boa! Olha quantas moedinhas você juntou!;Corrida de kart, f
 tut_1.mp3;adulto;Este é o mapa. Cada mundo é uma hora do seu dia.;Tutorial, passo 1
 tut_2.mp3;mascote;Toque numa missão para começar. A raposinha vai te ajudar!;Tutorial, passo 2
 tut_3.mp3;adulto;Fazendo com capricho você ganha estrelas.;Tutorial, passo 3
-tut_4.mp3;adulto;As moedas viram fichas, e com as fichas você joga!;Tutorial, passo 4
+tut_4.mp3;adulto;Terminando um mundo, você ganha um joguinho novo!;Tutorial, passo 4
 mg2_como_jogar.mp3;adulto;Toque no próximo degrau para subir. Se tiver pedra, toque de novo para pular!;Escalada, começo
 mg2_pedra.mp3;adulto;Tem uma pedra no caminho. Toque de novo para pular!;Escalada, ao achar uma pedra
 mg2_fim.mp3;mascote;Você chegou lá em cima! Que escalada!;Escalada, fim
@@ -33,6 +28,20 @@ mg4_fim.mp3;mascote;Que memória boa você tem!;Memória, fim
 mg5_como_jogar.mp3;adulto;As estrelas estão caindo devagarinho. Toque para pegar.;Céu das estrelas, começo
 mg5_fim.mp3;mascote;Que céu bonito! Agora é hora de descansar.;Céu das estrelas, fim
 medalha_final.mp3;mascote;Parabéns! Você cuidou do seu dia inteirinho. Você é o Super Ajudante do Dia!;Tela da medalha final
+tempo_aviso.mp3;adulto;Você está jogando há bastante tempo! Já fez as suas tarefas?;Aviso de tempo de joguinho
+tempo_adulto.mp3;adulto;Chame um adulto para liberar mais um pouquinho.;Aviso de tempo, botão do adulto
+tempo_liberado.mp3;adulto;Pronto! Mais um pouquinho de joguinho.;Aviso de tempo, depois do adulto liberar
+jogo_memoria.mp3;adulto;Ache os pares! Toque em duas cartas.;Joguinho da memória
+jogo_memoria_rodada.mp3;adulto;Muito bem! Vamos de novo, com outras figuras!;Joguinho da memória, fim da rodada
+jogo_colorir.mp3;adulto;Escolha uma cor e toque no desenho para pintar!;Joguinho de colorir
+jogo_colorir_pronto.mp3;adulto;Que lindo! Ficou todo colorido!;Joguinho de colorir, desenho todo pintado
+jogo_moto.mp3;adulto;Verde acelera, vermelho freia. Cuidado nas descidas e pule os buracos!;Joguinho da moto
+jogo_moto_capotou.mp3;adulto;Opa, capotou! Vamos de novo, daqui da bandeira.;Joguinho da moto, perdeu uma vida
+jogo_moto_buraco.mp3;adulto;Opa, caiu no buraco! Vamos de novo, daqui da bandeira.;Joguinho da moto, perdeu uma vida
+jogo_moto_fim.mp3;adulto;Que passeio! Quantas notinhas você pegou! Vamos de novo?;Joguinho da moto, acabaram as vidas
+jogo_encaixe.mp3;adulto;Toque para girar a peça e encaixe! Linha cheia some!;Joguinho de encaixar
+jogo_encaixe_encheu.mp3;adulto;Encheu tudo! Vamos limpar e continuar!;Joguinho de encaixar, tabuleiro cheio
+missao_joguinho_novo.mp3;adulto;E abriu um joguinho novo! Ele está na aba Joguinhos.;Fim da missão que fecha o mundo
 letra_a.mp3;adulto;A;Teclado do nome
 letra_b.mp3;adulto;B;Teclado do nome
 letra_c.mp3;adulto;C;Teclado do nome

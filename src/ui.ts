@@ -314,11 +314,10 @@ export function botaoVoltar(cena: Phaser.Scene, destino: string, dados?: object)
   return toque(b, () => irPara(cena, destino, dados));
 }
 
-/** Saldo de moedas, fichas e estrelas, com os icones da arte. */
+/** Saldo de moedas e estrelas, com os icones da arte. */
 export function hud(cena: Phaser.Scene, p: Perfil, y = 96, x = 24, origemX = 0) {
   const itens: [string, string, number][] = [
     ['moeda', '\u{1FA99}', p.moedas],
-    ['ficha', '\u{1F39F}\u{FE0F}', p.fichas],
     ['estrela', '\u{2B50}', estrelasTotais(p)],
   ];
   const passo = 160;
@@ -343,7 +342,7 @@ export function hud(cena: Phaser.Scene, p: Perfil, y = 96, x = 24, origemX = 0) 
       itens.length * passo - 24,
       80,
       undefined,
-      `${p.moedas} moedas, ${p.fichas} fichas e ${estrelasTotais(p)} estrelas`,
+      `${p.moedas} moedas e ${estrelasTotais(p)} estrelas`,
     ),
   );
   return c;

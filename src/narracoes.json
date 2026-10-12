@@ -27,33 +27,13 @@
     "texto": "Já tem quatro personagens aqui. Peça para um adulto apagar um.",
     "local": "Tela de perfis cheia"
   },
-  "mapa_termine_mundo": {
-    "texto": "Termine um mundo inteiro para abrir um jogo novo!",
-    "local": "Mapa, botão Jogar sem mini game"
-  },
-  "mapa_limite": {
-    "texto": "As partidas de hoje acabaram. Vamos desenhar ou brincar lá fora?",
-    "local": "Mapa, limite diário"
-  },
-  "mapa_sem_fichas": {
-    "texto": "Suas fichas acabaram. Faça uma missão para ganhar mais!",
-    "local": "Mapa, saldo zerado"
-  },
   "missao_moeda": {
-    "texto": "Você ganhou uma moeda! Ela virou três fichas!",
+    "texto": "Você ganhou uma moeda!",
     "local": "Fim da missão"
   },
   "missao_mundo_completo": {
-    "texto": "Mundo completo! Você ganhou um broche e cinco moedas, que viraram quinze fichas!",
-    "local": "Fim do mundo"
-  },
-  "missao_sem_fichas": {
-    "texto": "Suas fichas acabaram. Faça outra missão para ganhar mais!",
-    "local": "Fim da missão, sem fichas"
-  },
-  "missao_limite": {
-    "texto": "As partidas de hoje acabaram. Vamos brincar de outra coisa?",
-    "local": "Fim da missão, limite diário"
+    "texto": "Mundo completo! Você ganhou um broche e cinco moedas!",
+    "local": "Fim da missão que fecha o mundo"
   },
   "etapa_sopre": {
     "texto": "Sopre bem devagar, bem longo. Vamos de novo!",
@@ -88,7 +68,7 @@
     "local": "Tutorial, passo 3"
   },
   "tut_4": {
-    "texto": "As moedas viram fichas, e com as fichas você joga!",
+    "texto": "Terminando um mundo, você ganha um joguinho novo!",
     "local": "Tutorial, passo 4"
   },
   "mg2_como_jogar": {
@@ -167,10 +147,6 @@
     "texto": "Verde acelera, vermelho freia. Cuidado nas descidas e pule os buracos!",
     "local": "Joguinho da moto"
   },
-  "jogo_torre": {
-    "texto": "Toque na tela para soltar a panqueca e montar uma torre bem alta!",
-    "local": "Joguinho da torre de panquecas"
-  },
   "jogo_moto_capotou": {
     "texto": "Opa, capotou! Vamos de novo, daqui da bandeira.",
     "local": "Joguinho da moto, perdeu uma vida"
@@ -182,5 +158,17 @@
   "jogo_moto_fim": {
     "texto": "Que passeio! Quantas notinhas você pegou! Vamos de novo?",
     "local": "Joguinho da moto, acabaram as vidas"
+  },
+  "jogo_encaixe": {
+    "texto": "Toque para girar a peça e encaixe! Linha cheia some!",
+    "local": "Joguinho de encaixar"
+  },
+  "jogo_encaixe_encheu": {
+    "texto": "Encheu tudo! Vamos limpar e continuar!",
+    "local": "Joguinho de encaixar, tabuleiro cheio"
+  },
+  "missao_joguinho_novo": {
+    "texto": "E abriu um joguinho novo! Ele está na aba Joguinhos.",
+    "local": "Fim da missão que fecha o mundo"
   }
 }

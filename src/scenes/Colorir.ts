@@ -20,7 +20,7 @@ const CENTRO = { x: W / 2, y: 548 };
 const ESCALA = 0.88;
 
 /**
- * Joguinho de colorir: escolhe a cor e toca na parte do desenho. Seis
+ * Joguinho de colorir: escolhe a cor e toca na parte do desenho. Dez
  * bichinhos feitos de formas (src/desenhos.ts), com o mesmo traco do
  * personagem. Nao tem certo nem errado; pintou tudo, ganha confete.
  */

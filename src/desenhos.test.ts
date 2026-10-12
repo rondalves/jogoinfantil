@@ -16,6 +16,10 @@ describe('desenhos de colorir', () => {
     expect(dentro(e, 80, 0)).toBe(false);
   });
 
+  it('tem 10 bichinhos', () => {
+    expect(DESENHOS.length).toBe(10);
+  });
+
   it('todo desenho cabe na caixa de 600x600', () => {
     for (const d of DESENHOS) {
       for (const p of d.partes) {

@@ -19,7 +19,7 @@ const PASSOS: Passo[] = [
   { chave: 'tut_1', icone: '\u{1F5FA}\u{FE0F}', arte: 'mundo1' },
   { chave: 'tut_2', icone: '\u{1F449}', arte: 'botao_play' },
   { chave: 'tut_3', icone: '\u{2B50}', arte: 'estrela' },
-  { chave: 'tut_4', icone: '\u{1F39F}\u{FE0F}', arte: 'ficha' },
+  { chave: 'tut_4', icone: '\u{1F3AE}', arte: '' },
 ];
 
 export class Tutorial extends Phaser.Scene {

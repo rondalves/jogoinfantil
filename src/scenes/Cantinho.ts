@@ -43,10 +43,9 @@ export class Cantinho extends Phaser.Scene {
     const linhas: [string, string, number | string][] = [
       ['estrela', '\u{2B50}', estrelasTotais(this.p)],
       ['moeda', '\u{1FA99}', this.p.moedas],
-      ['ficha', '\u{1F39F}\u{FE0F}', this.p.fichas],
     ];
     linhas.forEach(([arte, emoji, valor], i) => {
-      const x = W / 2 + (i - 1) * 210;
+      const x = W / 2 + (i - 0.5) * 230;
       const g = this.add.graphics();
       g.fillStyle(0xffffff, 0.96);
       g.fillRoundedRect(x - 95, 700, 190, 170, 26);
@@ -55,9 +54,9 @@ export class Cantinho extends Phaser.Scene {
         .text(x, 830, String(valor), { fontSize: '46px', color: '#3a3f45', fontStyle: 'bold' })
         .setOrigin(0.5);
     });
-    const nomes = ['estrelas', 'moedas', 'fichas'];
+    const nomes = ['estrelas', 'moedas'];
     linhas.forEach((l, i) =>
-      area(this, W / 2 + (i - 1) * 210, 785, 190, 170, undefined, `${l[2]} ${nomes[i]}`),
+      area(this, W / 2 + (i - 0.5) * 230, 785, 190, 170, undefined, `${l[2]} ${nomes[i]}`),
     );
 
     const concluidos = mundosConcluidos(this.p);
