@@ -7,6 +7,8 @@ import com.getcapacitor.BridgeActivity;
 public class MainActivity extends BridgeActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // a loja (compra unica e restauracao) e um plugin deste app
+        registerPlugin(LojaPlugin.class);
         super.onCreate(savedInstanceState);
         // O voltar do celular vai para o jogo, que faz o mesmo que o botao de
         // voltar da tela (src/main.ts). Sem isto o app fechava no meio da

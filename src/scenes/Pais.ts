@@ -82,8 +82,9 @@ export class Pais extends Phaser.Scene {
       `Broches de mundo: ${this.p.broches.length} de ${MUNDOS.length}`,
       `Joguinhos liberados: ${joguinhosLiberados(this.p).length} de ${JOGUINHOS.length}`,
     ];
+    // a compra fica entre o titulo e este bloco: por isso ele comeca em 404
     this.add
-      .text(60, 372, linhas.join('\n'), { fontSize: '28px', color: '#2b3a4a', lineSpacing: 8 })
+      .text(60, 404, linhas.join('\n'), { fontSize: '28px', color: '#2b3a4a', lineSpacing: 8 })
       .setOrigin(0, 0);
 
     // cada ajuste e uma linha so: rotulo a esquerda, botao a direita. Antes
@@ -168,7 +169,7 @@ export class Pais extends Phaser.Scene {
       return;
     }
     const recado = this.add
-      .text(W / 2, 352, '', { fontSize: '24px', color: '#b5564a', align: 'center', wordWrap: { width: W - 120 } })
+      .text(W / 2, 380, '', { fontSize: '24px', color: '#b5564a', align: 'center', wordWrap: { width: W - 120 } })
       .setOrigin(0.5);
     const tentar = async (fn: () => Promise<boolean>, falhou: string) => {
       if (!lojaDisponivel()) {
@@ -183,7 +184,7 @@ export class Pais extends Phaser.Scene {
     botao(
       this,
       W / 2,
-      240,
+      268,
       `Abrir os mundos ${pagos.join(' e ')} — ${PRECO}`,
       () => void tentar(comprar, 'Não deu para concluir a compra.'),
       { largura: 600, cor: TEMA.sim, tamanhoTexto: 30, altura: 86 },
@@ -193,7 +194,7 @@ export class Pais extends Phaser.Scene {
     botao(
       this,
       W / 2,
-      318,
+      338,
       'Já comprei: restaurar pela conta da Play Store',
       () => void tentar(restaurar, 'Não achei uma compra na conta da Play Store deste celular.'),
       { largura: 600, cor: 0xbfd4e8, tamanhoTexto: 24, altura: 56 },
