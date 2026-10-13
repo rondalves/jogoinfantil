@@ -168,29 +168,36 @@ export class Pais extends Phaser.Scene {
       return;
     }
     const recado = this.add
-      .text(W / 2, 344, '', { fontSize: '26px', color: '#b5564a', align: 'center' })
+      .text(W / 2, 352, '', { fontSize: '24px', color: '#b5564a', align: 'center', wordWrap: { width: W - 120 } })
       .setOrigin(0.5);
     const tentar = async (fn: () => Promise<boolean>, falhou: string) => {
       if (!lojaDisponivel()) {
         recado.setText('A compra abre no aplicativo instalado pela Play Store.');
         return;
       }
-      recado.setText('Abrindo a loja...');
+      recado.setText('Abrindo a Play Store...');
       recado.setText((await fn()) ? '' : falhou);
       if (temTudo()) irPara(this, 'Pais');
     };
+    const pagos = MUNDOS.filter((m) => m.id > CONFIG.MUNDOS_LIVRES).map((m) => m.id);
     botao(
       this,
       W / 2,
-      248,
-      `Abrir todos os mundos — ${PRECO}`,
+      240,
+      `Abrir os mundos ${pagos.join(' e ')} — ${PRECO}`,
       () => void tentar(comprar, 'Não deu para concluir a compra.'),
-      { largura: 600, cor: TEMA.sim, tamanhoTexto: 32 },
+      { largura: 600, cor: TEMA.sim, tamanhoTexto: 30, altura: 86 },
     );
-    const link = this.add
-      .text(W / 2, 318, 'Já comprei, restaurar', { fontSize: '26px', color: '#1f6fb2' })
-      .setOrigin(0.5);
-    toque(link, () => void tentar(restaurar, 'Não achei uma compra nesta conta.'));
+    // quem ja pagou e trocou de celular: a Play reconhece pela conta que esta
+    // na loja do aparelho, nao tem e-mail para digitar
+    botao(
+      this,
+      W / 2,
+      318,
+      'Já comprei: restaurar pela conta da Play Store',
+      () => void tentar(restaurar, 'Não achei uma compra na conta da Play Store deste celular.'),
+      { largura: 600, cor: 0xbfd4e8, tamanhoTexto: 24, altura: 56 },
+    );
   }
 
   private confirmar(acao: 'zerar' | 'apagar') {

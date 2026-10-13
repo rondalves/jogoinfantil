@@ -26,8 +26,11 @@ arte faltando. O que falta está em três grupos.
 - [ ] Teste interno primeiro. Se a conta de desenvolvedor for pessoal e nova,
       a produção exige **teste fechado com 12 testadores por 14 dias** ([PUBLICAR.md](PUBLICAR.md)).
 
-Mundos livres e compra desligada ficam assim no beta: o painel dos pais
-esconde a oferta enquanto tudo é livre.
+- [ ] **Compra**: criar o produto `rotinafeliz.mundos.completos` (R$ 4,99, não
+      consumível) e cadastrar os testadores de licença; depois testar no celular
+      comprar, reabrir e restaurar ([MONETIZACAO.md](MONETIZACAO.md)). Os
+      mundos 5 e 6 já estão trancados no app, e a loja já está ligada
+      (`LojaPlugin.java`, Play Billing 8).
 
 ## 2. O que muda o que os testadores vão achar
 
@@ -40,9 +43,8 @@ esconde a oferta enquanto tudo é livre.
 
 ## 3. Depois do beta
 
-- Compra de R$ 4,99: plugin de compra no Android, produto
-  `rotinafeliz.mundos.completos` na Play Console e `MUNDOS_LIVRES` de volta para 2
-  ([MONETIZACAO.md](MONETIZACAO.md)).
+- As 14 historinhas novas (07 a 20), parte da compra: gravar e entrar como
+  `src/stories/07-*.json` em diante, marcadas como pagas ([MONETIZACAO.md](MONETIZACAO.md)).
 - Vídeos das historinhas em livro animado ([VIDEOS_HISTORIAS.md](VIDEOS_HISTORIAS.md)),
   depois da regravação.
 - `m07_professora` está pronta mas nenhuma missão mostra; o `logo` existe mas a

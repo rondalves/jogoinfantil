@@ -1,3 +1,4 @@
+import { Capacitor, registerPlugin } from '@capacitor/core';
 import { CONFIG } from './config';
 
 /**
@@ -8,7 +9,8 @@ import { CONFIG } from './config';
  * matematica. A crianca nunca ve preco nem botao de comprar.
  *
  * O recibo fica no aparelho, fora do perfil: quem pagou pagou pela familia
- * inteira, nao por um personagem.
+ * inteira, nao por um personagem. Quem trocou de celular recupera pela conta
+ * da Play Store ("restaurar").
  */
 
 const CHAVE = 'missoes-do-dia:compra';
@@ -18,17 +20,14 @@ export const PRODUTO = 'rotinafeliz.mundos.completos';
 
 export const PRECO = 'R$ 4,99';
 
-/** Ponte opcional com a loja; so existe no aparelho, nunca no navegador. */
+/** A loja de verdade: LojaPlugin.java, so no app instalado pela Play. */
 interface Loja {
-  comprar(produto: string): Promise<boolean>;
-  restaurar(produto: string): Promise<boolean>;
+  comprar(opcoes: { produto: string }): Promise<{ ok: boolean }>;
+  restaurar(opcoes: { produto: string }): Promise<{ ok: boolean }>;
 }
+const Loja = registerPlugin<Loja>('Loja');
 
-function loja(): Loja | undefined {
-  return (globalThis as unknown as { RotinaFelizLoja?: Loja }).RotinaFelizLoja;
-}
-
-export const lojaDisponivel = () => loja() !== undefined;
+export const lojaDisponivel = () => Capacitor.isPluginAvailable('Loja');
 
 export function temTudo() {
   try {
@@ -51,20 +50,15 @@ export function mundoPago(mundo: number) {
   return mundo > CONFIG.MUNDOS_LIVRES && !temTudo();
 }
 
-/** Abre a compra na loja. Devolve false quando nao deu (ou foi cancelada). */
-export async function comprar(): Promise<boolean> {
-  const l = loja();
-  if (!l) return false;
-  const ok = await l.comprar(PRODUTO).catch(() => false);
+async function naLoja(acao: 'comprar' | 'restaurar'): Promise<boolean> {
+  if (!lojaDisponivel()) return false;
+  const { ok } = await Loja[acao]({ produto: PRODUTO }).catch(() => ({ ok: false }));
   if (ok) guardar();
   return ok;
 }
 
-/** Quem ja pagou e trocou de aparelho recupera por aqui. */
-export async function restaurar(): Promise<boolean> {
-  const l = loja();
-  if (!l) return false;
-  const ok = await l.restaurar(PRODUTO).catch(() => false);
-  if (ok) guardar();
-  return ok;
-}
+/** Abre a compra na loja. Devolve false quando nao deu (ou foi cancelada). */
+export const comprar = () => naLoja('comprar');
+
+/** Quem ja pagou e trocou de aparelho recupera pela conta da Play Store. */
+export const restaurar = () => naLoja('restaurar');

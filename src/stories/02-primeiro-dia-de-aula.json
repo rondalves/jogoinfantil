@@ -25,7 +25,7 @@
       "raposa": "esq"
     },
     {
-      "t": 19.2,
+      "t": 20.05,
       "texto": "Era o primeiro dia de aula, e a barriga da raposinha estava fazendo cócegas por dentro.\nNão era fome.\nEra um friozinho.\n\"Esse friozinho tem nome\", disse a mamãe raposa.\n\"Chama saudade adiantada. É porque você vai sentir saudade de casa, e depois vai sentir saudade da escola. Isso é bom.\"",
       "arte": "hist02_p02",
       "fundo": "bg_porta_casa",
@@ -36,7 +36,7 @@
       "raposa": "centro"
     },
     {
-      "t": 49.2,
+      "t": 48.4,
       "texto": "A raposinha deu a pata para a mamãe.\nElas atravessaram a rua bem juntinhas, olhando para um lado… e para o outro… e para o primeiro lado de novo.",
       "arte": "hist02_p03",
       "fundo": "bg_corredor",
@@ -47,7 +47,7 @@
       "raposa": "esq"
     },
     {
-      "t": 62.9,
+      "t": 62.35,
       "texto": "Na porta da escola, tinha uma professora com um sorriso grande.\nEla se abaixou e disse: \"Bom dia. Pode entrar.\"\nA raposinha disse: \"Bom dia\", bem baixinho.\nMas a professora ouviu.",
       "arte": "hist02_p04",
       "fundo": "bg_escola_entrada",
@@ -58,7 +58,7 @@
       "raposa": "esq"
     },
     {
-      "t": 83.55,
+      "t": 81.4,
       "texto": "Na sala, tinha uma mesa pequena do tamanho dela.\nE do lado, tinha um ursinho sentado, olhando para os próprios pés.\nA raposinha também olhou para os próprios pés.\nFicaram um tempão assim.",
       "arte": "hist02_p05",
       "fundo": "bg_sala_aula",
@@ -69,7 +69,7 @@
       "raposa": "esq"
     },
     {
-      "t": 102.1,
+      "t": 101.8,
       "texto": "Aí a raposinha tirou a maçã da mochila e disse: \"Quer um pedaço?\"\nO ursinho disse: \"Quero. Obrigado.\"\nE pronto.\nAgora eram dois.",
       "arte": "hist02_p06",
       "fundo": "bg_sala_aula",
@@ -81,7 +81,7 @@
       "raposa": "esq"
     },
     {
-      "t": 116.55,
+      "t": 113.85,
       "texto": "Eles desenharam juntos, ouviram a professora contar uma história sobre um peixe que queria voar, e esperaram a vez de brincar no balanço.",
       "arte": "hist02_p07",
       "fundo": "bg_sala_aula",
@@ -93,7 +93,7 @@
       "raposa": "centro"
     },
     {
-      "t": 128.0,
+      "t": 130.15,
       "texto": "Quando a mamãe voltou para buscar, a raposinha correu e deu um abraço bem apertado.\n\"Como foi?\", perguntou a mamãe.\n\"Foi bom\", disse a raposinha. \"Amanhã eu volto.\"",
       "arte": "hist02_p08",
       "fundo": "bg_escola_entrada",
@@ -104,7 +104,7 @@
       "raposa": "centro"
     },
     {
-      "t": 145.85,
+      "t": 147.1,
       "texto": "À noite, deitada na cama, a raposinha pensou no ursinho.\nPensou na professora.\nPensou no peixe que queria voar.",
       "arte": "hist02_p09",
       "fundo": "bg_quarto_noite",
@@ -116,7 +116,7 @@
       "raposa": "sono"
     },
     {
-      "t": 156.55,
+      "t": 158.6,
       "texto": "E o friozinho na barriga virou um quentinho.\nEla puxou a coberta até o queixo…\nFechou os olhos…",
       "arte": "hist02_p10",
       "fundo": "bg_quarto_noite",
@@ -127,7 +127,7 @@
       "raposa": "sono"
     },
     {
-      "t": 167.55,
+      "t": 162.55,
       "texto": "E dormiu.",
       "arte": "hist02_p11",
       "fundo": "bg_quarto_noite",
@@ -136,7 +136,7 @@
       "raposa": "sono"
     },
     {
-      "t": 169.6,
+      "t": 169.8,
       "fim": true
     }
   ]

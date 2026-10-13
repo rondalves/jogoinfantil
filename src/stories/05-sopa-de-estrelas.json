@@ -4,7 +4,7 @@
   "icone": "🍲",
   "capa": "capa_historia5",
   "audio": "historias/05-sopa-de-estrelas",
-  "duracao": 194,
+  "duracao": 196,
   "mundo": 5,
   "paginas": [
     {
@@ -24,7 +24,7 @@
       "raposa": "nao"
     },
     {
-      "t": 22.75,
+      "t": 25.35,
       "texto": "\"Vovó, que sopa é essa?\", perguntou a raposinha, subindo no banquinho.\n\"É sopa de estrelas\", disse a vovó.\nA raposinha arregalou os olhos. \"Estrelas de verdade?\"\n\"Olha aqui\", disse a vovó.\nE mexeu a sopa devagarinho.",
       "arte": "hist05_p02",
       "fundo": "bg_cozinha_cafe",
@@ -35,7 +35,7 @@
       "raposa": "esq"
     },
     {
-      "t": 46.4,
+      "t": 50.05,
       "texto": "Dentro da panela, boiando no caldo dourado, tinha um monte de macarrãozinho em formato de estrela.\nPequenininhas.\nAmarelas.\nGirando devagar quando a colher passava.\n\"Cada estrela tem um gosto\", disse a vovó.\n\"Essa tem gosto de cenoura. Essa tem gosto de batata. E essa… essa tem gosto de dia bom.\"",
       "arte": "hist05_p03",
       "fundo": "bg_cozinha_cafe",
@@ -48,7 +48,7 @@
       "raposa": "esq"
     },
     {
-      "t": 76.1,
+      "t": 80.95,
       "texto": "A raposinha ajudou a pôr a mesa.\nUm prato para ela, um prato para a vovó.\nUma colher para cada uma.\nUm copo de água.\nElas sentaram juntas.",
       "arte": "hist05_p04",
       "fundo": "bg_sala_janta",
@@ -61,7 +61,7 @@
       "raposa": "dir"
     },
     {
-      "t": 104.8,
+      "t": 96.3,
       "texto": "A raposinha soprou a sopa para esfriar: fuuu… fuuu…\nE tomou a primeira colherada.\nEstava quentinha.\nEstava gostosa.\nE tinha gosto de dia bom mesmo.",
       "arte": "hist05_p05",
       "fundo": "bg_sala_janta",
@@ -72,7 +72,7 @@
       "raposa": "dir"
     },
     {
-      "t": 115.0,
+      "t": 119.8,
       "texto": "\"Vovó, o que você fez hoje?\", perguntou a raposinha.\n\"Fiz sopa\", disse a vovó. \"E você?\"\n\"Eu brinquei. E fiz a lição. E guardei os brinquedos.\"\n\"Então você teve um dia cheio de estrelas\", disse a vovó.",
       "arte": "hist05_p06",
       "fundo": "bg_sala_janta",
@@ -84,7 +84,7 @@
       "raposa": "dir"
     },
     {
-      "t": 135.8,
+      "t": 143.4,
       "texto": "Elas tomaram a sopa até o fim, sem pressa, conversando baixinho.\nDepois a raposinha levou o prato para a pia.\nAgradeceu a vovó.\nE deu um beijo nela.",
       "arte": "hist05_p07",
       "fundo": "bg_sala_janta",
@@ -95,7 +95,7 @@
       "raposa": "centro"
     },
     {
-      "t": 154.55,
+      "t": 161.5,
       "texto": "Na hora de dormir, a raposinha olhou pela janela.\nO céu estava escuro e cheio de estrelas, pequenininhas, amarelas, igualzinhas às da sopa.",
       "arte": "hist05_p08",
       "fundo": "bg_quarto_noite",
@@ -106,7 +106,7 @@
       "raposa": "esq"
     },
     {
-      "t": 181.6,
+      "t": 176.75,
       "texto": "\"Será que o céu também é uma sopa?\", ela pensou.\nE foi pensando nisso…\nbem devagar…",
       "arte": "hist05_p09",
       "fundo": "bg_quarto_noite",
@@ -117,7 +117,7 @@
       "raposa": "sono"
     },
     {
-      "t": 184.7,
+      "t": 182.4,
       "texto": "Até dormir.",
       "arte": "hist05_p10",
       "fundo": "bg_quarto_noite",
@@ -126,7 +126,7 @@
       "raposa": "sono"
     },
     {
-      "t": 187.53,
+      "t": 189.35,
       "fim": true
     }
   ]

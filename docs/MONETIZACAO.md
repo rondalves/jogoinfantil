@@ -1,97 +1,62 @@
 # A compra única de R$ 4,99
 
-O plano: a criança joga de graça os dois primeiros mundos — 12 das 28 missões,
-**43% do jogo** — e o adulto abre o resto com uma compra única.
+A criança joga de graça os mundos 1 a 4: 18 das 28 missões, 4 joguinhos e 4
+historinhas. O adulto abre o resto com uma compra única:
 
-Metade do caminho já está no código. Falta ligar o pagamento de verdade.
+- os mundos 5 (Janta) e 6 (Banho e Cama): 10 missões, 2 joguinhos (moto na
+  montanha e estoura-bolhas) e 2 historinhas;
+- as 14 historinhas novas (07 a 20), assim que forem gravadas.
 
-## O que já existe
+Sem anúncio, sem assinatura e sem moeda comprada. A criança nunca vê preço nem
+botão de comprar: tudo fica na área dos adultos, atrás da conta de
+multiplicação. Isso é exigência da política Families da Play.
 
-| peça | onde | estado |
-|---|---|---|
-| Trava por mundo | `CONFIG.MUNDOS_LIVRES` em [src/config.ts](../src/config.ts) | **hoje em 6** (tudo livre, para o teste). Vira **2** quando o pagamento entrar |
-| Regra de "mundo pago" | `mundoPago()` em [src/compras.ts](../src/compras.ts) | pronta |
-| Recibo no aparelho | `localStorage` fora do perfil — quem pagou pagou pela família | pronto |
-| Botão de comprar e "já comprei, restaurar" | painel dos adultos, atrás da conta de multiplicação | pronto, some sozinho enquanto tudo estiver livre |
-| Produto | `rotinafeliz.mundos.completos`, R$ 4,99 | só o nome; não existe na Play ainda |
-| Ponte com a loja | `window.RotinaFelizLoja` | **não existe** — é o que falta |
+## Como está no código
 
-A criança nunca vê preço nem botão de compra: tudo fica na área dos adultos.
-Isso não é detalhe, é exigência da política Families da Play.
-
-## O que falta, na ordem
-
-### 1. Criar o produto na Play Console
-
-**Monetizar → Produtos → Produtos no app → Criar produto**
-
-| campo | valor |
+| peça | onde |
 |---|---|
-| ID do produto | `rotinafeliz.mundos.completos` (igual ao `PRODUTO` do código) |
-| Nome | Todos os mundos |
-| Descrição | Abre os mundos 3 a 6, com todas as missões, joguinhos e historinhas. |
-| Preço | R$ 4,99 |
-| Tipo | Compra única, **não consumível** |
+| Trava por mundo | `CONFIG.MUNDOS_LIVRES: 4` em [src/config.ts](../src/config.ts); `mundoPago()` em [src/compras.ts](../src/compras.ts) |
+| Loja | `LojaPlugin.java`, com a Play Billing Library 8 (a Play exige 8 ou mais nova). Fala só com o app da Play Store do aparelho; nada vai para outro servidor |
+| Ponte com o jogo | `src/compras.ts` chama o plugin `Loja` pelo Capacitor: `comprar` e `restaurar` |
+| Recibo no aparelho | `localStorage`, fora do perfil: quem pagou pagou pela família |
+| Botões | painel dos adultos: "Abrir os mundos 5 e 6 — R$ 4,99" e "Já comprei: restaurar pela conta da Play Store" |
 
-O app precisa já ter uma versão enviada em alguma faixa de teste, senão a aba
-de produtos fica bloqueada.
+**Restaurar**: a Play identifica a compra pela conta Google que está na Play
+Store do aparelho. Não existe "digitar o e-mail": quem trocou de celular entra
+com a mesma conta na loja e toca em restaurar. A compra também é reconhecida
+(acknowledge) na hora, senão a Play devolve o dinheiro em 3 dias.
 
-### 2. Instalar o plugin de pagamento
+No navegador (`npm run dev`) a loja não existe: os botões avisam que a compra
+abre no app instalado pela Play Store.
 
-```bash
-npm i @capacitor-community/in-app-purchases
-npx cap sync android
-```
+## O que falta na Play Console
 
-### 3. Escrever a ponte
+1. **Criar o produto** em Monetizar → Produtos → Produtos no app:
 
-Um arquivo só, carregado antes do jogo, que publica `window.RotinaFelizLoja` com
-os dois métodos que [src/compras.ts](../src/compras.ts) já chama:
+   | campo | valor |
+   |---|---|
+   | ID do produto | `rotinafeliz.mundos.completos` (igual ao `PRODUTO` do código) |
+   | Nome | Mundos 5 e 6 e historinhas novas |
+   | Descrição | Abre os mundos Janta e Banho e Cama, com 10 missões, 2 joguinhos e 2 historinhas, e as 14 historinhas novas conforme chegam. |
+   | Preço | R$ 4,99 |
+   | Tipo | Compra única, **não consumível** |
 
-```ts
-window.RotinaFelizLoja = {
-  async comprar(produto) {
-    const { purchase } = await InAppPurchases.purchaseProduct({ productIdentifier: produto });
-    return purchase?.state === 'purchased';
-  },
-  async restaurar(produto) {
-    const { purchases } = await InAppPurchases.restorePurchases();
-    return purchases.some((p) => p.productIdentifier === produto);
-  },
-};
-```
+   A aba de produtos só abre depois que uma versão foi enviada a alguma faixa
+   de teste.
 
-Nada mais muda: `comprar()` já guarda o recibo e o mapa já destranca sozinho.
+2. **Testadores de licença** (Configurações → Testes de licença): as contas
+   que vão testar compram de graça, sem cobrança no cartão.
 
-### 4. Voltar a trava
+3. **Testar no celular**: comprar, fechar o app, abrir de novo (continua
+   aberto), desinstalar, instalar e restaurar.
 
-Em [src/config.ts](../src/config.ts), `MUNDOS_LIVRES: 6` volta para `2`.
+4. Na ficha, marcar que o app tem compras e trocar "sem compras" pelo texto
+   da compra ([FICHA_LOJA.md](FICHA_LOJA.md)).
 
-### 5. Testar a compra de verdade
+## As 14 historinhas novas
 
-Compra não funciona em `npm run dev` nem em APK instalado na mão. Precisa:
-
-1. Subir o `.aab` assinado numa faixa de teste
-2. **Configuração → Teste de licença**: ponha seu e-mail como testador de licença
-3. Instalar pelo link de participação do teste
-4. Comprar — vai aparecer "item de teste", sem cobrança
-
-Teste também: comprar, desinstalar, reinstalar e usar **"Já comprei, restaurar"**.
-Se isso falhar, a Play reprova.
-
-### 6. Ficha e questionários
-
-- Na ficha: troque "sem compras" por "uma compra única e opcional abre os
-  mundos 3 a 6" ([docs/FICHA_LOJA.md](FICHA_LOJA.md))
-- Em **Classificação de conteúdo** e **Público-alvo**: marque que o app
-  **contém compras no app**
-- A Play mostra "Compras no app R$ 4,99" embaixo do nome, automaticamente
-
-## Por que 43% e não 40%
-
-A divisão é por mundo, não por missão: mundos 1 e 2 (Manhã em Casa e Escola)
-somam 12 das 28 missões. Cortar no meio de um mundo deixaria a criança parada
-no meio de uma rotina, que é justamente o que o jogo ensina a terminar.
-
-Para chegar mais perto de 40%, dá para mover uma missão do mundo 2 para o 3 —
-mas o ganho é pequeno e mexe no progresso de quem já jogou.
+Os roteiros estão em [HISTORIAS_2.md](HISTORIAS_2.md) e [HISTORIAS_3.md](HISTORIAS_3.md).
+Quando forem gravadas, entram como `src/stories/07-*.json` em diante, marcadas
+como pagas, e a biblioteca passa a mostrá-las para quem comprou. Enquanto isso,
+a descrição do produto diz "conforme chegam": vender o que ainda não existe é
+o que a Play mais reclama, então o texto não pode prometer data.

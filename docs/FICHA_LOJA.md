@@ -1,7 +1,7 @@
 # Ficha da loja — texto pronto para colar
 
-Tudo aqui é para a versão de **teste**, com os seis mundos livres e sem compra.
-Quando o pagamento entrar, revise as linhas marcadas.
+Os mundos 1 a 4 são livres; os mundos 5 e 6 e as historinhas novas abrem com
+uma compra única de R$ 4,99 ([MONETIZACAO.md](MONETIZACAO.md)).
 
 ## Nome do app
 
@@ -27,16 +27,14 @@ São 28 missões em 6 mundos, do "Manhã em Casa" ao "Banho e Cama". Cada mundo 
 A criança monta o próprio personagem: 7 tons de pele, 6 roupas, 29 penteados em 9 cores, laço e capa de herói.
 
 Para os adultos:
-• Sem anúncios, sem compras e sem internet — o jogo funciona no modo avião.
+• Sem anúncios, sem assinatura e sem internet — o jogo funciona no modo avião.
+• Os mundos 1 a 4 são gratuitos. Uma compra única e opcional, feita pelo adulto, abre os mundos 5 e 6 e as historinhas novas.
 • Nenhum dado sai do aparelho. Não há cadastro, login nem coleta de informação.
 • Área dos adultos protegida por uma conta de multiplicação, com limite de tempo de joguinho por dia e a opção de apagar o progresso.
 • Narração em português do Brasil em todas as telas.
 
 Feito para crianças de 4 a 7 anos, com botões grandes, leitura em voz alta e nenhuma tela que puna o erro: errar só faz a raposinha explicar de novo.
 ```
-
-> Quando o pagamento entrar, troque "sem compras" por "uma compra única e
-> opcional abre os mundos 3 a 6" e marque o campo de compras na Play Console.
 
 ## Imagens
 
@@ -52,7 +50,8 @@ Feito para crianças de 4 a 7 anos, com botões grandes, leitura em voz alta e n
 envio. A exclusão acontece no painel dos adultos e ao desinstalar.
 
 **Classificação de conteúdo** — categoria Educação/Jogos, sem violência, sem
-linguagem imprópria, sem compras, sem conteúdo de usuário, sem anúncios.
+linguagem imprópria, **com compra no app** (uma, única, atrás da conta de
+multiplicação), sem conteúdo de usuário, sem anúncios.
 Resultado esperado: Livre / 3+.
 
 **Público-alvo** — faixas "5 e menos" e "6 a 8". O app entra na política

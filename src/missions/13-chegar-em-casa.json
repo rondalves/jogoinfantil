@@ -35,6 +35,7 @@
         },
         {
           "icone": "👕",
+      "img": "m05_uniforme",
           "texto": "Tirar o uniforme",
           "fala": "Tirar o uniforme",
           "x": 550,

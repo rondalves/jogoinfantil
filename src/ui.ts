@@ -385,16 +385,17 @@ export function balao(cena: Phaser.Scene, texto: string, y = 340, mascote = true
   g.fillRoundedRect(60, y - 110, W - 120, 220, 36);
   c.add(g);
   if (mascote) c.add(figura(cena, 140, y + 150, 'mascote_raposinha', '\u{1F98A}', 150));
-  c.add(
-    cena.add
-      .text(W / 2, y, texto, {
-        fontSize: '42px',
-        color: '#2b3a4a',
-        align: 'center',
-        wordWrap: { width: W - 200 },
-      })
-      .setOrigin(0.5),
-  );
+  const t = cena.add
+    .text(W / 2, y, texto, {
+      fontSize: '42px',
+      color: '#2b3a4a',
+      align: 'center',
+      wordWrap: { width: W - 200 },
+    })
+    .setOrigin(0.5);
+  // frase comprida encolhe ate caber na caixa: a quarta linha saia por baixo e sumia atras do cabelo
+  for (let tam = 42; t.height > 180 && tam > 28; tam -= 2) t.setFontSize(tam);
+  c.add(t);
   c.add(area(cena, W / 2, y, W - 120, 220, undefined, texto));
   return c;
 }

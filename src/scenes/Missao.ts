@@ -151,11 +151,12 @@ export class Missao extends Phaser.Scene {
     this.limpar();
     this.camada.add(titulo(this, `${this.def.icone}  ${this.def.titulo}`, 220));
     const frase = narrador.falar(this.def.narracao_intro, this.def.audio_intro);
-    this.camada.add(balao(this, frase, 430));
     const p = desenharPersonagem(this, this.perfil.personagem, 1.1);
     p.setPosition(W / 2, 820);
     darVida(this, p);
     this.camada.add(p);
+    // o balao vem depois do personagem: cabelo grande (black power) cobria a ultima linha
+    this.camada.add(balao(this, frase, 430));
     this.camada.add(botao(this, W / 2, 1120, 'Vamos!', () => this.mostrar(), { icone: '\u{1F680}', cor: 0x7ddc8a }));
   }
 
@@ -164,11 +165,12 @@ export class Missao extends Phaser.Scene {
     this.limpar();
     const m = this.def.mostrar;
     const frase = narrador.falar(m?.narracao ?? 'Olha como se faz!', m?.audio);
-    this.camada.add(balao(this, frase, 400));
     const p = desenharPersonagem(this, this.perfil.personagem, 1.2);
     p.setPosition(W / 2, 830);
     darVida(this, p);
     this.camada.add(p);
+    // o balao vem depois do personagem: cabelo grande (black power) cobria a ultima linha
+    this.camada.add(balao(this, frase, 400));
     // num cartao, nao solto no ar: o emoji sozinho ao lado do personagem lia
     // como um pedaco de movel caido no quarto
     const cartao = this.add.graphics();

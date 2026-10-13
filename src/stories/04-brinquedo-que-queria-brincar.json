@@ -4,7 +4,7 @@
   "icone": "🧸",
   "capa": "capa_historia4",
   "audio": "historias/04-brinquedo-que-queria-brincar",
-  "duracao": 177,
+  "duracao": 179,
   "mundo": 4,
   "paginas": [
     {
@@ -35,7 +35,7 @@
       "raposa": "esq"
     },
     {
-      "t": 51.5,
+      "t": 50.35,
       "texto": "Mas um dia a raposinha brincou… brincou… e, quando a janta ficou pronta, deixou o carrinho azul embaixo do sofá e foi comer.\nO carrinho ficou lá, no escuro.\nEle não ficou bravo.\nSó ficou um pouquinho sozinho.",
       "arte": "hist04_p03",
       "fundo": "bg_sala_almoco",
@@ -46,7 +46,7 @@
       "raposa": "nao"
     },
     {
-      "t": 70.2,
+      "t": 71.55,
       "texto": "\"Será que ela esqueceu de mim?\", pensou o carrinho.\nDe dentro da caixa de brinquedos, o ursinho respondeu: \"Não esqueceu. Ela só está jantando. Daqui a pouco ela volta.\"\nE o carrinho esperou.",
       "arte": "hist04_p04",
       "fundo": "bg_quarto_brincar",
@@ -58,7 +58,7 @@
       "raposa": "nao"
     },
     {
-      "t": 88.55,
+      "t": 91.5,
       "texto": "Ele ouviu a raposinha rindo na cozinha.\nOuviu os pratos tilintando.\nOuviu a água do banho.\nE aí ouviu os passinhos dela voltando para a sala.",
       "arte": "hist04_p05",
       "fundo": "bg_sala_janta",
@@ -70,7 +70,7 @@
       "raposa": "dir"
     },
     {
-      "t": 106.8,
+      "t": 106.1,
       "texto": "A raposinha se abaixou, olhou embaixo do sofá, e disse: \"Achei você!\"\nEla pegou o carrinho azul, passou a mão nele para tirar o pó, e colocou dentro da caixa, bem do lado do ursinho.\n\"Boa noite, carrinho. Amanhã a gente brinca de novo.\"\n\"Bi-bi\", disse o carrinho, bem fininho.",
       "arte": "hist04_p06",
       "fundo": "bg_sala_almoco",
@@ -81,7 +81,7 @@
       "raposa": "centro"
     },
     {
-      "t": 135.5,
+      "t": 133.85,
       "texto": "A raposinha fechou a tampa da caixa com cuidado.",
       "arte": "hist04_p07",
       "fundo": "bg_quarto_brincar",
@@ -92,7 +92,7 @@
       "raposa": "esq"
     },
     {
-      "t": 142.45,
+      "t": 139.25,
       "texto": "Dentro da caixa, estava escurinho e quentinho.\nO carrinho encostou no ursinho.\nO ursinho encostou na boneca.\nA boneca encostou na bola.\nTodos os brinquedos juntos, bem guardadinhos, esperando o dia seguinte.",
       "arte": "hist04_p08",
       "fundo": "bg_quarto_noite",
@@ -105,7 +105,7 @@
       "raposa": "nao"
     },
     {
-      "t": 160.15,
+      "t": 160.1,
       "texto": "E a raposinha foi para a cama…\npensando em que montanha o carrinho ia subir amanhã…",
       "arte": "hist04_p09",
       "fundo": "bg_quarto_noite",
@@ -116,7 +116,7 @@
       "raposa": "sono"
     },
     {
-      "t": 168.35,
+      "t": 168.5,
       "texto": "E dormiu.",
       "arte": "hist04_p10",
       "fundo": "bg_quarto_noite",
@@ -125,7 +125,7 @@
       "raposa": "sono"
     },
     {
-      "t": 170.35,
+      "t": 172.55,
       "fim": true
     }
   ]

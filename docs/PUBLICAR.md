@@ -124,8 +124,9 @@ Contas de desenvolvedor pessoais criadas depois de nov/2023 precisam de
 
 ### 3.4 Classificação de conteúdo
 **Política → Classificação de conteúdo** → questionário.
-Categoria **Educação/Jogos**, sem violência, sem linguagem imprópria, sem
-compras, sem conteúdo gerado por usuários, sem anúncios. Resultado esperado:
+Categoria **Educação/Jogos**, sem violência, sem linguagem imprópria, **com
+compra no app** (uma única, atrás da conta de multiplicação), sem conteúdo
+gerado por usuários, sem anúncios. Resultado esperado:
 **Livre / 3+**.
 
 ### 3.5 Público-alvo e política Families
@@ -141,8 +142,9 @@ compras, sem conteúdo gerado por usuários, sem anúncios. Resultado esperado:
 ### 3.6 Ficha da loja
 **Crescimento → Presença na loja → Ficha principal**
 - Descrição curta (até 80): `Missões do dia a dia para crianças de 4 a 7 anos.`
-- Descrição completa: conte as 5 fases do dia, as missões, as estrelas e os mini
-  games. Diga que é **sem anúncios, sem compras e sem internet**.
+- Descrição completa: o texto pronto está em [FICHA_LOJA.md](FICHA_LOJA.md).
+  Diga que é **sem anúncios e sem internet**, com os mundos 1 a 4 gratuitos e
+  uma compra única opcional para os mundos 5 e 6.
 - Ícone 512×512, imagem de destaque 1024×500
 - **Capturas**: as 6 de `/store/screenshots` (1080×1920)
 - **Política de privacidade**: a URL publicada (veja `docs/PUBLICAR_POLITICA.md`)
