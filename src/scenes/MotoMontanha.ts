@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { carregar } from '../assets';
 import { CONFIG } from '../config';
 import { GRAVIDADE, Montanha, VEL_MAX } from '../montanha';
 import { fale } from '../narracoes';
@@ -103,13 +104,13 @@ export class MotoMontanha extends Phaser.Scene {
     this.coracoes = [];
     Object.assign(this, { semeadoAte: 600, pegas: 0, vidas: VIDAS, fase: 1, melodia: 0, gas: false, freio: false });
 
-    // ceu em degrade e morros ao longe, que andam mais devagar que o chao
+    // paisagem pintada ao fundo e morros ao longe, que andam mais devagar que o chao
     cobrirTela(this, 0xcfe6f2).setDepth(-20);
-    const ceu = this.add.graphics().setDepth(-19);
-    ceu.fillGradientStyle(0x9fd0ee, 0x9fd0ee, 0xf7efe0, 0xf7efe0, 1);
-    ceu.fillRect(0, TELA.topo, W, TELA.altura);
-    this.add.circle(W - 150, TELA.topo + 230, 60, 0xfff3b0).setDepth(-19);
     this.morros = this.add.graphics().setDepth(-18);
+    carregar(this, ['bg_montanha'], () => {
+      const im = this.add.image(W / 2, TELA.meio, 'bg_montanha').setDepth(-19);
+      im.setScale(Math.max(W / im.width, TELA.altura / im.height));
+    });
 
     this.mundo = this.add.container(0, 0).setScale(ZOOM);
     this.terreno = this.add.graphics();

@@ -38,9 +38,12 @@ Como gravar as falas: [GRAVAR_VOZES.md](GRAVAR_VOZES.md).
 
 # 3. Melhorias: o que ainda sai como emoji
 
-Nada aqui está faltando — o jogo roda. São os seis últimos pontos em que a
-criança vê um emoji do sistema no meio da arte desenhada. Mesma regra de todas
-as peças soltas: **fundo verde #00FF00, quadrado 2048x2048**.
+Nada aqui está faltando — o jogo roda. São os últimos pontos em que a criança
+vê um emoji do sistema no meio da arte desenhada. Mesma regra de todas as peças
+soltas: **fundo verde #00FF00, quadrado 2048x2048**.
+
+**Feito em 13/10/2026:** as cinco cenas da missão 20 e o `bg_montanha` já estão
+no jogo. Sobrou o `m01_bolo`.
 
 ### `m01_bolo` — missão 01, "Brincar com a comida" (carta errada do Pode ou Não Pode)
 
@@ -51,7 +54,7 @@ as peças soltas: **fundo verde #00FF00, quadrado 2048x2048**.
 > infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma
 > cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
 
-### Missão 20, "Conversa à mesa" — cinco cenas
+### ~~Missão 20, "Conversa à mesa" — cinco cenas~~ (pronto)
 
 As cinco entram como cartão, do mesmo jeito das cenas da missão 10. Em todas:
 **uma criança sozinha, de frente, do peito para cima, sentada à mesa**, sem
@@ -71,11 +74,11 @@ mesa desenhada em volta, para o cartão não ficar carregado.
 > estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado
 > #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
 
-### `bg_montanha` — fundo da moto (opcional)
+### ~~`bg_montanha` — fundo da moto~~ (pronto)
 
-Hoje o céu e os morros da moto são desenhados por código, em cores chapadas:
-é a tela mais lisa do jogo. **Não leva fundo verde** e, quando chegar, precisa
-de uma linha no `MotoMontanha.ts` para entrar atrás dos morros.
+Entrou atrás dos morros que correm: o céu da moto deixou de ser um degradê
+chapado. Os morros de perto continuam desenhados por código, para terem
+paralaxe.
 
 > Ilustração 2D cartoon infantil de **uma paisagem de montanha ao longe, vista
 > de frente**, sem pessoas e sem veículos: três fileiras de morros em tons de

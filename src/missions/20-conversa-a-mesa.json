@@ -18,7 +18,7 @@
       "perguntas": [
         {
           "icone": "🤤",
-          "img": "m13_prato_cheio",
+          "img": "m20_falar_cheio",
           "texto": "Falar de boca cheia",
           "resposta": false,
           "explica": "Melhor não. Engole primeiro, aí a gente entende você."
@@ -27,19 +27,22 @@
           "icone": "🙂",
           "texto": "Falar depois de engolir",
           "resposta": true,
-          "explica": "Isso! Assim dá para ouvir tudo o que você diz."
+          "explica": "Isso! Assim dá para ouvir tudo o que você diz.",
+          "img": "m20_engolir"
         },
         {
           "icone": "👂",
           "texto": "Escutar quem está falando",
           "resposta": true,
-          "explica": "Sim! Ouvir também é conversar."
+          "explica": "Sim! Ouvir também é conversar.",
+          "img": "m20_escutar"
         },
         {
           "icone": "📢",
           "texto": "Gritar por cima dos outros",
           "resposta": false,
-          "explica": "Não precisa gritar. Na mesa, um fala de cada vez."
+          "explica": "Não precisa gritar. Na mesa, um fala de cada vez.",
+          "img": "m20_gritar"
         }
       ],
       "audio": "m20_e1"
@@ -55,11 +58,12 @@
           "fala": "Engolir e depois falar",
           "x": 200,
           "y": 760,
-          "correto": true
+          "correto": true,
+          "img": "m20_engolir"
         },
         {
           "icone": "🤤",
-          "img": "m13_prato_cheio",
+          "img": "m20_falar_cheio",
           "texto": "Falar de boca cheia",
           "fala": "Falar de boca cheia",
           "x": 520,
@@ -85,7 +89,8 @@
           "texto": "O que me fez sorrir",
           "fala": "O que me fez sorrir",
           "x": 360,
-          "y": 760
+          "y": 760,
+          "img": "m20_contar"
         },
         {
           "icone": "😢",
@@ -103,12 +108,12 @@
     "pergunta": "O que pode?",
     "cena_certa": {
       "icone": "👂",
-      "img": null,
+      "img": "m20_engolir",
       "texto": "Esperar a vez de falar"
     },
     "cena_errada": {
       "icone": "🤤",
-      "img": "m13_prato_cheio",
+      "img": "m20_falar_cheio",
       "texto": "Falar de boca cheia"
     },
     "explicacao": "Na mesa, um fala de cada vez — e de boca vazia.",

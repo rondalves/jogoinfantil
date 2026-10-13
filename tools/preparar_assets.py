@@ -306,6 +306,11 @@ SOLTAS = [
     "m24_chuveiro",
     "m01_espuma",
     "mg1_kart_tras",
+    "m20_falar_cheio",
+    "m20_escutar",
+    "m20_gritar",
+    "m20_engolir",
+    "m20_contar",
 ]
 FOLHAS.update({n: ([n], 320, ("grade", 1, 1)) for n in SOLTAS})
 FOLHAS["m05_mochila_itens"] = (
@@ -353,6 +358,7 @@ CENARIOS = [
     "bg_porta_casa",
     "bg_sala_janta",
     "bg_banheiro_banho",
+    "bg_montanha",
 ]
 
 

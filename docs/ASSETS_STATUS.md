@@ -17,9 +17,10 @@ Para preparar qualquer folha nova: `npm run assets`
 | Mundos 3, 4 e 5 | missões 12 a 20 completas |
 | Mini games | kart, escalada, corredor, memória e céu das estrelas |
 | App | ícone e splash refeitos com a menina cacheada e a raposinha |
-| Cenários | 14 fundos de tela (a sala de aula agora é uma sala de aula de verdade) |
+| Cenários | 15 fundos de tela (a sala de aula agora é uma sala de aula de verdade; a moto ganhou a montanha pintada) |
 | Missão 05 | caderno, lápis, garrafinha, uniforme, tênis e pente |
 | Missões 10 e 11 | punho da cena errada |
+| Missão 20 | falar de boca cheia, escutar, gritar, esperar a vez e contar a novidade |
 | Corrida de kart | kart, rival, moeda, cone, poça, presente, bandeira e as 3 pistas |
 | Escalada | fundo do cenário e a pedra do obstáculo |
 
