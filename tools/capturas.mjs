@@ -27,7 +27,7 @@ const PERFIL = {
   missoes: { '01': 3, '02': 3, '03': 3, '04': 3 },
   bonusMundo: [1],
   broches: [1],
-  viuTutorial: true,
+  viuApresentacao: true,
   // o joguinho do mundo 1 ja foi aberto: o selo de "novo" nao entra na foto
   joguinhosVistos: ['01'],
 };

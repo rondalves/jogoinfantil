@@ -22,6 +22,9 @@ export const CONFIG = {
    */
   MUNDOS_LIVRES: 4,
 
+  /** historinhas planejadas: as que ainda nao existem aparecem numeradas, "em breve" */
+  HISTORIAS_PREVISTAS: 20,
+
   /** pagina publica da politica de privacidade (docs/privacidade.html no GitHub Pages) */
   URL_PRIVACIDADE: 'https://rondalves.github.io/jogoinfantil/privacidade.html',
 

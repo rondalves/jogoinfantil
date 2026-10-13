@@ -3,30 +3,8 @@ import { AUDIOS } from './assets';
 let nomeCrianca = '';
 let ultimo: { texto: string; audio?: string } | null = null;
 let tocando: HTMLAudioElement | null = null;
-let voz: SpeechSynthesisVoice | null = null;
 let nomeado = '';
 let vozAdulto: 'f' | 'm' = 'f';
-
-const FEMININAS = /maria|francisca|luciana|fernanda|vit[oó]ria|camila|in[eê]s|joana|helena|female|mulher|zira/i;
-const MASCULINAS = /ricardo|daniel|felipe|jo[aã]o|paulo|male|homem|david/i;
-
-/** Procura uma voz em portugues do Brasil do genero escolhido. */
-function escolherVoz() {
-  const vozes = window.speechSynthesis?.getVoices?.() ?? [];
-  if (vozes.length === 0) return;
-  const pt = vozes.filter((v) => /pt[-_]?br/i.test(v.lang) || /portugu/i.test(v.name));
-  const candidatas = pt.length > 0 ? pt : vozes.filter((v) => /^pt/i.test(v.lang));
-  // voz de rede soa bem melhor que a embarcada; dentro delas, o genero escolhido
-  const boas = candidatas.filter((v) => !v.localService);
-  const ordem = [...boas, ...candidatas.filter((v) => v.localService)];
-  const quero = vozAdulto === 'm' ? MASCULINAS : FEMININAS;
-  const evito = vozAdulto === 'm' ? FEMININAS : MASCULINAS;
-  voz =
-    ordem.find((v) => quero.test(v.name)) ??
-    ordem.find((v) => !evito.test(v.name)) ??
-    ordem[0] ??
-    null;
-}
 
 const ACENTOS: Record<string, string> = {
   á: 'a', à: 'a', â: 'a', ã: 'a', é: 'e', ê: 'e', í: 'i',
@@ -42,39 +20,23 @@ export function chaveDeFala(texto: string) {
     .replace(/^_+|_+$/g, '');
 }
 
-if (typeof window !== 'undefined' && window.speechSynthesis) {
-  escolherVoz();
-  // a lista de vozes costuma chegar depois do primeiro carregamento
-  window.speechSynthesis.addEventListener?.('voiceschanged', escolherVoz);
-}
-
-function tts(texto: string) {
-  const sintese = window.speechSynthesis;
-  if (!sintese) return;
-  if (!voz) escolherVoz();
-  const fala = new SpeechSynthesisUtterance(texto);
-  fala.lang = 'pt-BR';
-  // tom de quem conta historia, nao de desenho animado: 1.2 soava robotico
-  fala.rate = 0.95;
-  fala.pitch = 1.03;
-  fala.volume = 1;
-  if (voz) fala.voice = voz;
-  sintese.speak(fala);
-}
+/**
+ * Voz so de gravacao de verdade, nada sintetico: frase sem arquivo fica muda
+ * e o texto continua na tela. Musica nao conta como fala gravada.
+ */
+export const temGravacoes = Object.keys(AUDIOS).some((k) => !k.startsWith('musica'));
 
 export const narrador = {
   setNome(nome: string) {
     nomeCrianca = nome;
   },
 
-  /** 'f' ou 'm': troca a gravacao e a voz do navegador do narrador adulto. */
+  /** 'f' ou 'm': qual gravacao do narrador adulto tocar. */
   setVoz(v: 'f' | 'm') {
-    if (v === vozAdulto) return;
     vozAdulto = v;
-    escolherVoz();
   },
 
-  /** Narra a frase. Usa o arquivo de audio se existir; senao, TTS pt-BR. */
+  /** Toca a gravacao da frase, se existir. Devolve o texto ja com o nome da crianca. */
   falar(texto: string, audio?: string) {
     const frase = texto.replace(/\{nome\}/g, nomeCrianca || 'amiguinho');
     ultimo = { texto, audio };
@@ -84,10 +46,7 @@ export const narrador = {
     if (url) {
       const som = new Audio(url);
       tocando = som;
-      som.onerror = () => tts(frase);
-      som.play().catch(() => tts(frase));
-    } else {
-      tts(frase);
+      som.play().catch(() => undefined);
     }
     return frase;
   },
@@ -117,6 +76,5 @@ export const narrador = {
   parar() {
     tocando?.pause();
     tocando = null;
-    window.speechSynthesis?.cancel();
   },
 };

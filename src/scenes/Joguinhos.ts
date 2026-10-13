@@ -17,7 +17,7 @@ const ABRIR: Record<string, [string, object?]> = {
   corrida: ['MiniGame', { id: 'corrida' }],
   encaixe: ['Encaixe'],
   moto: ['MotoMontanha'],
-  bolhas: ['Bolhas'],
+  quebra: ['QuebraCabeca'],
 };
 
 /**

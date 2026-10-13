@@ -16,7 +16,7 @@ Da voz de adulto o jogo aceita duas gravacoes da mesma frase:
   <chave>_m.mp3   voz masculina (o painel dos pais troca para ela)
 
 A voz de mascote tem um arquivo so, <chave>.mp3. Sem o arquivo, o jogo
-continua usando a voz do navegador naquela frase.
+deixa a frase muda: o jogo nao usa voz sintetica.
 """
 
 import csv
@@ -50,7 +50,11 @@ MASCOTE_UI = {
     "mg4_fim",
     "mg5_fim",
     "medalha_final",
+    "tut_1",
     "tut_2",
+    "tut_3",
+    "tut_4",
+    "tut_5",
 }
 
 

@@ -3,7 +3,7 @@ import './estilo.css';
 import { CONFIG } from './config';
 import { Boot } from './scenes/Boot';
 import { Criador } from './scenes/Criador';
-import { Bolhas } from './scenes/Bolhas';
+import { QuebraCabeca } from './scenes/QuebraCabeca';
 import { Cantinho } from './scenes/Cantinho';
 import { Historia } from './scenes/Historia';
 import { Historinhas } from './scenes/Historinhas';
@@ -44,7 +44,7 @@ carregarFonte().then(() => {
     input: { activePointers: 2 },
     scene: [
       Boot, Perfis, Criador, Tutorial, Mapa, Missao, MiniGame, Medalha, Pais,
-      Historinhas, Historia, Joguinhos, Bolhas, Cantinho, JogoMemoria, Colorir, AvisoTempo,
+      Historinhas, Historia, Joguinhos, QuebraCabeca, Cantinho, JogoMemoria, Colorir, AvisoTempo,
       Encaixe, MotoMontanha,
     ],
   });

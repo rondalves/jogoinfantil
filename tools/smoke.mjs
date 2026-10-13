@@ -29,7 +29,7 @@ const PERFIL = {
   broches: [1, 2, 3, 4, 5],
   limiteDiario: 99,
   partidas: { dia: '', n: 0 },
-  viuTutorial: true,
+  viuApresentacao: true,
 };
 
 /**
@@ -140,7 +140,8 @@ const main = async () => {
       j.scene.start('MiniGame', { id: jogo });
       await new Promise((r) => setTimeout(r, 3000));
       const cena = j.scene.getScene('MiniGame');
-      return cena.scene.isActive() && cena.children.list.length > 3;
+      // fundo, voltar e a escolha da pista (o botao de ouvir so aparece com fala gravada)
+      return cena.scene.isActive() && cena.children.list.length > 2;
     }, id);
     if (!ok) problemas.push(`mini game ${id}: nao montou a tela`);
     await page.waitForTimeout(500);
@@ -212,7 +213,7 @@ const main = async () => {
   }, ids);
   for (const e of await page.evaluate(conferirLayout)) problemas.push(`${atual}: ${e}`);
 
-  for (const tela of ['Perfis', 'Criador', 'Mapa', 'Pais', 'Tutorial', 'Historinhas', 'Joguinhos', 'Cantinho', 'Bolhas', 'JogoMemoria', 'Colorir', 'Encaixe', 'MotoMontanha']) {
+  for (const tela of ['Perfis', 'Criador', 'Mapa', 'Pais', 'Tutorial', 'Historinhas', 'Joguinhos', 'Cantinho', 'QuebraCabeca', 'JogoMemoria', 'Colorir', 'Encaixe', 'MotoMontanha']) {
     atual = `tela ${tela}`;
     await page.evaluate(async (chave) => {
       const j = window.__jogo;
@@ -226,7 +227,7 @@ const main = async () => {
   await navegador.close();
 
   if (problemas.length === 0) {
-    console.log(`tudo certo: ${ids.length} missoes, ${jogos.length} mini games e ${['Perfis','Criador','Mapa','Pais','Tutorial','Historinhas','Joguinhos','Cantinho','Bolhas','JogoMemoria','Colorir','Encaixe','MotoMontanha'].length + 1} telas sem erro`);
+    console.log(`tudo certo: ${ids.length} missoes, ${jogos.length} mini games e ${['Perfis','Criador','Mapa','Pais','Tutorial','Historinhas','Joguinhos','Cantinho','QuebraCabeca','JogoMemoria','Colorir','Encaixe','MotoMontanha'].length + 1} telas sem erro`);
     return;
   }
   console.error(`${problemas.length} problema(s):`);

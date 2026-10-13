@@ -21,8 +21,8 @@ export interface Perfil {
   bonusMundo: number[];
   /** broches de mundo completo (desbloqueiam roupas/acessórios) */
   broches: number[];
-  /** ja viu o tutorial de abertura */
-  viuTutorial?: boolean;
+  /** ja viu a raposinha explicar o jogo (a apresentacao nova: quem so viu a antiga ve de novo) */
+  viuApresentacao?: boolean;
   /** voz do narrador adulto: 'f' feminina (padrao) ou 'm' masculina */
   voz?: 'f' | 'm';
   /** musica de fundo (padrao ligada) */
@@ -31,6 +31,8 @@ export interface Perfil {
   tempoJogo?: TempoJogo;
   /** minutos de joguinho por dia antes do aviso; padrao em tempoDeJogo.ts */
   limiteJogoMin?: number;
+  /** niveis do quebra-cabeca ja montados (o proximo e o que abre) */
+  quebraCabeca?: number;
   /** joguinhos que a crianca ja abriu (o resto dos liberados ganha selo de novo) */
   joguinhosVistos?: string[];
 }

@@ -3,7 +3,7 @@ import { AUDIOS, carregar } from './assets';
 import { CONFIG } from './config';
 import { estrelasTotais } from './economia';
 import { Cronometro } from './etapasLogica';
-import { narrador } from './narrador';
+import { narrador, temGravacoes } from './narrador';
 import type { Perfil } from './storage';
 import { TEMA } from './theme';
 import { abafarMusica } from './musica';
@@ -104,6 +104,29 @@ export function area(
   if (fn) z.on('pointerdown', fn);
   if (fala) z.on('pointerover', () => narrador.nomear(fala));
   return z;
+}
+
+/**
+ * Lista que rola com o dedo entre `topo` e `base`. Devolve "arrastou?": o
+ * toque que soltar depois de arrastar nao conta como escolha.
+ */
+export function rolagem(cena: Phaser.Scene, lista: Phaser.GameObjects.Container, topo: number, base: number, altura: number) {
+  const limite = Math.min(0, base - topo - altura);
+  let arrastou = false;
+  let inicioY = 0;
+  let inicioPonteiro = 0;
+  cena.input.on('pointerdown', (p: Phaser.Input.Pointer) => {
+    inicioY = lista.y;
+    inicioPonteiro = p.y;
+    arrastou = false;
+  });
+  cena.input.on('pointermove', (p: Phaser.Input.Pointer) => {
+    if (!p.isDown || limite === 0) return;
+    const d = p.y - inicioPonteiro;
+    if (Math.abs(d) > 12) arrastou = true;
+    lista.y = Phaser.Math.Clamp(inicioY + d, topo + limite, topo);
+  });
+  return () => arrastou;
 }
 
 export function tremer(cena: Phaser.Scene, o: Phaser.GameObjects.Components.Transform) {
@@ -305,6 +328,8 @@ export function botao(
 
 /** Botao de ouvir de novo, sempre visivel. */
 export function botaoOuvir(cena: Phaser.Scene, x = W - 86, y = 96) {
+  // sem nenhuma fala gravada ainda, o botao nao teria o que repetir
+  if (!temGravacoes) return;
   const b = figura(cena, x, y, 'botao_som', '\u{1F50A}', 96).setDepth(50);
   return toque(b, () => narrador.repetir());
 }

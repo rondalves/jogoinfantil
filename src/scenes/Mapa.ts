@@ -8,7 +8,7 @@ import { narrador } from '../narrador';
 import { TEMA } from '../theme';
 import { desenharPersonagem } from '../personagem';
 import { ativo, type Perfil } from '../storage';
-import { botaoOuvir, figura, fundo, hud, irPara, textoEmPainel, toque } from '../ui';
+import { botaoOuvir, figura, fundo, hud, irPara, rolagem, textoEmPainel, toque } from '../ui';
 import type { Missao as MissaoDef } from '../types';
 import { musicaDoMundo } from '../musica';
 
@@ -21,6 +21,7 @@ export class Mapa extends Phaser.Scene {
   private p!: Perfil;
   private lista!: Phaser.GameObjects.Container;
   private altura = 0;
+  private arrastou = () => false;
 
   constructor() {
     super('Mapa');
@@ -35,7 +36,7 @@ export class Mapa extends Phaser.Scene {
     }
     narrador.setNome(this.p.nome);
     narrador.setVoz(this.p.voz ?? 'f');
-    if (!this.p.viuTutorial) {
+    if (!this.p.viuApresentacao) {
       this.scene.start('Tutorial');
       return;
     }
@@ -67,7 +68,7 @@ export class Mapa extends Phaser.Scene {
     // 'rola' avisa o smoke que esta lista passa da tela de proposito
     this.lista = this.add.container(0, TOPO).setName('rola');
     this.montarLista();
-    this.scroll();
+    this.arrastou = rolagem(this, this.lista, TOPO, BASE, this.altura);
     abas(this, 'Mapa');
   }
 
@@ -145,7 +146,7 @@ export class Mapa extends Phaser.Scene {
         .zone(W / 2, y + 60, W - 80, 120)
         .setInteractive({ useHandCursor: true })
         .on('pointerup', () => {
-          if (!this.arrastou) irPara(this, 'Medalha');
+          if (!this.arrastou()) irPara(this, 'Medalha');
         });
       this.lista.add(z);
       y += 150;
@@ -197,30 +198,9 @@ export class Mapa extends Phaser.Scene {
       .setInteractive({ useHandCursor: true })
       .on('pointerover', () => narrador.nomear(missao.titulo))
       .on('pointerup', () => {
-        if (this.arrastou) return;
+        if (this.arrastou()) return;
         irPara(this, 'Missao', { id: missao.id });
       });
     this.lista.add(z);
   }
-
-  private arrastou = false;
-
-  /** Arraste vertical simples, com limite. */
-  private scroll() {
-    const limite = Math.min(0, BASE - TOPO - this.altura);
-    let inicioY = 0;
-    let inicioPonteiro = 0;
-    this.input.on('pointerdown', (p: Phaser.Input.Pointer) => {
-      inicioY = this.lista.y;
-      inicioPonteiro = p.y;
-      this.arrastou = false;
-    });
-    this.input.on('pointermove', (p: Phaser.Input.Pointer) => {
-      if (!p.isDown || limite === 0) return;
-      const d = p.y - inicioPonteiro;
-      if (Math.abs(d) > 12) this.arrastou = true;
-      this.lista.y = Phaser.Math.Clamp(inicioY + d, TOPO + limite, TOPO);
-    });
-  }
-
 }

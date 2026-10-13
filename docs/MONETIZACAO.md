@@ -4,7 +4,7 @@ A criança joga de graça os mundos 1 a 4: 18 das 28 missões, 4 joguinhos e 4
 historinhas. O adulto abre o resto com uma compra única:
 
 - os mundos 5 (Janta) e 6 (Banho e Cama): 10 missões, 2 joguinhos (moto na
-  montanha e estoura-bolhas) e 2 historinhas;
+  montanha e quebra-cabeça) e 2 historinhas;
 - as 14 historinhas novas (07 a 20), assim que forem gravadas.
 
 Sem anúncio, sem assinatura e sem moeda comprada. A criança nunca vê preço nem

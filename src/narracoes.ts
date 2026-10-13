@@ -4,7 +4,7 @@ import { narrador } from './narrador';
 /**
  * Todas as frases da interface num lugar so. A chave e tambem o nome do
  * arquivo de audio (assets/audio/<chave>.mp3) e a linha do narracao.csv.
- * Sem o arquivo, a frase e lida pela voz do navegador em pt-BR.
+ * Sem o arquivo, a frase fica so no texto: o jogo nao usa voz sintetica.
  */
 export const FRASES: Record<string, { texto: string; local: string }> = frases;
 

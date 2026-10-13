@@ -36,8 +36,8 @@ arte faltando. O que falta está em três grupos.
 
 | o que | situação | roteiro |
 |---|---|---|
-| Testar no celular os joguinhos novos | moto, encaixe e memória de 16 cartas foram conferidos só no navegador, com mouse | tocar com os dois dedos na moto (freio + acelerador) |
-| Voz | 0 de 459 falas gravadas; sai a voz do celular (TTS), que varia por aparelho | gravar primeiro as ~200 frases de interface, tutorial e joguinhos (`assets/audio/narracao.csv`, [GRAVAR_VOZES.md](GRAVAR_VOZES.md)); as 255 das missões vão chegando |
+| Testar no celular os joguinhos novos | moto, encaixe, quebra-cabeça e memória de 16 cartas foram conferidos só no navegador, com mouse | tocar com os dois dedos na moto (freio + acelerador) |
+| Voz | 0 de 462 falas gravadas; sem gravação a frase fica só no texto (o jogo não usa voz sintética) | gravar primeiro as ~200 frases de interface, tutorial e joguinhos (`assets/audio/narracao.csv`, [GRAVAR_VOZES.md](GRAVAR_VOZES.md)); as 255 das missões vão chegando |
 | Música | silêncio em todas as telas | a do menu e uma de mundo já mudam a sensação; prompts em [MUSICA.md](MUSICA.md) |
 | Historinhas | 6 gravadas, com cantiga por baixo; vão ser regravadas | [HISTORIAS.md](HISTORIAS.md) |
 

@@ -56,20 +56,24 @@
     "local": "Corrida de kart, fim"
   },
   "tut_1": {
-    "texto": "Este é o mapa. Cada mundo é uma hora do seu dia.",
-    "local": "Tutorial, passo 1"
+    "texto": "Oi, {nome}! Eu sou a Raposinha. Vou te ajudar a cuidar do seu dia!",
+    "local": "Apresentação, passo 1: a raposinha se apresenta"
   },
   "tut_2": {
-    "texto": "Toque numa missão para começar. A raposinha vai te ajudar!",
-    "local": "Tutorial, passo 2"
+    "texto": "Aqui você aprende as tarefas do dia a dia: escovar os dentes, arrumar a cama, tomar banho e muito mais!",
+    "local": "Apresentação, passo 2: o jogo ensina as tarefas"
   },
   "tut_3": {
-    "texto": "Fazendo com capricho você ganha estrelas.",
-    "local": "Tutorial, passo 3"
+    "texto": "Cada mundo é um pedacinho do seu dia, cheio de missões. Fazendo com capricho, você ganha estrelas!",
+    "local": "Apresentação, passo 3: mundos e estrelas"
   },
   "tut_4": {
-    "texto": "Terminando um mundo, você ganha um joguinho novo!",
-    "local": "Tutorial, passo 4"
+    "texto": "Primeiro a gente faz as tarefas. Depois, é hora de brincar!",
+    "local": "Apresentação, passo 4: tarefa antes da brincadeira"
+  },
+  "tut_5": {
+    "texto": "Terminou todas as missões de um mundo? Você ganha um joguinho novo e uma historinha!",
+    "local": "Apresentação, passo 5: o que cada mundo libera"
   },
   "mg2_como_jogar": {
     "texto": "Toque no próximo degrau para subir. Se tiver pedra, toque de novo para pular!",
@@ -130,6 +134,14 @@
   "jogo_memoria": {
     "texto": "Ache os pares! Toque em duas cartas.",
     "local": "Joguinho da memória"
+  },
+  "jogo_quebra": {
+    "texto": "Arraste cada pecinha para o lugar certo e monte a figura!",
+    "local": "Quebra-cabeça, começo"
+  },
+  "jogo_quebra_pronto": {
+    "texto": "Você montou o quebra-cabeça! Que lindo!",
+    "local": "Quebra-cabeça, figura completa"
   },
   "jogo_memoria_rodada": {
     "texto": "Muito bem! Vamos de novo, com outras figuras!",

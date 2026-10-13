@@ -29,7 +29,8 @@ A voz do mascote tem **um arquivo só**, sem `_m`.
 ## Onde salvar
 
 Tudo em `assets/audio/`, com o nome exato da coluna `arquivo`. Frase sem
-arquivo continua saindo na voz do navegador — dá para gravar aos poucos.
+arquivo fica muda (o texto continua na tela) — dá para gravar aos poucos.
+O jogo não usa voz sintética.
 
 ## Como gravar
 
@@ -41,8 +42,7 @@ arquivo continua saindo na voz do navegador — dá para gravar aos poucos.
   uma para outra.
 - `{nome}` no texto é o nome que a criança digitou. O jogo **não** consegue
   encaixar o nome dentro de uma gravação: nessas frases, grave dizendo
-  *"amiguinho"* no lugar, ou deixe sem arquivo para o jogo falar com o nome
-  certo pela voz do navegador.
+  *"amiguinho"* no lugar.
 
 ## O jeito que dá menos trabalho
 
@@ -63,8 +63,8 @@ bloco leva uns 40 minutos:
 4. Renomeie cada arquivo com o nome exato da coluna `arquivo` da planilha, em
    minúsculas, e jogue tudo em `assets/audio/`.
 
-Dá para gravar aos poucos: cada frase que ganha arquivo para de usar a voz do
-navegador na hora. O resto continua em TTS até você gravar.
+Dá para gravar aos poucos: cada frase que ganha arquivo passa a tocar na
+hora. O resto fica só no texto até você gravar.
 
 ## Para a gravação sair boa
 
@@ -92,7 +92,7 @@ npm run dev
 ```
 
 Não precisa mexer em código nem rodar nada além disso: o jogo acha os arquivos
-novos sozinho. Se uma frase continuar na voz do navegador, o nome do arquivo
+novos sozinho. Se uma frase gravada continuar muda, o nome do arquivo
 está diferente da coluna `arquivo` (confira acentos e `_m`).
 
 ## Por onde começar

@@ -13,10 +13,11 @@ mg1_escolha_pista.mp3;adulto;Escolha a pista da corrida!;Corrida de kart, escolh
 mg1_como_jogar.mp3;adulto;Pegue as moedas e desvie dos cones. Pode tocar na tela ou inclinar o celular!;Corrida de kart, começo
 mg1_devagar.mp3;adulto;Opa! Devagar nessa curva!;Corrida de kart, ao bater
 mg1_fim.mp3;mascote;Boa! Olha quantas moedinhas você juntou!;Corrida de kart, fim
-tut_1.mp3;adulto;Este é o mapa. Cada mundo é uma hora do seu dia.;Tutorial, passo 1
-tut_2.mp3;mascote;Toque numa missão para começar. A raposinha vai te ajudar!;Tutorial, passo 2
-tut_3.mp3;adulto;Fazendo com capricho você ganha estrelas.;Tutorial, passo 3
-tut_4.mp3;adulto;Terminando um mundo, você ganha um joguinho novo!;Tutorial, passo 4
+tut_1.mp3;mascote;Oi, {nome}! Eu sou a Raposinha. Vou te ajudar a cuidar do seu dia!;Apresentação, passo 1: a raposinha se apresenta
+tut_2.mp3;mascote;Aqui você aprende as tarefas do dia a dia: escovar os dentes, arrumar a cama, tomar banho e muito mais!;Apresentação, passo 2: o jogo ensina as tarefas
+tut_3.mp3;mascote;Cada mundo é um pedacinho do seu dia, cheio de missões. Fazendo com capricho, você ganha estrelas!;Apresentação, passo 3: mundos e estrelas
+tut_4.mp3;mascote;Primeiro a gente faz as tarefas. Depois, é hora de brincar!;Apresentação, passo 4: tarefa antes da brincadeira
+tut_5.mp3;mascote;Terminou todas as missões de um mundo? Você ganha um joguinho novo e uma historinha!;Apresentação, passo 5: o que cada mundo libera
 mg2_como_jogar.mp3;adulto;Toque no próximo degrau para subir. Se tiver pedra, toque de novo para pular!;Escalada, começo
 mg2_pedra.mp3;adulto;Tem uma pedra no caminho. Toque de novo para pular!;Escalada, ao achar uma pedra
 mg2_fim.mp3;mascote;Você chegou lá em cima! Que escalada!;Escalada, fim
@@ -32,6 +33,8 @@ tempo_aviso.mp3;adulto;Você está jogando há bastante tempo! Já fez as suas t
 tempo_adulto.mp3;adulto;Chame um adulto para liberar mais um pouquinho.;Aviso de tempo, botão do adulto
 tempo_liberado.mp3;adulto;Pronto! Mais um pouquinho de joguinho.;Aviso de tempo, depois do adulto liberar
 jogo_memoria.mp3;adulto;Ache os pares! Toque em duas cartas.;Joguinho da memória
+jogo_quebra.mp3;adulto;Arraste cada pecinha para o lugar certo e monte a figura!;Quebra-cabeça, começo
+jogo_quebra_pronto.mp3;adulto;Você montou o quebra-cabeça! Que lindo!;Quebra-cabeça, figura completa
 jogo_memoria_rodada.mp3;adulto;Muito bem! Vamos de novo, com outras figuras!;Joguinho da memória, fim da rodada
 jogo_colorir.mp3;adulto;Escolha uma cor e toque no desenho para pintar!;Joguinho de colorir
 jogo_colorir_pronto.mp3;adulto;Que lindo! Ficou todo colorido!;Joguinho de colorir, desenho todo pintado

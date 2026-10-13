@@ -82,8 +82,13 @@ export function vigiarTempo(cena: Phaser.Scene) {
   // voltou para o joguinho depois do limite: o aviso aparece de cara
   if (p && estourou(p.tempoJogo, hojeISO(), limiteDoPerfil())) cena.time.delayedCall(300, avisar);
   // o adulto liberou mais tempo pelo aviso: o perfil gravado mudou
-  cena.events.on('resume', () => {
+  const reler = () => {
     p = ativo();
+  };
+  cena.events.on('resume', reler);
+  // os eventos da cena sobrevivem ao restart ("jogar de novo"): sem o off, acumulavam
+  cena.events.once('shutdown', () => {
+    gravar();
+    cena.events.off('resume', reler);
   });
-  cena.events.once('shutdown', gravar);
 }
