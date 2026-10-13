@@ -55,16 +55,19 @@ def trechos() -> dict[str, list[str]]:
 
 
 def pausas(v: np.ndarray) -> list[tuple[float, float]]:
-    """Silencios da voz ja limpa: (inicio, duracao) em segundos, de 0,4 s para cima."""
+    """Silencios da voz ja limpa: (inicio, duracao) em segundos, de 0,3 s para cima.
+
+    O limiar e -32 dB porque o gate da voz solta devagar (400 ms) e a pausa so chega bem baixo no fim.
+    """
     b = audio.SR // 20
     db = 20 * np.log10(np.sqrt(np.mean(v[: len(v) // b * b].reshape(-1, b) ** 2, axis=1)) + 1e-9)
-    quieto = db < -40
+    quieto = db < -32
     fora, ini = [], None
     for i, q in enumerate(list(quieto) + [False]):
         if q and ini is None:
             ini = i
         elif not q and ini is not None:
-            if (i - ini) * 0.05 >= 0.4:
+            if (i - ini) * 0.05 >= 0.3:
                 fora.append((ini * 0.05, (i - ini) * 0.05))
             ini = None
     return fora
@@ -83,7 +86,7 @@ def alinhar(textos: list[str], ps: list[tuple[float, float]], total: float) -> l
     if m < n:
         raise SystemExit(f'gravacao com {m} pausas para {n} fronteiras')
     t = np.array([a + d for a, d in ps])  # fim da pausa: a pagina vira quando a fala volta
-    dur = np.array([min(d, 3.0) for _, d in ps])
+    dur = np.array([min(d, 1.5) for _, d in ps])  # pausa muito longa nao vale mais que uma longa
     sigma = max(4.0, total / (n + 1) / 2)
     custo = ((t[None, :] - esperado[:, None]) / sigma) ** 2 - 2.0 * dur[None, :]
     melhor = np.full((n, m), np.inf)
@@ -124,9 +127,9 @@ def main():
                'Deixe o terço de baixo calmo e sem detalhe: é ali que fica o texto.',
                'Anexe sempre `assets/img/mascote_raposinha.png` como referência: a raposinha é laranja,',
                'de peito e focinho creme, bochechas rosadas e lenço azul-claro no pescoço.', '']
-    numero = lambda w: (re.search(r'(\d\d)___', w.name) or [None, w.name])[1]
+    numero = lambda w: (re.match(r'(\d\d)\D', w.name) or [None, w.name])[1]
     for wav in sorted(Path(sys.argv[1]).glob('*.wav'), key=numero):
-        achou = re.search(r'(\d\d)___', wav.name)
+        achou = re.match(r'(\d\d)\D', wav.name)
         if not achou or achou[1] not in jsons or achou[1] not in cenas:
             print('pulei', wav.name)
             continue

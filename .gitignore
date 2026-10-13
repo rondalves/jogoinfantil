@@ -21,3 +21,6 @@ videos/
 
 # previas de video do livro animado
 previas/
+
+# gravacoes brutas das historinhas (wav da voz, ~160 MB): ficam so no computador
+historias gravadas/
