@@ -221,6 +221,8 @@ export class MotoMontanha extends Phaser.Scene {
 
   /** Volta para a bandeira, parado e reto. */
   private recomecar(x: number) {
+    // o tombo anima this.y: se ainda estiver rodando, nao pode escrever por cima
+    this.tweens.killTweensOf(this);
     this.x = x;
     this.y = this.montanha.chao(x);
     Object.assign(this, { u: 0, vx: 0, vy: 0, omega: 0, noAr: false, angulo: 0, parado: false });

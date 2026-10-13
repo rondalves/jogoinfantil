@@ -13,11 +13,8 @@ function alturaDaTela() {
 }
 
 export const CONFIG = {
-  FICHAS_POR_PARTIDA: 1,
-  FICHAS_POR_MOEDA: 3,
   MOEDAS_POR_MISSAO: 1,
   MOEDAS_BONUS_MUNDO: 5,
-  PARTIDAS_POR_DIA: 5,
   /**
    * Mundos abertos sem a compra: 1 a 4. Os mundos 5 e 6 (10 das 28 missoes,
    * 2 joguinhos, 2 historinhas) abrem com a compra unica (ver compras.ts).

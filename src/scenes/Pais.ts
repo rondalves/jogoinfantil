@@ -23,13 +23,15 @@ export class Pais extends Phaser.Scene {
     super('Pais');
   }
 
-  create() {
+  create(dados?: { aberto?: boolean }) {
     musicaDoMundo();
     this.p = ativo()!;
     fundo(this, TEMA.nuvem);
     botaoVoltar(this, 'Mapa');
     narrador.parar();
-    this.portao();
+    // depois da compra a tela recarrega ja aberta: o adulto acabou de passar pela conta
+    if (dados?.aberto) this.painel();
+    else this.portao();
   }
 
   private portao() {
@@ -178,7 +180,7 @@ export class Pais extends Phaser.Scene {
       }
       recado.setText('Abrindo a Play Store...');
       recado.setText((await fn()) ? '' : falhou);
-      if (temTudo()) irPara(this, 'Pais');
+      if (temTudo()) irPara(this, 'Pais', { aberto: true });
     };
     const pagos = MUNDOS.filter((m) => m.id > CONFIG.MUNDOS_LIVRES).map((m) => m.id);
     botao(

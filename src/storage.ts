@@ -1,5 +1,4 @@
 import type { TempoJogo } from './tempoDeJogo';
-import { CONFIG } from './config';
 
 export interface PersonagemCfg {
   pele: number;
@@ -16,17 +15,12 @@ export interface Perfil {
   personagem: PersonagemCfg;
   /** moedas ganhas no total (mostrador) */
   moedas: number;
-  /** fichas disponíveis para jogar */
-  fichas: number;
-  fichasGastas: number;
   /** id da missão -> melhor número de estrelas */
   missoes: Record<string, number>;
   /** mundos que já pagaram o bônus */
   bonusMundo: number[];
   /** broches de mundo completo (desbloqueiam roupas/acessórios) */
   broches: number[];
-  limiteDiario: number;
-  partidas: { dia: string; n: number };
   /** ja viu o tutorial de abertura */
   viuTutorial?: boolean;
   /** voz do narrador adulto: 'f' feminina (padrao) ou 'm' masculina */
@@ -55,13 +49,9 @@ export function novoPerfil(nome: string, personagem: PersonagemCfg): Perfil {
     nome,
     personagem,
     moedas: 0,
-    fichas: 0,
-    fichasGastas: 0,
     missoes: {},
     bonusMundo: [],
     broches: [],
-    limiteDiario: CONFIG.PARTIDAS_POR_DIA,
-    partidas: { dia: '', n: 0 },
   };
 }
 
@@ -115,7 +105,8 @@ export function zerarProgresso(id: string) {
   const p = perfis.find((x) => x.id === id);
   if (!p) return;
   const limpo = novoPerfil(p.nome, p.personagem);
-  Object.assign(p, limpo, { id: p.id, limiteDiario: p.limiteDiario });
+  // os ajustes dos pais (voz, musica, limite de joguinho) ficam
+  Object.assign(p, limpo, { id: p.id, voz: p.voz, musica: p.musica, limiteJogoMin: p.limiteJogoMin });
   gravarTodos(perfis);
 }
 

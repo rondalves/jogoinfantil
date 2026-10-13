@@ -54,27 +54,36 @@ export const limiteDoPerfil = () => ativo()?.limiteJogoMin ?? LIMITE_PADRAO;
  * tempo do aviso nao conta.
  */
 export function vigiarTempo(cena: Phaser.Scene) {
+  // o perfil e lido uma vez e os segundos ficam em `pendente` ate gravar: ler
+  // e gravar a cada segundo perdia o que nao tinha sido gravado
+  let p = ativo();
+  let pendente = 0;
+  const gravar = () => {
+    if (!p || pendente === 0) return;
+    p.tempoJogo = somar(p.tempoJogo, hojeISO(), pendente);
+    pendente = 0;
+    salvar(p);
+  };
   const avisar = () => {
     if (cena.scene.isPaused()) return;
+    gravar();
     cena.scene.pause();
     cena.scene.launch('AvisoTempo', { volta: cena.scene.key });
+    // as cenas desenham na ordem da lista: o aviso precisa ficar por cima
+    cena.scene.bringToTop('AvisoTempo');
   };
-  let segundos = 0;
   const tique = () => {
-    const p = ativo();
     if (!p) return;
-    p.tempoJogo = somar(p.tempoJogo, hojeISO(), 1000);
-    segundos += 1;
-    const passou = estourou(p.tempoJogo, hojeISO(), limiteDoPerfil());
-    if (passou || segundos % 10 === 0) salvar(p);
-    if (passou) avisar();
+    pendente += 1000;
+    if (pendente >= 10_000) gravar();
+    if (estourou(somar(p.tempoJogo, hojeISO(), pendente), hojeISO(), limiteDoPerfil())) avisar();
   };
   cena.time.addEvent({ delay: 1000, loop: true, callback: tique });
   // voltou para o joguinho depois do limite: o aviso aparece de cara
-  const p = ativo();
   if (p && estourou(p.tempoJogo, hojeISO(), limiteDoPerfil())) cena.time.delayedCall(300, avisar);
-  cena.events.once('shutdown', () => {
-    const q = ativo();
-    if (q) salvar(q);
+  // o adulto liberou mais tempo pelo aviso: o perfil gravado mudou
+  cena.events.on('resume', () => {
+    p = ativo();
   });
+  cena.events.once('shutdown', gravar);
 }

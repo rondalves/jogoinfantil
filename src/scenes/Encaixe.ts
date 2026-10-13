@@ -186,10 +186,14 @@ export class Encaixe extends Phaser.Scene {
     let inicioX = 0;
     let andou = 0;
     let arrastou = false;
+    // so gira o toque que comecou no tabuleiro: soltar aqui um dedo que veio
+    // dos botoes de baixo nao conta
+    let comecouAqui = false;
     zona.on('pointerdown', (p: Phaser.Input.Pointer) => {
       inicioX = p.worldX;
       andou = 0;
       arrastou = false;
+      comecouAqui = true;
     });
     zona.on('pointermove', (p: Phaser.Input.Pointer) => {
       if (!p.isDown || this.pausado) return;
@@ -200,7 +204,8 @@ export class Encaixe extends Phaser.Scene {
       andou += colunas;
     });
     zona.on('pointerup', () => {
-      if (!arrastou) this.girar();
+      if (comecouAqui && !arrastou) this.girar();
+      comecouAqui = false;
     });
 
     const y = Math.min(TELA.baixo - 110, Y0 + LINHAS * CEL + 120);
