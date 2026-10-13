@@ -2,7 +2,25 @@
 
 App: **Rotina Feliz** · Pacote: **com.colostudio.rotinafeliz** (definitivo)
 Alvo: **API 36 (Android 16)**, que é o mínimo exigido hoje · Orientação: retrato
-Permissões: **nenhuma** — o jogo roda inteiro no aparelho, sem rede.
+Permissões de aparelho: **nenhuma**. O manifesto só tem as da compra pela Google
+Play (`BILLING`, `INTERNET`, `ACCESS_NETWORK_STATE`); o jogo roda sem rede.
+
+## O que já está pronto e o que falta (13/10/2026)
+
+Pronto no projeto: `apks/RotinaFeliz-release.aab` assinado (versionCode 1,
+versão 1.0, alvo API 36), ficha e respostas dos questionários em
+[FICHA_LOJA.md](FICHA_LOJA.md), 6 capturas, ícone, imagem de destaque e a
+política de privacidade no ar com a compra descrita.
+
+Falta, na Play Console (só você consegue):
+
+1. Criar o app (3.1) e preencher **Conteúdo do app**: privacidade, anúncios,
+   acesso, classificação, público-alvo, segurança dos dados (3.3 a 3.5).
+2. Criar o produto **`rotinafeliz.mundos.completos`**, R$ 4,99, e ativar
+   ([MONETIZACAO.md](MONETIZACAO.md)). Ele só aparece para criar depois que um
+   `.aab` com a biblioteca de compras foi enviado a alguma faixa.
+3. Cadastrar os testadores de licença e testar comprar e restaurar no celular.
+4. Teste fechado com 12 testadores por 14 dias (3.2), depois produção (3.7).
 
 ---
 
@@ -119,7 +137,9 @@ Contas de desenvolvedor pessoais criadas depois de nov/2023 precisam de
 **Política → Segurança dos dados**: responda **não** para tudo.
 - Coleta de dados: **Não**
 - Compartilhamento: **Não**
-- Dados criptografados em trânsito: não se aplica (não há envio)
+- Dados criptografados em trânsito: não se aplica (o app não envia nada)
+- A compra é processada pela própria Google Play; o app só recebe a confirmação
+  de que ela existe e não manda dado nenhum a servidor ou SDK
 - Exclusão de dados: o app apaga no painel dos pais e ao desinstalar
 
 ### 3.4 Classificação de conteúdo
@@ -141,10 +161,8 @@ gerado por usuários, sem anúncios. Resultado esperado:
 
 ### 3.6 Ficha da loja
 **Crescimento → Presença na loja → Ficha principal**
-- Descrição curta (até 80): `Missões do dia a dia para crianças de 4 a 7 anos.`
-- Descrição completa: o texto pronto está em [FICHA_LOJA.md](FICHA_LOJA.md).
-  Diga que é **sem anúncios e sem internet**, com os mundos 1 a 4 gratuitos e
-  uma compra única opcional para os mundos 5 e 6.
+- Descrição curta, descrição completa e notas da versão: prontas para colar em
+  [FICHA_LOJA.md](FICHA_LOJA.md).
 - Ícone 512×512, imagem de destaque 1024×500
 - **Capturas**: as 6 de `/store/screenshots` (1080×1920)
 - **Política de privacidade**: a URL publicada (veja `docs/PUBLICAR_POLITICA.md`)
@@ -169,7 +187,7 @@ e envie o novo `.aab`. **Sempre com a mesma keystore.**
 
 ---
 
-## Conformidade com o Feito para a Familia (conferida em 9/10/2026)
+## Conformidade com o Feito para a Familia (conferida em 13/10/2026)
 
 O que a Play exige de um app para menores de 13 anos, e onde o jogo esta:
 
@@ -177,12 +195,13 @@ O que a Play exige de um app para menores de 13 anos, e onde o jogo esta:
 |---|---|---|
 | Nenhuma coleta de dados | **ok** | zero `fetch`, `XMLHttpRequest`, `WebSocket` ou SDK de analytics no `src/`. As dependencias sao so Phaser e Capacitor |
 | Funciona offline | **ok** | nenhuma URL buscada em tempo de execucao; a fonte Lexend vai embutida em `assets/fontes/` |
-| Nenhuma permissao de aparelho | **ok** | `AndroidManifest.xml` tem **zero** `uses-permission` — nem INTERNET |
+| Nenhuma permissao de aparelho | **ok** | o manifesto do app nao pede nada; as unicas do APK final (`BILLING`, `INTERNET`, `ACCESS_NETWORK_STATE`) vem da biblioteca de compras da Play |
+| Dados so no aparelho | **ok** | `allowBackup=false` e `res/xml/sem_backup.xml`: nem backup na nuvem, nem copia para outro celular |
 | Compra fora do alcance da crianca | **ok** | o botao so existe em `Pais.painel()`, e `painel()` so e chamado pelo acerto da conta em `Pais.portao()` |
 | Nenhum anuncio | **ok** | nao ha rede de anuncio no projeto |
 | Link externo so na area do adulto | **ok** | o unico `window.open` do jogo e o link da politica de privacidade, dentro do painel dos pais — e a Play exige que ele esteja la |
-| Politica de privacidade publica | **depende de voce** | a URL em `CONFIG.URL_PRIVACIDADE` precisa estar no ar antes de enviar (ver PUBLICAR_POLITICA.md) |
+| Politica de privacidade publica | **ok** | no ar em `CONFIG.URL_PRIVACIDADE`, ja descrevendo a compra pela Google Play |
 
 Para a varredura continuar valendo, nao acrescente: biblioteca de anuncio ou
-analytics, chamada de rede, permissao no manifesto, nem `window.open` fora de
-`Pais.ts`. Qualquer um desses tira o app do programa.
+analytics, chamada de rede (fora a da compra), permissao no manifesto, nem
+`window.open` fora de `Pais.ts`. Qualquer um desses tira o app do programa.

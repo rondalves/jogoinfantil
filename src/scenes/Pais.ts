@@ -6,7 +6,7 @@ import { comprar, lojaDisponivel, PRECO, restaurar, temTudo } from '../compras';
 import { CONFIG, MUNDOS } from '../config';
 import { estrelasTotais } from '../economia';
 import { MISSOES } from '../missions';
-import { narrador } from '../narrador';
+import { narrador, temGravacoes } from '../narrador';
 import { TEMA } from '../theme';
 import { ativo, remover, salvar, zerarProgresso, type Perfil } from '../storage';
 import { botao, botaoVoltar, cobrirTela, fundo, irPara, titulo, toque } from '../ui';
@@ -102,19 +102,24 @@ export class Pais extends Phaser.Scene {
       return r;
     };
 
+    // a troca de voz so aparece quando houver fala gravada: sem ela nao ha o que trocar
+    let y = 690;
+    if (temGravacoes) {
+      ajuste(
+        y,
+        () => `Voz: ${this.p.voz === 'm' ? 'masculina' : 'feminina'}`,
+        (r) => {
+          this.p.voz = this.p.voz === 'm' ? 'f' : 'm';
+          salvar(this.p);
+          narrador.setVoz(this.p.voz);
+          r.setText(`Voz: ${this.p.voz === 'm' ? 'masculina' : 'feminina'}`);
+          narrador.falar('Pronto! Esta é a voz que vai explicar as missões.');
+        },
+      );
+      y += 100;
+    }
     ajuste(
-      690,
-      () => `Voz: ${this.p.voz === 'm' ? 'masculina' : 'feminina'}`,
-      (r) => {
-        this.p.voz = this.p.voz === 'm' ? 'f' : 'm';
-        salvar(this.p);
-        narrador.setVoz(this.p.voz);
-        r.setText(`Voz: ${this.p.voz === 'm' ? 'masculina' : 'feminina'}`);
-        narrador.falar('Pronto! Esta é a voz que vai explicar as missões.');
-      },
-    );
-    ajuste(
-      790,
+      y,
       () => `Música: ${this.p.musica === false ? 'desligada' : 'ligada'}`,
       (r) => {
         this.p.musica = this.p.musica === false;
@@ -127,7 +132,7 @@ export class Pais extends Phaser.Scene {
     // joguinho nao acaba sozinho: passou deste tempo no dia, aparece o aviso
     // "ja fez as suas tarefas?" e so um adulto libera mais
     ajuste(
-      890,
+      y + 100,
       () => `Joguinhos: ${limiteDoPerfil()} min/dia`,
       (r) => {
         const i = LIMITES_MIN.indexOf(limiteDoPerfil());

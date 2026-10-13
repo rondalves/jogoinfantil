@@ -1,6 +1,6 @@
 # Próximos passos: o beta
 
-Conferido no código em 12/10/2026. O jogo está jogável de ponta a ponta, sem
+Conferido no código em 13/10/2026. O jogo está jogável de ponta a ponta, sem
 arte faltando. O que falta está em três grupos.
 
 ## Onde estamos
@@ -11,18 +11,18 @@ arte faltando. O que falta está em três grupos.
 | Arte | 646 arquivos em `assets/img` (8,3 MB); nenhuma arte pedida faltando |
 | Personagem | desenhado por código: 7 tons de pele, 6 roupas, 5 rostos, 29 cabelos × 9 cores, laço e capa |
 | Android | `com.colostudio.rotinafeliz`, versionCode 1, targetSdk 36, chave de assinatura criada, voltar do celular tratado |
-| Loja | ficha, ícone, imagem de destaque e 6 capturas em `store/screenshots/` prontos com o nome Rotina Feliz |
-| Verificação | `tsc` ✅ · `npm test` 33 ✅ · `npm run smoke` 28 missões e 14 telas ✅ |
+| Loja | ficha, notas da versão, respostas dos questionários, ícone, destaque e 6 capturas prontos; política de privacidade no ar com a compra descrita |
+| Verificação | `tsc` ✅ · `npm test` 37 ✅ · `npm run smoke` 28 missões e 14 telas ✅ |
+| Envio | `apks/RotinaFeliz-release.aab` assinado, pronto para a Play Console |
 
 ## 1. Para enviar o beta (Play Console)
 
-- [ ] `npm run android:build` gera o `.aab` assinado em `android/app/build/outputs/bundle/release/`.
-      Cada envio novo precisa de um `versionCode` maior em `android/app/build.gradle`.
-- [ ] Instalar o APK de lançamento (`npm run android:apk`) uma vez no celular antes de subir.
-- [ ] Criar o app na Play Console, colar a ficha de [FICHA_LOJA.md](FICHA_LOJA.md),
-      subir ícone, destaque (`assets-loja/`) e as capturas.
-- [ ] Questionários: segurança dos dados (não coleta nada), público infantil
-      (Famílias), classificação (Livre), sem anúncios.
+- [x] `.aab` assinado gerado (`apks/RotinaFeliz-release.aab`). Cada envio novo
+      precisa de um `versionCode` maior em `android/app/build.gradle`.
+- [x] Ficha, notas da versão e respostas dos questionários em [FICHA_LOJA.md](FICHA_LOJA.md).
+- [ ] Instalar o APK de lançamento (`apks/RotinaFeliz-release.apk`) uma vez no celular antes de subir.
+- [ ] Criar o app na Play Console, colar a ficha, subir ícone, destaque (`assets-loja/`) e capturas.
+- [ ] Preencher **Conteúdo do app** com as respostas da ficha.
 - [ ] Teste interno primeiro. Se a conta de desenvolvedor for pessoal e nova,
       a produção exige **teste fechado com 12 testadores por 14 dias** ([PUBLICAR.md](PUBLICAR.md)).
 
