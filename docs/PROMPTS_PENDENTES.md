@@ -42,10 +42,10 @@ Nada aqui está faltando — o jogo roda. São os últimos pontos em que a crian
 vê um emoji do sistema no meio da arte desenhada. Mesma regra de todas as peças
 soltas: **fundo verde #00FF00, quadrado 2048x2048**.
 
-**Feito em 13/10/2026:** as cinco cenas da missão 20 e o `bg_montanha` já estão
-no jogo. Sobrou o `m01_bolo`.
+**Tudo desta seção entrou no jogo em 13/10/2026.** Ficam os prompts
+registrados, para quem precisar refazer alguma peça no mesmo estilo.
 
-### `m01_bolo` — missão 01, "Brincar com a comida" (carta errada do Pode ou Não Pode)
+### ~~`m01_bolo` — missão 01, "Brincar com a comida"~~ (pronto)
 
 > Ilustração 2D cartoon infantil de **um prato de comida todo bagunçado**,
 > visto de frente: purê e pedaços de fruta espalhados e amassados na borda do

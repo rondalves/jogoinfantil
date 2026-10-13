@@ -109,6 +109,7 @@
     },
     "cena_errada": {
       "icone": "🍰",
+      "img": "m01_bolo",
       "texto": "Brincar com a comida"
     },
     "explicacao": "A comida é para comer. E a escova deixa o dente forte!",

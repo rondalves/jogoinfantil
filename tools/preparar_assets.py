@@ -311,6 +311,7 @@ SOLTAS = [
     "m20_gritar",
     "m20_engolir",
     "m20_contar",
+    "m01_bolo",
 ]
 FOLHAS.update({n: ([n], 320, ("grade", 1, 1)) for n in SOLTAS})
 FOLHAS["m05_mochila_itens"] = (

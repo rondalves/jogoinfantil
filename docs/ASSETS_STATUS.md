@@ -20,6 +20,7 @@ Para preparar qualquer folha nova: `npm run assets`
 | Cenários | 15 fundos de tela (a sala de aula agora é uma sala de aula de verdade; a moto ganhou a montanha pintada) |
 | Missão 05 | caderno, lápis, garrafinha, uniforme, tênis e pente |
 | Missões 10 e 11 | punho da cena errada |
+| Missão 01 | prato bagunçado da carta "brincar com a comida" |
 | Missão 20 | falar de boca cheia, escutar, gritar, esperar a vez e contar a novidade |
 | Corrida de kart | kart, rival, moeda, cone, poça, presente, bandeira e as 3 pistas |
 | Escalada | fundo do cenário e a pedra do obstáculo |
