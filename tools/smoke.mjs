@@ -7,6 +7,7 @@
  *   npm run smoke       (noutro)
  */
 import { chromium } from 'playwright';
+import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync } from 'node:fs';
 
 // os ids vem dos proprios JSONs: renumerar missao nao quebra o teste
@@ -147,39 +148,36 @@ const main = async () => {
     await page.waitForTimeout(500);
   }
 
-  // o painel dos pais so aparece depois da conta certa, entao o conferidor de
+  // o painel dos pais so aparece depois da senha certa, entao o conferidor de
   // layout nunca o via -- e foi justamente la que os botoes se embolaram.
   atual = 'tela Pais (painel)';
-  await page.evaluate(async () => {
+  const SENHA = '2580';
+  await page.evaluate(async ([senha, resumo]) => {
+    localStorage.setItem('missoes-do-dia:senha', resumo);
     const j = window.__jogo;
     j.scene.scenes.forEach((s) => s.scene.key !== 'Boot' && j.scene.stop(s.scene.key));
     j.scene.start('Pais');
     await new Promise((r) => setTimeout(r, 1500));
-  });
-  for (let i = 0; i < 3; i++) {
-    const alvo = await page.evaluate((n) => {
+  }, [SENHA, createHash('sha256').update(`rotinafeliz:${SENHA}`).digest('hex')]);
+  for (const tecla of [...SENHA, 'ok']) {
+    const alvo = await page.evaluate((nome) => {
       const j = window.__jogo;
       const c = j.scene.getScene('Pais');
-      const capa = c.children.list.find((o) => o.type === 'Container' && o.list?.length > 3);
-      const botoes = (capa?.list ?? []).filter((o) => o.type === 'Container' && o.input);
-      const b = botoes[n];
-      if (!b) return null;
+      const z = c.children.list.flatMap((o) => o.list ?? [o]).find((o) => o.name === `tecla_${nome}`);
+      if (!z) return null;
       const r = j.canvas.getBoundingClientRect();
       const k = r.width / 720;
-      return { x: r.x + b.x * k, y: r.y + (b.y - c.cameras.main.scrollY) * k };
-    }, i);
+      return { x: r.x + z.x * k, y: r.y + (z.y - c.cameras.main.scrollY) * k };
+    }, tecla);
     if (!alvo) break;
     await page.mouse.click(alvo.x, alvo.y);
-    await page.waitForTimeout(700);
-    const abriu = await page.evaluate(() =>
-      window.__jogo.scene.getScene('Pais').children.list.some((o) => o.type === 'Text' && /Joguinhos:/.test(o.text)),
-    );
-    if (abriu) break;
+    await page.waitForTimeout(250);
   }
+  await page.waitForTimeout(700);
   const abriuPainel = await page.evaluate(() =>
     window.__jogo.scene.getScene('Pais').children.list.some((o) => o.type === 'Text' && /Joguinhos:/.test(o.text)),
   );
-  if (!abriuPainel) problemas.push(`${atual}: nao passei da conta, o painel nao foi conferido`);
+  if (!abriuPainel) problemas.push(`${atual}: a senha nao abriu o painel`);
   for (const e of await page.evaluate(conferirLayout)) problemas.push(`${atual}: ${e}`);
 
   // o personagem ja saiu sem rosto fora do criador, porque a lista de olhos so

@@ -67,9 +67,15 @@
       "tipo": "arrastar_para_alvo",
       "narracao": "Monte o café: leve a fruta e o pão para o prato.",
       "audio": "m01_e3",
+      "empilha": true,
+      "estados": [
+        "",
+        "",
+        "m01_prato"
+      ],
       "alvo": {
         "icone": "🍽️",
-        "img": "m01_prato",
+        "img": "m13_prato_vazio",
         "x": 360,
         "y": 920,
         "fala": "Prato do café"

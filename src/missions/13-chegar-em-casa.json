@@ -35,7 +35,7 @@
         },
         {
           "icone": "👕",
-      "img": "m05_uniforme",
+          "img": "m05_uniforme",
           "texto": "Tirar o uniforme",
           "fala": "Tirar o uniforme",
           "x": 550,
@@ -64,7 +64,10 @@
         "m03_germe4",
         "m03_germe5"
       ],
-      "audio": "m13_e2"
+      "audio": "m13_e2",
+      "estados": [
+        "m03_maos_limpas"
+      ]
     }
   ],
   "pode_ou_nao_pode": {

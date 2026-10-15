@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { portaoAdulto } from '../portaoAdulto';
 import { CONFIG } from '../config';
 import { hojeISO } from '../economia';
 import { fale } from '../narracoes';
@@ -57,49 +58,23 @@ export class AvisoTempo extends Phaser.Scene {
     });
   }
 
-  /** A mesma conta da area dos adultos: crianca de 4 a 7 anos nao resolve. */
+  /** A mesma senha da area dos adultos: so quem a tem libera mais joguinho. */
   private conta() {
     fale('tempo_adulto');
-    const a = Phaser.Math.Between(3, 9);
-    const b = Phaser.Math.Between(4, 9);
-    const certo = a * b;
-    const capa = this.add.container(0, 0).setDepth(10);
-    capa.add(cobrirTela(this, 0xf7f5f1, 0.98));
-    capa.add(
-      this.add.text(W / 2, 360, `Quanto é ${a} x ${b}?`, { fontSize: '54px', color: '#2b3a4a' }).setOrigin(0.5),
+    portaoAdulto(
+      this,
+      () => {
+        const p = ativo();
+        if (p) {
+          p.tempoJogo = liberarMais(p.tempoJogo, hojeISO(), limiteDoPerfil());
+          salvar(p);
+        }
+        nota(1047);
+        fale('tempo_liberado');
+        if (this.volta) this.scene.resume(this.volta);
+        this.scene.stop();
+      },
+      () => undefined,
     );
-    const recado = this.add.text(W / 2, 1060, '', { fontSize: '40px', color: '#b5564a' }).setOrigin(0.5);
-    capa.add(recado);
-    const erradas = new Set<number>();
-    while (erradas.size < 2) {
-      const n = certo + Phaser.Math.Between(-12, 12);
-      if (n !== certo && n > 0) erradas.add(n);
-    }
-    for (const [i, n] of Phaser.Utils.Array.Shuffle([certo, ...erradas]).entries()) {
-      capa.add(
-        botao(
-          this,
-          W / 2,
-          540 + i * 160,
-          String(n),
-          () => {
-            if (n !== certo) {
-              recado.setText('Tente de novo');
-              return;
-            }
-            const p = ativo();
-            if (p) {
-              p.tempoJogo = liberarMais(p.tempoJogo, hojeISO(), limiteDoPerfil());
-              salvar(p);
-            }
-            nota(1047);
-            fale('tempo_liberado');
-            if (this.volta) this.scene.resume(this.volta);
-            this.scene.stop();
-          },
-          { largura: 260 },
-        ),
-      );
-    }
   }
 }

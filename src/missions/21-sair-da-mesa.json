@@ -51,7 +51,7 @@
       "consequencia": "Esse não vai para a pia! Deixe na mesa.",
       "alvo": {
         "icone": "🚰",
-        "img": "m17_cesto",
+        "img": "m21_pia",
         "fala": "Pia",
         "x": 360,
         "y": 960

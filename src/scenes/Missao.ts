@@ -89,6 +89,8 @@ export class Missao extends Phaser.Scene {
         ...das(e.itens),
         ...das(e.perguntas),
         ...(e.sujeiras ?? []),
+        ...(e.estados ?? []),
+        e.antes,
       ]),
     ];
   }

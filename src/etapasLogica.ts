@@ -74,3 +74,13 @@ export class Esfrega {
     return this.feitos >= this.total;
   }
 }
+
+/**
+ * Onde o item pousa em cima do alvo (prato, mesa): em roda, achatado como o
+ * prato visto de cima. Devolve o deslocamento a partir do centro do alvo.
+ */
+export function vagaNoAlvo(k: number, n: number): { x: number; y: number } {
+  if (n <= 1) return { x: 0, y: -10 };
+  const a = -Math.PI / 2 + (k * 2 * Math.PI) / n;
+  return { x: Math.round(Math.cos(a) * 80), y: Math.round(Math.sin(a) * 48) - 10 };
+}

@@ -27,6 +27,8 @@ export interface Item {
   y: number;
   /** false = pegadinha (não deve ser tocado); true = resposta certa */
   correto?: boolean;
+  /** como entra no alvo que muda de arte: 'puxar' (lençol cobrindo a cama) ou 'cair' (travesseiro) */
+  efeito?: 'puxar' | 'cair';
 }
 
 /** Uma situacao do "precisa ou nao precisa?". */
@@ -62,6 +64,19 @@ export interface Etapa {
   perguntas?: Pergunta[];
   /** frase leve narrada quando a criança erra */
   consequencia?: string;
+  /**
+   * arrastar_para_alvo: arte do alvo depois de cada item certo, na ordem dos
+   * itens certos ("" = nao muda). A cama vai se arrumando a cada peca. Arte que
+   * ainda nao existe e pulada. A ultima que existir fecha com o antes e depois.
+   * esfregar: a primeira e a arte limpa que aparece no fim (maos limpas).
+   */
+  estados?: string[];
+  /** arte do "antes" no fim (padrao: a do alvo) */
+  antes?: string;
+  /** os itens ficam em cima do alvo, em vez de sumir dentro (prato, mesa) */
+  empilha?: boolean;
+  /** os itens certos tem ordem: o primeiro da lista vem primeiro (lencol antes do cobertor) */
+  emOrdem?: boolean;
 }
 
 export interface Cena {

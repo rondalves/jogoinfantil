@@ -123,15 +123,68 @@ e instale o `app-release.apk` de `android/app/build/outputs/apk/release/`.
 
 ### 3.2 Teste fechado (obrigatório para contas novas)
 Contas de desenvolvedor pessoais criadas depois de nov/2023 precisam de
-**12 testadores por 14 dias seguidos** antes de liberar produção.
+**12 testadores por 14 dias seguidos** antes de liberar produção. A faixa
+"Acesso antecipado" não substitui isso: só o teste fechado conta.
 
-1. **Teste → Teste fechado → Criar faixa**
-2. Envie o `.aab`
-3. Em **Testadores**, crie uma lista de e-mails com **12 contas Google pessoais**
-   (não podem ser contas da mesma organização)
-4. Copie o **link de participação** e mande para os 12
-5. Cada um precisa **aceitar o convite e instalar**
-6. Os 14 dias só contam enquanto os 12 estiverem inscritos — se alguém sair, o contador reinicia
+Situação em 14/10/2026: versão **2 (1.0)** enviada à faixa *Teste fechado -
+Alpha*, em análise. **Publicação gerenciada** está ligada.
+
+**Passo 1 — Juntar as pessoas (enquanto a revisão corre)**
+- Meta: **15 pessoas** (folga de 3 para quem desistir).
+- Cada uma precisa de um **celular Android** e de uma **conta Gmail** que use na
+  Play Store desse celular. iPhone não serve.
+- Peça o Gmail exato. É o erro mais comum: a pessoa manda um e-mail e usa outro
+  na Play.
+
+**Passo 2 — Cadastrar os e-mails**
+1. **Testar e lançar → Teste → Teste fechado → Alpha → aba Testadores**
+2. Na lista de e-mails, cole os Gmails (um por linha ou separados por vírgula)
+   e **Salvar**.
+3. Em **Como os testadores participam**, copie o **link de participação**
+   (`https://play.google.com/apps/testing/com.colostudio.rotinafeliz`).
+
+*Sem cadastrar um por um:* crie um Google Grupo em groups.google.com com
+"Quem pode participar: qualquer pessoa na web", marque na aba Testadores
+**Grupos do Google** e cole o e-mail do grupo. Quem entra no grupo vira testador
+sozinho. Divulgue dois links, nesta ordem: o do grupo (`Participar do grupo`) e o
+de participação acima.
+
+**Passo 3 — Publicar a versão aprovada**
+- Quando o e-mail de aprovação chegar, abra **Visão geral da publicação**.
+  Com a publicação gerenciada, a versão fica em *Alterações prontas para
+  publicação*: clique em **Publicar**. Antes disso o link mostra
+  *App not available* para todo mundo.
+
+**Passo 4 — Mandar o convite** (mensagem pronta para WhatsApp)
+
+> Oi! Lancei um app infantil de rotina, o **Rotina Feliz**, e a Google exige 12
+> pessoas testando por 14 dias antes de liberar na loja. Me ajuda?
+> 1. No celular Android, abra este link logado com o Gmail que você me passou:
+>    https://play.google.com/apps/testing/com.colostudio.rotinafeliz
+> 2. Toque em **Tornar-se testador**
+> 3. Toque em **Fazer download no Google Play** e instale
+> 4. **Não desinstale por 15 dias** e, se puder, abra de vez em quando 🙏
+> Qualquer coisa estranha, me manda print!
+
+**Passo 5 — Acompanhar os 14 dias**
+- **Painel → Teste fechado**: o Console mostra quantos testadores estão
+  participando. O contador dos 14 dias só anda com **12 ou mais**.
+- Anote quem entrou e cobre quem não aparece. Se o número cair abaixo de 12,
+  conte como se a contagem recomeçasse.
+- Peça a 3 ou 4 pessoas um retorno curto (o que a criança achou, se algo
+  travou). Isso vira resposta no questionário do passo 6.
+- Se precisar mandar correção nesse meio tempo: suba o `versionCode`, gere o
+  `.aab` e crie nova versão na **mesma** faixa. Os testadores atualizam pela
+  Play e a contagem não zera.
+
+**Passo 6 — Pedir produção**
+1. No dia 15, **Painel → Solicitar a produção** (o botão sai do cinza).
+2. Responda o questionário sobre o teste, com frases simples e verdadeiras:
+   - como recrutou: amigos e família com filhos pequenos;
+   - o que os testadores fizeram: usaram as missões, historinhas e joguinhos;
+   - que retorno recebeu e o que mudou por causa dele;
+   - por que o app está pronto: o que foi testado e funcionou.
+3. A resposta do Google costuma levar alguns dias. Aprovado, siga para 3.7.
 
 ### 3.3 Segurança dos dados
 **Política → Segurança dos dados**: responda **não** para tudo.
@@ -145,7 +198,7 @@ Contas de desenvolvedor pessoais criadas depois de nov/2023 precisam de
 ### 3.4 Classificação de conteúdo
 **Política → Classificação de conteúdo** → questionário.
 Categoria **Educação/Jogos**, sem violência, sem linguagem imprópria, **com
-compra no app** (uma única, atrás da conta de multiplicação), sem conteúdo
+compra no app** (uma única, atrás da senha do adulto), sem conteúdo
 gerado por usuários, sem anúncios. Resultado esperado:
 **Livre / 3+**.
 
@@ -156,7 +209,7 @@ gerado por usuários, sem anúncios. Resultado esperado:
   - sem anúncios, sem SDK de publicidade ✔
   - sem coleta de dados pessoais ✔
   - sem links externos para fora do app, exceto a política de privacidade no
-    painel dos pais, que fica atrás de uma conta de multiplicação ✔
+    painel dos pais, que fica atrás da senha do adulto ✔
 - Declare que o app **não** usa APIs de localização, câmera, microfone ou contatos
 
 ### 3.6 Ficha da loja
@@ -182,7 +235,7 @@ porque a política Families é checada com mais cuidado.
 ## 4. Atualizações depois
 
 A cada versão nova, suba `versionCode` em `android/app/build.gradle`
-(1 → 2 → 3…) e `versionName` (`1.0` → `1.1`). Depois `npm run android:build`
+(o último na Play é **2**, então o próximo é 3) e `versionName` (`1.0` → `1.1`). Depois `npm run android:build`
 e envie o novo `.aab`. **Sempre com a mesma keystore.**
 
 ---

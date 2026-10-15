@@ -96,7 +96,7 @@ m01_pnp_explica.mp3;adulto;A comida é para comer. E a escova deixa o dente fort
 m01_reforco.mp3;mascote;Dentes limpos, sorriso brilhando!;Missao 01 - Acordar e se cuidar: frase de reforco
 m02_intro.mp3;mascote;{nome}, vamos deixar a sua cama bonita?;Missao 02 - Arrumar a cama: abertura (raposinha)
 m02_mostrar.mp3;mascote;Primeiro o lençol, depois o cobertor, por último o travesseiro!;Missao 02 - Arrumar a cama: o personagem mostra
-m02_e1.mp3;adulto;Leve o lençol, o cobertor e o travesseiro para a cama.;Missao 02 - Arrumar a cama: etapa 1 (arrastar_para_alvo)
+m02_e1.mp3;adulto;Arrume a cama na ordem: primeiro o lençol, depois o cobertor e, por último, o travesseiro.;Missao 02 - Arrumar a cama: etapa 1 (arrastar_para_alvo)
 nome_lencol.mp3;adulto;Lençol;Nome de objeto (dedo por cima)
 nome_cobertor.mp3;adulto;Cobertor;Nome de objeto (dedo por cima)
 nome_travesseiro.mp3;adulto;Travesseiro;Nome de objeto (dedo por cima)

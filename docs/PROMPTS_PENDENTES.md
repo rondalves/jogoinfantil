@@ -4,7 +4,7 @@
 > diz o que falta hoje e o que existe mas precisa ser refeito. Esta lista
 > envelhece; o comando não.
 
-Conferido em 11 de outubro de 2026: **nenhuma arte faltando**. O que sobra é
+Conferido em 15 de outubro de 2026: **8 artes novas pedidas** (seção 5), para as cenas que mudam a cada item. O que sobra é
 refazer o personagem inteiro, mais o som. Tudo tem substituto automático no
 jogo, então nada quebra enquanto não chega.
 
@@ -168,3 +168,45 @@ Peças soltas (verde #00FF00, 2048x2048): `m29_cinto_solto`, `m29_porta_calcada`
 ### `bg_parque`
 
 > Cenário 2D cartoon infantil de **um parque**, em pé 1080x1920: árvores, arbustos, um escorregador e um banco nas bordas e ao fundo; gramado e caminho de terra bem livres no centro e na metade de baixo, para os cartões do jogo. Sem pessoas, sem texto, sem letras. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Sem fundo verde.
+
+---
+
+# 5. Cenas que mudam a cada item — 8 artes novas (pedidas em 15/10/2026)
+
+O jogo já está pronto para elas: assim que a arte entra na pasta com o nome
+certo, a cena passa a mudar sozinha. Enquanto não chega, a etapa funciona como
+antes. Para ficar igual ao que já existe, **anexe no Gemini a arte indicada em
+"referência"** (de `assets/img`) e peça para manter o mesmo desenho. Mesma
+regra das peças soltas: **fundo verde #00FF00, quadrado 2048x2048**.
+
+### `m02_cama_colchao` — missão 02, a cama antes de arrumar (referência: `m02_cama_arrumada.png`)
+
+> Ilustração 2D cartoon infantil da **mesma cama de madeira da imagem de referência, vista do mesmo ângulo, só com o colchão branco e liso**: sem lençol, sem cobertor e sem travesseiro. Mesma cabeceira, mesmos pés, mesma cor de madeira. Sem pessoas. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
+
+### `m02_cama_lencol` — missão 02, depois do lençol (referência: `m02_cama_arrumada.png` e `m02_lencol.png`)
+
+> Ilustração 2D cartoon infantil da **mesma cama de madeira da imagem de referência, vista do mesmo ângulo, com o colchão coberto por um lençol claro em tons pastel, bem esticado e liso**, como o lençol da segunda referência. Ainda **sem cobertor e sem travesseiro**. Sem pessoas. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
+
+### `m02_cama_cobertor` — missão 02, depois do cobertor (referência: `m02_cama_arrumada.png`)
+
+> Ilustração 2D cartoon infantil da **mesma cama arrumada da imagem de referência, igualzinha, mas sem o travesseiro**: lençol esticado e o cobertor listrado (vermelho, amarelo, azul e branco) estendido e dobrado na ponta, no mesmo lugar. A cabeceira fica à mostra, sem nada em cima do colchão nessa parte. Sem pessoas. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
+
+### `m05_mochila_pronta` — missão 05, a mochila arrumada (referência: `m05_mochila.png`)
+
+> Ilustração 2D cartoon infantil da **mesma mochila escolar da imagem de referência, com o zíper de cima aberto e as coisas da escola aparecendo**: um caderno, um lápis, uma maçã vermelha e uma garrafinha de água saindo pela abertura. Mesmas cores e mesmos adesivos da mochila. Sem pessoas. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
+
+### `m13_mesa_posta` — missão 17, a mesa posta (referência: `m13_mesa.png`)
+
+> Ilustração 2D cartoon infantil da **mesma mesinha com cadeira da imagem de referência, vista do mesmo ângulo, com a mesa posta**: um prato branco, um copo e um garfo arrumados em cima do tampo, na frente da cadeira. Nada fora da mesa. Sem pessoas. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
+
+### `m16_caixa_brinquedos` — missão 16, a caixa cheia (referência: `m16_caixa_blocos.png`)
+
+> Ilustração 2D cartoon infantil da **mesma caixa azul de brinquedos da imagem de referência, aberta, com os brinquedos guardados aparecendo por cima**: uma bola colorida, um ursinho de pelúcia, um trenzinho de madeira e uma boneca, bem arrumados. Sem blocos espalhados fora da caixa. Sem pessoas. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
+
+### `pet_cachorro_feliz` — missão 17, o cachorrinho alimentado (referência: `pet_cachorro.png`)
+
+> Ilustração 2D cartoon infantil do **mesmo cachorrinho da imagem de referência, sentado, de olhos fechados de alegria e língua de fora, com um potinho de ração cheio na frente e um ossinho ao lado**. Mesma cor de pelo e mesma coleira vermelha. Sem pessoas. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
+
+### `m21_pia` — missão 21, a pia da cozinha (hoje aparece o cesto de roupa suja)
+
+> Ilustração 2D cartoon infantil de **uma pia de cozinha vista de frente**: cuba de inox, torneira alta e um pedaço da bancada dos dois lados, sem louça dentro. Sem armário embaixo, sem parede atrás. Sem pessoas. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.

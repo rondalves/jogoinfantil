@@ -17,6 +17,9 @@
       "tipo": "esfregar",
       "narracao": "Esfregue as mãos até os germes sumirem!",
       "audio": "m03_e1",
+      "estados": [
+        "m03_maos_limpas"
+      ],
       "passos": 5,
       "segundos": 20,
       "alvo": {
@@ -77,7 +80,7 @@
         },
         {
           "icone": "🪴",
-      "img": "m03_terra",
+          "img": "m03_terra",
           "texto": "Vou brincar na terra",
           "resposta": false,
           "explica": "Agora não precisa. A terra pode sujar! Lavar é depois de brincar."

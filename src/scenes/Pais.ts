@@ -11,11 +11,12 @@ import { TEMA } from '../theme';
 import { ativo, remover, salvar, zerarProgresso, type Perfil } from '../storage';
 import { botao, botaoVoltar, cobrirTela, fundo, irPara, titulo, toque } from '../ui';
 import { musicaDoMundo } from '../musica';
+import { criarSenha, portaoAdulto } from '../portaoAdulto';
 import { setMusicaLigada } from '../musica';
 
 const W = CONFIG.LARGURA;
 
-/** Painel dos pais, protegido por uma conta de matematica simples. */
+/** Painel dos pais, protegido pela senha que o adulto cria (portaoAdulto.ts). */
 export class Pais extends Phaser.Scene {
   private p!: Perfil;
 
@@ -29,47 +30,9 @@ export class Pais extends Phaser.Scene {
     fundo(this, TEMA.nuvem);
     botaoVoltar(this, 'Mapa');
     narrador.parar();
-    // depois da compra a tela recarrega ja aberta: o adulto acabou de passar pela conta
+    // depois da compra a tela recarrega ja aberta: o adulto acabou de passar pela senha
     if (dados?.aberto) this.painel();
-    else this.portao();
-  }
-
-  private portao() {
-    const a = Phaser.Math.Between(3, 9);
-    const b = Phaser.Math.Between(4, 9);
-    const certo = a * b;
-    const capa = this.add.container(0, 0);
-    capa.add(titulo(this, 'Área dos adultos', 220));
-    capa.add(
-      this.add.text(W / 2, 360, `Quanto é ${a} x ${b}?`, { fontSize: '54px', color: '#2b3a4a' }).setOrigin(0.5),
-    );
-    const recado = this.add.text(W / 2, 1080, '', { fontSize: '40px', color: '#b5564a' }).setOrigin(0.5);
-    capa.add(recado);
-
-    const erradas = new Set<number>();
-    while (erradas.size < 2) {
-      const n = certo + Phaser.Math.Between(-12, 12);
-      if (n !== certo && n > 0) erradas.add(n);
-    }
-    for (const [i, n] of Phaser.Utils.Array.Shuffle([certo, ...erradas]).entries()) {
-      capa.add(
-        botao(
-          this,
-          W / 2,
-          540 + i * 160,
-          String(n),
-          () => {
-            if (n !== certo) {
-              recado.setText('Tente de novo');
-              return;
-            }
-            capa.destroy();
-            this.painel();
-          },
-          { largura: 260 },
-        ),
-      );
-    }
+    else portaoAdulto(this, () => this.painel(), () => irPara(this, 'Mapa'));
   }
 
   private painel() {
@@ -103,7 +66,7 @@ export class Pais extends Phaser.Scene {
     };
 
     // a troca de voz so aparece quando houver fala gravada: sem ela nao ha o que trocar
-    let y = 690;
+    let y = 680;
     if (temGravacoes) {
       ajuste(
         y,
@@ -116,7 +79,7 @@ export class Pais extends Phaser.Scene {
           narrador.falar('Pronto! Esta é a voz que vai explicar as missões.');
         },
       );
-      y += 100;
+      y += 95;
     }
     ajuste(
       y,
@@ -132,7 +95,7 @@ export class Pais extends Phaser.Scene {
     // joguinho nao acaba sozinho: passou deste tempo no dia, aparece o aviso
     // "ja fez as suas tarefas?" e so um adulto libera mais
     ajuste(
-      y + 100,
+      y + 95,
       () => `Joguinhos: ${limiteDoPerfil()} min/dia`,
       (r) => {
         const i = LIMITES_MIN.indexOf(limiteDoPerfil());
@@ -142,18 +105,24 @@ export class Pais extends Phaser.Scene {
       },
     );
 
-    botao(this, W / 2, 1010, 'Zerar progresso', () => this.confirmar('zerar'), {
+    ajuste(
+      y + 190,
+      () => 'Senha do adulto',
+      () => criarSenha(this, () => undefined, () => undefined),
+    );
+
+    botao(this, W / 2, 1060, 'Zerar progresso', () => this.confirmar('zerar'), {
       largura: 520,
       cor: 0xffb0a0,
       altura: 96,
     });
-    botao(this, W / 2 - 170, 1120, 'Apagar perfil', () => this.confirmar('apagar'), {
+    botao(this, W / 2 - 170, 1165, 'Apagar perfil', () => this.confirmar('apagar'), {
       largura: 300,
       cor: 0xff8f7a,
       altura: 96,
     });
     const link = this.add
-      .text(W / 2 + 180, 1120, 'Privacidade', { fontSize: '30px', color: '#1f6fb2', fontStyle: 'bold' })
+      .text(W / 2 + 180, 1165, 'Privacidade', { fontSize: '30px', color: '#1f6fb2', fontStyle: 'bold' })
       .setOrigin(0.5);
     toque(link, () => window.open(CONFIG.URL_PRIVACIDADE, '_blank', 'noopener'));
   }

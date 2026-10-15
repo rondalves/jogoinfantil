@@ -49,8 +49,9 @@ def pedidas():
                 itens = itens + [e["alvo"]]
             for i in itens:
                 usa(i.get("img"), lugar)
-            for s in e.get("sujeiras") or []:
+            for s in (e.get("sujeiras") or []) + [x for x in e.get("estados") or [] if x]:
                 usa(s, lugar)
+            usa(e.get("antes"), lugar)
         pnp = d["pode_ou_nao_pode"]
         for cena in ("cena_certa", "cena_errada"):
             usa(pnp[cena].get("img"), lugar)

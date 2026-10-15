@@ -17,6 +17,12 @@
       "tipo": "arrastar_para_alvo",
       "narracao": "Coloque na mochila só o que é da escola.",
       "audio": "m05_e1",
+      "estados": [
+        "",
+        "",
+        "",
+        "m05_mochila_pronta"
+      ],
       "alvo": {
         "icone": "🎒",
         "img": "m05_mochila",

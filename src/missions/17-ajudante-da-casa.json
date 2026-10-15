@@ -45,6 +45,11 @@
       "tipo": "arrastar_para_alvo",
       "narracao": "Agora ponha a mesa.",
       "audio": "m17_e2",
+      "estados": [
+        "",
+        "",
+        "m13_mesa_posta"
+      ],
       "alvo": {
         "icone": "🍽️",
         "img": "m13_mesa",
@@ -80,6 +85,10 @@
       "tipo": "arrastar_para_alvo",
       "narracao": "E a comidinha do pet?",
       "audio": "m17_e3",
+      "estados": [
+        "",
+        "pet_cachorro_feliz"
+      ],
       "alvo": {
         "icone": "🐕",
         "img": "pet_cachorro",

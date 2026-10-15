@@ -8,8 +8,8 @@ historinhas. O adulto abre o resto com uma compra única:
 - as 14 historinhas novas (07 a 20), assim que forem gravadas.
 
 Sem anúncio, sem assinatura e sem moeda comprada. A criança nunca vê preço nem
-botão de comprar: tudo fica na área dos adultos, atrás da conta de
-multiplicação. Isso é exigência da política Families da Play.
+botão de comprar: tudo fica na área dos adultos, atrás da senha do
+adulto. Isso é exigência da política Families da Play.
 
 ## Como está no código
 

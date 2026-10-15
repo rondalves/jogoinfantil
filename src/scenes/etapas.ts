@@ -2,13 +2,15 @@ import Phaser from 'phaser';
 import { CONFIG } from '../config';
 import { TEMA } from '../theme';
 import { escovar } from './escovacao';
-import { Esfrega } from '../etapasLogica';
+import { Esfrega, vagaNoAlvo } from '../etapasLogica';
 import { narrador } from '../narrador';
 import { fale } from '../narracoes';
 import type { Etapa, Item, Pergunta } from '../types';
 import {
   area,
+  arteExistente,
   botao,
+  brilhinho,
   figura,
   lerAoPassar,
   marcaErro,
@@ -92,10 +94,106 @@ const arrastar: Handler = (c, e) => {
   sombra.fillStyle(0xffffff, 0.95);
   sombra.fillRoundedRect(alvoX - 190, alvoY - 160, 380, 320, 40);
   c.camada.add(sombra);
-  c.camada.add(lerAoPassar(figura(c.cena, alvoX, alvoY, alvo.img, alvo.icone, 300), alvo.fala ?? alvo.texto));
+  // enquanto a arte do comeco (cama sem nada) nao existe, comeca pela do "antes"
+  const inicio = arteExistente(c.cena, alvo.img, e.antes) ?? alvo.img;
+  let figAlvo = lerAoPassar(figura(c.cena, alvoX, alvoY, inicio, alvo.icone, 300), alvo.fala ?? alvo.texto);
+  c.camada.add(figAlvo);
   const itens = e.itens ?? [];
   // item com "correto": false e pegadinha: nao entra, leva X e volta
-  let faltam = itens.filter((i) => i.correto !== false).length;
+  const certos = itens.filter((i) => i.correto !== false);
+  let feitos = 0;
+  /** ultima arte de estado que entrou: e o "depois" do fim */
+  let depois: string | undefined;
+  const pousados: Fig[] = [];
+
+  /** O alvo troca de arte: o lencol cobre a cama, o travesseiro cai no lugar. */
+  const mudarAlvo = (nova: string, f: Fig, efeito?: 'puxar' | 'cair') => {
+    const velho = figAlvo;
+    const novo = figura(c.cena, alvoX, alvoY, nova, alvo.icone, 300);
+    c.camada.add(novo);
+    figAlvo = novo;
+    c.camada.bringToTop(f);
+    const pronto = () => {
+      velho.destroy();
+      brilhar(c, alvoX, alvoY - 80);
+    };
+    if (!efeito) {
+      // sem efeito proprio: o item entra no alvo e a arte nova aparece por cima
+      novo.setAlpha(0);
+      c.cena.tweens.add({ targets: f, x: alvoX, y: alvoY, scale: 0, alpha: 0, duration: 320, ease: 'Quad.easeIn' });
+      c.cena.tweens.add({ targets: novo, alpha: 1, duration: 360, onComplete: pronto });
+      c.cena.tweens.add({ targets: novo, scale: novo.scale * 1.06, duration: 180, delay: 360, yoyo: true });
+      return;
+    }
+    if (efeito === 'cair') {
+      // o travesseiro sobe e cai na cabeceira; a cama aparece arrumada por baixo
+      novo.setAlpha(0);
+      c.cena.tweens.chain({
+        targets: f,
+        tweens: [
+          { x: alvoX - 70, y: alvoY - 230, scale: f.scale * 0.8, duration: 260, ease: 'Quad.easeOut' },
+          { y: alvoY - 70, duration: 340, ease: 'Bounce.easeOut' },
+          { alpha: 0, duration: 200 },
+        ],
+      });
+      c.cena.tweens.add({ targets: novo, alpha: 1, delay: 560, duration: 260, onComplete: pronto });
+      return;
+    }
+    // puxar: a arte nova entra varrendo da esquerda para a direita, com o
+    // item indo na frente, como quem estica o lencol
+    const largura = 380;
+    const esq = alvoX - largura / 2;
+    const corte = c.cena.make.graphics({}, false);
+    novo.setMask(corte.createGeometryMask());
+    const varre = { w: 0 };
+    f.setPosition(esq, alvoY);
+    c.cena.tweens.add({
+      targets: varre,
+      w: largura,
+      duration: 700,
+      ease: 'Sine.easeInOut',
+      onUpdate: () => {
+        corte.clear().fillStyle(0xffffff).fillRect(esq, alvoY - 170, varre.w, 340);
+        f.x = esq + varre.w;
+      },
+      onComplete: () => {
+        novo.clearMask(true);
+        corte.destroy();
+        pronto();
+      },
+    });
+    c.cena.tweens.add({ targets: f, alpha: 0, scale: f.scale * 0.7, delay: 450, duration: 250 });
+  };
+
+  /** Antes e depois lado a lado: a crianca ve o que ela mesma mudou. */
+  const antesDepois = (antes: string, final: string) => {
+    const capa = c.cena.add.container(0, 0);
+    c.camada.add(capa);
+    capa.add(c.cena.add.rectangle(W / 2, 640, W, 2400, 0xf7f5f1, 0.94));
+    const cartao = (x: number, rotulo: string, arte: string, atraso: number) => {
+      const g = c.cena.add.graphics();
+      g.fillStyle(0xffffff, 1).fillRoundedRect(x - 140, 600, 280, 300, 30);
+      g.lineStyle(4, 0xc9b8a8, 1).strokeRoundedRect(x - 140, 600, 280, 300, 30);
+      const t = c.cena.add
+        .text(x, 560, rotulo, { fontSize: '40px', color: '#2b3a4a', fontStyle: 'bold' })
+        .setOrigin(0.5);
+      const fig = figura(c.cena, x, 750, arte, alvo.icone, 240);
+      const parte = c.cena.add.container(0, 0, [g, t, fig]).setAlpha(0);
+      capa.add(parte);
+      c.cena.tweens.add({ targets: parte, alpha: 1, delay: atraso, duration: 300 });
+      return fig;
+    };
+    cartao(185, 'Antes', antes, 0);
+    capa.add(c.cena.add.text(W / 2, 750, '\u{27A1}\u{FE0F}', { fontSize: '52px' }).setOrigin(0.5));
+    const fig = cartao(535, 'Depois', final, 600);
+    c.cena.time.delayedCall(700, () => {
+      somCerto();
+      c.cena.tweens.add({ targets: fig, scale: fig.scale * 1.08, duration: 260, yoyo: true });
+      for (const [dx, dy] of [[-100, -90], [100, -70], [-80, 100], [110, 90]]) brilhar(c, 535 + dx, 750 + dy, capa);
+    });
+    c.cena.time.delayedCall(2800, c.fim);
+  };
+
   // ate 4 cabem numa fila; de 5 em diante quebra em duas, senao fica miudo
   const porLinha = itens.length > 4 ? Math.ceil(itens.length / 2) : itens.length;
   const passo = Math.min(190, (W - 120) / Math.max(1, porLinha));
@@ -112,6 +210,7 @@ const arrastar: Handler = (c, e) => {
     c.camada.add(f);
     f.setInteractive({ draggable: true });
     lerAoPassar(f, it.fala ?? it.texto);
+    f.on('dragstart', () => c.camada.bringToTop(f));
     f.on('drag', (_p: Phaser.Input.Pointer, x: number, y: number) => {
       f.x = x;
       f.y = y;
@@ -131,25 +230,80 @@ const arrastar: Handler = (c, e) => {
         c.erro(e.consequencia);
         return;
       }
-      // guardou: some de vez dentro do alvo, que e o que a crianca entende
+      const vez = certos[feitos];
+      if (e.emOrdem && vez !== it) {
+        // fora de ordem nao e erro: so mostra quem vem primeiro e devolve
+        const frase = `Primeiro: ${vez.fala ?? vez.texto ?? ''}`;
+        tremer(c.cena, f);
+        c.cena.time.delayedCall(300, voltarParaCasa);
+        const dica = textoEmPainel(c.cena, alvoX, alvoY - 230, frase, 34);
+        c.camada.add(dica);
+        c.cena.time.delayedCall(1600, () => dica.destroy());
+        narrador.falar(frase);
+        return;
+      }
       f.disableInteractive();
       base.destroy();
       somCerto();
-      c.cena.tweens.add({
-        targets: f,
-        x: alvoX,
-        y: alvoY,
-        scale: 0,
-        alpha: 0,
-        duration: 320,
-        ease: 'Quad.easeIn',
-        onComplete: () => f.destroy(),
-      });
-      faltam -= 1;
-      if (faltam === 0) c.cena.time.delayedCall(600, c.fim);
+      feitos += 1;
+      const estado = e.estados?.[feitos - 1];
+      const muda = estado && c.cena.textures.exists(estado) ? estado : undefined;
+      if (muda) {
+        depois = muda;
+        // o prato montado ja traz desenhado o que estava pousado em cima
+        for (const p of pousados) c.cena.tweens.add({ targets: p, alpha: 0, duration: 300 });
+        mudarAlvo(muda, f, it.efeito);
+      } else if (e.empilha) {
+        // fica em cima do alvo: o prato vai enchendo
+        const v = vagaNoAlvo(feitos - 1, certos.length);
+        pousados.push(f);
+        c.cena.tweens.add({
+          targets: f,
+          x: alvoX + v.x,
+          y: alvoY + v.y,
+          scale: f.scale * 0.75,
+          duration: 300,
+          ease: 'Back.out',
+        });
+      } else {
+        // guardou: some de vez dentro do alvo, que e o que a crianca entende
+        c.cena.tweens.add({
+          targets: f,
+          x: alvoX,
+          y: alvoY,
+          scale: 0,
+          alpha: 0,
+          duration: 320,
+          ease: 'Quad.easeIn',
+          onComplete: () => f.destroy(),
+        });
+      }
+      if (feitos < certos.length) return;
+      const antes = e.antes ?? alvo.img;
+      if (depois && antes && c.cena.textures.exists(antes)) {
+        const final = depois;
+        c.cena.time.delayedCall(1100, () => antesDepois(antes, final));
+      } else {
+        c.cena.time.delayedCall(muda ? 1000 : 600, c.fim);
+      }
     });
   });
 };
+
+/** Brilhinho que aparece, gira e some. */
+function brilhar(c: Ctx, x: number, y: number, dentro: Phaser.GameObjects.Container = c.camada) {
+  const b = brilhinho(c.cena, x, y, 26).setScale(0);
+  dentro.add(b);
+  c.cena.tweens.add({
+    targets: b,
+    scale: 1,
+    angle: 90,
+    duration: 380,
+    yoyo: true,
+    hold: 200,
+    onComplete: () => b.destroy(),
+  });
+}
 
 const segurarComTimer: Handler = (c, e) => {
   const alvo = e.alvo ?? { icone: '\u{1FAA5}', x: W / 2, y: 780 };
@@ -189,7 +343,7 @@ const segurarComTimer: Handler = (c, e) => {
   f.on('drag', (_p: Phaser.Input.Pointer, x: number) => {
     f.x = Phaser.Math.Clamp(x, alvo.x - 90, alvo.x + 90);
   });
-  c.cena.input.on('pointerup', () => {
+  const soltou = () => {
     timer.pausar();
     c.cena.tweens.killTweensOf(f);
     f.setAngle(0);
@@ -199,14 +353,19 @@ const segurarComTimer: Handler = (c, e) => {
       avisou = true;
       if (e.consequencia) narrador.falar(e.consequencia, c.chaveErro);
     }
+  };
+  c.cena.input.on('pointerup', soltou);
+  // o timer e o ouvinte vivem fora do container: o motor limpa junto ao destruir a camada
+  c.camada.once(Phaser.GameObjects.Events.DESTROY, () => {
+    timer.destruir();
+    c.cena.input.off('pointerup', soltou);
   });
-  // o timer vive fora do container: o motor limpa junto ao destruir a camada
-  c.camada.once(Phaser.GameObjects.Events.DESTROY, () => timer.destruir());
 };
 
 const esfregar: Handler = (c, e) => {
   const alvo = e.alvo ?? { icone: '\u{1F9FC}', x: W / 2, y: 780 };
-  c.camada.add(figura(c.cena, alvo.x, alvo.y, alvo.img, alvo.icone, 220));
+  const sujo = figura(c.cena, alvo.x, alvo.y, alvo.img, alvo.icone, 220);
+  c.camada.add(sujo);
   const total = e.passos ?? 5;
   const sujeiras: Fig[] = [];
   for (let i = 0; i < total; i++) {
@@ -222,15 +381,31 @@ const esfregar: Handler = (c, e) => {
   c.camada.add(painelContador);
 
   const esfrega = new Esfrega(total);
+  let acabou = false;
   const concluir = () => {
+    // o ouvinte de pointermove fica na cena: sem isto, esfregar na etapa
+    // seguinte (quando o tempo acabou antes) chamava o fim de novo e pulava etapa
+    if (acabou) return;
+    acabou = true;
     timer.destruir();
-    certo(c, alvo.x, alvo.y);
-    c.cena.time.delayedCall(700, c.fim);
+    const limpo = e.estados?.[0];
+    if (!limpo || !c.cena.textures.exists(limpo)) {
+      certo(c, alvo.x, alvo.y);
+      c.cena.time.delayedCall(700, c.fim);
+      return;
+    }
+    // a mao suja vira a mao limpa, com brilho: a crianca ve o resultado
+    const novo = figura(c.cena, alvo.x, alvo.y, limpo, alvo.icone, 220).setAlpha(0);
+    c.camada.add(novo);
+    c.cena.tweens.add({ targets: sujo, alpha: 0, duration: 450 });
+    c.cena.tweens.add({ targets: novo, alpha: 1, duration: 450 });
+    c.cena.tweens.add({ targets: novo, scale: novo.scale * 1.08, duration: 220, delay: 450, yoyo: true });
+    somCerto();
+    for (const [dx, dy] of [[-110, -80], [110, -60], [0, 120]]) brilhar(c, alvo.x + dx, alvo.y + dy);
+    c.cena.time.delayedCall(1500, c.fim);
   };
   const timer = new TimerMusical(c.cena, W / 2, 520, e.segundos ?? 20, concluir);
-  c.camada.once(Phaser.GameObjects.Events.DESTROY, () => timer.destruir());
-
-  c.cena.input.on('pointermove', (p: Phaser.Input.Pointer) => {
+  const mover = (p: Phaser.Input.Pointer) => {
     if (!p.isDown) return;
     const anterior = esfrega.limpos;
     if (!esfrega.mover(p.x - p.prevPosition.x, p.y - p.prevPosition.y)) return;
@@ -239,6 +414,11 @@ const esfregar: Handler = (c, e) => {
     c.cena.tweens.add({ targets: s, alpha: 0, scale: 0.2, duration: 260 });
     contador.setText(esfrega.completo ? 'Limpinho!' : `Esfregue! Faltam ${esfrega.faltam}`);
     if (esfrega.completo) concluir();
+  };
+  c.cena.input.on('pointermove', mover);
+  c.camada.once(Phaser.GameObjects.Events.DESTROY, () => {
+    timer.destruir();
+    c.cena.input.off('pointermove', mover);
   });
 };
 

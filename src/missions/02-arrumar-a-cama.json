@@ -15,11 +15,18 @@
   "etapas": [
     {
       "tipo": "arrastar_para_alvo",
-      "narracao": "Leve o lençol, o cobertor e o travesseiro para a cama.",
+      "narracao": "Arrume a cama na ordem: primeiro o lençol, depois o cobertor e, por último, o travesseiro.",
       "audio": "m02_e1",
+      "emOrdem": true,
+      "antes": "m02_cama_bagunca",
+      "estados": [
+        "m02_cama_lencol",
+        "m02_cama_cobertor",
+        "m02_cama_arrumada"
+      ],
       "alvo": {
         "icone": "🛏️",
-        "img": "m02_cama_bagunca",
+        "img": "m02_cama_colchao",
         "x": 360,
         "y": 930,
         "fala": "Cama"
@@ -30,21 +37,24 @@
           "img": "m02_lencol",
           "x": 150,
           "y": 600,
-          "fala": "Lençol"
+          "fala": "Lençol",
+          "efeito": "puxar"
         },
         {
           "icone": "🛌",
           "img": "m02_cobertor",
           "x": 360,
           "y": 560,
-          "fala": "Cobertor"
+          "fala": "Cobertor",
+          "efeito": "puxar"
         },
         {
           "icone": "🪶",
           "img": "m02_travesseiro",
           "x": 570,
           "y": 600,
-          "fala": "Travesseiro"
+          "fala": "Travesseiro",
+          "efeito": "cair"
         }
       ]
     },

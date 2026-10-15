@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { Cronometro, Esfrega } from './etapasLogica';
+import { Cronometro, Esfrega, vagaNoAlvo } from './etapasLogica';
 
 describe('segurar_com_timer', () => {
   it('nao anda enquanto a crianca nao segura', () => {
@@ -62,5 +62,14 @@ describe('esfregar', () => {
     expect(e.mover(500, 500)).toBe(false);
     expect(e.limpos).toBe(1);
     expect(e.faltam).toBe(0);
+  });
+});
+
+describe('itens em cima do alvo', () => {
+  it('cada item pousa num lugar diferente, dentro do prato', () => {
+    const vagas = [0, 1, 2].map((k) => vagaNoAlvo(k, 3));
+    expect(new Set(vagas.map((v) => `${v.x},${v.y}`)).size).toBe(3);
+    for (const v of vagas) expect(Math.abs(v.x) <= 90 && Math.abs(v.y) <= 70).toBe(true);
+    expect(vagaNoAlvo(0, 1)).toEqual({ x: 0, y: -10 });
   });
 });
