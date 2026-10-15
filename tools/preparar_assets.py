@@ -312,6 +312,13 @@ SOLTAS = [
     "m20_engolir",
     "m20_contar",
     "m01_bolo",
+    "m29_cinto_solto",
+    "m29_porta_calcada",
+    "m30_acenar",
+    "m30_escorregador",
+    "m30_banco_parque",
+    "m30_trilha_longe",
+    "m31_olhos_tapados",
 ]
 FOLHAS.update({n: ([n], 320, ("grade", 1, 1)) for n in SOLTAS})
 FOLHAS["m05_mochila_itens"] = (
@@ -334,6 +341,9 @@ FOLHAS_OPACAS = {
     "m06_pnp_certa": (["m06_pnp_certa"], 1, 1, 420),
     "m06_pnp_errada": (["m06_pnp_errada"], 1, 1, 420),
 }
+FOLHAS_OPACAS.update({n: ([n], 1, 1, 420) for n in [
+    "m29_pnp_certa", "m29_pnp_errada", "m30_pnp_certa",
+    "m30_pnp_errada", "m31_pnp_certa", "m31_pnp_errada"]})
 
 # Capas das historinhas: quadradas, sem fundo verde, do tamanho do cartao.
 CAPAS = ["capa_historia1", "capa_historia2", "capa_historia3",
@@ -360,6 +370,7 @@ CENARIOS = [
     "bg_sala_janta",
     "bg_banheiro_banho",
     "bg_montanha",
+    "bg_parque",
 ]
 
 

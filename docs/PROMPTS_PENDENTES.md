@@ -100,7 +100,7 @@ paralaxe.
 
 ---
 
-# 4. Missões 29, 30 e 31 — 14 artes novas (16/10/2026)
+# ~~4. Missões 29, 30 e 31 — 14 artes novas~~ (prontas em 15/10/2026)
 
 As três missões novas reaproveitam peças que já existem (`m06_carro`,
 `m06_mao_dada`, `m05_tenis`, `m05_garrafinha`, `m01_maca`, `m15_urso`,
