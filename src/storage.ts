@@ -33,6 +33,12 @@ export interface Perfil {
   limiteJogoMin?: number;
   /** niveis do quebra-cabeca ja montados (o proximo e o que abre) */
   quebraCabeca?: number;
+  /** missoes jogadas que a crianca ainda nao fez de verdade (ids) */
+  pendentes?: string[];
+  /** missao -> dia em que a crianca confirmou que fez de verdade (1 moeda por missao por dia) */
+  real?: Record<string, string>;
+  /** quantas missoes jogou hoje: a quarta traz a despedida da raposinha */
+  hoje?: { dia: string; n: number };
   /** joguinhos que a crianca ja abriu (o resto dos liberados ganha selo de novo) */
   joguinhosVistos?: string[];
 }

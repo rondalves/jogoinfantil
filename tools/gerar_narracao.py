@@ -41,6 +41,10 @@ def _chave(texto):
 # frases de tela ditas pela raposinha, nao por um adulto
 MASCOTE_UI = {
     "ui_nome_bonito",
+    "missao_faca_de_verdade",
+    "missao_fiz_ok",
+    "missao_ja_fez",
+    "missao_despedida",
     "mapa_termine_mundo",
     "missao_moeda",
     "missao_mundo_completo",

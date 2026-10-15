@@ -15,6 +15,10 @@ function alturaDaTela() {
 export const CONFIG = {
   MOEDAS_POR_MISSAO: 1,
   MOEDAS_BONUS_MUNDO: 5,
+  /** moeda extra por confirmar que fez de verdade (uma por missao por dia) */
+  MOEDAS_FIZ: 1,
+  /** a partir da quarta missao do dia a raposinha se despede */
+  MISSOES_POR_DIA: 4,
   /**
    * Mundos abertos sem a compra: 1 a 4. Os mundos 5 e 6 (10 das 28 missoes,
    * 2 joguinhos, 2 historinhas) abrem com a compra unica (ver compras.ts).

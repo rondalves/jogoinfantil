@@ -45,6 +45,10 @@ jogo_moto_fim.mp3;adulto;Que passeio! Quantas notinhas você pegou! Vamos de nov
 jogo_encaixe.mp3;adulto;Toque para girar a peça e encaixe! Linha cheia some!;Joguinho de encaixar
 jogo_encaixe_encheu.mp3;adulto;Encheu tudo! Vamos limpar e continuar!;Joguinho de encaixar, tabuleiro cheio
 missao_joguinho_novo.mp3;adulto;E abriu um joguinho novo! Ele está na aba Joguinhos.;Fim da missão que fecha o mundo
+missao_faca_de_verdade.mp3;mascote;Agora é com você! Vá fazer de verdade. Já fez? Toque em Já fiz!;Missão, depois do jogo: ir fazer de verdade
+missao_fiz_ok.mp3;mascote;Que orgulho! Você fez de verdade! Mais uma moeda para você!;Missão: quando a criança confirma que fez
+missao_ja_fez.mp3;mascote;Você já fez essa de verdade? Se já fez, toque em Fiz!;Mapa: missão que espera a tarefa de verdade
+missao_despedida.mp3;mascote;Quanta coisa você fez hoje! Agora vá viver o seu dia. Amanhã eu estou aqui esperando você. Tchau, tchau!;Despedida da raposinha (4ª missão do dia)
 letra_a.mp3;adulto;A;Teclado do nome
 letra_b.mp3;adulto;B;Teclado do nome
 letra_c.mp3;adulto;C;Teclado do nome

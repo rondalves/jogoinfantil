@@ -2,7 +2,8 @@ import Phaser from 'phaser';
 import { ANIMACOES, ARTE_ANIMACAO, darVida } from '../animacoes';
 import { AUDIOS, carregar } from '../assets';
 import { CONFIG } from '../config';
-import { bonusMundo, concluirMissao } from '../economia';
+import { bonusMundo, concluirMissao, hojeISO } from '../economia';
+import { confirmarReal, contarHoje, marcarPendente } from '../ponte';
 import { joguinhoDoMundo } from '../joguinhos';
 import { jogoCompleto, MISSOES, missaoPorId, missoesDoMundo } from '../missions';
 import { narrador } from '../narrador';
@@ -45,6 +46,7 @@ const W = CONFIG.LARGURA;
 export class Missao extends Phaser.Scene {
   /** a missao que acabou de terminar fechou o mundo (e abriu o joguinho dele) */
   private fechouMundo = false;
+  private nHoje = 0;
   private def!: MissaoDef;
   private perfil!: Perfil;
   private erros = 0;
@@ -281,6 +283,7 @@ export class Missao extends Phaser.Scene {
   private final() {
     this.limpar();
     const estrelas = concluirMissao(this.perfil, this.def.id, this.erros, this.def.estrelas_max);
+    this.nHoje = contarHoje(this.perfil, hojeISO());
     const ids = missoesDoMundo(this.def.mundo).map((m) => m.id);
     const bonus = bonusMundo(this.perfil, this.def.mundo, ids);
     this.fechouMundo = bonus > 0;
@@ -296,7 +299,41 @@ export class Missao extends Phaser.Scene {
 
     this.time.delayedCall(1800, () => {
       const frase = narrador.falar(this.def.frase_reforco, this.def.audio_reforco);
-      this.camada.add(balao(this, frase, 800));
+      const fala = balao(this, frase, 800);
+      this.camada.add(fala);
+      this.time.delayedCall(3200, () => {
+        fala.destroy();
+        this.ponte();
+      });
+    });
+  }
+
+  /** Depois do jogo, a vida real: ela vai fazer de verdade e toca em "Já fiz". */
+  private ponte() {
+    if (this.perfil.real?.[this.def.id] === hojeISO()) return this.botoesFinais();
+    marcarPendente(this.perfil, this.def.id);
+    salvar(this.perfil);
+    const c = this.add.container(0, 0);
+    this.camada.add(c);
+    c.add(balao(this, fale('missao_faca_de_verdade'), 800));
+    c.add(
+      botao(this, W / 2, 1060, 'Já fiz!', () => { c.destroy(); this.fiz(); }, { icone: '\u{2705}', cor: 0x7ddc8a, largura: 560 }),
+    );
+    c.add(
+      botao(this, W / 2, 1200, 'Vou fazer agora', () => { c.destroy(); this.botoesFinais(); }, { icone: '\u{1F463}', largura: 560 }),
+    );
+  }
+
+  private fiz() {
+    confirmarReal(this.perfil, this.def.id, hojeISO());
+    salvar(this.perfil);
+    this.barra.destroy();
+    this.barra = hud(this, this.perfil, 96, W / 2, 0.5);
+    const c = this.add.container(0, 0);
+    this.camada.add(c);
+    c.add(balao(this, fale('missao_fiz_ok'), 800));
+    this.time.delayedCall(2200, () => {
+      c.destroy();
       this.botoesFinais();
     });
   }
@@ -338,6 +375,12 @@ export class Missao extends Phaser.Scene {
           largura: 460,
         }),
       );
+      return;
+    }
+    if (this.nHoje >= CONFIG.MISSOES_POR_DIA && !this.fechouMundo) {
+      // fim de sessao claro: a raposinha se despede, sem trancar nada
+      this.camada.add(balao(this, fale('missao_despedida'), 800));
+      this.camada.add(botao(this, W / 2, 1120, 'Até amanhã!', () => irPara(this, 'Mapa'), { icone: '\u{1F44B}' }));
       return;
     }
     const jogo = joguinhoDoMundo(this.def.mundo);

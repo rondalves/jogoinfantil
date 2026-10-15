@@ -182,5 +182,21 @@
   "missao_joguinho_novo": {
     "texto": "E abriu um joguinho novo! Ele está na aba Joguinhos.",
     "local": "Fim da missão que fecha o mundo"
+  },
+  "missao_faca_de_verdade": {
+    "texto": "Agora é com você! Vá fazer de verdade. Já fez? Toque em Já fiz!",
+    "local": "Missão, depois do jogo: ir fazer de verdade"
+  },
+  "missao_fiz_ok": {
+    "texto": "Que orgulho! Você fez de verdade! Mais uma moeda para você!",
+    "local": "Missão: quando a criança confirma que fez"
+  },
+  "missao_ja_fez": {
+    "texto": "Você já fez essa de verdade? Se já fez, toque em Fiz!",
+    "local": "Mapa: missão que espera a tarefa de verdade"
+  },
+  "missao_despedida": {
+    "texto": "Quanta coisa você fez hoje! Agora vá viver o seu dia. Amanhã eu estou aqui esperando você. Tchau, tchau!",
+    "local": "Despedida da raposinha (4ª missão do dia)"
   }
 }

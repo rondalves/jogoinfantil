@@ -7,8 +7,11 @@ import { jogoCompleto, missoesBonus, missoesDoMundo, mundoCompleto } from '../mi
 import { narrador } from '../narrador';
 import { TEMA } from '../theme';
 import { desenharPersonagem } from '../personagem';
-import { ativo, type Perfil } from '../storage';
-import { botaoOuvir, figura, fundo, hud, irPara, rolagem, textoEmPainel, toque } from '../ui';
+import { hojeISO } from '../economia';
+import { fale } from '../narracoes';
+import { confirmarReal } from '../ponte';
+import { ativo, salvar, type Perfil } from '../storage';
+import { balao, botao, botaoOuvir, cobrirTela, figura, fundo, hud, irPara, rolagem, textoEmPainel, toque } from '../ui';
 import type { Missao as MissaoDef } from '../types';
 import { musicaDoMundo } from '../musica';
 
@@ -193,14 +196,32 @@ export class Mapa extends Phaser.Scene {
     );
     if (!aberto) return;
     if (estrelas === 0) this.lista.add(figura(this, W - 130, y + 48, 'botao_play', '\u{25B6}\u{FE0F}', 66));
+    const pendente = this.p.pendentes?.includes(missao.id) ?? false;
+    if (pendente) this.lista.add(this.add.text(490, y + 48, '\u{1F463}', { fontSize: '36px' }).setOrigin(0.5));
     const z = this.add
       .zone(W / 2, y + 48, W - 112, 96)
       .setInteractive({ useHandCursor: true })
       .on('pointerover', () => narrador.nomear(missao.titulo))
       .on('pointerup', () => {
         if (this.arrastou()) return;
-        irPara(this, 'Missao', { id: missao.id });
+        if (pendente) this.perguntaReal(missao);
+        else irPara(this, 'Missao', { id: missao.id });
       });
     this.lista.add(z);
+  }
+
+  /** A missao ficou esperando a tarefa de verdade: ja fez? */
+  private perguntaReal(missao: MissaoDef) {
+    const capa = this.add.container(0, 0).setDepth(100);
+    capa.add(cobrirTela(this, 0x000000, 0.45).setInteractive());
+    capa.add(balao(this, fale('missao_ja_fez'), 520));
+    const fiz = () => {
+      confirmarReal(this.p, missao.id, hojeISO());
+      salvar(this.p);
+      irPara(this, 'Mapa');
+    };
+    capa.add(botao(this, W / 2, 860, 'Fiz!', fiz, { icone: '\u{2705}', cor: 0x7ddc8a, largura: 520 }));
+    capa.add(botao(this, W / 2, 1000, 'Jogar de novo', () => irPara(this, 'Missao', { id: missao.id }), { largura: 520 }));
+    capa.add(botao(this, W / 2, 1140, 'Agora não', () => capa.destroy(), { largura: 520 }));
   }
 }
