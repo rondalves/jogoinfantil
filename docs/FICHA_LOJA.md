@@ -30,7 +30,7 @@ Para os adultos:
 • Sem anúncios e sem assinatura. O jogo funciona sem internet, até no modo avião.
 • Os mundos 1 a 4 são gratuitos. Uma compra única e opcional, feita pelo adulto, abre os mundos 5 e 6 e as historinhas novas.
 • Nenhum dado sai do aparelho. Não há cadastro, login nem coleta de informação.
-• Área dos adultos protegida por uma senha que o próprio adulto cria, com limite de tempo de joguinho por dia e a opção de apagar o progresso.
+• Área dos adultos que só abre com a digital ou o bloqueio de tela do próprio celular, com limite de tempo de joguinho por dia e a opção de apagar o progresso.
 • As instruções aparecem escritas na tela: com quem ainda não lê, um adulto lê junto.
 
 Feito para crianças de 4 a 7 anos, com botões grandes e nenhuma tela que puna o erro: errar só faz a raposinha explicar de novo.
@@ -69,14 +69,16 @@ Google Play, e o app só recebe da Play Store a confirmação de que ela existe.
 Exclusão: no painel dos adultos e ao desinstalar.
 
 **Classificação de conteúdo** — categoria Jogo, sem violência, sem linguagem
-imprópria, **com compra no app** (uma, única, atrás da senha do adulto),
+imprópria, **com compra no app** (uma, única, atrás do bloqueio de tela do celular),
 sem interação entre usuários, sem conteúdo gerado por usuários, sem anúncios.
 Resultado esperado: Livre / 3+.
 
 **Público-alvo** — faixas "5 e menos" e "6 a 8". O app entra na política
 Families: sem anúncio, sem SDK de publicidade ou analytics, sem coleta, sem
-link externo fora o da política de privacidade, que fica atrás da senha do adulto.
+link externo fora o da política de privacidade, que fica atrás do bloqueio de tela do celular.
 
 **Permissões** — nenhuma permissão de aparelho (localização, câmera, microfone,
 contatos, armazenamento). O manifesto só tem as que a biblioteca de compras da
-Google Play traz: `BILLING`, `INTERNET` e `ACCESS_NETWORK_STATE`.
+Google Play traz (`BILLING`, `INTERNET`, `ACCESS_NETWORK_STATE`) e as da biometria
+(`USE_BIOMETRIC` e, nos Androids antigos, `USE_FINGERPRINT`), que só abrem o pedido de digital do próprio Android: o app
+não lê nem guarda digital nenhuma.

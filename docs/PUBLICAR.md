@@ -3,7 +3,8 @@
 App: **Rotina Feliz** · Pacote: **com.colostudio.rotinafeliz** (definitivo)
 Alvo: **API 36 (Android 16)**, que é o mínimo exigido hoje · Orientação: retrato
 Permissões de aparelho: **nenhuma**. O manifesto só tem as da compra pela Google
-Play (`BILLING`, `INTERNET`, `ACCESS_NETWORK_STATE`); o jogo roda sem rede.
+Play (`BILLING`, `INTERNET`, `ACCESS_NETWORK_STATE`) e as da digital
+(`USE_BIOMETRIC`, `USE_FINGERPRINT`), que travam a área dos adultos; o jogo roda sem rede.
 
 ## O que já está pronto e o que falta (13/10/2026)
 
@@ -198,7 +199,7 @@ de participação acima.
 ### 3.4 Classificação de conteúdo
 **Política → Classificação de conteúdo** → questionário.
 Categoria **Educação/Jogos**, sem violência, sem linguagem imprópria, **com
-compra no app** (uma única, atrás da senha do adulto), sem conteúdo
+compra no app** (uma única, atrás do bloqueio de tela do celular), sem conteúdo
 gerado por usuários, sem anúncios. Resultado esperado:
 **Livre / 3+**.
 
@@ -209,7 +210,7 @@ gerado por usuários, sem anúncios. Resultado esperado:
   - sem anúncios, sem SDK de publicidade ✔
   - sem coleta de dados pessoais ✔
   - sem links externos para fora do app, exceto a política de privacidade no
-    painel dos pais, que fica atrás da senha do adulto ✔
+    painel dos pais, que fica atrás do bloqueio de tela do celular ✔
 - Declare que o app **não** usa APIs de localização, câmera, microfone ou contatos
 
 ### 3.6 Ficha da loja
@@ -248,7 +249,7 @@ O que a Play exige de um app para menores de 13 anos, e onde o jogo esta:
 |---|---|---|
 | Nenhuma coleta de dados | **ok** | zero `fetch`, `XMLHttpRequest`, `WebSocket` ou SDK de analytics no `src/`. As dependencias sao so Phaser e Capacitor |
 | Funciona offline | **ok** | nenhuma URL buscada em tempo de execucao; a fonte Lexend vai embutida em `assets/fontes/` |
-| Nenhuma permissao de aparelho | **ok** | o manifesto do app nao pede nada; as unicas do APK final (`BILLING`, `INTERNET`, `ACCESS_NETWORK_STATE`) vem da biblioteca de compras da Play |
+| Nenhuma permissao de aparelho | **ok** | o manifesto do app nao pede nada; as do APK final vem das bibliotecas: compras da Play (`BILLING`, `INTERNET`, `ACCESS_NETWORK_STATE`) e biometria (`USE_BIOMETRIC` e `USE_FINGERPRINT`, so para pedir a digital ao Android) |
 | Dados so no aparelho | **ok** | `allowBackup=false` e `res/xml/sem_backup.xml`: nem backup na nuvem, nem copia para outro celular |
 | Compra fora do alcance da crianca | **ok** | o botao so existe em `Pais.painel()`, e `painel()` so e chamado pelo acerto da conta em `Pais.portao()` |
 | Nenhum anuncio | **ok** | nao ha rede de anuncio no projeto |

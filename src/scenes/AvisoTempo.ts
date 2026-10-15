@@ -58,7 +58,7 @@ export class AvisoTempo extends Phaser.Scene {
     });
   }
 
-  /** A mesma senha da area dos adultos: so quem a tem libera mais joguinho. */
+  /** A mesma trava da area dos adultos: so quem desbloqueia o celular libera mais joguinho. */
   private conta() {
     fale('tempo_adulto');
     portaoAdulto(

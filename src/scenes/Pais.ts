@@ -11,12 +11,12 @@ import { TEMA } from '../theme';
 import { ativo, remover, salvar, zerarProgresso, type Perfil } from '../storage';
 import { botao, botaoVoltar, cobrirTela, fundo, irPara, titulo, toque } from '../ui';
 import { musicaDoMundo } from '../musica';
-import { criarSenha, portaoAdulto } from '../portaoAdulto';
+import { portaoAdulto } from '../portaoAdulto';
 import { setMusicaLigada } from '../musica';
 
 const W = CONFIG.LARGURA;
 
-/** Painel dos pais, protegido pela senha que o adulto cria (portaoAdulto.ts). */
+/** Painel dos pais, protegido pelo bloqueio de tela do celular (portaoAdulto.ts). */
 export class Pais extends Phaser.Scene {
   private p!: Perfil;
 
@@ -30,7 +30,7 @@ export class Pais extends Phaser.Scene {
     fundo(this, TEMA.nuvem);
     botaoVoltar(this, 'Mapa');
     narrador.parar();
-    // depois da compra a tela recarrega ja aberta: o adulto acabou de passar pela senha
+    // depois da compra a tela recarrega ja aberta: o adulto acabou de passar pela trava
     if (dados?.aberto) this.painel();
     else portaoAdulto(this, () => this.painel(), () => irPara(this, 'Mapa'));
   }
@@ -103,12 +103,6 @@ export class Pais extends Phaser.Scene {
         salvar(this.p);
         r.setText(`Joguinhos: ${limiteDoPerfil()} min/dia`);
       },
-    );
-
-    ajuste(
-      y + 190,
-      () => 'Senha do adulto',
-      () => criarSenha(this, () => undefined, () => undefined),
     );
 
     botao(this, W / 2, 1060, 'Zerar progresso', () => this.confirmar('zerar'), {

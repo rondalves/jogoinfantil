@@ -7,7 +7,6 @@
  *   npm run smoke       (noutro)
  */
 import { chromium } from 'playwright';
-import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync } from 'node:fs';
 
 // os ids vem dos proprios JSONs: renumerar missao nao quebra o teste
@@ -148,36 +147,19 @@ const main = async () => {
     await page.waitForTimeout(500);
   }
 
-  // o painel dos pais so aparece depois da senha certa, entao o conferidor de
-  // layout nunca o via -- e foi justamente la que os botoes se embolaram.
+  // no navegador nao ha o bloqueio do celular: o painel abre direto, e o
+  // conferidor de layout ve justamente onde os botoes ja se embolaram
   atual = 'tela Pais (painel)';
-  const SENHA = '2580';
-  await page.evaluate(async ([senha, resumo]) => {
-    localStorage.setItem('missoes-do-dia:senha', resumo);
+  await page.evaluate(async () => {
     const j = window.__jogo;
     j.scene.scenes.forEach((s) => s.scene.key !== 'Boot' && j.scene.stop(s.scene.key));
     j.scene.start('Pais');
     await new Promise((r) => setTimeout(r, 1500));
-  }, [SENHA, createHash('sha256').update(`rotinafeliz:${SENHA}`).digest('hex')]);
-  for (const tecla of [...SENHA, 'ok']) {
-    const alvo = await page.evaluate((nome) => {
-      const j = window.__jogo;
-      const c = j.scene.getScene('Pais');
-      const z = c.children.list.flatMap((o) => o.list ?? [o]).find((o) => o.name === `tecla_${nome}`);
-      if (!z) return null;
-      const r = j.canvas.getBoundingClientRect();
-      const k = r.width / 720;
-      return { x: r.x + z.x * k, y: r.y + (z.y - c.cameras.main.scrollY) * k };
-    }, tecla);
-    if (!alvo) break;
-    await page.mouse.click(alvo.x, alvo.y);
-    await page.waitForTimeout(250);
-  }
-  await page.waitForTimeout(700);
+  });
   const abriuPainel = await page.evaluate(() =>
     window.__jogo.scene.getScene('Pais').children.list.some((o) => o.type === 'Text' && /Joguinhos:/.test(o.text)),
   );
-  if (!abriuPainel) problemas.push(`${atual}: a senha nao abriu o painel`);
+  if (!abriuPainel) problemas.push(`${atual}: o painel nao abriu`);
   for (const e of await page.evaluate(conferirLayout)) problemas.push(`${atual}: ${e}`);
 
   // o personagem ja saiu sem rosto fora do criador, porque a lista de olhos so

@@ -15,7 +15,7 @@ android {
         applicationId "com.colostudio.rotinafeliz"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
+        versionCode 4
         versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
@@ -58,6 +58,8 @@ dependencies {
     implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
     // compra unica e restauracao (LojaPlugin); a Play exige a versao 8 ou mais nova
     implementation "com.android.billingclient:billing:8.0.0"
+    // a area dos adultos abre com a digital ou o bloqueio de tela do celular (TravaPlugin)
+    implementation "androidx.biometric:biometric:1.1.0"
     implementation project(':capacitor-android')
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
