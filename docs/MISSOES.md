@@ -76,6 +76,9 @@ Missao nova = arquivo JSON novo em `src/missions/`. O motor nao muda.
 - [26 — Boa noite](#missao-26-boa-noite) · mundo 6 · paga
 - [27 — Dia do doutor e do dentista](#missao-27-dia-do-doutor-e-do-dentista) · mundo 6 · paga
 - [28 — Almoçar](#missao-28-almo-ar) · mundo 5 · paga
+- [29 — Chegando na escola](#missao-29-chegando-na-escola) · mundo 2 · livre
+- [30 — Brincar ao ar livre](#missao-30-brincar-ao-ar-livre) · mundo 4 · paga
+- [31 — Momento em família](#missao-31-momento-em-fam-lia) · mundo 6 · paga
 
 ---
 
@@ -91,7 +94,7 @@ gastam ficha, nao dao estrela e nao tem como errar.
 | 3 | Volta para Casa (paga) | A viagem da lua no carro | Corrida de kart |
 | 4 | Tarde (paga) | O brinquedo que queria brincar | Encaixe os blocos |
 | 5 | Janta (paga) | A sopa de estrelas | Moto na montanha |
-| 6 | Banho e Cama (paga) | A raposinha vai dormir | Estoura-bolhas |
+| 6 | Banho e Cama (paga) | A raposinha vai dormir | Quebra-cabeça |
 
 ---
 
@@ -1333,6 +1336,136 @@ Pergunta: "O que pode?"
 - Explicacao: "Na mesa a gente fica sentado até acabar. Experimentar é de gente corajosa!"
 
 **Reforco no fim:** "Prato limpo, barriga feliz!"
+
+Recompensa: 1 moeda · ate 3 estrelas
+
+---
+
+## Missao 29 — Chegando na escola 🏫
+
+Mundo 2 (Escola) · cenario `bg_escola_entrada`
+
+**Abertura:** "Chegamos, {nome}! Antes de descer, vamos fazer do jeito seguro?"
+
+**O personagem mostra:** "Esperar o carro parar, soltar o cinto, descer pelo lado da calçada e dar a mão!"
+
+### Etapas
+
+**1. Sequencia ordenada**
+
+> Toque na ordem: esperar o carro parar, soltar o cinto, descer e dar a mão.
+
+Toca na ordem certa:
+  1. Esperar o carro parar
+  2. Soltar o cinto
+  3. Descer
+  4. Dar a mão
+  - _Se erra:_ "Esse vem depois. Olhe de novo!"
+
+**2. Escolher entre opcoes**
+
+> O carro ainda está andando e você quer descer. O que fazer?
+
+Escolhe uma:
+  - Esperar parar _(certo)_
+  - Soltar o cinto agora
+  - _Se erra:_ "Carro andando, cinto no lugar! Só solta quando o carro parar."
+
+### Pode ou nao pode
+
+Pergunta: "O que pode?"
+
+- Certo: **Descer pelo lado da calçada**
+- Errado: Descer pelo lado da rua
+- Explicacao: "Do lado da calçada é seguro. Do lado da rua passam carros!"
+
+**Reforco no fim:** "Chegada segura, você sabe se cuidar!"
+
+Recompensa: 1 moeda · ate 3 estrelas
+
+---
+
+## Missao 30 — Brincar ao ar livre 🌳
+
+Mundo 4 (Tarde) · cenario `bg_porta_casa` · **missao bonus** (so abre com os 5 mundos fechados)
+
+**Abertura:** "Que tal brincar lá fora, {nome}? Hoje é dia de passeio!"
+
+**O personagem mostra:** "Tênis no pé, avisar o adulto, brincar onde ele vê e beber água!"
+
+### Etapas
+
+**1. Sequencia ordenada**
+
+> Toque na ordem: calçar o tênis, avisar o adulto, brincar e beber água.
+
+Toca na ordem certa:
+  1. Calçar o tênis
+  2. Avisar o adulto
+  3. Brincar
+  4. Beber água
+  - _Se erra:_ "Ainda não é esse. Tente outro!"
+
+**2. Escolher entre opcoes**
+
+> Você quer ir para um lugar onde o adulto não te vê. O que fazer?
+
+Escolhe uma:
+  - Ficar onde o adulto vê _(certo)_
+  - Ir sozinho para longe
+  - _Se erra:_ "Longe dos olhos do adulto, a brincadeira fica perigosa. Fique por perto!"
+
+### Pode ou nao pode
+
+Pergunta: "O que pode?"
+
+- Certo: **Brincar onde o adulto vê**
+- Errado: Se afastar do adulto
+- Explicacao: "Ficar por perto deixa o passeio tranquilo para todo mundo."
+
+**Reforco no fim:** "Passeio feito, corpo e coração felizes!"
+
+Recompensa: 1 moeda · ate 3 estrelas
+
+---
+
+## Missao 31 — Momento em família 🤗
+
+Mundo 6 (Banho e Cama) · cenario `bg_quarto_noite` · **missao bonus** (so abre com os 5 mundos fechados)
+
+**Abertura:** "{nome}, antes de dormir, a família se reúne um pouquinho. Vamos?"
+
+**O personagem mostra:** "Agradecer o dia, dar um abraço e desejar boa noite."
+
+### Etapas
+
+**1. Tocar**
+
+> Toque nas coisas boas que aconteceram hoje.
+
+Toca em 3 de 3 figuras.
+  - Brinquei
+  - Comi gostoso
+  - Aprendi algo novo
+
+**2. Escolher entre opcoes**
+
+> Alguém da família te ajudou hoje. O que fazer?
+
+Escolhe uma:
+  - Agradecer _(certo)_
+  - Fingir que não viu
+  - _Se erra:_ "Um obrigado deixa quem ajudou muito feliz!"
+
+### Pode ou nao pode
+
+Pergunta: "O que pode?"
+
+- Certo: **Dar um abraço e dizer boa noite**
+- Errado: Ir dormir sem se despedir
+- Explicacao: "Um abraço antes de dormir deixa o coração quentinho e o sono mais calminho."
+
+**Reforco no fim:** "Família junta, coração quentinho!"
 
 Recompensa: 1 moeda · ate 3 estrelas
 

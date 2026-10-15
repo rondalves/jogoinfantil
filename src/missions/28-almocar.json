@@ -5,17 +5,17 @@
   "icone": "🍽️",
   "cenario": "bg_sala_almoco",
   "narracao_intro": "A comida está na mesa, {nome}! Vamos almoçar direitinho?",
-  "audio_intro": "m13_intro",
+  "audio_intro": "m28_intro",
   "mostrar": {
     "narracao": "Lavar as mãos, sentar na cadeira, comer e agradecer!",
-    "audio": "m13_mostrar",
+    "audio": "m28_mostrar",
     "icone": "🍽️"
   },
   "etapas": [
     {
       "tipo": "sequencia_ordenada",
       "narracao": "Toque na ordem: lavar as mãos, sentar, comer e agradecer.",
-      "audio": "m13_e1",
+      "audio": "m28_e1",
       "consequencia": "Esse vem depois. Tente outro!",
       "itens": [
         {
@@ -51,7 +51,7 @@
     {
       "tipo": "escolher_entre_opcoes",
       "narracao": "Tem um legume novo no prato. O que fazer?",
-      "audio": "m13_e2",
+      "audio": "m28_e2",
       "itens": [
         {
           "icone": "🥦",
@@ -85,10 +85,10 @@
       "texto": "Levantar correndo"
     },
     "explicacao": "Na mesa a gente fica sentado até acabar. Experimentar é de gente corajosa!",
-    "audio": "m13_pnp"
+    "audio": "m28_pnp"
   },
   "frase_reforco": "Prato limpo, barriga feliz!",
-  "audio_reforco": "m13_reforco",
+  "audio_reforco": "m28_reforco",
   "recompensa": {
     "moedas": 1
   },

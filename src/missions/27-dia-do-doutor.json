@@ -6,17 +6,17 @@
   "icone": "🩺",
   "cenario": "bg_consultorio",
   "narracao_intro": "Hoje é dia de consulta, {nome}. Não precisa ter medo: eu vou junto!",
-  "audio_intro": "m20_intro",
+  "audio_intro": "m27_intro",
   "mostrar": {
     "narracao": "Esperar a vez, abrir a boca e contar onde dói. Só isso!",
-    "audio": "m20_mostrar",
+    "audio": "m27_mostrar",
     "icone": "🩺"
   },
   "etapas": [
     {
       "tipo": "segurar_com_timer",
       "narracao": "Primeiro, esperar a sua vez na sala de espera.",
-      "audio": "m20_e1",
+      "audio": "m27_e1",
       "segundos": 12,
       "consequencia": "Já está quase! Respire e espere mais um pouquinho.",
       "alvo": {
@@ -30,7 +30,7 @@
     {
       "tipo": "tocar",
       "narracao": "Toque no que o doutor usa para te cuidar.",
-      "audio": "m20_e2",
+      "audio": "m27_e2",
       "alvos": [
         {
           "icone": "🩺",
@@ -58,7 +58,7 @@
     {
       "tipo": "escolher_entre_opcoes",
       "narracao": "O dentista pediu para abrir a boca. O que fazer?",
-      "audio": "m20_e3",
+      "audio": "m27_e3",
       "itens": [
         {
           "icone": "🦷",
@@ -92,10 +92,10 @@
       "texto": "Não falar nada"
     },
     "explicacao": "Quem conta onde dói ajuda o doutor a cuidar mais rápido!",
-    "audio": "m20_pnp"
+    "audio": "m27_pnp"
   },
   "frase_reforco": "Fui corajoso no doutor!",
-  "audio_reforco": "m20_reforco",
+  "audio_reforco": "m27_reforco",
   "recompensa": {
     "moedas": 1
   },

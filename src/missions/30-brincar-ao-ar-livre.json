@@ -1,0 +1,89 @@
+{
+  "id": "30",
+  "mundo": 4,
+  "titulo": "Brincar ao ar livre",
+  "icone": "🌳",
+  "cenario": "bg_porta_casa",
+  "narracao_intro": "Que tal brincar lá fora, {nome}? Hoje é dia de passeio!",
+  "audio_intro": "m30_intro",
+  "mostrar": {
+    "narracao": "Tênis no pé, avisar o adulto, brincar onde ele vê e beber água!",
+    "audio": "m30_mostrar",
+    "icone": "🌳"
+  },
+  "etapas": [
+    {
+      "tipo": "sequencia_ordenada",
+      "narracao": "Toque na ordem: calçar o tênis, avisar o adulto, brincar e beber água.",
+      "audio": "m30_e1",
+      "consequencia": "Ainda não é esse. Tente outro!",
+      "itens": [
+        {
+          "icone": "👟",
+          "x": 170,
+          "y": 620,
+          "texto": "Calçar o tênis"
+        },
+        {
+          "icone": "🙋",
+          "x": 550,
+          "y": 620,
+          "texto": "Avisar o adulto"
+        },
+        {
+          "icone": "🛝",
+          "x": 170,
+          "y": 900,
+          "texto": "Brincar"
+        },
+        {
+          "icone": "💧",
+          "x": 550,
+          "y": 900,
+          "texto": "Beber água"
+        }
+      ]
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "Você quer ir para um lugar onde o adulto não te vê. O que fazer?",
+      "audio": "m30_e2",
+      "itens": [
+        {
+          "icone": "👀",
+          "texto": "Ficar onde o adulto vê",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "🏃",
+          "texto": "Ir sozinho para longe",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "consequencia": "Longe dos olhos do adulto, a brincadeira fica perigosa. Fique por perto!"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "👀",
+      "texto": "Brincar onde o adulto vê"
+    },
+    "cena_errada": {
+      "icone": "🏃",
+      "texto": "Se afastar do adulto"
+    },
+    "explicacao": "Ficar por perto deixa o passeio tranquilo para todo mundo.",
+    "audio": "m30_pnp"
+  },
+  "frase_reforco": "Passeio feito, corpo e coração felizes!",
+  "audio_reforco": "m30_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3,
+  "bonus": true
+}

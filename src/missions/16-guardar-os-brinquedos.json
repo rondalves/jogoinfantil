@@ -104,5 +104,6 @@
   "recompensa": {
     "moedas": 1
   },
-  "estrelas_max": 3
+  "estrelas_max": 3,
+  "musica": "musica_guardar_brinquedos"
 }

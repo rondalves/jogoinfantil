@@ -97,6 +97,8 @@ export interface Missao {
   audio_reforco?: string;
   recompensa: { moedas: number };
   estrelas_max: number;
+  /** faixa de assets/audio tocada em loop durante a missão (sem arquivo, fica a música do mundo) */
+  musica?: string;
   /** missão bônus: só libera quando os 5 mundos estiverem completos */
   bonus?: boolean;
 }

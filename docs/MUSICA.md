@@ -17,6 +17,8 @@ tela fica em silêncio e nada quebra.
 | `musica_mundo6.mp3` | Mundo 6 — Banho e Cama 🛁 | acalanto: caixinha de música lenta e cordas suaves, bem devagar |
 | `musica_timer.mp3` | só enquanto o cronômetro da escovação e da lavagem corre | 30 segundos cravados, xilofone animado marcando o tempo |
 
+**Faixa extra:** `musica_guardar_brinquedos.mp3` toca só na missão 16 (Guardar os brinquedos), em loop, no lugar da música do mundo 4. É a musiquinha de guardar brinquedo da família: salve o arquivo com esse nome exato. Sem o arquivo, a missão usa a música do mundo. Qualquer missão pode ter a sua: basta o campo `"musica": "nome_do_arquivo"` no JSON.
+
 Enquanto o timer toca, a música do mundo abaixa sozinha.
 
 ## Prompt de cada faixa (Suno, Udio ou parecido)

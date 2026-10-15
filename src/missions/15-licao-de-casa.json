@@ -5,17 +5,17 @@
   "icone": "📝",
   "cenario": "bg_quarto_brincar",
   "narracao_intro": "Hora da lição, {nome}. Vamos fazer com calma?",
-  "audio_intro": "m14_intro",
+  "audio_intro": "m15_intro",
   "mostrar": {
     "narracao": "Guardar a tela, sentar, fazer a tarefa e pedir ajuda se travar.",
-    "audio": "m14_mostrar",
+    "audio": "m15_mostrar",
     "icone": "📝"
   },
   "etapas": [
     {
       "tipo": "sequencia_ordenada",
       "narracao": "Toque na ordem: guardar a tela, sentar, fazer a tarefa, pedir ajuda.",
-      "audio": "m14_e1",
+      "audio": "m15_e1",
       "consequencia": "Calma, esse vem depois!",
       "itens": [
         {
@@ -51,7 +51,7 @@
     {
       "tipo": "escolher_entre_opcoes",
       "narracao": "Travou numa continha difícil. O que fazer?",
-      "audio": "m14_e2",
+      "audio": "m15_e2",
       "itens": [
         {
           "icone": "🙋",
@@ -85,10 +85,10 @@
       "texto": "Ficar na tela"
     },
     "explicacao": "Primeiro a lição, depois a diversão. E ajuda a gente sempre pode pedir!",
-    "audio": "m14_pnp"
+    "audio": "m15_pnp"
   },
   "frase_reforco": "Tarefa feita, cabeça leve!",
-  "audio_reforco": "m14_reforco",
+  "audio_reforco": "m15_reforco",
   "recompensa": {
     "moedas": 1
   },

@@ -1,0 +1,82 @@
+{
+  "id": "31",
+  "mundo": 6,
+  "titulo": "Momento em família",
+  "icone": "🤗",
+  "cenario": "bg_quarto_noite",
+  "narracao_intro": "{nome}, antes de dormir, a família se reúne um pouquinho. Vamos?",
+  "audio_intro": "m31_intro",
+  "mostrar": {
+    "narracao": "Agradecer o dia, dar um abraço e desejar boa noite.",
+    "audio": "m31_mostrar",
+    "icone": "🤗"
+  },
+  "etapas": [
+    {
+      "tipo": "tocar",
+      "narracao": "Toque nas coisas boas que aconteceram hoje.",
+      "audio": "m31_e1",
+      "alvos": [
+        {
+          "icone": "🧸",
+          "x": 170,
+          "y": 760,
+          "texto": "Brinquei"
+        },
+        {
+          "icone": "🍎",
+          "x": 360,
+          "y": 760,
+          "texto": "Comi gostoso"
+        },
+        {
+          "icone": "📚",
+          "x": 550,
+          "y": 760,
+          "texto": "Aprendi algo novo"
+        }
+      ]
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "Alguém da família te ajudou hoje. O que fazer?",
+      "audio": "m31_e2",
+      "itens": [
+        {
+          "icone": "🙏",
+          "texto": "Agradecer",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "🙈",
+          "texto": "Fingir que não viu",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "consequencia": "Um obrigado deixa quem ajudou muito feliz!"
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🤗",
+      "texto": "Dar um abraço e dizer boa noite"
+    },
+    "cena_errada": {
+      "icone": "😶",
+      "texto": "Ir dormir sem se despedir"
+    },
+    "explicacao": "Um abraço antes de dormir deixa o coração quentinho e o sono mais calminho.",
+    "audio": "m31_pnp"
+  },
+  "frase_reforco": "Família junta, coração quentinho!",
+  "audio_reforco": "m31_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3,
+  "bonus": true
+}

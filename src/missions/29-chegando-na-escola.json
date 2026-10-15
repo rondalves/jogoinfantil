@@ -1,0 +1,88 @@
+{
+  "id": "29",
+  "mundo": 2,
+  "titulo": "Chegando na escola",
+  "icone": "🏫",
+  "cenario": "bg_escola_entrada",
+  "narracao_intro": "Chegamos, {nome}! Antes de descer, vamos fazer do jeito seguro?",
+  "audio_intro": "m29_intro",
+  "mostrar": {
+    "narracao": "Esperar o carro parar, soltar o cinto, descer pelo lado da calçada e dar a mão!",
+    "audio": "m29_mostrar",
+    "icone": "🏫"
+  },
+  "etapas": [
+    {
+      "tipo": "sequencia_ordenada",
+      "narracao": "Toque na ordem: esperar o carro parar, soltar o cinto, descer e dar a mão.",
+      "audio": "m29_e1",
+      "consequencia": "Esse vem depois. Olhe de novo!",
+      "itens": [
+        {
+          "icone": "✋",
+          "x": 170,
+          "y": 620,
+          "texto": "Esperar o carro parar"
+        },
+        {
+          "icone": "🔓",
+          "x": 550,
+          "y": 620,
+          "texto": "Soltar o cinto"
+        },
+        {
+          "icone": "🚪",
+          "x": 170,
+          "y": 900,
+          "texto": "Descer"
+        },
+        {
+          "icone": "🤝",
+          "x": 550,
+          "y": 900,
+          "texto": "Dar a mão"
+        }
+      ]
+    },
+    {
+      "tipo": "escolher_entre_opcoes",
+      "narracao": "O carro ainda está andando e você quer descer. O que fazer?",
+      "audio": "m29_e2",
+      "itens": [
+        {
+          "icone": "✋",
+          "texto": "Esperar parar",
+          "x": 200,
+          "y": 760,
+          "correto": true
+        },
+        {
+          "icone": "🏃",
+          "texto": "Soltar o cinto agora",
+          "x": 520,
+          "y": 760
+        }
+      ],
+      "consequencia": "Carro andando, cinto no lugar! Só solta quando o carro parar."
+    }
+  ],
+  "pode_ou_nao_pode": {
+    "pergunta": "O que pode?",
+    "cena_certa": {
+      "icone": "🚪",
+      "texto": "Descer pelo lado da calçada"
+    },
+    "cena_errada": {
+      "icone": "🚗",
+      "texto": "Descer pelo lado da rua"
+    },
+    "explicacao": "Do lado da calçada é seguro. Do lado da rua passam carros!",
+    "audio": "m29_pnp"
+  },
+  "frase_reforco": "Chegada segura, você sabe se cuidar!",
+  "audio_reforco": "m29_reforco",
+  "recompensa": {
+    "moedas": 1
+  },
+  "estrelas_max": 3
+}

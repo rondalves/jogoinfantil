@@ -280,12 +280,18 @@ m14_erro2.mp3;adulto;Brinquedo jogado machuca e quebra. Que tal dividir?;Missao 
 m14_pnp.mp3;adulto;O que pode?;Missao 14 - Brincar até a janta: pode ou nao pode
 m14_pnp_explica.mp3;adulto;Brinquedo dividido rende duas brincadeiras. Jogado, rende zero.;Missao 14 - Brincar até a janta: explicacao do pode ou nao pode
 m14_reforco.mp3;mascote;Brincar junto é muito melhor!;Missao 14 - Brincar até a janta: frase de reforco
+m15_intro.mp3;mascote;Hora da lição, {nome}. Vamos fazer com calma?;Missao 15 - Lição de casa: abertura (raposinha)
+m15_mostrar.mp3;mascote;Guardar a tela, sentar, fazer a tarefa e pedir ajuda se travar.;Missao 15 - Lição de casa: o personagem mostra
+m15_e1.mp3;adulto;Toque na ordem: guardar a tela, sentar, fazer a tarefa, pedir ajuda.;Missao 15 - Lição de casa: etapa 1 (sequencia_ordenada)
 nome_guardar_a_tela.mp3;adulto;Guardar a tela;Nome de objeto (dedo por cima)
 nome_pedir_ajuda.mp3;adulto;Pedir ajuda;Nome de objeto (dedo por cima)
 m15_erro1.mp3;adulto;Calma, esse vem depois!;Missao 15 - Lição de casa: etapa 1, quando erra
+m15_e2.mp3;adulto;Travou numa continha difícil. O que fazer?;Missao 15 - Lição de casa: etapa 2 (escolher_entre_opcoes)
 nome_desistir.mp3;adulto;Desistir;Nome de objeto (dedo por cima)
 m15_erro2.mp3;adulto;Pedir ajuda não é desistir. É jeito de aprender!;Missao 15 - Lição de casa: etapa 2, quando erra
+m15_pnp.mp3;adulto;O que pode?;Missao 15 - Lição de casa: pode ou nao pode
 m15_pnp_explica.mp3;adulto;Primeiro a lição, depois a diversão. E ajuda a gente sempre pode pedir!;Missao 15 - Lição de casa: explicacao do pode ou nao pode
+m15_reforco.mp3;mascote;Tarefa feita, cabeça leve!;Missao 15 - Lição de casa: frase de reforco
 m16_intro.mp3;mascote;Olha a bagunça, {nome}! Vamos guardar tudo?;Missao 16 - Guardar os brinquedos: abertura (raposinha)
 m16_mostrar.mp3;mascote;Cada brinquedo tem a sua caixa. E depois a gente procura os que sobraram!;Missao 16 - Guardar os brinquedos: o personagem mostra
 m16_e1.mp3;adulto;Leve cada brinquedo para a caixa.;Missao 16 - Guardar os brinquedos: etapa 1 (arrastar_para_alvo)
@@ -444,20 +450,74 @@ nome_uma_musiquinha.mp3;adulto;Uma musiquinha;Nome de objeto (dedo por cima)
 m26_pnp.mp3;adulto;O que pode?;Missao 26 - Boa noite: pode ou nao pode
 m26_pnp_explica.mp3;adulto;A luz da tela engana o corpo e o sono demora. No escuro ele chega.;Missao 26 - Boa noite: explicacao do pode ou nao pode
 m26_reforco.mp3;mascote;Bons sonhos, Super Ajudante!;Missao 26 - Boa noite: frase de reforco
+m27_intro.mp3;mascote;Hoje é dia de consulta, {nome}. Não precisa ter medo: eu vou junto!;Missao 27 - Dia do doutor e do dentista: abertura (raposinha)
+m27_mostrar.mp3;mascote;Esperar a vez, abrir a boca e contar onde dói. Só isso!;Missao 27 - Dia do doutor e do dentista: o personagem mostra
+m27_e1.mp3;adulto;Primeiro, esperar a sua vez na sala de espera.;Missao 27 - Dia do doutor e do dentista: etapa 1 (segurar_com_timer)
 nome_sala_de_espera.mp3;adulto;Sala de espera;Nome de objeto (dedo por cima)
 m27_erro1.mp3;adulto;Já está quase! Respire e espere mais um pouquinho.;Missao 27 - Dia do doutor e do dentista: etapa 1, quando erra
+m27_e2.mp3;adulto;Toque no que o doutor usa para te cuidar.;Missao 27 - Dia do doutor e do dentista: etapa 2 (tocar)
 nome_escutar_o_coracao.mp3;adulto;Escutar o coração;Nome de objeto (dedo por cima)
 nome_ver_a_febre.mp3;adulto;Ver a febre;Nome de objeto (dedo por cima)
 nome_ver_o_tamanho.mp3;adulto;Ver o tamanho;Nome de objeto (dedo por cima)
+m27_e3.mp3;adulto;O dentista pediu para abrir a boca. O que fazer?;Missao 27 - Dia do doutor e do dentista: etapa 3 (escolher_entre_opcoes)
 nome_abrir_bem_a_boca.mp3;adulto;Abrir bem a boca;Nome de objeto (dedo por cima)
 nome_fechar_e_esconder.mp3;adulto;Fechar e esconder;Nome de objeto (dedo por cima)
 m27_erro3.mp3;adulto;Dá para ter medo e mesmo assim abrir a boca. Eu estou aqui com você!;Missao 27 - Dia do doutor e do dentista: etapa 3, quando erra
+m27_pnp.mp3;adulto;O que pode?;Missao 27 - Dia do doutor e do dentista: pode ou nao pode
 m27_pnp_explica.mp3;adulto;Quem conta onde dói ajuda o doutor a cuidar mais rápido!;Missao 27 - Dia do doutor e do dentista: explicacao do pode ou nao pode
+m27_reforco.mp3;mascote;Fui corajoso no doutor!;Missao 27 - Dia do doutor e do dentista: frase de reforco
+m28_intro.mp3;mascote;A comida está na mesa, {nome}! Vamos almoçar direitinho?;Missao 28 - Almoçar: abertura (raposinha)
+m28_mostrar.mp3;mascote;Lavar as mãos, sentar na cadeira, comer e agradecer!;Missao 28 - Almoçar: o personagem mostra
+m28_e1.mp3;adulto;Toque na ordem: lavar as mãos, sentar, comer e agradecer.;Missao 28 - Almoçar: etapa 1 (sequencia_ordenada)
 nome_comer.mp3;adulto;Comer;Nome de objeto (dedo por cima)
 nome_agradecer.mp3;adulto;Agradecer;Nome de objeto (dedo por cima)
 m28_erro1.mp3;adulto;Esse vem depois. Tente outro!;Missao 28 - Almoçar: etapa 1, quando erra
+m28_e2.mp3;adulto;Tem um legume novo no prato. O que fazer?;Missao 28 - Almoçar: etapa 2 (escolher_entre_opcoes)
 nome_experimentar.mp3;adulto;Experimentar;Nome de objeto (dedo por cima)
 nome_sair_correndo.mp3;adulto;Sair correndo;Nome de objeto (dedo por cima)
 m28_erro2.mp3;adulto;Uma mordidinha só para conhecer. Se não gostar, tudo bem!;Missao 28 - Almoçar: etapa 2, quando erra
+m28_pnp.mp3;adulto;O que pode?;Missao 28 - Almoçar: pode ou nao pode
 m28_pnp_explica.mp3;adulto;Na mesa a gente fica sentado até acabar. Experimentar é de gente corajosa!;Missao 28 - Almoçar: explicacao do pode ou nao pode
+m28_reforco.mp3;mascote;Prato limpo, barriga feliz!;Missao 28 - Almoçar: frase de reforco
+m29_intro.mp3;mascote;Chegamos, {nome}! Antes de descer, vamos fazer do jeito seguro?;Missao 29 - Chegando na escola: abertura (raposinha)
+m29_mostrar.mp3;mascote;Esperar o carro parar, soltar o cinto, descer pelo lado da calçada e dar a mão!;Missao 29 - Chegando na escola: o personagem mostra
+m29_e1.mp3;adulto;Toque na ordem: esperar o carro parar, soltar o cinto, descer e dar a mão.;Missao 29 - Chegando na escola: etapa 1 (sequencia_ordenada)
+nome_esperar_o_carro_parar.mp3;adulto;Esperar o carro parar;Nome de objeto (dedo por cima)
+nome_soltar_o_cinto.mp3;adulto;Soltar o cinto;Nome de objeto (dedo por cima)
+nome_descer.mp3;adulto;Descer;Nome de objeto (dedo por cima)
+m29_erro1.mp3;adulto;Esse vem depois. Olhe de novo!;Missao 29 - Chegando na escola: etapa 1, quando erra
+m29_e2.mp3;adulto;O carro ainda está andando e você quer descer. O que fazer?;Missao 29 - Chegando na escola: etapa 2 (escolher_entre_opcoes)
+nome_esperar_parar.mp3;adulto;Esperar parar;Nome de objeto (dedo por cima)
+nome_soltar_o_cinto_agora.mp3;adulto;Soltar o cinto agora;Nome de objeto (dedo por cima)
+m29_erro2.mp3;adulto;Carro andando, cinto no lugar! Só solta quando o carro parar.;Missao 29 - Chegando na escola: etapa 2, quando erra
+m29_pnp.mp3;adulto;O que pode?;Missao 29 - Chegando na escola: pode ou nao pode
+m29_pnp_explica.mp3;adulto;Do lado da calçada é seguro. Do lado da rua passam carros!;Missao 29 - Chegando na escola: explicacao do pode ou nao pode
+m29_reforco.mp3;mascote;Chegada segura, você sabe se cuidar!;Missao 29 - Chegando na escola: frase de reforco
+m30_intro.mp3;mascote;Que tal brincar lá fora, {nome}? Hoje é dia de passeio!;Missao 30 - Brincar ao ar livre: abertura (raposinha)
+m30_mostrar.mp3;mascote;Tênis no pé, avisar o adulto, brincar onde ele vê e beber água!;Missao 30 - Brincar ao ar livre: o personagem mostra
+m30_e1.mp3;adulto;Toque na ordem: calçar o tênis, avisar o adulto, brincar e beber água.;Missao 30 - Brincar ao ar livre: etapa 1 (sequencia_ordenada)
+nome_calcar_o_tenis.mp3;adulto;Calçar o tênis;Nome de objeto (dedo por cima)
+nome_avisar_o_adulto.mp3;adulto;Avisar o adulto;Nome de objeto (dedo por cima)
+nome_brincar.mp3;adulto;Brincar;Nome de objeto (dedo por cima)
+nome_beber_agua.mp3;adulto;Beber água;Nome de objeto (dedo por cima)
+m30_erro1.mp3;adulto;Ainda não é esse. Tente outro!;Missao 30 - Brincar ao ar livre: etapa 1, quando erra
+m30_e2.mp3;adulto;Você quer ir para um lugar onde o adulto não te vê. O que fazer?;Missao 30 - Brincar ao ar livre: etapa 2 (escolher_entre_opcoes)
+nome_ficar_onde_o_adulto_ve.mp3;adulto;Ficar onde o adulto vê;Nome de objeto (dedo por cima)
+nome_ir_sozinho_para_longe.mp3;adulto;Ir sozinho para longe;Nome de objeto (dedo por cima)
+m30_erro2.mp3;adulto;Longe dos olhos do adulto, a brincadeira fica perigosa. Fique por perto!;Missao 30 - Brincar ao ar livre: etapa 2, quando erra
+m30_pnp.mp3;adulto;O que pode?;Missao 30 - Brincar ao ar livre: pode ou nao pode
+m30_pnp_explica.mp3;adulto;Ficar por perto deixa o passeio tranquilo para todo mundo.;Missao 30 - Brincar ao ar livre: explicacao do pode ou nao pode
+m30_reforco.mp3;mascote;Passeio feito, corpo e coração felizes!;Missao 30 - Brincar ao ar livre: frase de reforco
+m31_intro.mp3;mascote;{nome}, antes de dormir, a família se reúne um pouquinho. Vamos?;Missao 31 - Momento em família: abertura (raposinha)
+m31_mostrar.mp3;mascote;Agradecer o dia, dar um abraço e desejar boa noite.;Missao 31 - Momento em família: o personagem mostra
+m31_e1.mp3;adulto;Toque nas coisas boas que aconteceram hoje.;Missao 31 - Momento em família: etapa 1 (tocar)
+nome_brinquei.mp3;adulto;Brinquei;Nome de objeto (dedo por cima)
+nome_comi_gostoso.mp3;adulto;Comi gostoso;Nome de objeto (dedo por cima)
+nome_aprendi_algo_novo.mp3;adulto;Aprendi algo novo;Nome de objeto (dedo por cima)
+m31_e2.mp3;adulto;Alguém da família te ajudou hoje. O que fazer?;Missao 31 - Momento em família: etapa 2 (escolher_entre_opcoes)
+nome_fingir_que_nao_viu.mp3;adulto;Fingir que não viu;Nome de objeto (dedo por cima)
+m31_erro2.mp3;adulto;Um obrigado deixa quem ajudou muito feliz!;Missao 31 - Momento em família: etapa 2, quando erra
+m31_pnp.mp3;adulto;O que pode?;Missao 31 - Momento em família: pode ou nao pode
+m31_pnp_explica.mp3;adulto;Um abraço antes de dormir deixa o coração quentinho e o sono mais calminho.;Missao 31 - Momento em família: explicacao do pode ou nao pode
+m31_reforco.mp3;mascote;Família junta, coração quentinho!;Missao 31 - Momento em família: frase de reforco
 musica_timer.mp3;adulto;(musica instrumental de 30 s em loop);Timer da escovacao e da lavagem das maos
