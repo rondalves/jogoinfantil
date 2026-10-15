@@ -97,3 +97,21 @@ paralaxe.
   corrida): a arte vem junto com o código de cada um.
 - `_sem_nome/floresta_noite_amigos.jpg` e `_sem_nome/mundo5_regerado.jpg`:
   chegaram sem pedido; ficam guardados até alguém decidir onde entram.
+
+---
+
+# 4. Missões 29, 30 e 31 — 14 artes novas (16/10/2026)
+
+As três missões novas reaproveitam peças que já existem (`m06_carro`,
+`m06_mao_dada`, `m05_tenis`, `m05_garrafinha`, `m01_maca`, `m15_urso`,
+`m19_livro`, `m10_coracao`). Faltam as 14 abaixo. Enquanto não chegam, o jogo
+mostra emoji e cor de fundo. Gere no Gem de [GEM_ESTILO.md](GEM_ESTILO.md).
+
+Peças soltas (verde #00FF00, 2048x2048): `m29_cinto_solto`, `m29_porta_calcada`,
+`m30_acenar`, `m30_escorregador`, `m30_banco_parque`, `m30_trilha_longe`,
+`m31_olhos_tapados`. Cenas (sem verde, quadrado 1024x1024): `m29_pnp_certa`,
+`m29_pnp_errada`, `m30_pnp_certa`, `m30_pnp_errada`, `m31_pnp_certa`,
+`m31_pnp_errada`. Cenário (em pé 1080x1920): `bg_parque`.
+
+Os prompts completos foram entregues no chat e estão no histórico do commit
+"Artes das missões 29 a 31".

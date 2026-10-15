@@ -19,18 +19,21 @@
       "alvos": [
         {
           "icone": "🧸",
+          "img": "m15_urso",
           "x": 170,
           "y": 760,
           "texto": "Brinquei"
         },
         {
           "icone": "🍎",
+          "img": "m01_maca",
           "x": 360,
           "y": 760,
           "texto": "Comi gostoso"
         },
         {
           "icone": "📚",
+          "img": "m19_livro",
           "x": 550,
           "y": 760,
           "texto": "Aprendi algo novo"
@@ -44,6 +47,7 @@
       "itens": [
         {
           "icone": "🙏",
+          "img": "m10_coracao",
           "texto": "Agradecer",
           "x": 200,
           "y": 760,
@@ -51,6 +55,7 @@
         },
         {
           "icone": "🙈",
+          "img": "m31_olhos_tapados",
           "texto": "Fingir que não viu",
           "x": 520,
           "y": 760
@@ -63,10 +68,12 @@
     "pergunta": "O que pode?",
     "cena_certa": {
       "icone": "🤗",
+      "img": "m31_pnp_certa",
       "texto": "Dar um abraço e dizer boa noite"
     },
     "cena_errada": {
       "icone": "😶",
+      "img": "m31_pnp_errada",
       "texto": "Ir dormir sem se despedir"
     },
     "explicacao": "Um abraço antes de dormir deixa o coração quentinho e o sono mais calminho.",

@@ -20,24 +20,28 @@
       "itens": [
         {
           "icone": "✋",
+          "img": "m06_carro",
           "x": 170,
           "y": 620,
           "texto": "Esperar o carro parar"
         },
         {
           "icone": "🔓",
+          "img": "m29_cinto_solto",
           "x": 550,
           "y": 620,
           "texto": "Soltar o cinto"
         },
         {
           "icone": "🚪",
+          "img": "m29_porta_calcada",
           "x": 170,
           "y": 900,
           "texto": "Descer"
         },
         {
           "icone": "🤝",
+          "img": "m06_mao_dada",
           "x": 550,
           "y": 900,
           "texto": "Dar a mão"
@@ -51,6 +55,7 @@
       "itens": [
         {
           "icone": "✋",
+          "img": "m06_carro",
           "texto": "Esperar parar",
           "x": 200,
           "y": 760,
@@ -58,6 +63,7 @@
         },
         {
           "icone": "🏃",
+          "img": "m29_cinto_solto",
           "texto": "Soltar o cinto agora",
           "x": 520,
           "y": 760
@@ -70,10 +76,12 @@
     "pergunta": "O que pode?",
     "cena_certa": {
       "icone": "🚪",
+      "img": "m29_pnp_certa",
       "texto": "Descer pelo lado da calçada"
     },
     "cena_errada": {
       "icone": "🚗",
+      "img": "m29_pnp_errada",
       "texto": "Descer pelo lado da rua"
     },
     "explicacao": "Do lado da calçada é seguro. Do lado da rua passam carros!",

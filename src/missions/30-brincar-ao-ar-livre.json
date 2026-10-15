@@ -3,7 +3,7 @@
   "mundo": 4,
   "titulo": "Brincar ao ar livre",
   "icone": "🌳",
-  "cenario": "bg_porta_casa",
+  "cenario": "bg_parque",
   "narracao_intro": "Que tal brincar lá fora, {nome}? Hoje é dia de passeio!",
   "audio_intro": "m30_intro",
   "mostrar": {
@@ -20,24 +20,28 @@
       "itens": [
         {
           "icone": "👟",
+          "img": "m05_tenis",
           "x": 170,
           "y": 620,
           "texto": "Calçar o tênis"
         },
         {
           "icone": "🙋",
+          "img": "m30_acenar",
           "x": 550,
           "y": 620,
           "texto": "Avisar o adulto"
         },
         {
           "icone": "🛝",
+          "img": "m30_escorregador",
           "x": 170,
           "y": 900,
           "texto": "Brincar"
         },
         {
           "icone": "💧",
+          "img": "m05_garrafinha",
           "x": 550,
           "y": 900,
           "texto": "Beber água"
@@ -51,6 +55,7 @@
       "itens": [
         {
           "icone": "👀",
+          "img": "m30_banco_parque",
           "texto": "Ficar onde o adulto vê",
           "x": 200,
           "y": 760,
@@ -58,6 +63,7 @@
         },
         {
           "icone": "🏃",
+          "img": "m30_trilha_longe",
           "texto": "Ir sozinho para longe",
           "x": 520,
           "y": 760
@@ -70,10 +76,12 @@
     "pergunta": "O que pode?",
     "cena_certa": {
       "icone": "👀",
+      "img": "m30_pnp_certa",
       "texto": "Brincar onde o adulto vê"
     },
     "cena_errada": {
       "icone": "🏃",
+      "img": "m30_pnp_errada",
       "texto": "Se afastar do adulto"
     },
     "explicacao": "Ficar por perto deixa o passeio tranquilo para todo mundo.",
