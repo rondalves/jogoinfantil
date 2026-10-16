@@ -52,6 +52,7 @@
       "tipo": "esfregar",
       "narracao": "Agora lave o rosto. Esfregue com o dedinho!",
       "audio": "m01_e2",
+      "rosto": true,
       "passos": 5,
       "segundos": 20,
       "alvo": {

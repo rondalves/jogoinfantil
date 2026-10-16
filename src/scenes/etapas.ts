@@ -1,5 +1,8 @@
 import Phaser from 'phaser';
+import { comemorar, expressao, piscar } from '../animacoes';
 import { CONFIG } from '../config';
+import { cabecaDoPersonagem, desenharPersonagem } from '../personagem';
+import { ativo, personagemPadrao } from '../storage';
 import { TEMA } from '../theme';
 import { escovar } from './escovacao';
 import { Esfrega, vagaNoAlvo } from '../etapasLogica';
@@ -364,18 +367,21 @@ const segurarComTimer: Handler = (c, e) => {
 
 const esfregar: Handler = (c, e) => {
   const alvo = e.alvo ?? { icone: '\u{1F9FC}', x: W / 2, y: 780 };
-  const sujo = figura(c.cena, alvo.x, alvo.y, alvo.img, alvo.icone, 220);
-  c.camada.add(sujo);
   const total = e.passos ?? 5;
-  const sujeiras: Fig[] = [];
-  for (let i = 0; i < total; i++) {
+  // lavar o rosto: o rosto e o do personagem da propria crianca, com as
+  // sujeirinhas em cima dele; no resto, a arte do alvo com as sujeiras em roda
+  const crianca = e.rosto ? rostoSujo(c, total) : undefined;
+  const sujo = crianca?.boneco ?? figura(c.cena, alvo.x, alvo.y, alvo.img, alvo.icone, 220);
+  c.camada.add(sujo);
+  const sujeiras: Phaser.GameObjects.GameObject[] = crianca?.manchas ?? [];
+  for (let i = 0; !crianca && i < total; i++) {
     const ang = (i / total) * Math.PI * 2 - Math.PI / 2;
     const arte = e.sujeiras?.[i % (e.sujeiras.length || 1)];
     const s = figura(c.cena, alvo.x + Math.cos(ang) * 150, alvo.y + Math.sin(ang) * 150, arte, '\u{1F7E4}', 96);
     c.cena.tweens.add({ targets: s, y: s.y - 10, duration: 900 + i * 120, yoyo: true, repeat: -1 });
     sujeiras.push(s);
-    c.camada.add(s);
   }
+  c.camada.add(sujeiras);
   const painelContador = textoEmPainel(c.cena, W / 2, alvo.y + 230, `Esfregue! Faltam ${total}`, 36, 420);
   const contador = painelContador.list[1] as Phaser.GameObjects.Text;
   c.camada.add(painelContador);
@@ -388,6 +394,10 @@ const esfregar: Handler = (c, e) => {
     if (acabou) return;
     acabou = true;
     timer.destruir();
+    if (crianca) {
+      rostoLimpo(c, crianca.boneco, espumas);
+      return;
+    }
     const limpo = e.estados?.[0];
     if (!limpo || !c.cena.textures.exists(limpo)) {
       certo(c, alvo.x, alvo.y);
@@ -405,8 +415,18 @@ const esfregar: Handler = (c, e) => {
     c.cena.time.delayedCall(1500, c.fim);
   };
   const timer = new TimerMusical(c.cena, W / 2, 520, e.segundos ?? 20, concluir);
+  // espuma onde o dedo passa: e o que mostra para a crianca que esfregar faz efeito
+  const espumas = c.cena.add.container(0, 0);
+  c.camada.add(espumas);
+  let ultimaEspuma = 0;
   const mover = (p: Phaser.Input.Pointer) => {
-    if (!p.isDown) return;
+    if (!p.isDown || acabou) return;
+    if (p.time - ultimaEspuma > 45) {
+      ultimaEspuma = p.time;
+      espuma(c, espumas, p.worldX, p.worldY);
+    }
+    // de olhos fechados, sorrindo: ninguem lava o rosto de olho aberto
+    if (crianca && esfrega.limpos === 0) expressao(crianca.boneco, 'contente');
     const anterior = esfrega.limpos;
     if (!esfrega.mover(p.x - p.prevPosition.x, p.y - p.prevPosition.y)) return;
     const s = sujeiras[anterior];
@@ -421,6 +441,78 @@ const esfregar: Handler = (c, e) => {
     c.cena.input.off('pointermove', mover);
   });
 };
+
+/** Altura do meio do rosto na tela: abaixo do relogio, acima do contador. */
+const ROSTO_Y = 800;
+
+/** Onde ficam as sujeirinhas, em fracao da cabeca (0,0 no alto a esquerda): bochechas, nariz, queixo e testa. */
+const MANCHAS: [number, number][] = [
+  [0.27, 0.71],
+  [0.75, 0.69],
+  [0.52, 0.94],
+  [0.44, 0.64],
+  [0.6, 0.4],
+];
+
+/** O personagem da crianca grande, com a cabeca no meio da tela e as sujeirinhas no rosto. */
+function rostoSujo(c: Ctx, total: number) {
+  const cfg = ativo()?.personagem ?? personagemPadrao();
+  const cab = cabecaDoPersonagem(c.cena, cfg);
+  const altura = cab.queixo - cab.topo;
+  // a cabeca com 320 px: o rosto inteiro aparece, o corpo some embaixo
+  const k = 320 / altura;
+  const meioY = ROSTO_Y;
+  const boneco = desenharPersonagem(c.cena, cfg, k);
+  boneco.setPosition(W / 2 - cab.cx * k, meioY - ((cab.topo + cab.queixo) / 2) * k);
+  piscar(c.cena, boneco);
+  const manchas: Phaser.GameObjects.Graphics[] = [];
+  for (let i = 0; i < total; i++) {
+    const [fx, fy] = MANCHAS[i % MANCHAS.length];
+    const x = boneco.x + (cab.cx + (fx - 0.5) * cab.largura) * k;
+    const y = boneco.y + (cab.topo + fy * altura) * k;
+    const g = c.cena.add.graphics({ x, y });
+    // mancha de terra: tres bolinhas juntas, meio transparentes, para parecer sujeira e nao botao
+    g.fillStyle(0x8a6a4a, 0.5);
+    g.fillCircle(0, 0, 15).fillCircle(11, 5, 11).fillCircle(-9, 7, 9);
+    manchas.push(g);
+  }
+  return { boneco, manchas };
+}
+
+/** Uma bolha de espuma que sobe um pouquinho e some. */
+function espuma(c: Ctx, dentro: Phaser.GameObjects.Container, x: number, y: number) {
+  const b = c.cena.add
+    .circle(x + Phaser.Math.Between(-16, 16), y + Phaser.Math.Between(-16, 16), Phaser.Math.Between(7, 18), 0xffffff, 0.92)
+    .setStrokeStyle(2, 0xbfe0f2);
+  dentro.add(b);
+  c.cena.tweens.add({ targets: b, y: b.y - 24, scale: 1.4, alpha: 0, duration: 1100, onComplete: () => b.destroy() });
+}
+
+/** Fim de lavar o rosto: a agua cai, a espuma vai embora e o rosto limpinho sorri e comemora. */
+function rostoLimpo(c: Ctx, boneco: Phaser.GameObjects.Container, espumas: Phaser.GameObjects.Container) {
+  const meioY = ROSTO_Y;
+  for (let i = 0; i < 18; i++) {
+    const gota = c.cena.add.ellipse(W / 2 + Phaser.Math.Between(-150, 150), meioY - 260, 14, 22, 0x7fc8f0, 0.85);
+    c.camada.add(gota);
+    c.cena.tweens.add({
+      targets: gota,
+      y: meioY + 220,
+      alpha: 0,
+      delay: i * 40,
+      duration: 600,
+      ease: 'Quad.easeIn',
+      onComplete: () => gota.destroy(),
+    });
+  }
+  c.cena.tweens.add({ targets: espumas, alpha: 0, duration: 500, delay: 300 });
+  c.cena.time.delayedCall(700, () => {
+    somCerto();
+    expressao(boneco, 'feliz');
+    comemorar(c.cena, boneco);
+    for (const [dx, dy] of [[-170, -120], [170, -90], [-150, 120], [160, 140]]) brilhar(c, W / 2 + dx, meioY + dy);
+  });
+  c.cena.time.delayedCall(2200, c.fim);
+}
 
 const escolher: Handler = (c, e) => {
   const opcoes = e.itens ?? [];

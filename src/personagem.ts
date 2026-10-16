@@ -156,6 +156,11 @@ function porLargura(cena: Phaser.Scene, chave: string, largura: number) {
   return im;
 }
 
+/** Onde fica a cabeca dentro do container do personagem, em unidades antes da escala. */
+export function cabecaDoPersonagem(cena: Phaser.Scene, cfg: PersonagemCfg) {
+  return cabecaDe(cena.textures.exists(corpoChave(cfg)) ? sufixoCorpo(cfg) : '');
+}
+
 /** Container com o personagem completo, pronto para entrar em qualquer cena. */
 export function desenharPersonagem(
   cena: Phaser.Scene,

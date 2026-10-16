@@ -77,6 +77,8 @@ export interface Etapa {
   empilha?: boolean;
   /** os itens certos tem ordem: o primeiro da lista vem primeiro (lencol antes do cobertor) */
   emOrdem?: boolean;
+  /** esfregar: lava o rosto do personagem da propria crianca, em vez da arte do alvo */
+  rosto?: boolean;
 }
 
 export interface Cena {
