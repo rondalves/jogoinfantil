@@ -77,7 +77,8 @@ export class Mapa extends Phaser.Scene {
 
   private montarLista() {
     let y = 0;
-    const liberadoAnterior = (mundo: number) => mundo === 1 || mundoCompleto(mundo - 1, this.p.missoes);
+    const liberadoAnterior = (mundo: number) =>
+      CONFIG.BETA_TUDO_ABERTO || mundo === 1 || mundoCompleto(mundo - 1, this.p.missoes);
 
     for (const m of MUNDOS) {
       const missoes = missoesDoMundo(m.id);

@@ -43,6 +43,10 @@ arte faltando. O que falta está em três grupos.
 
 ## 3. Depois do beta
 
+- **Antes de ir para a produção:** `BETA_TUDO_ABERTO: false` em `src/config.ts`.
+  No beta fechado os 6 mundos ficam abertos e sem compra; desligada, volta a
+  ordem dos mundos e a compra dos mundos 5 e 6.
+
 - As 14 historinhas novas (07 a 20), parte da compra: gravar e entrar como
   `src/stories/07-*.json` em diante, marcadas como pagas ([MONETIZACAO.md](MONETIZACAO.md)).
 - Vídeos das historinhas em livro animado ([VIDEOS_HISTORIAS.md](VIDEOS_HISTORIAS.md)),

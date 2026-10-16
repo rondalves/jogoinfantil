@@ -226,6 +226,32 @@ export function fundo(cena: Phaser.Scene, fundoCor: number, imagem?: string, des
   cobrirTela(cena, 0xfbf9f5, desfocar ? Math.min(0.78, TEMA.veu + 0.18) : TEMA.veu).setDepth(-8);
 }
 
+/**
+ * Copia da arte com os cantos arredondados, numa textura propria (feita uma
+ * vez so). Nao e mascara de proposito: mascara nao acompanha lista que rola.
+ */
+export function arredondada(cena: Phaser.Scene, chave: string, raio = 0.2) {
+  const nova = `${chave}__redonda`;
+  if (cena.textures.exists(nova)) return nova;
+  const arte = cena.textures.get(chave).getSourceImage() as HTMLImageElement;
+  const { width: w, height: h } = arte;
+  const t = cena.textures.createCanvas(nova, w, h);
+  if (!t) return chave;
+  const ctx = t.getContext();
+  const r = Math.round(Math.min(w, h) * raio);
+  ctx.beginPath();
+  ctx.moveTo(r, 0);
+  ctx.arcTo(w, 0, w, h, r);
+  ctx.arcTo(w, h, 0, h, r);
+  ctx.arcTo(0, h, 0, 0, r);
+  ctx.arcTo(0, 0, w, 0, r);
+  ctx.closePath();
+  ctx.clip();
+  ctx.drawImage(arte, 0, 0);
+  t.refresh();
+  return nova;
+}
+
 /** Carrega as capas que faltam e chama `pronto`. Atalho para as telas novas. */
 export function carregarCapas(cena: Phaser.Scene, chaves: string[], pronto: () => void) {
   carregar(cena, chaves, pronto);

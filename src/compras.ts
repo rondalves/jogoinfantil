@@ -47,7 +47,7 @@ function guardar() {
 
 /** Mundo livre, ou mundo de cima com a compra feita. */
 export function mundoPago(mundo: number) {
-  return mundo > CONFIG.MUNDOS_LIVRES && !temTudo();
+  return !CONFIG.BETA_TUDO_ABERTO && mundo > CONFIG.MUNDOS_LIVRES && !temTudo();
 }
 
 async function naLoja(acao: 'comprar' | 'restaurar'): Promise<boolean> {

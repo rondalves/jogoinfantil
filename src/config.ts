@@ -26,6 +26,13 @@ export const CONFIG = {
    */
   MUNDOS_LIVRES: 4,
 
+  /**
+   * Beta fechado: todos os mundos abertos desde o comeco, sem compra e sem
+   * precisar terminar o anterior. Historinha e joguinho continuam abrindo so
+   * quando a crianca fecha o mundo. Desligar antes da producao.
+   */
+  BETA_TUDO_ABERTO: true,
+
   /** historinhas planejadas: as que ainda nao existem aparecem numeradas, "em breve" */
   HISTORIAS_PREVISTAS: 20,
 

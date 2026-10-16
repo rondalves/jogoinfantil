@@ -7,7 +7,7 @@ import { narrador } from '../narrador';
 import { ativo, type Perfil } from '../storage';
 import { HISTORIAS, type Historia } from '../stories';
 import { TEMA } from '../theme';
-import { area, botaoOuvir, carregarCapas, figura, fundo, irPara, nota, rolagem, TELA, titulo } from '../ui';
+import { area, arredondada, botaoOuvir, carregarCapas, figura, fundo, irPara, nota, rolagem, TELA, titulo } from '../ui';
 
 const W = CONFIG.LARGURA;
 /** onde a lista comeca, logo abaixo do titulo */
@@ -68,9 +68,7 @@ export class Historinhas extends Phaser.Scene {
 
   /** Historinha que ainda vai ser gravada: so o numero, com "em breve" em cima. */
   private porVir(n: number, x: number, y: number, larg: number, alt: number) {
-    const g = this.add.graphics();
-    g.fillStyle(0xffffff, 0.6);
-    g.fillRoundedRect(x - larg / 2, y - alt / 2, larg, alt, 26);
+    const g = this.fundoCartao(x, y, larg, alt, 0.6);
     return [
       g,
       this.add.text(x, y - alt / 2 + 30, 'em breve', { fontSize: '24px', color: '#8a8f96' }).setOrigin(0.5),
@@ -80,14 +78,23 @@ export class Historinhas extends Phaser.Scene {
     ];
   }
 
+  /** Cartao bem arredondado, com sombra macia embaixo e um fio claro na borda. */
+  private fundoCartao(x: number, y: number, larg: number, alt: number, opaco: number) {
+    const g = this.add.graphics();
+    g.fillStyle(0x7a5a3a, 0.12).fillRoundedRect(x - larg / 2 + 3, y - alt / 2 + 8, larg, alt, 42);
+    g.fillStyle(0xffffff, opaco).fillRoundedRect(x - larg / 2, y - alt / 2, larg, alt, 42);
+    g.lineStyle(3, 0xf0e2cf, opaco).strokeRoundedRect(x - larg / 2, y - alt / 2, larg, alt, 42);
+    return g;
+  }
+
   private cartao(h: Historia, x: number, y: number, larg: number, alt: number) {
     const aberta = historiaAberta(this.p, h);
     const temAudio = !!AUDIOS_HISTORIA[h.audio];
 
-    const g = this.add.graphics();
-    g.fillStyle(0xffffff, aberta ? 0.97 : 0.6);
-    g.fillRoundedRect(x - larg / 2, y - alt / 2, larg, alt, 26);
-    const capa = figura(this, x, y - 28, h.capa, h.icone, 150);
+    const g = this.fundoCartao(x, y, larg, alt, aberta ? 0.98 : 0.6);
+    // capa de cantos redondos: o quadrado de ponta seca destoava do cartao
+    const arte = this.textures.exists(h.capa) ? arredondada(this, h.capa) : undefined;
+    const capa = figura(this, x, y - 26, arte, h.icone, 158);
     // silhueta clara, nao mancha preta: a capa fica adivinhavel, nao escondida
     if (!aberta) capa.setTint(0xb9bec4).setAlpha(0.45);
 

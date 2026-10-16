@@ -127,7 +127,7 @@ export class Pais extends Phaser.Scene {
    */
   private mundosCompletos() {
     // com tudo livre (o teste na Play), nao existe o que comprar
-    if (CONFIG.MUNDOS_LIVRES >= MUNDOS.length) return;
+    if (CONFIG.MUNDOS_LIVRES >= MUNDOS.length || CONFIG.BETA_TUDO_ABERTO) return;
     if (temTudo()) {
       this.add
         .text(W / 2, 265, '\u{2705} Mundos completos liberados', {

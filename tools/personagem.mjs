@@ -192,8 +192,16 @@ const CORES_ROSTO = { olho: '#2a1c17', sobrancelha: '#5a3d2e', boca: '#6b3a32', 
 const OLHOS = {
   redondos: { olho: () => elipse(0, 0, 8.5, 10.5), brilho: [[-2.8, -3.8, 3], [3, 3.6, 1.3]], sobr: 'M-8.5,-17.5 Q0,-21.5 8.5,-18' },
   grandes: { olho: () => elipse(0, 0, 10, 12.5), brilho: [[-3.2, -4.4, 3.6], [3.4, 4.2, 1.6]], sobr: 'M-8.5,-23 Q0,-27.5 8.5,-23' },
-  alegres: { olho: () => caminho('M-8.5,2 C-8.5,-12.5 8.5,-12.5 8.5,2 Q0,-2 -8.5,2 Z'), brilho: [[-2.6, -4, 2.6]], sobr: 'M-8.5,-19 Q0,-23 8.5,-19' },
-  sorriso: { olho: () => caminho('M-8.5,1.5 C-8.5,-10 8.5,-10 8.5,1.5 Q0,-2.5 -8.5,1.5 Z'), brilho: [[-2.6, -3.4, 2.3]], sobr: 'M-8.5,-18.5 Q0,-22.5 8.5,-18.5' },
+  // olhinho fechado de alegria: um arco grosso e redondo. A meia-lua cheia de antes
+  // parecia olho quase fechado de sono
+  alegres: { olho: () => risco('M-8.5,3 Q0,-9.5 8.5,3', CORES_ROSTO.olho, 3.4), brilho: [], sobr: 'M-8.5,-17 Q0,-21 8.5,-17' },
+  // sorrisao: olho aberto e brilhante, um pouco maior, com tres brilhos e a
+  // sobrancelha levantada. Quem sorri o faz com a boca grande, nao fechando o olho
+  sorriso: {
+    olho: () => elipse(0, 0, 9.4, 11.4),
+    brilho: [[-3, -4.4, 3.4], [3.4, 4, 1.7], [3.6, -5.6, 1.1]],
+    sobr: 'M-8.5,-22 Q0,-26.5 8.5,-22',
+  },
   triste: { olho: () => elipse(0, 1.2, 8, 9.8), brilho: [[-2.4, -1.2, 2.5]], sobr: 'M-8.5,-13.5 Q-1,-15.5 7.5,-20.5' },
 };
 
@@ -214,19 +222,24 @@ function olhos(id) {
 
 const BOCAS = {
   redondos: () => risco('M-6.5,-1.5 Q0,4 6.5,-1.5', CORES_ROSTO.boca, 2.4),
-  alegres: () => risco('M-8.5,-2.5 Q0,6 8.5,-2.5', CORES_ROSTO.boca, 2.6),
+  alegres: () => risco('M-9,-2.8 Q0,7 9,-2.8', CORES_ROSTO.boca, 2.8),
   grandes: () => elipse(0, 0.5, 3.8, 4.6, `fill="${CORES_ROSTO.dentro}" stroke="${CORES_ROSTO.boca}" stroke-width="1.4"`),
+  // sorrisao: boca larga e redonda, dentinhos em cima, lingua rosada e os
+  // cantinhos subindo, como bochecha empurrando
   sorriso: () => {
-    const d = 'M-9.5,-3.5 Q0,-2 9.5,-3.5 Q8,8.5 0,9.5 Q-8,8.5 -9.5,-3.5 Z';
+    const d = 'M-12.4,-4.2 Q0,-1.8 12.4,-4.2 Q12,10.4 0,12 Q-12,10.4 -12.4,-4.2 Z';
     return caminho(d, `fill="${CORES_ROSTO.dentro}"`) +
-      sombra(caminho(d), caminho('M-9,-3.4 Q0,-1.8 9,-3.4 L8,0.8 Q0,2 -8,0.8 Z', 'fill="#ffffff"') + elipse(0, 6.4, 4.8, 2.8, 'fill="#e57f86"')) +
-      caminho(d, `fill="none" stroke="${CORES_ROSTO.boca}" stroke-width="1.6" stroke-linejoin="round"`);
+      sombra(caminho(d), caminho('M-12,-4.1 Q0,-1.8 12,-4.1 L11.1,1 Q0,2.8 -11.1,1 Z', 'fill="#ffffff"') +
+        elipse(0, 9.2, 7, 4, 'fill="#ee8a92"')) +
+      caminho(d, `fill="none" stroke="${CORES_ROSTO.boca}" stroke-width="1.7" stroke-linejoin="round"`) +
+      risco('M-12.6,-4 Q-14.4,-5 -14.8,-7.2', CORES_ROSTO.boca, 1.8) +
+      risco('M12.6,-4 Q14.4,-5 14.8,-7.2', CORES_ROSTO.boca, 1.8);
   },
   triste: () => risco('M-6,3 Q0,-2.5 6,3', CORES_ROSTO.boca, 2.4),
 };
 
 function boca(id) {
-  const w = 44, h = 26;
+  const w = 44, h = 30; // alto o bastante para o sorrisao nao encostar na borda
   return svg(w * R, h * R, `<g transform="scale(${R}) translate(${w / 2},${h / 2})">${BOCAS[id]()}</g>`);
 }
 

@@ -426,7 +426,7 @@ const esfregar: Handler = (c, e) => {
       espuma(c, espumas, p.worldX, p.worldY);
     }
     // de olhos fechados, sorrindo: ninguem lava o rosto de olho aberto
-    if (crianca && esfrega.limpos === 0) expressao(crianca.boneco, 'contente');
+    if (crianca && esfrega.limpos === 0) expressao(crianca.boneco, 'feliz');
     const anterior = esfrega.limpos;
     if (!esfrega.mover(p.x - p.prevPosition.x, p.y - p.prevPosition.y)) return;
     const s = sujeiras[anterior];

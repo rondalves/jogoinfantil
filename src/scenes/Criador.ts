@@ -24,6 +24,10 @@ import { musicaDoMundo } from '../musica';
 const W = CONFIG.LARGURA;
 /** Opcoes por pagina: 2 linhas de 3, o que cabe entre o personagem e os botoes. */
 const POR_PAGINA = 6;
+/** altura das duas linhas de opcoes e da linha das setas: longe dos botoes de baixo (1160) */
+const LINHA_1 = 790;
+const LINHA_2 = 922;
+const SETAS = 1040;
 
 type Aba = 'pele' | 'olhos' | 'cabelo' | 'corCabelo' | 'roupa' | 'extras';
 
@@ -150,20 +154,22 @@ export class Criador extends Phaser.Scene {
     const mao = this.mao;
     this.tweens.killTweensOf(mao);
     const baixo = '\u{1F447}';
-    const lado = '\u{1F449}';
+    const lado = '\u{1F448}';
+    const cima = '\u{1F446}';
     // no passo da aba aberta aponta as opcoes; senao, a aba ou o botao da vez
     const [x, y, icone, eixo]: [number, number, string, 'x' | 'y'] =
       p === 'nome'
-        ? [W / 2 - 180, 1082, baixo, 'y']
+        ? [W / 2 - 180, 1250, cima, 'y']
         : p === 'pronto'
-          ? [W / 2 + 180, 1082, baixo, 'y']
+          ? [W / 2 + 180, 1250, cima, 'y']
           : p === this.aba
-            ? [36, 800, lado, 'x']
+            ? [672, LINHA_1, lado, 'x']
             : [this.xAba[p] ?? W / 2, 546, baixo, 'y'];
     mao.setText(icone).setPosition(x, y);
     this.tweens.add({
       targets: mao,
-      [eixo]: (eixo === 'y' ? y : x) + 12,
+      // vai e volta na direcao do que aponta
+      [eixo]: (eixo === 'y' ? y : x) + (icone === baixo ? 12 : -12),
       duration: 420,
       yoyo: true,
       repeat: -1,
@@ -219,7 +225,7 @@ export class Criador extends Phaser.Scene {
   private caixa(i: number, total: number) {
     const cols = Math.min(3, total);
     const x = W / 2 + ((i % cols) - (cols - 1) / 2) * 205;
-    const y = 800 + Math.floor(i / cols) * 155;
+    const y = LINHA_1 + Math.floor(i / cols) * (LINHA_2 - LINHA_1);
     return { x, y };
   }
 
@@ -230,11 +236,11 @@ export class Criador extends Phaser.Scene {
     const { x, y } = this.caixa(i - base, Math.min(total - base, POR_PAGINA));
     const g = this.add.graphics();
     g.fillStyle(ativa ? 0x7ddc8a : 0xffffff, 0.95);
-    g.fillRoundedRect(x - 90, y - 68, 180, 136, 22);
+    g.fillRoundedRect(x - 90, y - 60, 180, 120, 22);
     this.opcoes.add(g);
     conteudo(x, y);
     const z = this.add
-      .zone(x, y, 180, 136)
+      .zone(x, y, 180, 120)
       .setInteractive({ useHandCursor: true })
       .on('pointerdown', () => {
         onClick();
@@ -251,7 +257,7 @@ export class Criador extends Phaser.Scene {
     if (paginas < 2) return;
     const seta = (x: number, txt: string, passo: number) => {
       const t = this.add
-        .text(x, 1065, txt, { fontSize: '56px', color: '#2b3a4a' })
+        .text(x, SETAS, txt, { fontSize: '52px', color: '#2b3a4a' })
         .setOrigin(0.5)
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => {
@@ -263,17 +269,17 @@ export class Criador extends Phaser.Scene {
     seta(W / 2 - 170, '◀', -1);
     // tem mais para o lado: bolinha laranja pulsando atras do ▶ e a maozinha apontando para ela
     if (this.pagina < paginas - 1) {
-      const bola = this.add.circle(W / 2 + 170, 1065, 42, 0xffb43d, 0.9);
+      const bola = this.add.circle(W / 2 + 170, SETAS, 34, 0xffb43d, 0.9);
       this.opcoes.add(bola);
       this.tweens.add({ targets: bola, scale: 1.18, duration: 520, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
-      const mao = this.add.text(W / 2 + 92, 1065, '\u{1F449}', { fontSize: '44px' }).setOrigin(0.5);
+      const mao = this.add.text(W / 2 + 96, SETAS, '\u{1F449}', { fontSize: '40px' }).setOrigin(0.5);
       this.opcoes.add(mao);
       this.tweens.add({ targets: mao, x: mao.x + 12, duration: 420, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
     }
     seta(W / 2 + 170, '▶', 1);
     this.opcoes.add(
       this.add
-        .text(W / 2 - 40, 1065, `${this.pagina + 1}/${paginas}`, { fontSize: '32px', color: '#2b3a4a' })
+        .text(W / 2 - 40, SETAS, `${this.pagina + 1}/${paginas}`, { fontSize: '30px', color: '#2b3a4a' })
         .setOrigin(0.5),
     );
   }
@@ -299,15 +305,15 @@ export class Criador extends Phaser.Scene {
     const cabecinha = (variante: Partial<PersonagemCfg>, nome: string) => (x: number, y: number) => {
       const cfg = { ...this.cfg, ...variante };
       const cab = cabecaDoPersonagem(this, cfg);
-      const k = 88 / (cab.queixo - cab.topo);
+      const k = 62 / (cab.queixo - cab.topo);
       const b = desenharPersonagem(this, cfg, k);
-      b.setPosition(x - cab.cx * k, y - 6 - ((cab.topo + cab.queixo) / 2) * k);
-      const corte = this.make.graphics({}, false).fillRect(x - 88, y - 66, 176, 98);
+      b.setPosition(x - cab.cx * k, y - 14 - ((cab.topo + cab.queixo) / 2) * k);
+      const corte = this.make.graphics({}, false).fillRect(x - 88, y - 58, 176, 84);
       b.setMask(corte.createGeometryMask());
       this.recortes.push(corte);
       this.opcoes.add(b);
       this.opcoes.add(
-        this.add.text(x, y + 48, nome, { fontSize: '22px', color: '#2b3a4a', align: 'center' }).setOrigin(0.5),
+        this.add.text(x, y + 40, nome, { fontSize: '21px', color: '#2b3a4a', align: 'center' }).setOrigin(0.5),
       );
     };
 
@@ -322,11 +328,23 @@ export class Criador extends Phaser.Scene {
           this.opcao(i, OLHOS.length, cabecinha({ olhos: i }, o.nome), this.cfg.olhos === i, () => (this.cfg.olhos = i)),
         );
         break;
-      case 'cabelo':
-        CABELOS.forEach((o, i) =>
-          this.opcao(i, CABELOS.length, cabecinha({ cabelo: i }, o.nome), this.cfg.cabelo === i, () => (this.cfg.cabelo = i)),
+      case 'cabelo': {
+        // linha de cima, cabelo de menino; de baixo, de menina: as duas andam juntas nas setas
+        const indices = CABELOS.map((_, i) => i);
+        const menino = (i: number) => CABELOS[i].id.startsWith('menino_') || CABELOS[i].id === 'careca';
+        const linhas = [indices.filter(menino), indices.filter((i) => !menino(i))];
+        const total = Math.ceil(Math.max(...linhas.map((l) => l.length)) / 3) * POR_PAGINA;
+        linhas.forEach((lista, linha) =>
+          lista.forEach((i, n) => {
+            const vaga = Math.floor(n / 3) * POR_PAGINA + linha * 3 + (n % 3);
+            this.opcao(vaga, total, cabecinha({ cabelo: i }, CABELOS[i].nome), this.cfg.cabelo === i, () => (this.cfg.cabelo = i));
+          }),
         );
+        for (const [y, icone] of [[LINHA_1, '\u{1F466}'], [LINHA_2, '\u{1F467}']] as const) {
+          this.opcoes.add(this.add.text(30, y, icone, { fontSize: '38px' }).setOrigin(0.5));
+        }
         break;
+      }
       case 'corCabelo':
         CORES_CABELO.forEach((c, i) =>
           this.opcao(i, CORES_CABELO.length, cor(c), this.cfg.corCabelo === i, () => (this.cfg.corCabelo = i)),
