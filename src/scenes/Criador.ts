@@ -8,6 +8,7 @@ import {
   ACESSORIOS,
   acessorioLiberado,
   CABELOS,
+  cabecaDoPersonagem,
   CORES_CABELO,
   desenharPersonagem,
   montarOpcoes,
@@ -25,6 +26,19 @@ const W = CONFIG.LARGURA;
 const POR_PAGINA = 6;
 
 type Aba = 'pele' | 'olhos' | 'cabelo' | 'corCabelo' | 'roupa' | 'extras';
+
+/** O roteiro de quem cria o personagem: uma coisa de cada vez, na ordem. */
+type Passo = Aba | 'nome' | 'pronto';
+const DICAS: Record<Passo, string> = {
+  pele: 'Primeiro, escolha a cor da pele',
+  olhos: 'Agora escolha o rosto',
+  cabelo: 'Agora escolha o cabelo',
+  corCabelo: 'Escolha a cor do cabelo',
+  roupa: 'Agora escolha a roupa',
+  extras: 'Quer colocar um acessório?',
+  nome: 'Agora escreva o seu nome',
+  pronto: 'Tudo pronto? Toque em Pronto!',
+};
 
 const ABAS: { id: Aba; icone: string; nome: string }[] = [
   { id: 'pele', icone: '\u{1F91B}', nome: 'Pele' },
@@ -52,6 +66,13 @@ export class Criador extends Phaser.Scene {
   private pagina = 0;
   private totalOpcoes = 0;
   private editando = false;
+  /** criando um personagem novo: o titulo vira a instrucao e a maozinha aponta o proximo passo */
+  private passos: Passo[] = [];
+  private passo = 0;
+  private mao?: Phaser.GameObjects.Text;
+  private xAba: Partial<Record<Aba, number>> = {};
+  /** recortes das cabecinhas dos botoes: nao ficam na tela, entao saem a mao */
+  private recortes: Phaser.GameObjects.Graphics[] = [];
 
   constructor() {
     super('Criador');
@@ -61,12 +82,19 @@ export class Criador extends Phaser.Scene {
   init(dados?: { editar?: boolean }) {
     const atual = dados?.editar ? ativo() : null;
     this.editando = Boolean(atual);
-    this.cfg = atual ? { ...atual.personagem, acessorios: [...atual.personagem.acessorios] } : personagemPadrao();
+    // personagem novo comeca careca e so de camiseta: a crianca monta do zero
+    this.cfg = atual
+      ? { ...atual.personagem, acessorios: [...atual.personagem.acessorios] }
+      : { ...personagemPadrao(), cabelo: Math.max(0, CABELOS.findIndex((c) => c.id === 'careca')) };
     this.nome = atual?.nome ?? '';
     this.aba = 'pele';
+    this.passo = 0;
+    this.mao = undefined;
+    this.xAba = {};
   }
 
   create() {
+    this.events.once('shutdown', () => this.recortes.forEach((g) => g.destroy()));
     musicaDoMundo();
     montarOpcoes(this);
     fundo(this, TEMA.rosa, 'bg_criador_personagem');
@@ -78,6 +106,11 @@ export class Criador extends Phaser.Scene {
     this.opcoes = this.add.container(0, 0);
     this.desenharPreview();
     this.abas();
+    this.passos = this.editando
+      ? []
+      : (['pele', 'olhos', 'cabelo', 'corCabelo', 'roupa', 'extras', 'nome', 'pronto'] as Passo[]).filter(
+          (p) => p in this.xAba || p === 'nome' || p === 'pronto',
+        );
     this.desenharOpcoes();
 
     botao(this, W / 2 - 180, 1160, 'Meu nome', () => this.pedirNome(), {
@@ -91,6 +124,51 @@ export class Criador extends Phaser.Scene {
     });
 
     fale('ui_monte_personagem');
+    this.guiar();
+  }
+
+  /** Avanca o roteiro quando a crianca faz o passo da vez. */
+  private fez(p: Passo) {
+    if (this.passos[this.passo] !== p) return;
+    this.passo += 1;
+    // sem cabelo nao tem cor de cabelo; nome ja escrito antes nao precisa de novo
+    while (
+      (this.passos[this.passo] === 'corCabelo' && CABELOS[this.cfg.cabelo]?.id === 'careca') ||
+      (this.passos[this.passo] === 'nome' && this.nome)
+    ) {
+      this.passo += 1;
+    }
+    this.guiar();
+  }
+
+  /** Titulo com a instrucao da vez e a maozinha em cima do que fazer agora. */
+  private guiar() {
+    const p = this.passos[this.passo];
+    if (!p) return;
+    this.tituloTxt.setText(p === 'pronto' && this.nome ? `Oi, ${this.nome}! Tudo pronto?` : DICAS[p]);
+    if (!this.mao) this.mao = this.add.text(0, 0, '', { fontSize: '56px' }).setOrigin(0.5).setDepth(60);
+    const mao = this.mao;
+    this.tweens.killTweensOf(mao);
+    const baixo = '\u{1F447}';
+    const lado = '\u{1F449}';
+    // no passo da aba aberta aponta as opcoes; senao, a aba ou o botao da vez
+    const [x, y, icone, eixo]: [number, number, string, 'x' | 'y'] =
+      p === 'nome'
+        ? [W / 2 - 180, 1082, baixo, 'y']
+        : p === 'pronto'
+          ? [W / 2 + 180, 1082, baixo, 'y']
+          : p === this.aba
+            ? [36, 800, lado, 'x']
+            : [this.xAba[p] ?? W / 2, 546, baixo, 'y'];
+    mao.setText(icone).setPosition(x, y);
+    this.tweens.add({
+      targets: mao,
+      [eixo]: (eixo === 'y' ? y : x) + 12,
+      duration: 420,
+      yoyo: true,
+      repeat: -1,
+      ease: 'Sine.easeInOut',
+    });
   }
 
   private desenharPreview() {
@@ -111,6 +189,7 @@ export class Criador extends Phaser.Scene {
     visiveis.forEach((a, i) => {
       const x = 56 + i * Math.min(101, (W - 112) / Math.max(1, visiveis.length - 1));
       const y = 630;
+      this.xAba[a.id] = x;
       const g = this.add.graphics();
       const sel = () => this.aba === a.id;
       const pintar = () => {
@@ -129,6 +208,9 @@ export class Criador extends Phaser.Scene {
           this.pagina = 0;
           this.pintarAbas.forEach((f) => f());
           this.desenharOpcoes();
+          // acessorio e opcional (e no comeco ainda vem trancado): abrir a aba ja conta
+          if (a.id === 'extras') this.fez('extras');
+          else this.guiar();
         });
       this.pintarAbas.push(pintar);
     });
@@ -158,6 +240,7 @@ export class Criador extends Phaser.Scene {
         onClick();
         this.desenharPreview();
         this.desenharOpcoes();
+        this.fez(this.aba);
       });
     this.opcoes.add(z);
   }
@@ -178,16 +261,27 @@ export class Criador extends Phaser.Scene {
       this.opcoes.add(t);
     };
     seta(W / 2 - 170, '◀', -1);
+    // tem mais para o lado: bolinha laranja pulsando atras do ▶ e a maozinha apontando para ela
+    if (this.pagina < paginas - 1) {
+      const bola = this.add.circle(W / 2 + 170, 1065, 42, 0xffb43d, 0.9);
+      this.opcoes.add(bola);
+      this.tweens.add({ targets: bola, scale: 1.18, duration: 520, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
+      const mao = this.add.text(W / 2 + 92, 1065, '\u{1F449}', { fontSize: '44px' }).setOrigin(0.5);
+      this.opcoes.add(mao);
+      this.tweens.add({ targets: mao, x: mao.x + 12, duration: 420, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
+    }
     seta(W / 2 + 170, '▶', 1);
     this.opcoes.add(
       this.add
-        .text(W / 2, 1065, `${this.pagina + 1}/${paginas}`, { fontSize: '32px', color: '#2b3a4a' })
+        .text(W / 2 - 40, 1065, `${this.pagina + 1}/${paginas}`, { fontSize: '32px', color: '#2b3a4a' })
         .setOrigin(0.5),
     );
   }
 
   private desenharOpcoes() {
     this.opcoes.removeAll(true);
+    this.recortes.forEach((g) => g.destroy());
+    this.recortes = [];
     this.totalOpcoes = 0;
     const cor = (c: number) => (x: number, y: number) => {
       const r = this.add.rectangle(x, y, 120, 84, c).setStrokeStyle(4, 0xffffff);
@@ -200,6 +294,23 @@ export class Criador extends Phaser.Scene {
       );
     };
 
+    // o botao mostra a cabecinha do proprio personagem com aquele cabelo ou rosto:
+    // quem tem 4 anos escolhe pelo desenho, nao pelo nome escrito
+    const cabecinha = (variante: Partial<PersonagemCfg>, nome: string) => (x: number, y: number) => {
+      const cfg = { ...this.cfg, ...variante };
+      const cab = cabecaDoPersonagem(this, cfg);
+      const k = 88 / (cab.queixo - cab.topo);
+      const b = desenharPersonagem(this, cfg, k);
+      b.setPosition(x - cab.cx * k, y - 6 - ((cab.topo + cab.queixo) / 2) * k);
+      const corte = this.make.graphics({}, false).fillRect(x - 88, y - 66, 176, 98);
+      b.setMask(corte.createGeometryMask());
+      this.recortes.push(corte);
+      this.opcoes.add(b);
+      this.opcoes.add(
+        this.add.text(x, y + 48, nome, { fontSize: '22px', color: '#2b3a4a', align: 'center' }).setOrigin(0.5),
+      );
+    };
+
     switch (this.aba) {
       case 'pele':
         PELES.forEach((c, i) =>
@@ -208,12 +319,12 @@ export class Criador extends Phaser.Scene {
         break;
       case 'olhos':
         OLHOS.forEach((o, i) =>
-          this.opcao(i, OLHOS.length, texto(o.nome, '\u{1F441}\u{FE0F}'), this.cfg.olhos === i, () => (this.cfg.olhos = i)),
+          this.opcao(i, OLHOS.length, cabecinha({ olhos: i }, o.nome), this.cfg.olhos === i, () => (this.cfg.olhos = i)),
         );
         break;
       case 'cabelo':
         CABELOS.forEach((o, i) =>
-          this.opcao(i, CABELOS.length, texto(o.nome, '\u{1F487}'), this.cfg.cabelo === i, () => (this.cfg.cabelo = i)),
+          this.opcao(i, CABELOS.length, cabecinha({ cabelo: i }, o.nome), this.cfg.cabelo === i, () => (this.cfg.cabelo = i)),
         );
         break;
       case 'corCabelo':
@@ -278,12 +389,21 @@ export class Criador extends Phaser.Scene {
       narrador.setNome(nome);
       fale('ui_nome_bonito');
       this.tituloTxt.setText(`Oi, ${nome}!`);
+      if (this.passos.length) {
+        this.fez('nome');
+        this.guiar();
+      }
     });
   }
 
   private salvarPerfil() {
     if (!this.nome) {
       fale('ui_primeiro_nome');
+      // sem nome nao salva: o roteiro pula direto para o nome
+      if (this.passos.length) {
+        this.passo = this.passos.indexOf('nome');
+        this.guiar();
+      }
       return;
     }
     const atual = this.editando ? ativo() : null;
