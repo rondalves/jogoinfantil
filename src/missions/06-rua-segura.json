@@ -4,17 +4,17 @@
   "titulo": "Rua segura",
   "icone": "🚦",
   "cenario": "bg_escola_entrada",
-  "narracao_intro": "{nome}, a rua pede atenção. Vamos atravessar do jeito certo?",
+  "narracao_intro": "{nome}, a rua pede atenção. Vamos atravessar do jeito certo, de mão dada com o adulto?",
   "audio_intro": "m06_intro",
   "mostrar": {
-    "narracao": "Mão dada, esperar o vermelho, verde caminha, e sempre na faixa!",
+    "narracao": "De mão dada, espere o bonequinho verde acender e atravesse sempre na faixa!",
     "audio": "m06_mostrar",
     "icone": "🚦"
   },
   "etapas": [
     {
       "tipo": "sequencia_ordenada",
-      "narracao": "Toque na ordem certa para atravessar.",
+      "narracao": "Toque na ordem certa para atravessar a rua.",
       "audio": "m06_e1",
       "consequencia": "Calma! Esse vem depois. Tente outro.",
       "itens": [
@@ -30,21 +30,55 @@
           "img": "m06_sinal_vermelho",
           "x": 550,
           "y": 620,
-          "texto": "Esperar"
+          "texto": "Vermelho: parar"
         },
         {
           "icone": "🟢",
           "img": "m06_sinal_verde",
           "x": 170,
           "y": 900,
-          "texto": "Verde"
+          "texto": "Verde: pode ir"
         },
         {
           "icone": "🚸",
           "img": "m06_faixa",
           "x": 550,
           "y": 900,
-          "texto": "Na faixa"
+          "texto": "Atravessar na faixa"
+        }
+      ]
+    },
+    {
+      "tipo": "sim_ou_nao",
+      "narracao": "E quando a rua não tem semáforo? Pode fazer isso?",
+      "audio": "m06_e3",
+      "perguntas": [
+        {
+          "icone": "🚸",
+          "img": "m06_faixa",
+          "texto": "Parar na calçada e olhar para os dois lados",
+          "resposta": true,
+          "explica": "Isso! Sem semáforo, a gente para na beirada e olha: um lado, o outro, e de novo."
+        },
+        {
+          "icone": "🏃",
+          "texto": "Atravessar correndo, sem olhar",
+          "resposta": false,
+          "explica": "Não! Correndo, o motorista não tem tempo de ver você."
+        },
+        {
+          "icone": "🤝",
+          "img": "m06_mao_dada",
+          "texto": "Esperar os carros pararem e atravessar de mão dada",
+          "resposta": true,
+          "explica": "Isso! Carro parado, mão dada com o adulto e atravessa na faixa."
+        },
+        {
+          "icone": "🚗",
+          "img": "m06_carro",
+          "texto": "Passar no meio dos carros, longe da faixa",
+          "resposta": false,
+          "explica": "Não! Longe da faixa, o motorista não espera ninguém atravessar."
         }
       ]
     },
@@ -86,11 +120,11 @@
       "texto": "Correr atrás da bola na rua",
       "imgCena": "m06_pnp_errada"
     },
-    "explicacao": "A bola a gente pede para um adulto pegar. A gente atravessa na faixa, de mão dada.",
+    "explicacao": "A bola a gente pede para um adulto pegar. Para atravessar: mão dada, bonequinho verde e faixa.",
     "audio": "m06_pnp",
     "animacao": "atravessar"
   },
-  "frase_reforco": "Vermelho espera, verde caminha!",
+  "frase_reforco": "Mão dada, bonequinho verde e sempre na faixa!",
   "audio_reforco": "m06_reforco",
   "recompensa": {
     "moedas": 1

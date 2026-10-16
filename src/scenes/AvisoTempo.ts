@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 import { portaoAdulto } from '../portaoAdulto';
+import { arteAdulto, desenharAdulto } from '../aplicarAdulto';
+import { carregar } from '../assets';
 import { CONFIG } from '../config';
 import { hojeISO } from '../economia';
 import { fale } from '../narracoes';
@@ -49,7 +51,12 @@ export class AvisoTempo extends Phaser.Scene {
       },
       { icone: '\u{1F5FA}\u{FE0F}', cor: TEMA.sim, largura: 520 },
     );
-    botao(this, W / 2, 950, 'Sou um adulto', () => this.conta(), {
+    // o rosto de quem joga junto, ao lado: "chame a mamae" com a mamae ali
+    carregar(this, [arteAdulto()], () => {
+      const f = desenharAdulto(this, 210).setPosition(W - 108, 930);
+      this.tweens.add({ targets: f, y: f.y - 6, duration: 900, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
+    });
+    botao(this, W / 2 - 50, 950, 'Sou um adulto', () => this.conta(), {
       icone: '\u{1F512}',
       cor: 0xbfd4e8,
       largura: 420,

@@ -4,6 +4,7 @@ import { ouvirAtalhos } from './atalhos';
 import { CONFIG } from './config';
 import { Boot } from './scenes/Boot';
 import { Criador } from './scenes/Criador';
+import { QuemJoga } from './scenes/QuemJoga';
 import { QuebraCabeca } from './scenes/QuebraCabeca';
 import { Cantinho } from './scenes/Cantinho';
 import { Historia } from './scenes/Historia';
@@ -44,7 +45,7 @@ carregarFonte().then(() => {
     render: { antialias: true, powerPreference: 'low-power', roundPixels: true },
     input: { activePointers: 2 },
     scene: [
-      Boot, Perfis, Criador, Tutorial, Mapa, Missao, MiniGame, Medalha, Pais,
+      Boot, QuemJoga, Perfis, Criador, Tutorial, Mapa, Missao, MiniGame, Medalha, Pais,
       Historinhas, Historia, Joguinhos, QuebraCabeca, Cantinho, JogoMemoria, Colorir, AvisoTempo,
       Encaixe, MotoMontanha,
     ],

@@ -1,3 +1,4 @@
+import { comAdulto, quemJoga } from './adulto';
 import { mundoPago } from './compras';
 import { MUNDOS } from './config';
 import { mundoCompleto } from './missions';
@@ -50,7 +51,7 @@ export const joguinhoAberto = (p: Perfil, j: Joguinho) => abertos(p).includes(j.
 
 /** Texto do cadeado: ou falta fechar o mundo, ou falta a compra. */
 export function porQueFechado(p: Perfil, mundo: number) {
-  if (mundoPago(mundo)) return 'Peça para um adulto abrir';
+  if (mundoPago(mundo)) return comAdulto('Peça para um adulto abrir', quemJoga());
   const m = MUNDOS.find((x) => x.id === mundo);
   return m ? `Termine o mundo ${m.id} - ${m.nome}` : 'Ainda não abriu';
 }

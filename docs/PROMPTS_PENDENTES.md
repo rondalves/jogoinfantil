@@ -225,3 +225,35 @@ missão 29. Enquanto não chegam, aparece o ursinho e o carrinho.
 ### `m32_pnp_errada`
 
 > Ilustração 2D cartoon infantil, cena quadrada. **Uma criança pequena na cadeirinha do banco de trás do carro, com o braço esticado jogando um carrinho de brinquedo na direção do adulto que está dirigindo**, o carrinho no ar entre os bancos e o adulto, de costas, com uma mãozinha de susto levantada. Mesmo carro da cena anterior. Sem machucado, sem choro: só o susto. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Sem texto, sem letras, sem números. Imagem quadrada 1024x1024.
+
+---
+
+# 7. A mamãe (pedida em 16/10/2026)
+
+Quem configura escolhe se a criança joga com a mamãe ou com o papai. O papai
+é a arte `adulto.png`; a mamãe, enquanto a arte não chega, sai do gerador do
+personagem. Anexe `adulto.png` no Gemini como referência de estilo.
+
+### `adulto_mae` (referência: `adulto.png`)
+
+> Ilustração 2D cartoon infantil de **uma mãe jovem, corpo inteiro, de pé e de frente**, no mesmo estilo e no mesmo tamanho do pai da imagem de referência: cabelo castanho preso num rabo de cavalo, blusa amarela de manga curta, calça jeans e tênis. Sorriso tranquilo. **O braço do lado esquerdo da imagem estendido um pouco para baixo e para o lado, com a mão aberta na altura do quadril, como quem segura a mão de uma criança**; o outro braço solto ao lado do corpo. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem em pé, 1024x2048.
+
+### `adulto_pai` (opcional, referência: `adulto.png`)
+
+> O mesmo pai da imagem de referência, igualzinho, só que **com o braço do lado esquerdo da imagem estendido um pouco para baixo e para o lado, com a mão aberta na altura do quadril, como quem segura a mão de uma criança**, e a outra mão fora do bolso, solta ao lado do corpo. Mesmo estilo, mesmas cores, fundo verde chapado #00FF00, imagem em pé, 1024x2048.
+
+---
+
+# 8. Monstro dos sentimentos — 2 monstrinhos novos (pedidos em 16/10/2026)
+
+A missão 11 agora pergunta pelo bravo, pelo feliz e pelo chateado, com seis
+monstrinhos para escolher. Os dois novos aparecem como emoji até a arte chegar.
+Anexe `m11_feliz.png` como referência: é o mesmo monstrinho roxo, só muda a cara.
+
+### `m11_surpreso` (referência: `m11_feliz.png`)
+
+> Ilustração 2D cartoon infantil do **mesmo monstrinho roxo da imagem de referência, de corpo inteiro e de frente, surpreso**: olhos bem abertos e redondos, boca em "o", sobrancelhas lá em cima e as duas mãozinhas abertas perto das bochechas. Mesmas antenas, mesma barriga clara, mesmo tamanho. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
+
+### `m11_calmo` (referência: `m11_feliz.png`)
+
+> Ilustração 2D cartoon infantil do **mesmo monstrinho roxo da imagem de referência, de corpo inteiro e de frente, calmo e tranquilo**: olhos fechados em arco suave, um sorriso pequeno e sereno, as duas mãozinhas descansando na barriga. Mesmas antenas, mesma barriga clara, mesmo tamanho. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.

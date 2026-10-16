@@ -1,7 +1,13 @@
 import Phaser from 'phaser';
 import { CONFIG } from './config';
-import { desenharPersonagem } from './personagem';
+import { desenharAdulto } from './aplicarAdulto';
+import { desenharPersonagem, PELES } from './personagem';
 import type { PersonagemCfg } from './storage';
+
+/** Travessia: onde ficam o adulto, a crianca e as maos dadas, a partir do meio da tela. */
+const MAOS = { adultoX: 46, criancaX: -60, x: -12, y: 162 };
+/** tom da mao do adulto: o meio-termo das artes da mamae e do papai */
+const PELE_ADULTO = 0xf0c39c;
 import { cobrirTela, figura, nota, TELA } from './ui';
 
 const W = CONFIG.LARGURA;
@@ -314,14 +320,22 @@ const atravessar: Animacao = (cena, camada, personagem) => {
     dentro.setPosition(0, 0);
     return cena.add.container(x, y, [dentro]).setDepth(64);
   };
-  const adulto = cena.add.container(0, 0, [figura(cena, 0, 0, 'adulto', '\u{1F9D1}', 330)]);
+  const adulto = cena.add.container(0, 0, [desenharAdulto(cena, 330)]);
   const crianca = desenharPersonagem(cena, personagem, 0.42);
   piscar(cena, crianca);
   expressao(crianca, 'contente');
+  // de maos dadas: a mao da crianca encosta na do adulto, e as duas maos
+  // ficam juntas num punhado so, por cima dos dois
   const carrinhos = [
-    carrinho(adulto, W / 2 + 74, beiraBaixo + 120),
-    carrinho(crianca, W / 2 - 78, beiraBaixo + 150),
+    carrinho(adulto, W / 2 + MAOS.adultoX, beiraBaixo + 120),
+    carrinho(crianca, W / 2 + MAOS.criancaX, beiraBaixo + 150),
   ];
+  const maos = cena.add.container(W / 2 + MAOS.x, beiraBaixo + MAOS.y).setDepth(65);
+  maos.add([
+    cena.add.circle(-5, 0, 11, PELE_ADULTO).setStrokeStyle(2.5, 0x4a3428),
+    cena.add.circle(6, 4, 9, PELES[personagem.pele % PELES.length]).setStrokeStyle(2.5, 0x4a3428),
+  ]);
+  carrinhos.push(maos);
   camada.add(carrinhos);
 
   const distancia = beiraBaixo - beiraCima + 300;
@@ -355,5 +369,5 @@ export const ANIMACOES: Record<string, Animacao> = {
 
 /** Arte que a animacao usa e que pode nao estar no JSON da missao. */
 export const ARTE_ANIMACAO: Record<string, string[]> = {
-  atravessar: ['m06_carro', 'adulto', 'm06_sinal_verde'],
+  atravessar: ['m06_carro', 'adulto', 'adulto_mae', 'adulto_pai', 'm06_sinal_verde'],
 };

@@ -59,12 +59,12 @@
     "pergunta": "O que pode?",
     "cena_certa": {
       "icone": "🧍",
-      "img": "m08_fila_menina",
+      "crianca": "contente",
       "texto": "Esperar a sua vez"
     },
     "cena_errada": {
       "icone": "🗯️",
-      "img": "m07_balao",
+      "crianca": "surpreso",
       "texto": "Reclamar gritando"
     },
     "explicacao": "Esperar é difícil, mas passa. Quem espera bem chega na vez dele.",

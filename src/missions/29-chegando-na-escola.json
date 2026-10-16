@@ -1,6 +1,7 @@
 {
   "id": "29",
   "mundo": 2,
+  "ordem": 5.5,
   "titulo": "Chegando na escola",
   "icone": "🏫",
   "cenario": "bg_escola_entrada",

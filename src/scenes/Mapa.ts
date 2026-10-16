@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { darVida } from '../animacoes';
 import { abas, TOPO_ABAS } from '../abas';
+import { comAdulto, quemJoga } from '../adulto';
 import { mundoPago } from '../compras';
 import { CONFIG, MUNDOS } from '../config';
 import { jogoCompleto, missoesBonus, missoesDoMundo, mundoCompleto } from '../missions';
@@ -107,7 +108,7 @@ export class Mapa extends Phaser.Scene {
             aberto
               ? `\u{2B50} ${estrelas}/${maximo}`
               : pago
-                ? '\u{1F512} Peça para um adulto abrir'
+                ? comAdulto('\u{1F512} Peça para um adulto abrir', quemJoga())
                 : '\u{1F512} Termine o mundo anterior',
             { fontSize: '28px', color: '#5b6a7a' },
           )

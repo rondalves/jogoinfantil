@@ -339,24 +339,34 @@ Recompensa: 1 moeda · ate 3 estrelas
 
 Mundo 2 (Escola) · cenario `bg_escola_entrada`
 
-**Abertura:** "{nome}, a rua pede atenção. Vamos atravessar do jeito certo?"
+**Abertura:** "{nome}, a rua pede atenção. Vamos atravessar do jeito certo, de mão dada com o adulto?"
 
-**O personagem mostra:** "Mão dada, esperar o vermelho, verde caminha, e sempre na faixa!"
+**O personagem mostra:** "De mão dada, espere o bonequinho verde acender e atravesse sempre na faixa!"
 
 ### Etapas
 
 **1. Sequencia ordenada**
 
-> Toque na ordem certa para atravessar.
+> Toque na ordem certa para atravessar a rua.
 
 Toca na ordem certa:
   1. Dar a mão
-  2. Esperar
-  3. Verde
-  4. Na faixa
+  2. Vermelho: parar
+  3. Verde: pode ir
+  4. Atravessar na faixa
   - _Se erra:_ "Calma! Esse vem depois. Tente outro."
 
-**2. Escolher entre opcoes**
+**2. Precisa ou nao precisa**
+
+> E quando a rua não tem semáforo? Pode fazer isso?
+
+Responde Sim ou Nao para 4 situacoes:
+  - Parar na calçada e olhar para os dois lados -> **SIM** — Isso! Sem semáforo, a gente para na beirada e olha: um lado, o outro, e de novo.
+  - Atravessar correndo, sem olhar -> **NAO** — Não! Correndo, o motorista não tem tempo de ver você.
+  - Esperar os carros pararem e atravessar de mão dada -> **SIM** — Isso! Carro parado, mão dada com o adulto e atravessa na faixa.
+  - Passar no meio dos carros, longe da faixa -> **NAO** — Não! Longe da faixa, o motorista não espera ninguém atravessar.
+
+**3. Escolher entre opcoes**
 
 > A bola foi parar na rua. O que fazer?
 
@@ -371,10 +381,10 @@ Pergunta: "O que pode?"
 
 - Certo: **Atravessar na faixa, de mão dada**
 - Errado: Correr atrás da bola na rua
-- Explicacao: "A bola a gente pede para um adulto pegar. A gente atravessa na faixa, de mão dada."
+- Explicacao: "A bola a gente pede para um adulto pegar. Para atravessar: mão dada, bonequinho verde e faixa."
 - Animacao de premio: `atravessar`
 
-**Reforco no fim:** "Vermelho espera, verde caminha!"
+**Reforco no fim:** "Mão dada, bonequinho verde e sempre na faixa!"
 
 Recompensa: 1 moeda · ate 3 estrelas
 
@@ -554,28 +564,56 @@ Mundo 2 (Escola) · cenario `bg_sala_aula`
 
 **Abertura:** "Olha o monstrinho, {nome}! Ele sente tudo que a gente sente."
 
-**O personagem mostra:** "Feliz, triste, bravo, com medo. Todo sentimento pode aparecer."
+**O personagem mostra:** "Feliz, chateado, bravo, com medo, surpreso, calmo. Todo sentimento pode aparecer."
 
 ### Etapas
 
 **1. Tocar**
 
-> Toque no monstrinho que está bravo.
+> Toque no monstrinho que está BRAVO!
 
-Toca em 1 de 4 figuras.
+Toca em 1 de 6 figuras.
   - Feliz _(pegadinha)_
-  - Triste _(pegadinha)_
-  - Bravo
   - Com medo _(pegadinha)_
-  - _Se erra:_ "Esse está com outro sentimento. Procure o bravo!"
+  - Calmo _(pegadinha)_
+  - Chateado _(pegadinha)_
+  - Bravo
+  - Surpreso _(pegadinha)_
+  - _Se erra:_ "Esse está com outro sentimento. Procure o BRAVO!"
 
-**2. Respirar**
+**2. Tocar**
+
+> Agora, qual monstrinho está FELIZ?
+
+Toca em 1 de 6 figuras.
+  - Bravo _(pegadinha)_
+  - Surpreso _(pegadinha)_
+  - Feliz
+  - Calmo _(pegadinha)_
+  - Com medo _(pegadinha)_
+  - Chateado _(pegadinha)_
+  - _Se erra:_ "Esse não está feliz. Procure o sorrisão!"
+
+**3. Tocar**
+
+> E qual está CHATEADO, triste com alguma coisa?
+
+Toca em 1 de 6 figuras.
+  - Calmo _(pegadinha)_
+  - Chateado
+  - Bravo _(pegadinha)_
+  - Feliz _(pegadinha)_
+  - Surpreso _(pegadinha)_
+  - Com medo _(pegadinha)_
+  - _Se erra:_ "Esse está com outro sentimento. Procure a lagriminha!"
+
+**4. Respirar**
 
 > Quando a raiva vem, a gente respira. Sopre três vezes bem devagar.
 
 Respira fundo 3 vezes.
 
-**3. Escolher entre opcoes**
+**5. Escolher entre opcoes**
 
 > A raiva passou um pouco. E agora?
 
@@ -1392,7 +1430,7 @@ Mundo 4 (Tarde) · cenario `bg_parque` · **missao bonus** (so abre com os 5 mun
 
 **Abertura:** "Que tal brincar lá fora, {nome}? Hoje é dia de passeio!"
 
-**O personagem mostra:** "Tênis no pé, avisar o adulto, brincar onde ele vê e beber água!"
+**O personagem mostra:** "Tênis no pé, avisar o adulto, brincar onde o adulto vê e beber água!"
 
 ### Etapas
 

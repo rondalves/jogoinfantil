@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import { IMAGENS_BASE } from '../assets';
 import { atualizarAtalhos, perfilDoAtalho } from '../atalhos';
+import { quemJoga } from '../adulto';
+import { aplicarAdulto } from '../aplicarAdulto';
 import { CONFIG } from '../config';
 import { ativo, listar } from '../storage';
 import { TEMA } from '../theme';
@@ -58,6 +60,8 @@ export class Boot extends Phaser.Scene {
     // monta as listas de cabelo, olhos e roupa a partir do que tem arte. Aqui,
     // nao so no criador: sem isso o personagem sai sem rosto nas outras telas.
     montarOpcoes(this);
+    // mamae ou papai: o adulto das cenas e o jeito de chamar nos textos
+    aplicarAdulto();
     setMusicaLigada(ativo()?.musica !== false);
     musicaDoMundo();
     // a raposinha de verdade entra assim que a arte termina de carregar
@@ -65,7 +69,11 @@ export class Boot extends Phaser.Scene {
     const espera = Math.max(0, MINIMO - (Date.now() - this.comecou));
     void perfilDoAtalho().then((doAtalho) => {
       // abriu pelo rosto da crianca: vai direto para o mapa dela
-      this.time.delayedCall(espera, () => irPara(this, doAtalho ? 'Mapa' : listar().length > 0 ? 'Perfis' : 'Criador'));
+      const destino = doAtalho ? 'Mapa' : listar().length > 0 ? 'Perfis' : 'Criador';
+      // primeira vez: antes de tudo, quem configura diz se joga com a mamae ou com o papai
+      this.time.delayedCall(espera, () =>
+        quemJoga() ? irPara(this, destino) : irPara(this, 'QuemJoga', { depois: destino }),
+      );
       // refaz o rosto de cada atalho: perfil antigo ainda nao tinha, e quem apagou um perfil sai
       void atualizarAtalhos(this);
     });

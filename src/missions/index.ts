@@ -3,9 +3,11 @@ import type { Missao } from '../types';
 // Uma missao = um JSON nesta pasta. O motor carrega sozinho, em ordem de nome.
 const mods = import.meta.glob('./*.json', { eager: true, import: 'default' }) as Record<string, Missao>;
 
+// a ordem e a do numero, a nao ser que a missao diga outra ("ordem": 5.5 entra
+// logo depois da 05): missao nova cai no lugar certo do dia sem renumerar as outras
 export const MISSOES: Missao[] = Object.keys(mods)
-  .sort()
-  .map((k) => mods[k]);
+  .map((k) => mods[k])
+  .sort((a, b) => (a.ordem ?? Number(a.id)) - (b.ordem ?? Number(b.id)));
 
 export const missaoPorId = (id: string) => MISSOES.find((m) => m.id === id);
 

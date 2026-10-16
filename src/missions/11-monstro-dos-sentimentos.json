@@ -7,39 +7,165 @@
   "narracao_intro": "Olha o monstrinho, {nome}! Ele sente tudo que a gente sente.",
   "audio_intro": "m11_intro",
   "mostrar": {
-    "narracao": "Feliz, triste, bravo, com medo. Todo sentimento pode aparecer.",
+    "narracao": "Feliz, chateado, bravo, com medo, surpreso, calmo. Todo sentimento pode aparecer.",
     "audio": "m11_mostrar",
     "icone": "😤"
   },
   "etapas": [
     {
       "tipo": "tocar",
-      "narracao": "Toque no monstrinho que está bravo.",
+      "narracao": "Toque no monstrinho que está BRAVO!",
       "audio": "m11_e1",
-      "consequencia": "Esse está com outro sentimento. Procure o bravo!",
+      "consequencia": "Esse está com outro sentimento. Procure o BRAVO!",
       "alvos": [
         {
           "icone": "😀",
           "img": "m11_feliz",
           "x": 170,
-          "y": 620,
+          "y": 640,
           "texto": "Feliz",
+          "correto": false
+        },
+        {
+          "icone": "😨",
+          "img": "m11_medo",
+          "x": 360,
+          "y": 640,
+          "texto": "Com medo",
+          "correto": false
+        },
+        {
+          "icone": "😌",
+          "img": "m11_calmo",
+          "x": 550,
+          "y": 640,
+          "texto": "Calmo",
+          "correto": false
+        },
+        {
+          "icone": "😢",
+          "img": "m11_triste",
+          "x": 170,
+          "y": 900,
+          "texto": "Chateado",
+          "correto": false
+        },
+        {
+          "icone": "😠",
+          "img": "m11_bravo",
+          "x": 360,
+          "y": 900,
+          "texto": "Bravo"
+        },
+        {
+          "icone": "😮",
+          "img": "m11_surpreso",
+          "x": 550,
+          "y": 900,
+          "texto": "Surpreso",
+          "correto": false
+        }
+      ]
+    },
+    {
+      "tipo": "tocar",
+      "narracao": "Agora, qual monstrinho está FELIZ?",
+      "audio": "m11_e1b",
+      "consequencia": "Esse não está feliz. Procure o sorrisão!",
+      "alvos": [
+        {
+          "icone": "😠",
+          "img": "m11_bravo",
+          "x": 170,
+          "y": 640,
+          "texto": "Bravo",
+          "correto": false
+        },
+        {
+          "icone": "😮",
+          "img": "m11_surpreso",
+          "x": 360,
+          "y": 640,
+          "texto": "Surpreso",
+          "correto": false
+        },
+        {
+          "icone": "😀",
+          "img": "m11_feliz",
+          "x": 550,
+          "y": 640,
+          "texto": "Feliz"
+        },
+        {
+          "icone": "😌",
+          "img": "m11_calmo",
+          "x": 170,
+          "y": 900,
+          "texto": "Calmo",
+          "correto": false
+        },
+        {
+          "icone": "😨",
+          "img": "m11_medo",
+          "x": 360,
+          "y": 900,
+          "texto": "Com medo",
           "correto": false
         },
         {
           "icone": "😢",
           "img": "m11_triste",
           "x": 550,
-          "y": 620,
-          "texto": "Triste",
+          "y": 900,
+          "texto": "Chateado",
           "correto": false
+        }
+      ]
+    },
+    {
+      "tipo": "tocar",
+      "narracao": "E qual está CHATEADO, triste com alguma coisa?",
+      "audio": "m11_e1c",
+      "consequencia": "Esse está com outro sentimento. Procure a lagriminha!",
+      "alvos": [
+        {
+          "icone": "😌",
+          "img": "m11_calmo",
+          "x": 170,
+          "y": 640,
+          "texto": "Calmo",
+          "correto": false
+        },
+        {
+          "icone": "😢",
+          "img": "m11_triste",
+          "x": 360,
+          "y": 640,
+          "texto": "Chateado"
         },
         {
           "icone": "😠",
           "img": "m11_bravo",
+          "x": 550,
+          "y": 640,
+          "texto": "Bravo",
+          "correto": false
+        },
+        {
+          "icone": "😀",
+          "img": "m11_feliz",
           "x": 170,
           "y": 900,
-          "texto": "Bravo"
+          "texto": "Feliz",
+          "correto": false
+        },
+        {
+          "icone": "😮",
+          "img": "m11_surpreso",
+          "x": 360,
+          "y": 900,
+          "texto": "Surpreso",
+          "correto": false
         },
         {
           "icone": "😨",

@@ -13,6 +13,8 @@ import { botao, botaoVoltar, cobrirTela, fundo, irPara, titulo, toque } from '..
 import { musicaDoMundo } from '../musica';
 import { portaoAdulto } from '../portaoAdulto';
 import { fixarAtalho, temAtalhos } from '../atalhos';
+import { definirQuemJoga, nomeAdulto, quemJoga } from '../adulto';
+import { aplicarAdulto } from '../aplicarAdulto';
 import { setMusicaLigada } from '../musica';
 
 const W = CONFIG.LARGURA;
@@ -107,8 +109,21 @@ export class Pais extends Phaser.Scene {
     );
 
     // quem disse "agora nao" no fim da montagem poe o rosto na tela daqui
+    // quem joga junto: muda o rosto do adulto nas cenas e o "chame a mamae/o papai" dos textos
+    ajuste(
+      y + 190,
+      () => `Joga junto: ${nomeAdulto(quemJoga() ?? 'pai')}`,
+      (r) => {
+        definirQuemJoga(quemJoga() === 'mae' ? 'pai' : 'mae');
+        aplicarAdulto();
+        r.setText(`Joga junto: ${nomeAdulto(quemJoga() ?? 'pai')}`);
+      },
+    );
+
+    // quem disse "agora nao" no fim da montagem poe o rosto na tela daqui
+    const fim = y + (temAtalhos() ? 285 : 190);
     if (temAtalhos()) {
-      botao(this, W / 2, y + 190, `Rosto de ${this.p.nome} na tela do celular`, () => void fixarAtalho(this, this.p), {
+      botao(this, W / 2, y + 285, `Rosto de ${this.p.nome} na tela do celular`, () => void fixarAtalho(this, this.p), {
         largura: 600,
         cor: 0xbfd4e8,
         altura: 86,
@@ -116,18 +131,20 @@ export class Pais extends Phaser.Scene {
       });
     }
 
-    botao(this, W / 2, 1060, 'Zerar progresso', () => this.confirmar('zerar'), {
+    // os de baixo descem quando tem mais linha em cima (voz gravada)
+    const zerar = Math.max(1060, fim + 100);
+    botao(this, W / 2, zerar, 'Zerar progresso', () => this.confirmar('zerar'), {
       largura: 520,
       cor: 0xffb0a0,
       altura: 96,
     });
-    botao(this, W / 2 - 170, 1165, 'Apagar perfil', () => this.confirmar('apagar'), {
+    botao(this, W / 2 - 170, zerar + 105, 'Apagar perfil', () => this.confirmar('apagar'), {
       largura: 300,
       cor: 0xff8f7a,
       altura: 96,
     });
     const link = this.add
-      .text(W / 2 + 180, 1165, 'Privacidade', { fontSize: '30px', color: '#1f6fb2', fontStyle: 'bold' })
+      .text(W / 2 + 180, zerar + 105, 'Privacidade', { fontSize: '30px', color: '#1f6fb2', fontStyle: 'bold' })
       .setOrigin(0.5);
     toque(link, () => window.open(CONFIG.URL_PRIVACIDADE, '_blank', 'noopener'));
   }

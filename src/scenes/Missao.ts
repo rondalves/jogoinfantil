@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { ANIMACOES, ARTE_ANIMACAO, darVida } from '../animacoes';
+import { ANIMACOES, ARTE_ANIMACAO, darVida, expressao } from '../animacoes';
 import { AUDIOS, carregar } from '../assets';
 import { CONFIG } from '../config';
 import { bonusMundo, concluirMissao, hojeISO } from '../economia';
@@ -233,6 +233,20 @@ export class Missao extends Phaser.Scene {
   }
 
   /** 3. Pode ou Nao Pode: duas cenas, a crianca escolhe a certa. */
+  /** O personagem da crianca no cartao, com a cara pedida e o selinho do icone. */
+  private criancaNoCartao(cara: string, icone: string, y: number) {
+    const c = desenharPersonagem(this, this.perfil.personagem, 0.5);
+    c.setPosition(200, y);
+    expressao(c, cara);
+    // o selinho (o balao do grito) so quando a cara nao conta tudo sozinha
+    if (cara !== 'normal' && cara !== 'contente' && cara !== 'feliz') {
+      const selo = this.add.text(276, y - 92, icone, { fontSize: '58px' }).setOrigin(0.5);
+      this.camada.add(selo);
+      this.tweens.add({ targets: selo, scale: 1.15, duration: 420, yoyo: true, repeat: -1 });
+    }
+    return c;
+  }
+
   private podeOuNaoPode() {
     this.limpar();
     const pnp = this.def.pode_ou_nao_pode;
@@ -250,8 +264,9 @@ export class Missao extends Phaser.Scene {
       g.fillStyle(0xffffff, 0.95);
       g.fillRoundedRect(70, y - 140, W - 140, 280, 32);
       this.camada.add(g);
-      const arte = arteExistente(this, cena.imgCena, cena.img);
-      const f = figura(this, 200, y, arte, cena.icone, 150);
+      const f = cena.crianca && !this.textures.exists(cena.imgCena ?? '')
+        ? this.criancaNoCartao(cena.crianca, cena.icone, y)
+        : figura(this, 200, y, arteExistente(this, cena.imgCena, cena.img), cena.icone, 150);
       this.camada.add(f);
       this.camada.add(
         this.add

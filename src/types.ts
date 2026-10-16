@@ -86,12 +86,20 @@ export interface Cena {
   img?: string;
   /** cena inteira (crianca + lugar); entra sozinha quando a arte chegar */
   imgCena?: string;
+  /**
+   * o cartao mostra o personagem da propria crianca com esta cara (normal,
+   * feliz, contente, surpreso, triste), no lugar de um desenho de menino ou
+   * menina; o icone vira um selinho ao lado (o balao do grito)
+   */
+  crianca?: string;
   texto: string;
 }
 
 export interface Missao {
   id: string;
   mundo: number;
+  /** posicao no dia quando o numero nao basta (5.5 = logo depois da missao 05) */
+  ordem?: number;
   titulo: string;
   icone: string;
   narracao_intro: string;

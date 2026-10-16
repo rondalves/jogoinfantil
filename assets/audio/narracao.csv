@@ -164,20 +164,29 @@ m05_erro2.mp3;adulto;Ainda não é esse. Olhe de novo!;Missao 05 - Ir para a esc
 m05_pnp.mp3;adulto;O que pode?;Missao 05 - Ir para a escola: pode ou nao pode
 m05_pnp_explica.mp3;adulto;Avisar quem cuida de você deixa todo mundo tranquilo.;Missao 05 - Ir para a escola: explicacao do pode ou nao pode
 m05_reforco.mp3;mascote;Mochila pronta, dia começou!;Missao 05 - Ir para a escola: frase de reforco
-m06_intro.mp3;mascote;{nome}, a rua pede atenção. Vamos atravessar do jeito certo?;Missao 06 - Rua segura: abertura (raposinha)
-m06_mostrar.mp3;mascote;Mão dada, esperar o vermelho, verde caminha, e sempre na faixa!;Missao 06 - Rua segura: o personagem mostra
-m06_e1.mp3;adulto;Toque na ordem certa para atravessar.;Missao 06 - Rua segura: etapa 1 (sequencia_ordenada)
+m06_intro.mp3;mascote;{nome}, a rua pede atenção. Vamos atravessar do jeito certo, de mão dada com o adulto?;Missao 06 - Rua segura: abertura (raposinha)
+m06_mostrar.mp3;mascote;De mão dada, espere o bonequinho verde acender e atravesse sempre na faixa!;Missao 06 - Rua segura: o personagem mostra
+m06_e1.mp3;adulto;Toque na ordem certa para atravessar a rua.;Missao 06 - Rua segura: etapa 1 (sequencia_ordenada)
 nome_dar_a_mao.mp3;adulto;Dar a mão;Nome de objeto (dedo por cima)
-nome_esperar.mp3;adulto;Esperar;Nome de objeto (dedo por cima)
-nome_verde.mp3;adulto;Verde;Nome de objeto (dedo por cima)
-nome_na_faixa.mp3;adulto;Na faixa;Nome de objeto (dedo por cima)
+nome_vermelho__parar.mp3;adulto;Vermelho: parar;Nome de objeto (dedo por cima)
+nome_verde__pode_ir.mp3;adulto;Verde: pode ir;Nome de objeto (dedo por cima)
+nome_atravessar_na_faixa.mp3;adulto;Atravessar na faixa;Nome de objeto (dedo por cima)
 m06_erro1.mp3;adulto;Calma! Esse vem depois. Tente outro.;Missao 06 - Rua segura: etapa 1, quando erra
-m06_e2.mp3;adulto;A bola foi parar na rua. O que fazer?;Missao 06 - Rua segura: etapa 2 (escolher_entre_opcoes)
+m06_e3.mp3;adulto;E quando a rua não tem semáforo? Pode fazer isso?;Missao 06 - Rua segura: etapa 2 (sim_ou_nao)
+m06_e2_p1.mp3;adulto;Parar na calçada e olhar para os dois lados;Missao 06 - Rua segura: etapa 2, pergunta 1
+m06_e2_p1_ok.mp3;adulto;Isso! Sem semáforo, a gente para na beirada e olha: um lado, o outro, e de novo.;Missao 06 - Rua segura: etapa 2, resposta 1
+m06_e2_p2.mp3;adulto;Atravessar correndo, sem olhar;Missao 06 - Rua segura: etapa 2, pergunta 2
+m06_e2_p2_ok.mp3;adulto;Não! Correndo, o motorista não tem tempo de ver você.;Missao 06 - Rua segura: etapa 2, resposta 2
+m06_e2_p3.mp3;adulto;Esperar os carros pararem e atravessar de mão dada;Missao 06 - Rua segura: etapa 2, pergunta 3
+m06_e2_p3_ok.mp3;adulto;Isso! Carro parado, mão dada com o adulto e atravessa na faixa.;Missao 06 - Rua segura: etapa 2, resposta 3
+m06_e2_p4.mp3;adulto;Passar no meio dos carros, longe da faixa;Missao 06 - Rua segura: etapa 2, pergunta 4
+m06_e2_p4_ok.mp3;adulto;Não! Longe da faixa, o motorista não espera ninguém atravessar.;Missao 06 - Rua segura: etapa 2, resposta 4
+m06_e2.mp3;adulto;A bola foi parar na rua. O que fazer?;Missao 06 - Rua segura: etapa 3 (escolher_entre_opcoes)
 nome_correr_atras.mp3;adulto;Correr atrás;Nome de objeto (dedo por cima)
-m06_erro2.mp3;adulto;Rua não é lugar de correr. Chame um adulto!;Missao 06 - Rua segura: etapa 2, quando erra
+m06_erro3.mp3;adulto;Rua não é lugar de correr. Chame um adulto!;Missao 06 - Rua segura: etapa 3, quando erra
 m06_pnp.mp3;adulto;O que pode?;Missao 06 - Rua segura: pode ou nao pode
-m06_pnp_explica.mp3;adulto;A bola a gente pede para um adulto pegar. A gente atravessa na faixa, de mão dada.;Missao 06 - Rua segura: explicacao do pode ou nao pode
-m06_reforco.mp3;mascote;Vermelho espera, verde caminha!;Missao 06 - Rua segura: frase de reforco
+m06_pnp_explica.mp3;adulto;A bola a gente pede para um adulto pegar. Para atravessar: mão dada, bonequinho verde e faixa.;Missao 06 - Rua segura: explicacao do pode ou nao pode
+m06_reforco.mp3;mascote;Mão dada, bonequinho verde e sempre na faixa!;Missao 06 - Rua segura: frase de reforco
 m07_intro.mp3;mascote;Começou a aula, {nome}! Vamos ver como se faz?;Missao 07 - Ouvir a professora: abertura (raposinha)
 m07_mostrar.mp3;mascote;Sentar, ouvir, levantar a mão para falar e fazer a atividade.;Missao 07 - Ouvir a professora: o personagem mostra
 m07_e1.mp3;adulto;Toque na ordem: sentar, ouvir, levantar a mão e fazer a atividade.;Missao 07 - Ouvir a professora: etapa 1 (sequencia_ordenada)
@@ -231,18 +240,24 @@ m10_pnp.mp3;adulto;O que pode?;Missao 10 - Amigos e gentileza: pode ou nao pode
 m10_pnp_explica.mp3;adulto;Bater machuca. Conversar resolve.;Missao 10 - Amigos e gentileza: explicacao do pode ou nao pode
 m10_reforco.mp3;mascote;Amigo bom é amigo gentil!;Missao 10 - Amigos e gentileza: frase de reforco
 m11_intro.mp3;mascote;Olha o monstrinho, {nome}! Ele sente tudo que a gente sente.;Missao 11 - Monstro dos sentimentos: abertura (raposinha)
-m11_mostrar.mp3;mascote;Feliz, triste, bravo, com medo. Todo sentimento pode aparecer.;Missao 11 - Monstro dos sentimentos: o personagem mostra
-m11_e1.mp3;adulto;Toque no monstrinho que está bravo.;Missao 11 - Monstro dos sentimentos: etapa 1 (tocar)
+m11_mostrar.mp3;mascote;Feliz, chateado, bravo, com medo, surpreso, calmo. Todo sentimento pode aparecer.;Missao 11 - Monstro dos sentimentos: o personagem mostra
+m11_e1.mp3;adulto;Toque no monstrinho que está BRAVO!;Missao 11 - Monstro dos sentimentos: etapa 1 (tocar)
 nome_feliz.mp3;adulto;Feliz;Nome de objeto (dedo por cima)
-nome_triste.mp3;adulto;Triste;Nome de objeto (dedo por cima)
-nome_bravo.mp3;adulto;Bravo;Nome de objeto (dedo por cima)
 nome_com_medo.mp3;adulto;Com medo;Nome de objeto (dedo por cima)
-m11_erro1.mp3;adulto;Esse está com outro sentimento. Procure o bravo!;Missao 11 - Monstro dos sentimentos: etapa 1, quando erra
-m11_e2.mp3;adulto;Quando a raiva vem, a gente respira. Sopre três vezes bem devagar.;Missao 11 - Monstro dos sentimentos: etapa 2 (respirar)
-m11_e3.mp3;adulto;A raiva passou um pouco. E agora?;Missao 11 - Monstro dos sentimentos: etapa 3 (escolher_entre_opcoes)
+nome_calmo.mp3;adulto;Calmo;Nome de objeto (dedo por cima)
+nome_chateado.mp3;adulto;Chateado;Nome de objeto (dedo por cima)
+nome_bravo.mp3;adulto;Bravo;Nome de objeto (dedo por cima)
+nome_surpreso.mp3;adulto;Surpreso;Nome de objeto (dedo por cima)
+m11_erro1.mp3;adulto;Esse está com outro sentimento. Procure o BRAVO!;Missao 11 - Monstro dos sentimentos: etapa 1, quando erra
+m11_e1b.mp3;adulto;Agora, qual monstrinho está FELIZ?;Missao 11 - Monstro dos sentimentos: etapa 2 (tocar)
+m11_erro2.mp3;adulto;Esse não está feliz. Procure o sorrisão!;Missao 11 - Monstro dos sentimentos: etapa 2, quando erra
+m11_e1c.mp3;adulto;E qual está CHATEADO, triste com alguma coisa?;Missao 11 - Monstro dos sentimentos: etapa 3 (tocar)
+m11_erro3.mp3;adulto;Esse está com outro sentimento. Procure a lagriminha!;Missao 11 - Monstro dos sentimentos: etapa 3, quando erra
+m11_e2.mp3;adulto;Quando a raiva vem, a gente respira. Sopre três vezes bem devagar.;Missao 11 - Monstro dos sentimentos: etapa 4 (respirar)
+m11_e3.mp3;adulto;A raiva passou um pouco. E agora?;Missao 11 - Monstro dos sentimentos: etapa 5 (escolher_entre_opcoes)
 nome_falar_o_que_sentiu.mp3;adulto;Falar o que sentiu;Nome de objeto (dedo por cima)
 nome_bater_em_alguem.mp3;adulto;Bater em alguém;Nome de objeto (dedo por cima)
-m11_erro3.mp3;adulto;Bater não faz a raiva passar. Falar faz!;Missao 11 - Monstro dos sentimentos: etapa 3, quando erra
+m11_erro5.mp3;adulto;Bater não faz a raiva passar. Falar faz!;Missao 11 - Monstro dos sentimentos: etapa 5, quando erra
 m11_pnp.mp3;adulto;O que pode?;Missao 11 - Monstro dos sentimentos: pode ou nao pode
 m11_pnp_explica.mp3;adulto;Sentir raiva pode. Bater não pode. Respire e fale o que sentiu.;Missao 11 - Monstro dos sentimentos: explicacao do pode ou nao pode
 m11_reforco.mp3;mascote;Todo sentimento é normal. Eu sei o que fazer com ele.;Missao 11 - Monstro dos sentimentos: frase de reforco
@@ -498,7 +513,7 @@ m29_pnp.mp3;adulto;O que pode?;Missao 29 - Chegando na escola: pode ou nao pode
 m29_pnp_explica.mp3;adulto;Do lado da calçada é seguro. Do lado da rua passam carros!;Missao 29 - Chegando na escola: explicacao do pode ou nao pode
 m29_reforco.mp3;mascote;Chegada segura, você sabe se cuidar!;Missao 29 - Chegando na escola: frase de reforco
 m30_intro.mp3;mascote;Que tal brincar lá fora, {nome}? Hoje é dia de passeio!;Missao 30 - Brincar ao ar livre: abertura (raposinha)
-m30_mostrar.mp3;mascote;Tênis no pé, avisar o adulto, brincar onde ele vê e beber água!;Missao 30 - Brincar ao ar livre: o personagem mostra
+m30_mostrar.mp3;mascote;Tênis no pé, avisar o adulto, brincar onde o adulto vê e beber água!;Missao 30 - Brincar ao ar livre: o personagem mostra
 m30_e1.mp3;adulto;Toque na ordem: calçar o tênis, avisar o adulto, brincar e beber água.;Missao 30 - Brincar ao ar livre: etapa 1 (sequencia_ordenada)
 nome_calcar_o_tenis.mp3;adulto;Calçar o tênis;Nome de objeto (dedo por cima)
 nome_avisar_o_adulto.mp3;adulto;Avisar o adulto;Nome de objeto (dedo por cima)

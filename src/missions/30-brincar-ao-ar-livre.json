@@ -7,7 +7,7 @@
   "narracao_intro": "Que tal brincar lá fora, {nome}? Hoje é dia de passeio!",
   "audio_intro": "m30_intro",
   "mostrar": {
-    "narracao": "Tênis no pé, avisar o adulto, brincar onde ele vê e beber água!",
+    "narracao": "Tênis no pé, avisar o adulto, brincar onde o adulto vê e beber água!",
     "audio": "m30_mostrar",
     "icone": "🌳"
   },
