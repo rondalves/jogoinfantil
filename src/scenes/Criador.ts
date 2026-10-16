@@ -16,9 +16,10 @@ import {
   PELES,
   ROUPAS,
 } from '../personagem';
-import { ativo, criar, personagemPadrao, salvar, type PersonagemCfg } from '../storage';
+import { atualizarAtalhos, fixarAtalho, temAtalhos } from '../atalhos';
+import { ativo, criar, personagemPadrao, salvar, type Perfil, type PersonagemCfg } from '../storage';
 import { teclado } from '../teclado';
-import { botao, botaoOuvir, botaoVoltar, fundo, irPara, titulo } from '../ui';
+import { balao, botao, botaoOuvir, botaoVoltar, cobrirTela, fundo, irPara, titulo } from '../ui';
 import { musicaDoMundo } from '../musica';
 
 const W = CONFIG.LARGURA;
@@ -425,14 +426,36 @@ export class Criador extends Phaser.Scene {
       return;
     }
     const atual = this.editando ? ativo() : null;
+    let novo: Perfil | undefined;
     if (atual) {
       atual.nome = this.nome;
       atual.personagem = this.cfg;
       salvar(atual);
     } else {
-      criar(this.nome, this.cfg);
+      novo = criar(this.nome, this.cfg);
     }
     narrador.setNome(this.nome);
-    irPara(this, 'Mapa');
+    // o atalho de quem mudou o personagem ganha o rosto novo na hora
+    void atualizarAtalhos(this).then(() => {
+      if (novo && temAtalhos()) this.oferecerAtalho(novo);
+      else irPara(this, 'Mapa');
+    });
+  }
+
+  /** Personagem novo pronto: oferece o rosto dele na tela inicial do celular. */
+  private oferecerAtalho(p: Perfil) {
+    const capa = this.add.container(0, 0).setDepth(100);
+    capa.add(cobrirTela(this, 0xf7f5f1, 0.97));
+    const eu = desenharPersonagem(this, p.personagem, 0.62).setPosition(W / 2, 470);
+    capa.add(eu);
+    capa.add(balao(this, `${p.nome}, quer o seu rosto na tela do celular? É só tocar nele para jogar!`, 820, false));
+    capa.add(
+      botao(this, W / 2, 1040, 'Colocar na tela', () => {
+        void fixarAtalho(this, p).then(() => irPara(this, 'Mapa'));
+      }, { icone: '\u{1F4F1}', largura: 480, cor: TEMA.sim }),
+    );
+    capa.add(
+      botao(this, W / 2, 1170, 'Agora não', () => irPara(this, 'Mapa'), { largura: 320, cor: 0xbfd4e8 }),
+    );
   }
 }

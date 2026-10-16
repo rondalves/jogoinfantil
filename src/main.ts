@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import './estilo.css';
+import { ouvirAtalhos } from './atalhos';
 import { CONFIG } from './config';
 import { Boot } from './scenes/Boot';
 import { Criador } from './scenes/Criador';
@@ -53,6 +54,12 @@ carregarFonte().then(() => {
 
   // o voltar do celular (MainActivity manda o evento): faz o que o botao de
   // voltar da tela faz; nas abas volta para o mapa; no resto nao faz nada
+  // app ja aberto e outra crianca tocou no atalho com o rosto dela: vai para o mapa dela
+  ouvirAtalhos(() => {
+    const ativas = jogo.scene.getScenes(true);
+    const cena = ativas[ativas.length - 1];
+    if (cena) irPara(cena, 'Mapa');
+  });
   window.addEventListener('voltar', () => {
     const ativas = jogo.scene.getScenes(true);
     const cena = ativas[ativas.length - 1];

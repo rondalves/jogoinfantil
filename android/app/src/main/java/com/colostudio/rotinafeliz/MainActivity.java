@@ -11,6 +11,8 @@ public class MainActivity extends BridgeActivity {
         registerPlugin(LojaPlugin.class);
         // a trava da area dos adultos usa o bloqueio de tela do proprio celular
         registerPlugin(TravaPlugin.class);
+        // atalhos com o rosto de cada crianca (tela inicial e menu do icone)
+        registerPlugin(AtalhoPlugin.class);
         super.onCreate(savedInstanceState);
         // O voltar do celular vai para o jogo, que faz o mesmo que o botao de
         // voltar da tela (src/main.ts). Sem isto o app fechava no meio da

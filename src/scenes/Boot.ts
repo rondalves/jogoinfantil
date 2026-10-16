@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { IMAGENS_BASE } from '../assets';
+import { atualizarAtalhos, perfilDoAtalho } from '../atalhos';
 import { CONFIG } from '../config';
 import { ativo, listar } from '../storage';
 import { TEMA } from '../theme';
@@ -62,6 +63,11 @@ export class Boot extends Phaser.Scene {
     // a raposinha de verdade entra assim que a arte termina de carregar
     figura(this, W / 2, 760, 'mascote_raposinha', '\u{1F98A}', 300);
     const espera = Math.max(0, MINIMO - (Date.now() - this.comecou));
-    this.time.delayedCall(espera, () => irPara(this, listar().length > 0 ? 'Perfis' : 'Criador'));
+    void perfilDoAtalho().then((doAtalho) => {
+      // abriu pelo rosto da crianca: vai direto para o mapa dela
+      this.time.delayedCall(espera, () => irPara(this, doAtalho ? 'Mapa' : listar().length > 0 ? 'Perfis' : 'Criador'));
+      // refaz o rosto de cada atalho: perfil antigo ainda nao tinha, e quem apagou um perfil sai
+      void atualizarAtalhos(this);
+    });
   }
 }

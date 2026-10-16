@@ -12,6 +12,7 @@ import { ativo, remover, salvar, zerarProgresso, type Perfil } from '../storage'
 import { botao, botaoVoltar, cobrirTela, fundo, irPara, titulo, toque } from '../ui';
 import { musicaDoMundo } from '../musica';
 import { portaoAdulto } from '../portaoAdulto';
+import { fixarAtalho, temAtalhos } from '../atalhos';
 import { setMusicaLigada } from '../musica';
 
 const W = CONFIG.LARGURA;
@@ -104,6 +105,16 @@ export class Pais extends Phaser.Scene {
         r.setText(`Joguinhos: ${limiteDoPerfil()} min/dia`);
       },
     );
+
+    // quem disse "agora nao" no fim da montagem poe o rosto na tela daqui
+    if (temAtalhos()) {
+      botao(this, W / 2, y + 190, `Rosto de ${this.p.nome} na tela do celular`, () => void fixarAtalho(this, this.p), {
+        largura: 600,
+        cor: 0xbfd4e8,
+        altura: 86,
+        tamanhoTexto: 28,
+      });
+    }
 
     botao(this, W / 2, 1060, 'Zerar progresso', () => this.confirmar('zerar'), {
       largura: 520,
