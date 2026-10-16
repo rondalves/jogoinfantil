@@ -524,4 +524,25 @@ m31_erro2.mp3;adulto;Um obrigado deixa quem ajudou muito feliz!;Missao 31 - Mome
 m31_pnp.mp3;adulto;O que pode?;Missao 31 - Momento em família: pode ou nao pode
 m31_pnp_explica.mp3;adulto;Um abraço antes de dormir deixa o coração quentinho e o sono mais calminho.;Missao 31 - Momento em família: explicacao do pode ou nao pode
 m31_reforco.mp3;mascote;Família junta, coração quentinho!;Missao 31 - Momento em família: frase de reforco
+m32_intro.mp3;mascote;No carro também tem jeito certo de brincar, {nome}. Vamos aprender?;Missao 32 - Viagem tranquila: abertura (raposinha)
+m32_mostrar.mp3;mascote;O brinquedo fica no colo, o cinto fica preso e as mãos ficam aqui dentro.;Missao 32 - Viagem tranquila: o personagem mostra
+m32_e1.mp3;adulto;O carro está andando. Pode fazer isso?;Missao 32 - Viagem tranquila: etapa 1 (sim_ou_nao)
+m32_e1_p1.mp3;adulto;Jogar o carrinho no papai, que está dirigindo;Missao 32 - Viagem tranquila: etapa 1, pergunta 1
+m32_e1_p1_ok.mp3;adulto;Não pode! Quem dirige precisa olhar a rua. Brinquedo voando machuca e assusta.;Missao 32 - Viagem tranquila: etapa 1, resposta 1
+m32_e1_p2.mp3;adulto;Segurar o ursinho no colo;Missao 32 - Viagem tranquila: etapa 1, pergunta 2
+m32_e1_p2_ok.mp3;adulto;Pode! No colo, o brinquedo fica seguro com você.;Missao 32 - Viagem tranquila: etapa 1, resposta 2
+m32_e1_p3.mp3;adulto;Pôr a mão para fora da janela aberta;Missao 32 - Viagem tranquila: etapa 1, pergunta 3
+m32_e1_p3_ok.mp3;adulto;Não pode! Lá fora passam carros, postes e galhos. A mão fica aqui dentro.;Missao 32 - Viagem tranquila: etapa 1, resposta 3
+m32_e1_p4.mp3;adulto;Olhar um livrinho sentado;Missao 32 - Viagem tranquila: etapa 1, pergunta 4
+m32_e1_p4_ok.mp3;adulto;Pode! Livro é ótimo para viajar quietinho.;Missao 32 - Viagem tranquila: etapa 1, resposta 4
+m32_e1_p5.mp3;adulto;Tentar soltar o cinto;Missao 32 - Viagem tranquila: etapa 1, pergunta 5
+m32_e1_p5_ok.mp3;adulto;Não pode! O cinto só sai quando o carro parar e o adulto disser que pode.;Missao 32 - Viagem tranquila: etapa 1, resposta 5
+m32_e2.mp3;adulto;Chegamos! Leve para a mochila os brinquedos que você trouxe.;Missao 32 - Viagem tranquila: etapa 2 (arrastar_para_alvo)
+nome_cinto_do_carro.mp3;adulto;Cinto do carro;Nome de objeto (dedo por cima)
+nome_livrinho.mp3;adulto;Livrinho;Nome de objeto (dedo por cima)
+nome_cadeirinha.mp3;adulto;Cadeirinha;Nome de objeto (dedo por cima)
+m32_erro2.mp3;adulto;Esse é do carro, ele fica lá. Leve só o que é seu!;Missao 32 - Viagem tranquila: etapa 2, quando erra
+m32_pnp.mp3;adulto;O que pode?;Missao 32 - Viagem tranquila: pode ou nao pode
+m32_pnp_explica.mp3;adulto;No carro, o brinquedo fica no colo. Jogar pode machucar e atrapalhar quem está dirigindo.;Missao 32 - Viagem tranquila: explicacao do pode ou nao pode
+m32_reforco.mp3;mascote;Brinquedo no colo, mãos aqui dentro e, na chegada, tudo de volta comigo!;Missao 32 - Viagem tranquila: frase de reforco
 musica_timer.mp3;adulto;(musica instrumental de 30 s em loop);Timer da escovacao e da lavagem das maos

@@ -214,16 +214,31 @@ export function fundo(cena: Phaser.Scene, fundoCor: number, imagem?: string, des
   cena.cameras.main.fadeIn(TEMA.transicao, 0, 0, 0);
   cobrirTela(cena, fundoCor).setDepth(-10);
   if (!imagem || !cena.textures.exists(imagem)) return;
-  const im = cena.add.image(W / 2, TELA.meio, imagem).setDepth(-9);
+  // todo cenario de fundo sai desfocado: fica o ambiente, sem disputar com o que se faz na frente
+  const im = cena.add.image(W / 2, TELA.meio, desfocada(cena, imagem)).setDepth(-9);
   im.setScale(Math.max(W / im.width, TELA.altura / im.height));
-  if (desfocar) {
-    try {
-      im.preFX?.addBlur(0, 2, 2, 1.4);
-    } catch {
-      // sem WebGL: o veu abaixo ja da o recado
-    }
-  }
   cobrirTela(cena, 0xfbf9f5, desfocar ? Math.min(0.78, TEMA.veu + 0.18) : TEMA.veu).setDepth(-8);
+}
+
+/**
+ * Copia desfocada do cenario, feita uma vez so por arte. Em metade do tamanho:
+ * o desfoque sai mais macio e mais barato, e nao custa nada a cada quadro como
+ * o desfoque de efeito. Sem suporte a filtro no canvas, fica so mais suave.
+ */
+export function desfocada(cena: Phaser.Scene, chave: string) {
+  const nova = `${chave}__desfocada`;
+  if (cena.textures.exists(nova)) return nova;
+  const arte = cena.textures.get(chave).getSourceImage() as HTMLImageElement;
+  const w = Math.round(arte.width / 2);
+  const h = Math.round(arte.height / 2);
+  const t = cena.textures.createCanvas(nova, w, h);
+  if (!t) return chave;
+  const ctx = t.getContext();
+  ctx.filter = 'blur(6px)';
+  // desenha um pouco maior: o desfoque nao puxa a borda transparente para dentro
+  ctx.drawImage(arte, -16, -16, w + 32, h + 32);
+  t.refresh();
+  return nova;
 }
 
 /**

@@ -21,6 +21,7 @@ import {
   botaoVoltar,
   cobrirTela,
   confete,
+  desfocada,
   estrelasNaTela,
   figura,
   fundo,
@@ -38,6 +39,11 @@ import { ETAPAS, type Ctx } from './etapas';
 import { musica, musicaDoMundo } from '../musica';
 
 const W = CONFIG.LARGURA;
+/**
+ * Alturas das telas do personagem: balao em cima, personagem (512 px de arte
+ * vezes a escala) no meio e o botao embaixo, cada um no seu espaco.
+ */
+const PALCO = { balao: 366, escala: 0.94, personagem: 800, botao: 1170 };
 
 /**
  * MOTOR GENERICO. Le a missao do JSON e monta: Mostrar -> Fazer -> Pode ou Nao Pode
@@ -119,20 +125,14 @@ export class Missao extends Phaser.Scene {
     const alvo = nome ?? this.def.cenario;
     if (!alvo || !this.textures.exists(alvo)) return;
     this.bg?.destroy();
-    const im = this.add.image(W / 2, TELA.meio, alvo).setDepth(-9);
+    const im = this.add.image(W / 2, TELA.meio, desfocada(this, alvo)).setDepth(-9);
     im.setScale(Math.max(W / im.width, TELA.altura / im.height));
     this.bg = im;
   }
 
   /** No fim da missao o cenario sai de foco: quem brilha e a estrela. */
   private desfocarCenario() {
-    if (this.bg) {
-      try {
-        this.bg.preFX?.addBlur(0, 2, 2, 1.2);
-      } catch {
-        // sem WebGL o desfoque nao existe: o veu abaixo ja da o recado
-      }
-    }
+    // o cenario ja e desfocado; aqui so o veu mais forte
     this.camada.add(
       cobrirTela(this, 0xfbf9f5, 0.72).setDepth(-1),
     );
@@ -152,48 +152,52 @@ export class Missao extends Phaser.Scene {
     this.camada.add(textoEmPainel(this, W / 2, 200, txt, 30, 360));
   }
 
-  private intro() {
-    this.limpar();
-    this.camada.add(titulo(this, `${this.def.icone}  ${this.def.titulo}`, 220));
-    const frase = narrador.falar(this.def.narracao_intro, this.def.audio_intro);
-    const p = desenharPersonagem(this, this.perfil.personagem, 1.1);
-    p.setPosition(W / 2, 820);
+  /**
+   * Palco das telas em que a crianca e o texto sao o principal ("Vamos!" e
+   * "Minha vez!"): veu a mais no cenario, o personagem inteiro entre o texto e
+   * o botao, sem nada por cima dos pes nem do cabelo.
+   */
+  private palco(frase: string) {
+    this.camada.add(cobrirTela(this, 0xfbf9f5, 0.28).setDepth(-1));
+    const p = desenharPersonagem(this, this.perfil.personagem, PALCO.escala);
+    p.setPosition(W / 2, PALCO.personagem);
     darVida(this, p);
     this.camada.add(p);
-    // o balao vem depois do personagem: cabelo grande (black power) cobria a ultima linha
-    this.camada.add(balao(this, frase, 430));
-    this.camada.add(botao(this, W / 2, 1120, 'Vamos!', () => this.mostrar(), { icone: '\u{1F680}', cor: 0x7ddc8a }));
+    // o balao vem depois do personagem: cabelo grande (black power) cobria a ultima linha.
+    // Sem a raposinha do balao aqui: ela ficava em cima do cabelo da crianca
+    this.camada.add(balao(this, frase, PALCO.balao, false));
+  }
+
+  private intro() {
+    this.limpar();
+    this.camada.add(titulo(this, `${this.def.icone}  ${this.def.titulo}`, 200));
+    this.palco(narrador.falar(this.def.narracao_intro, this.def.audio_intro));
+    this.camada.add(botao(this, W / 2, PALCO.botao, 'Vamos!', () => this.mostrar(), { icone: '\u{1F680}', cor: 0x7ddc8a }));
   }
 
   /** 1. Mostrar: o personagem faz a tarefa. */
   private mostrar() {
     this.limpar();
     const m = this.def.mostrar;
-    const frase = narrador.falar(m?.narracao ?? 'Olha como se faz!', m?.audio);
-    const p = desenharPersonagem(this, this.perfil.personagem, 1.2);
-    p.setPosition(W / 2, 830);
-    darVida(this, p);
-    this.camada.add(p);
-    // o balao vem depois do personagem: cabelo grande (black power) cobria a ultima linha
-    this.camada.add(balao(this, frase, 400));
+    this.palco(narrador.falar(m?.narracao ?? 'Olha como se faz!', m?.audio));
     // num cartao, nao solto no ar: o emoji sozinho ao lado do personagem lia
-    // como um pedaco de movel caido no quarto
+    // como um pedaco de movel caido no quarto. Na beirada, longe do cabelo e do braco
     const cartao = this.add.graphics();
     cartao.fillStyle(0xffffff, 0.96);
-    cartao.fillRoundedRect(W / 2 + 128, 712, 164, 164, 28);
+    cartao.fillRoundedRect(W - 196, 690, 164, 164, 28);
     this.camada.add(cartao);
-    const obj = figura(this, W / 2 + 210, 794, m?.img, m?.icone ?? this.def.icone, 92);
+    const obj = figura(this, W - 114, 772, m?.img, m?.icone ?? this.def.icone, 92);
     this.camada.add(obj);
     this.tweens.add({
       targets: obj,
       angle: { from: -14, to: 14 },
-      y: 770,
+      y: 748,
       duration: 500,
       yoyo: true,
       repeat: 3,
     });
     this.camada.add(
-      botao(this, W / 2, 1120, 'Minha vez!', () => this.proximaEtapa(), { icone: '\u{1F64B}', cor: 0x7ddc8a }),
+      botao(this, W / 2, PALCO.botao, 'Minha vez!', () => this.proximaEtapa(), { icone: '\u{1F64B}', cor: 0x7ddc8a }),
     );
   }
 

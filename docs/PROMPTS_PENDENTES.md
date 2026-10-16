@@ -210,3 +210,18 @@ regra das peças soltas: **fundo verde #00FF00, quadrado 2048x2048**.
 ### `m21_pia` — missão 21, a pia da cozinha (hoje aparece o cesto de roupa suja)
 
 > Ilustração 2D cartoon infantil de **uma pia de cozinha vista de frente**: cuba de inox, torneira alta e um pedaço da bancada dos dois lados, sem louça dentro. Sem armário embaixo, sem parede atrás. Sem pessoas. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
+
+---
+
+# 6. Missão 32, "Viagem tranquila" — 2 cenas (pedidas em 16/10/2026)
+
+As duas entram como cartão do "pode ou não pode", do mesmo jeito das cenas da
+missão 29. Enquanto não chegam, aparece o ursinho e o carrinho.
+
+### `m32_pnp_certa`
+
+> Ilustração 2D cartoon infantil, cena quadrada. **Uma criança pequena sentada na cadeirinha no banco de trás do carro, com o cinto afivelado, abraçando um ursinho de pelúcia no colo e sorrindo**, a janela fechada ao lado. Na frente, pequeno, o adulto dirigindo, de costas. Luz de fim de tarde entrando pela janela. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Sem texto, sem letras, sem números. Imagem quadrada 1024x1024.
+
+### `m32_pnp_errada`
+
+> Ilustração 2D cartoon infantil, cena quadrada. **Uma criança pequena na cadeirinha do banco de trás do carro, com o braço esticado jogando um carrinho de brinquedo na direção do adulto que está dirigindo**, o carrinho no ar entre os bancos e o adulto, de costas, com uma mãozinha de susto levantada. Mesmo carro da cena anterior. Sem machucado, sem choro: só o susto. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Sem texto, sem letras, sem números. Imagem quadrada 1024x1024.

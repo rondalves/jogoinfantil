@@ -79,6 +79,7 @@ Missao nova = arquivo JSON novo em `src/missions/`. O motor nao muda.
 - [29 — Chegando na escola](#missao-29-chegando-na-escola) · mundo 2 · livre
 - [30 — Brincar ao ar livre](#missao-30-brincar-ao-ar-livre) · mundo 4 · paga
 - [31 — Momento em família](#missao-31-momento-em-fam-lia) · mundo 6 · paga
+- [32 — Viagem tranquila](#missao-32-viagem-tranquila) · mundo 3 · paga
 
 ---
 
@@ -160,7 +161,7 @@ Mundo 1 (Manha em Casa) · cenario `bg_quarto_manha`
 
 **1. Arrastar para o alvo**
 
-> Leve o lençol, o cobertor e o travesseiro para a cama.
+> Arrume a cama na ordem: primeiro o lençol, depois o cobertor e, por último, o travesseiro.
 
 Arrasta 3 de 3 coisas para **Cama**.
   - Lençol
@@ -1387,7 +1388,7 @@ Recompensa: 1 moeda · ate 3 estrelas
 
 ## Missao 30 — Brincar ao ar livre 🌳
 
-Mundo 4 (Tarde) · cenario `bg_porta_casa` · **missao bonus** (so abre com os 5 mundos fechados)
+Mundo 4 (Tarde) · cenario `bg_parque` · **missao bonus** (so abre com os 5 mundos fechados)
 
 **Abertura:** "Que tal brincar lá fora, {nome}? Hoje é dia de passeio!"
 
@@ -1466,6 +1467,53 @@ Pergunta: "O que pode?"
 - Explicacao: "Um abraço antes de dormir deixa o coração quentinho e o sono mais calminho."
 
 **Reforco no fim:** "Família junta, coração quentinho!"
+
+Recompensa: 1 moeda · ate 3 estrelas
+
+---
+
+## Missao 32 — Viagem tranquila 🧸
+
+Mundo 3 (Volta para Casa) · cenario `bg_carro_interior`
+
+**Abertura:** "No carro também tem jeito certo de brincar, {nome}. Vamos aprender?"
+
+**O personagem mostra:** "O brinquedo fica no colo, o cinto fica preso e as mãos ficam aqui dentro."
+
+### Etapas
+
+**1. Precisa ou nao precisa**
+
+> O carro está andando. Pode fazer isso?
+
+Responde Sim ou Nao para 5 situacoes:
+  - Jogar o carrinho no papai, que está dirigindo -> **NAO** — Não pode! Quem dirige precisa olhar a rua. Brinquedo voando machuca e assusta.
+  - Segurar o ursinho no colo -> **SIM** — Pode! No colo, o brinquedo fica seguro com você.
+  - Pôr a mão para fora da janela aberta -> **NAO** — Não pode! Lá fora passam carros, postes e galhos. A mão fica aqui dentro.
+  - Olhar um livrinho sentado -> **SIM** — Pode! Livro é ótimo para viajar quietinho.
+  - Tentar soltar o cinto -> **NAO** — Não pode! O cinto só sai quando o carro parar e o adulto disser que pode.
+
+**2. Arrastar para o alvo**
+
+> Chegamos! Leve para a mochila os brinquedos que você trouxe.
+
+Arrasta 3 de 5 coisas para **Mochila**.
+  - Ursinho
+  - Carrinho
+  - Cinto do carro _(pegadinha)_
+  - Livrinho
+  - Cadeirinha _(pegadinha)_
+  - _Se erra:_ "Esse é do carro, ele fica lá. Leve só o que é seu!"
+
+### Pode ou nao pode
+
+Pergunta: "O que pode?"
+
+- Certo: **Brinquedo no colo**
+- Errado: Jogar no papai
+- Explicacao: "No carro, o brinquedo fica no colo. Jogar pode machucar e atrapalhar quem está dirigindo."
+
+**Reforco no fim:** "Brinquedo no colo, mãos aqui dentro e, na chegada, tudo de volta comigo!"
 
 Recompensa: 1 moeda · ate 3 estrelas
 
