@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { carregar } from '../assets';
 import { CONFIG } from '../config';
+import { GYMNOPEDIE } from '../melodias';
 import { GRAVIDADE, Montanha, VEL_MAX } from '../montanha';
 import { fale } from '../narracoes';
 import { narrador } from '../narrador';
@@ -8,7 +9,7 @@ import { cabecaDoPersonagem, desenharPersonagem } from '../personagem';
 import { ativo, type PersonagemCfg } from '../storage';
 import { vigiarTempo } from '../tempoDeJogo';
 import { TEMA } from '../theme';
-import { botao, botaoOuvir, botaoVoltar, cobrirTela, irPara, nota, TELA } from '../ui';
+import { botao, botaoOuvir, botaoVoltar, caixinha, cobrirTela, irPara, nota, TELA } from '../ui';
 
 const W = CONFIG.LARGURA;
 
@@ -34,8 +35,8 @@ const ZOOM = 1.2;
 /** a fisica roda em passos menores que o quadro: pouso e parede sem atravessar */
 const PASSOS = 4;
 
-/** Notas da melodia que as notinhas tocam ao serem pegas (pentatonica). */
-const MELODIA = [523, 587, 659, 784, 880, 1047, 880, 784, 659, 587];
+/** Cada notinha pega toca a proxima nota da Gymnopedie, como caixinha de musica. */
+const MELODIA = GYMNOPEDIE.flat();
 const CORES_NOTA = [0xe85d8a, 0x4a90d9, 0xf39c4a, 0x8a5cd1, 0x2fae7a];
 
 /** Notinha musical desenhada: cabeca, haste e bandeirinha. */
@@ -75,6 +76,8 @@ export class MotoMontanha extends Phaser.Scene {
   private vidas = VIDAS;
   private fase = 1;
   private melodia = 0;
+  /** proxima frase da musica a virar grupo de notinhas na pista */
+  private frase = 0;
 
   // estado da moto
   private x = 0;
@@ -104,7 +107,7 @@ export class MotoMontanha extends Phaser.Scene {
     this.notas = [];
     this.rodas = [];
     this.coracoes = [];
-    Object.assign(this, { semeadoAte: 600, pegas: 0, vidas: VIDAS, fase: 1, melodia: 0, gas: false, freio: false });
+    Object.assign(this, { semeadoAte: 600, pegas: 0, vidas: VIDAS, fase: 1, melodia: 0, frase: 0, gas: false, freio: false });
 
     // paisagem pintada ao fundo e morros ao longe, que andam mais devagar que o chao
     cobrirTela(this, 0xcfe6f2).setDepth(-20);
@@ -543,13 +546,15 @@ export class MotoMontanha extends Phaser.Scene {
         this.semeadoAte = buraco.x1 + 300;
         continue;
       }
-      const n = Phaser.Math.Between(3, 5);
-      for (let i = 0; i < n; i++) {
-        const x = x0 + i * 44;
+      // uma frase da musica por grupo, nota longa com mais espaco depois: em
+      // velocidade de passeio, a melodia sai no ritmo
+      let x = x0;
+      for (const n of GYMNOPEDIE[this.frase++ % GYMNOPEDIE.length]) {
         const y = m.chao(x);
         if (Number.isFinite(y)) this.porNota(x, y - 70);
+        x += 40 + 30 * Math.min(n.tempos, 3);
       }
-      this.semeadoAte = x0 + Phaser.Math.Between(340, 560);
+      this.semeadoAte = x + Phaser.Math.Between(200, 340);
     }
   }
 
@@ -571,7 +576,8 @@ export class MotoMontanha extends Phaser.Scene {
         this.pegas += 1;
         this.placar.setText(String(this.pegas));
         // cada notinha toca a proxima nota da melodia
-        nota(MELODIA[this.melodia % MELODIA.length]);
+        const n = MELODIA[this.melodia % MELODIA.length];
+        caixinha(n.freq, Math.min(3, 0.8 + 0.5 * n.tempos));
         this.melodia += 1;
         const fig = c.fig;
         this.tweens.killTweensOf(fig);

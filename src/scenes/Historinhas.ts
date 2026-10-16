@@ -3,11 +3,13 @@ import { abas, TOPO_ABAS } from '../abas';
 import { AUDIOS_HISTORIA } from '../assets';
 import { CONFIG } from '../config';
 import { historiaAberta, porQueFechado } from '../desbloqueio';
+import { CANCAO_DE_NINAR } from '../melodias';
+import { musica, musicaDoMundo, musicaLigada } from '../musica';
 import { narrador } from '../narrador';
 import { ativo, type Perfil } from '../storage';
 import { HISTORIAS, type Historia } from '../stories';
 import { TEMA } from '../theme';
-import { area, arredondada, botaoOuvir, carregarCapas, figura, fundo, irPara, nota, rolagem, TELA, titulo } from '../ui';
+import { area, arredondada, botaoOuvir, carregarCapas, figura, fundo, irPara, nota, rolagem, TELA, titulo, tocarMelodia } from '../ui';
 
 const W = CONFIG.LARGURA;
 /** onde a lista comeca, logo abaixo do titulo */
@@ -38,6 +40,13 @@ export class Historinhas extends Phaser.Scene {
     botaoOuvir(this);
     this.titulo = titulo(this, 'Historinhas', 170);
     narrador.falar('Escolha uma historinha para ouvir.', 'biblioteca_historias');
+    // a cancao de ninar de caixinha no lugar da musica do menu, so nesta tela
+    musica('silencio');
+    const parar = musicaLigada() ? tocarMelodia(CANCAO_DE_NINAR, 66) : () => undefined;
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      parar();
+      musicaDoMundo();
+    });
 
     carregarCapas(this, HISTORIAS.map((h) => h.capa), () => {
       this.cartoes();

@@ -485,26 +485,83 @@ export function estrelasNaTela(cena: Phaser.Scene, qtd: number, max: number, y: 
 
 let ctxAudio: AudioContext | null = null;
 
-/** Notinha curta sem precisar de arquivo de audio. */
-export function nota(freq: number) {
+function contexto(): AudioContext | null {
   try {
     const Ctor =
       window.AudioContext ??
       (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-    if (!Ctor) return;
+    if (!Ctor) return null;
     ctxAudio = ctxAudio ?? new Ctor();
-    const o = ctxAudio.createOscillator();
-    const g = ctxAudio.createGain();
-    o.type = 'triangle';
-    o.frequency.value = freq;
-    g.gain.value = 0.06;
-    o.connect(g);
-    g.connect(ctxAudio.destination);
-    o.start();
-    o.stop(ctxAudio.currentTime + 0.12);
+    if (ctxAudio.state === 'suspended') ctxAudio.resume().catch(() => undefined);
+    return ctxAudio;
   } catch {
     // sem audio: o jogo segue em silencio
+    return null;
   }
+}
+
+/** Notinha curta sem precisar de arquivo de audio. */
+export function nota(freq: number) {
+  const c = contexto();
+  if (!c) return;
+  const o = c.createOscillator();
+  const g = c.createGain();
+  o.type = 'triangle';
+  o.frequency.value = freq;
+  g.gain.value = 0.06;
+  o.connect(g);
+  g.connect(c.destination);
+  o.start();
+  o.stop(c.currentTime + 0.12);
+}
+
+/** Nota de caixinha de musica: ataque rapido e um sininho que vai sumindo em `segundos`. */
+export function caixinha(freq: number, segundos: number, quando = 0, saida?: AudioNode) {
+  const c = contexto();
+  if (!c) return;
+  const t = Math.max(c.currentTime, quando);
+  const g = c.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.1, t + 0.008);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + segundos);
+  g.connect(saida ?? c.destination);
+  // a fundamental e um brilho uma oitava acima, mais baixinho
+  for (const [mult, volume] of [[1, 1], [2, 0.25]]) {
+    const o = c.createOscillator();
+    const v = c.createGain();
+    o.type = 'sine';
+    o.frequency.value = freq * mult;
+    v.gain.value = volume;
+    o.connect(v).connect(g);
+    o.start(t);
+    o.stop(t + segundos + 0.05);
+  }
+}
+
+/** Toca a melodia em loop como caixinha de musica, baixinho. Devolve a funcao que para. */
+export function tocarMelodia(melodia: { freq: number; tempos: number }[], bpm: number): () => void {
+  const c = contexto();
+  if (!c) return () => undefined;
+  const saida = c.createGain();
+  saida.gain.value = 0.6;
+  saida.connect(c.destination);
+  const tempo = 60 / bpm;
+  let timer = 0;
+  const volta = () => {
+    let t = c.currentTime + 0.1;
+    for (const n of melodia) {
+      caixinha(n.freq, Math.min(2.5, 0.6 + n.tempos * tempo), t, saida);
+      t += n.tempos * tempo;
+    }
+    // respira um pouco antes de recomecar
+    timer = window.setTimeout(volta, (t - c.currentTime + 2) * 1000);
+  };
+  volta();
+  return () => {
+    clearTimeout(timer);
+    saida.gain.setTargetAtTime(0, c.currentTime, 0.15);
+    window.setTimeout(() => saida.disconnect(), 1000);
+  };
 }
 
 const ESCALA = [523, 587, 659, 698, 784, 880, 988];
