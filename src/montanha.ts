@@ -41,10 +41,10 @@ export function sorteador(semente: number) {
   };
 }
 
-/** Rampa mais inclinada da fase, em graus: cresce e para em 62. */
-export const inclinacaoMaxima = (fase: number) => Math.min(62, 30 + 7 * (fase - 1));
+/** Rampa mais inclinada da fase, em graus: cresce e para em 66. */
+export const inclinacaoMaxima = (fase: number) => Math.min(66, 36 + 7 * (fase - 1));
 /** Altura dos morros da fase, em px. */
-const alturaMorro = (fase: number) => Math.min(320, 90 + 45 * (fase - 1));
+const alturaMorro = (fase: number) => Math.min(340, 110 + 50 * (fase - 1));
 /** Largura dos buracos da fase, em px (a partir da fase 2). */
 export const larguraBuraco = (fase: number) => Math.min(220, 90 + 30 * (fase - 2));
 
@@ -53,6 +53,8 @@ export class Montanha {
   readonly buracos: Buraco[] = [];
   /** x da bandeira de cada fase: bandeiras[0] e a largada */
   readonly bandeiras: number[] = [];
+  /** x de cada tronco no chao: fica no plano depois da descida, e so passa quem frear */
+  readonly troncos: number[] = [];
   private x = 0;
   private y = CHAO;
   private fase = 0;
@@ -97,7 +99,13 @@ export class Montanha {
       const desce = sobe * this.entre(0.55, 0.95);
       this.ate(this.larguraPara(sobe, graus), -sobe);
       this.ate(this.larguraPara(desce, graus), desce);
-      if (this.sorte() < 0.35) this.ate(this.entre(80, 200), 0, true);
+      // plano depois da descida: as vezes com um tronco no meio
+      const r = this.sorte();
+      if (r < 0.3) {
+        const largura = this.entre(260, 340);
+        this.ate(largura, 0, true);
+        this.troncos.push(this.x - largura / 2);
+      } else if (r < 0.55) this.ate(this.entre(80, 200), 0, true);
     }
   }
 

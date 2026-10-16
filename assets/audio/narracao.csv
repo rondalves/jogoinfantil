@@ -38,11 +38,12 @@ jogo_quebra_pronto.mp3;adulto;Você montou o quebra-cabeça! Que lindo!;Quebra-c
 jogo_memoria_rodada.mp3;adulto;Muito bem! Vamos de novo, com outras figuras!;Joguinho da memória, fim da rodada
 jogo_colorir.mp3;adulto;Escolha uma cor e toque no desenho para pintar!;Joguinho de colorir
 jogo_colorir_pronto.mp3;adulto;Que lindo! Ficou todo colorido!;Joguinho de colorir, desenho todo pintado
-jogo_moto.mp3;adulto;Verde acelera, vermelho freia. Cuidado nas descidas e pule os buracos!;Joguinho da moto
+jogo_moto.mp3;adulto;Verde acelera, vermelho freia. Viu a plaquinha amarela? Freie antes do tronco. E pule os buracos!;Joguinho da moto
 jogo_moto_capotou.mp3;adulto;Opa, capotou! Vamos de novo, daqui da bandeira.;Joguinho da moto, perdeu uma vida
 jogo_moto_buraco.mp3;adulto;Opa, caiu no buraco! Vamos de novo, daqui da bandeira.;Joguinho da moto, perdeu uma vida
+jogo_moto_bateu.mp3;adulto;Opa, rápido demais no tronco! Freie antes dele. Vamos de novo, daqui da bandeira.;Jipe na montanha, bateu no tronco
 jogo_moto_fim.mp3;adulto;Que passeio! Quantas notinhas você pegou! Vamos de novo?;Joguinho da moto, acabaram as vidas
-jogo_encaixe.mp3;adulto;Toque para girar a peça e encaixe! Linha cheia some!;Joguinho de encaixar
+jogo_encaixe.mp3;adulto;As setas andam, o verde gira e o amarelo derruba a peça. Linha cheia some!;Joguinho de encaixar
 jogo_encaixe_encheu.mp3;adulto;Encheu tudo! Vamos limpar e continuar!;Joguinho de encaixar, tabuleiro cheio
 missao_joguinho_novo.mp3;adulto;E abriu um joguinho novo! Ele está na aba Joguinhos.;Fim da missão que fecha o mundo
 missao_faca_de_verdade.mp3;mascote;Agora é com você! Vá fazer de verdade. Já fez? Toque em Já fiz!;Missão, depois do jogo: ir fazer de verdade

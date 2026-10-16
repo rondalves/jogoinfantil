@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CHAO, GRAVIDADE, inclinacaoMaxima, Montanha, VEL_MAX } from './montanha';
+import { CHAO, FASE, GRAVIDADE, inclinacaoMaxima, Montanha, VEL_MAX } from './montanha';
 
 const graus = (r: number) => (Math.atan(Math.abs(r)) * 180) / Math.PI;
 
@@ -47,6 +47,16 @@ describe('relevo da montanha', () => {
       const desce = m.chao(b.x1 + 1) - m.chao(b.x0 - 1);
       const t = (vy + Math.sqrt(vy * vy + 2 * GRAVIDADE * desce)) / GRAVIDADE;
       expect(vx * t).toBeGreaterThan(b.x1 - b.x0);
+    }
+  });
+
+  it('tronco fica no plano, longe dos buracos', () => {
+    const m = new Montanha(7);
+    m.chao(FASE * 5);
+    expect(m.troncos.length).toBeGreaterThan(0);
+    for (const t of m.troncos) {
+      expect(Math.abs(m.inclinacao(t))).toBeLessThan(0.01);
+      expect(m.buracos.some((b) => t > b.x0 - 100 && t < b.x1 + 100)).toBe(false);
     }
   });
 

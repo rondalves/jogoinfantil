@@ -91,6 +91,7 @@ export class Missao extends Phaser.Scene {
       ...d.etapas.flatMap((e) => [
         e.cenario,
         e.alvo?.img,
+        e.alvo?.reserva,
         ...das(e.alvos),
         ...das(e.itens),
         ...das(e.perguntas),

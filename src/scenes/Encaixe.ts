@@ -20,14 +20,15 @@ import { vigiarTempo } from '../tempoDeJogo';
 import { TEMA } from '../theme';
 import { botaoOuvir, botaoVoltar, confete, fundo, nota, TELA } from '../ui';
 
-const CEL = 60;
-const X0 = 40;
-const Y0 = 210;
+const CEL = 52;
+/** tabuleiro (8 casas), 20 de vao e o painel (164): tudo centrado na largura */
+const X0 = (720 - (8 * CEL + 20 + 164)) / 2;
+const Y0 = 200;
 const CORES = [0x7cc3ef, 0xf7d14c, 0xb996d9, 0x8fd16e, 0xe85d6a, 0x4a7fd9, 0xf39c4a];
 
 /**
  * Joguinho de encaixar, no estilo Tetris. Tocar no tabuleiro gira a peca;
- * arrastar para o lado (ou os botoes) move; segurar a seta de baixo desce
+ * arrastar para o lado (ou os botoes) move; o botao amarelo derruba a peca
  * rapido. Linha cheia some com festa. A cada 5 linhas sobe de nivel e a peca
  * cai mais rapido. Encheu ate em cima? Limpa o tabuleiro e segue -- sem
  * "fim de jogo". As regras ficam em src/encaixe.ts.
@@ -67,7 +68,7 @@ export class Encaixe extends Phaser.Scene {
     botaoOuvir(this);
 
     // painel da direita: proxima peca, linhas e nivel
-    const px = X0 + COLUNAS * CEL + 100;
+    const px = X0 + COLUNAS * CEL + 102;
     const painel = this.add.graphics();
     painel.fillStyle(0xffffff, 0.92).fillRoundedRect(px - 82, Y0, 164, 470, 26);
     this.add.text(px, Y0 + 34, 'Próxima', { fontSize: '26px', color: '#2b3a4a', fontStyle: 'bold' }).setOrigin(0.5);
@@ -208,13 +209,21 @@ export class Encaixe extends Phaser.Scene {
       comecouAqui = false;
     });
 
-    const y = Math.min(TELA.baixo - 110, Y0 + LINHAS * CEL + 120);
+    const y = Math.min(TELA.baixo - 110, Y0 + LINHAS * CEL + 130);
     const redondo = (x: number, icone: string, cor: number, aperta: () => void, solta?: () => void) => {
       const g = this.add.graphics();
       g.fillStyle(0x000000, 0.12).fillCircle(x, y + 6, 72);
       g.fillStyle(cor, 1).fillCircle(x, y, 70);
       g.lineStyle(5, 0xffffff, 0.9).strokeCircle(x, y, 70);
-      this.add.text(x, y, icone, { fontSize: '60px', color: '#2b3a4a', fontStyle: 'bold' }).setOrigin(0.5);
+      if (icone === 'derrubar') {
+        // duas setinhas para baixo e o chao: "desce tudo de uma vez"
+        g.fillStyle(0x2b3a4a, 1);
+        g.fillTriangle(x - 22, y - 30, x + 22, y - 30, x, y - 6);
+        g.fillTriangle(x - 22, y - 6, x + 22, y - 6, x, y + 18);
+        g.fillRoundedRect(x - 26, y + 24, 52, 8, 4);
+      } else {
+        this.add.text(x, y, icone, { fontSize: '60px', color: '#2b3a4a', fontStyle: 'bold' }).setOrigin(0.5);
+      }
       const z = this.add.zone(x, y, 160, 160).setInteractive();
       let repetir: Phaser.Time.TimerEvent | undefined;
       z.on('pointerdown', () => {
@@ -230,9 +239,9 @@ export class Encaixe extends Phaser.Scene {
       z.on('pointerout', parar);
     };
     redondo(100, '◀', 0xbfd4e8, () => this.andar(-1));
-    redondo(273, '⟳', 0x8fd16e, () => this.girar(), () => undefined);
-    redondo(446, '▼', 0xf7d14c, () => (this.descendo = true), () => (this.descendo = false));
-    redondo(620, '▶', 0xbfd4e8, () => this.andar(1));
+    redondo(273, '▶', 0xbfd4e8, () => this.andar(1));
+    redondo(446, '⟳', 0x8fd16e, () => this.girar(), () => undefined);
+    redondo(620, 'derrubar', 0xf7d14c, () => this.derrubar(), () => undefined);
 
     const t = this.input.keyboard;
     t?.on('keydown-LEFT', () => this.andar(-1));
@@ -240,6 +249,15 @@ export class Encaixe extends Phaser.Scene {
     t?.on('keydown-UP', () => this.girar());
     t?.on('keydown-DOWN', () => (this.descendo = true));
     t?.on('keyup-DOWN', () => (this.descendo = false));
+  }
+
+  /** Desce a peca de uma vez, ate onde a sombra mostra, e encaixa. */
+  private derrubar() {
+    if (this.pausado) return;
+    this.peca = queda(this.tab, this.peca);
+    this.acumulado = 0;
+    this.desenhar();
+    this.fixar();
   }
 
   private andar(lado: number) {
@@ -291,7 +309,7 @@ export class Encaixe extends Phaser.Scene {
     // proxima peca, pequena
     const gp = this.gProxima;
     gp.clear();
-    const px = X0 + COLUNAS * CEL + 100;
+    const px = X0 + COLUNAS * CEL + 102;
     const pequena = novaPeca(this.proxima).celulas;
     const larg = Math.max(...pequena.map(([c]) => c)) + 1;
     const alt = Math.max(...pequena.map(([, l]) => l)) + 1;

@@ -199,6 +199,12 @@ regra das peças soltas: **fundo verde #00FF00, quadrado 2048x2048**.
 
 > Ilustração 2D cartoon infantil da **mesma mesinha com cadeira da imagem de referência, vista do mesmo ângulo, com a mesa posta**: um prato branco, um copo e um garfo arrumados em cima do tampo, na frente da cadeira. Nada fora da mesa. Sem pessoas. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
 
+### `m16_caixa_vazia` — missão 16, a caixa antes de guardar (referência: `m16_caixa_blocos.png`)
+
+Já tem uma provisória desenhada por código em `assets/img/m16_caixa_vazia.png`; a arte nova substitui o arquivo com o mesmo nome.
+
+> Ilustração 2D cartoon infantil da **mesma caixa azul de papelão da imagem de referência, aberta e vazia**, com as abas para fora, vista do mesmo ângulo, sem nenhum bloco dentro nem em volta. Sem pessoas. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.
+
 ### `m16_caixa_brinquedos` — missão 16, a caixa cheia (referência: `m16_caixa_blocos.png`)
 
 > Ilustração 2D cartoon infantil da **mesma caixa azul de brinquedos da imagem de referência, aberta, com os brinquedos guardados aparecendo por cima**: uma bola colorida, um ursinho de pelúcia, um trenzinho de madeira e uma boneca, bem arrumados. Sem blocos espalhados fora da caixa. Sem pessoas. Contorno escuro fino e limpo, estilo de livro infantil, cores suaves e pouco saturadas. Fundo verde chapado #00FF00, uma cor só, sem sombra projetada no fundo. Imagem quadrada 2048x2048.

@@ -5,7 +5,7 @@ import { cabecaDoPersonagem, desenharPersonagem } from '../personagem';
 import { ativo, personagemPadrao } from '../storage';
 import { TEMA } from '../theme';
 import { escovar } from './escovacao';
-import { Esfrega, vagaNoAlvo } from '../etapasLogica';
+import { Esfrega, vagaNaFila, vagaNoAlvo } from '../etapasLogica';
 import { narrador } from '../narrador';
 import { fale } from '../narracoes';
 import type { Etapa, Item, Pergunta } from '../types';
@@ -98,7 +98,7 @@ const arrastar: Handler = (c, e) => {
   sombra.fillRoundedRect(alvoX - 190, alvoY - 160, 380, 320, 40);
   c.camada.add(sombra);
   // enquanto a arte do comeco (cama sem nada) nao existe, comeca pela do "antes"
-  const inicio = arteExistente(c.cena, alvo.img, e.antes) ?? alvo.img;
+  const inicio = arteExistente(c.cena, alvo.img, alvo.reserva, e.antes) ?? alvo.img;
   let figAlvo = lerAoPassar(figura(c.cena, alvoX, alvoY, inicio, alvo.icone, 300), alvo.fala ?? alvo.texto);
   c.camada.add(figAlvo);
   const itens = e.itens ?? [];
@@ -258,13 +258,15 @@ const arrastar: Handler = (c, e) => {
         mudarAlvo(muda, f, it.efeito);
       } else if (e.empilha) {
         // fica em cima do alvo: o prato vai enchendo
-        const v = vagaNoAlvo(feitos - 1, certos.length);
+        const fila = e.empilha === 'fila';
+        const v = (fila ? vagaNaFila : vagaNoAlvo)(feitos - 1, certos.length);
         pousados.push(f);
         c.cena.tweens.add({
           targets: f,
           x: alvoX + v.x,
           y: alvoY + v.y,
-          scale: f.scale * 0.75,
+          scale: f.scale * (fila ? 0.62 : 0.75),
+          angle: fila ? (feitos % 2 ? -8 : 8) : 0,
           duration: 300,
           ease: 'Back.out',
         });

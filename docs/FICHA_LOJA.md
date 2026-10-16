@@ -22,7 +22,7 @@ Rotina Feliz transforma a rotina da criança em missões.
 
 Acordar e escovar os dentes, arrumar a mochila, atravessar a rua de mãos dadas, esperar a vez, pedir com licença, guardar os brinquedos, jantar à mesa, tomar banho e dormir: cada hora do dia vira uma aventura curta, com um "olha como se faz" antes de cada tarefa.
 
-Primeiro a tarefa, depois a brincadeira. São 28 missões em 6 mundos, do "Manhã em Casa" ao "Banho e Cama". Cada mundo terminado abre um joguinho (colorir, jogo da memória, corrida de kart, encaixe os blocos, moto na montanha e quebra-cabeça) e uma historinha de dormir contada em voz alta, com canção de ninar.
+Primeiro a tarefa, depois a brincadeira. São 28 missões em 6 mundos, do "Manhã em Casa" ao "Banho e Cama". Cada mundo terminado abre um joguinho (colorir, jogo da memória, corrida de kart, encaixe os blocos, jipe na montanha e quebra-cabeça) e uma historinha de dormir contada em voz alta, com canção de ninar.
 
 A criança monta o próprio personagem: 7 tons de pele, 6 roupas, 29 penteados em 9 cores, laço e capa de herói.
 

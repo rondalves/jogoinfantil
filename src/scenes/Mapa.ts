@@ -25,6 +25,8 @@ export class Mapa extends Phaser.Scene {
   private p!: Perfil;
   private lista!: Phaser.GameObjects.Container;
   private altura = 0;
+  /** y (na lista) da primeira missao aberta ainda sem estrela: onde a crianca parou */
+  private parou?: number;
   private arrastou = () => false;
 
   constructor() {
@@ -71,7 +73,11 @@ export class Mapa extends Phaser.Scene {
 
     // 'rola' avisa o smoke que esta lista passa da tela de proposito
     this.lista = this.add.container(0, TOPO).setName('rola');
+    this.parou = undefined;
     this.montarLista();
+    // abre ja rolado ate a missao em que a crianca parou, com um pouco do que vem antes
+    if (this.parou !== undefined)
+      this.lista.y = Phaser.Math.Clamp(TOPO - (this.parou - 140), Math.min(TOPO, BASE - this.altura), TOPO);
     this.arrastou = rolagem(this, this.lista, TOPO, BASE, this.altura);
     abas(this, 'Mapa');
   }
@@ -197,6 +203,7 @@ export class Mapa extends Phaser.Scene {
         .setOrigin(1, 0.5),
     );
     if (!aberto) return;
+    if (estrelas === 0 && this.parou === undefined) this.parou = y;
     if (estrelas === 0) this.lista.add(figura(this, W - 130, y + 48, 'botao_play', '\u{25B6}\u{FE0F}', 66));
     const pendente = this.p.pendentes?.includes(missao.id) ?? false;
     if (pendente) this.lista.add(this.add.text(490, y + 48, '\u{1F463}', { fontSize: '36px' }).setOrigin(0.5));

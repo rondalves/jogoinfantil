@@ -17,6 +17,7 @@
       "tipo": "arrastar_para_alvo",
       "narracao": "Leve cada brinquedo para a caixa.",
       "audio": "m16_e1",
+      "empilha": "fila",
       "antes": "m16_bagunca",
       "estados": [
         "",
@@ -26,10 +27,11 @@
       ],
       "alvo": {
         "icone": "📦",
-        "img": "m16_caixa_blocos",
+        "img": "m16_caixa_vazia",
         "x": 360,
         "y": 930,
-        "fala": "Caixa dos brinquedos"
+        "fala": "Caixa dos brinquedos",
+        "reserva": "m16_caixa_blocos"
       },
       "itens": [
         {

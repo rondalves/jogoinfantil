@@ -27,6 +27,8 @@ export interface Item {
   y: number;
   /** false = pegadinha (não deve ser tocado); true = resposta certa */
   correto?: boolean;
+  /** alvo: arte usada enquanto a do `img` ainda nao chegou */
+  reserva?: string;
   /** como entra no alvo que muda de arte: 'puxar' (lençol cobrindo a cama) ou 'cair' (travesseiro) */
   efeito?: 'puxar' | 'cair';
 }
@@ -73,8 +75,8 @@ export interface Etapa {
   estados?: string[];
   /** arte do "antes" no fim (padrao: a do alvo) */
   antes?: string;
-  /** os itens ficam em cima do alvo, em vez de sumir dentro (prato, mesa) */
-  empilha?: boolean;
+  /** os itens ficam no alvo, em vez de sumir dentro: em roda (prato) ou em 'fila' na boca (caixa) */
+  empilha?: boolean | 'fila';
   /** os itens certos tem ordem: o primeiro da lista vem primeiro (lencol antes do cobertor) */
   emOrdem?: boolean;
   /** esfregar: lava o rosto do personagem da propria crianca, em vez da arte do alvo */

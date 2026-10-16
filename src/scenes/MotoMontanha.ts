@@ -4,8 +4,8 @@ import { CONFIG } from '../config';
 import { GRAVIDADE, Montanha, VEL_MAX } from '../montanha';
 import { fale } from '../narracoes';
 import { narrador } from '../narrador';
-import { desenharPersonagem } from '../personagem';
-import { ativo } from '../storage';
+import { cabecaDoPersonagem, desenharPersonagem } from '../personagem';
+import { ativo, type PersonagemCfg } from '../storage';
 import { vigiarTempo } from '../tempoDeJogo';
 import { TEMA } from '../theme';
 import { botao, botaoOuvir, botaoVoltar, cobrirTela, irPara, nota, TELA } from '../ui';
@@ -21,9 +21,11 @@ const ATRITO = 0.3;
 const GIRO_CONTROLE = 5.5;
 /** pousar com a moto mais torta que isso em relacao ao chao (~50 graus): capotou */
 const CAPOTA = 0.87;
+/** passar no tronco mais rapido que isso (px/s): bateu. Freando antes, passa pulando */
+const LIMITE_TRONCO = 300;
 /** metade da distancia entre as rodas */
 const EIXO = 52;
-const RODA = 26;
+const RODA = 28;
 const VIDAS = 3;
 /** onde a moto fica na tela, em x */
 const X_TELA = 230;
@@ -49,7 +51,7 @@ function notaMusical(cena: Phaser.Scene, x: number, y: number, cor: number) {
 }
 
 /**
- * Moto na montanha, no estilo Hill Climb.
+ * Jipe na montanha, no estilo Hill Climb (a cena manteve o nome antigo).
  *
  * Verde acelera, vermelho freia. Subida ingreme pede embalo; descida rapida
  * demais joga a moto para o alto, e no ar acelerar levanta a frente e frear
@@ -145,7 +147,7 @@ export class MotoMontanha extends Phaser.Scene {
     fale('jogo_moto');
   }
 
-  /** Moto vista de lado, com a crianca sentada; o (0,0) e o chao entre as rodas. */
+  /** Jipinho visto de lado, com a crianca sentada la dentro; o (0,0) e o chao entre as rodas. */
   private montarMoto() {
     const m = this.add.container(0, 0);
     const TRACO = 0x4a3428;
@@ -162,30 +164,78 @@ export class MotoMontanha extends Phaser.Scene {
       this.rodas.push(g);
       return g;
     };
-    const tras = roda(-EIXO);
-    // a crianca: so o tronco aparece, a carenagem tapa as pernas
+    const VERMELHO = 0xe2483d;
+    const ESCURO = 0xa8302a;
+    // atras de tudo: santantonio e a antena com bandeirinha
+    const fundo = this.add.graphics();
+    fundo.lineStyle(7, 0x6b7480, 1);
+    fundo.lineBetween(-70, -78, -66, -124).lineBetween(-66, -124, -46, -124).lineBetween(-46, -124, -46, -78);
+    fundo.lineStyle(3, 0x3a3f47, 1).lineBetween(-84, -78, -96, -168);
+    fundo.fillStyle(0xf7d14c, 1).fillTriangle(-96, -168, -96, -150, -72, -160);
+    // a crianca sentada la dentro: so do peito para cima, a porta fechada tapa o resto
     const cfg = ativo()?.personagem;
-    const crianca = cfg ? desenharPersonagem(this, cfg, 0.3).setPosition(-4, -102) : null;
+    const crianca = cfg ? this.criancaSentada(cfg, -26, -94) : null;
     const corpo = this.add.graphics();
-    corpo.lineStyle(9, 0x8a96a3, 1).lineBetween(EIXO, -RODA, 30, -96);
-    corpo.fillStyle(0xe85d5d, 1);
-    corpo.lineStyle(3, TRACO, 1);
-    const carenagem = [
-      { x: -58, y: -62 }, { x: -44, y: -92 }, { x: 18, y: -92 }, { x: 40, y: -74 },
-      { x: 44, y: -40 }, { x: 22, y: -26 }, { x: -30, y: -26 }, { x: -60, y: -40 },
+    // suspensao, do chassi ate o cubo de cada roda
+    corpo.lineStyle(9, 0x3a3f47, 1).lineBetween(-EIXO, -44, -EIXO, -RODA).lineBetween(EIXO, -44, EIXO, -RODA);
+    // cacamba (onde a crianca senta) e capo, em uma peca so
+    const lata = [
+      { x: -86, y: -42 }, { x: -88, y: -76 }, { x: -82, y: -82 }, { x: 6, y: -82 },
+      { x: 14, y: -80 }, { x: 58, y: -76 }, { x: 76, y: -66 }, { x: 82, y: -54 },
+      { x: 80, y: -42 },
     ];
-    corpo.fillPoints(carenagem, true).strokePoints(carenagem, true, true);
-    corpo.fillStyle(0xffffff, 0.35).fillRoundedRect(-36, -84, 46, 10, 5);
-    corpo.fillStyle(0x4a4a52, 1).fillRoundedRect(-50, -100, 54, 12, 6);
-    corpo.fillStyle(0xfff3b0, 1).fillCircle(44, -84, 9);
-    corpo.lineStyle(3, TRACO, 1).strokeCircle(44, -84, 9);
-    corpo.lineStyle(7, 0x4a4a52, 1).lineBetween(30, -96, 20, -116);
+    corpo.fillStyle(VERMELHO, 1).fillPoints(lata, true);
+    // paralamas: arcos escuros em volta das rodas
+    corpo.fillStyle(ESCURO, 1);
+    for (const x of [-EIXO, EIXO]) corpo.beginPath().slice(x, -RODA - 4, RODA + 9, Math.PI, 2 * Math.PI, false).fillPath();
+    corpo.fillStyle(VERMELHO, 1).fillRect(-86, -82, 168, 18);
+    corpo.lineStyle(3, TRACO, 1).strokePoints(lata, true, true);
+    // brilho do capo e risco da porta, com a macaneta
+    corpo.fillStyle(0xffffff, 0.35).fillRoundedRect(20, -76, 40, 6, 3);
+    corpo.lineStyle(2.5, ESCURO, 1).lineBetween(-48, -80, -46, -48).lineBetween(4, -80, 4, -48).lineBetween(-46, -48, 4, -48);
+    corpo.fillStyle(0x3a3f47, 1).fillRoundedRect(-14, -72, 12, 4, 2);
+    // para-brisa inclinado, com o vidro clarinho
+    corpo.fillStyle(0xcfe8f7, 0.55).fillTriangle(8, -82, 0, -122, -6, -82);
+    corpo.lineStyle(5, 0x6b7480, 1).lineBetween(10, -82, 0, -124);
+    // farol, lanterna e para-choques
+    corpo.fillStyle(0xfff3b0, 1).fillCircle(74, -64, 7);
+    corpo.lineStyle(2.5, TRACO, 1).strokeCircle(74, -64, 7);
+    corpo.fillStyle(0xf5a524, 1).fillRoundedRect(-92, -74, 8, 12, 3);
+    corpo.fillStyle(0x3a3f47, 1).fillRoundedRect(72, -48, 18, 9, 4).fillRoundedRect(-98, -50, 18, 9, 4);
+    const tras = roda(-EIXO);
     const frente = roda(EIXO);
-    const partes: Phaser.GameObjects.GameObject[] = [tras];
+    const partes: Phaser.GameObjects.GameObject[] = [fundo];
     if (crianca) partes.push(crianca);
-    partes.push(corpo, frente);
+    partes.push(corpo, tras, frente);
     m.add(partes);
     return m;
+  }
+
+  /**
+   * A crianca do peito para cima, com cinto de seguranca, numa textura propria:
+   * (x, y) e onde ficam os ombros. Recortada na cintura para nao aparecer
+   * perna saindo por baixo do carro.
+   */
+  private criancaSentada(cfg: PersonagemCfg, x: number, y: number) {
+    const K = 0.3;
+    // desenha em dobro e reduz: fica nitido com o zoom da camera
+    const D = 2;
+    const cab = cabecaDoPersonagem(this, cfg);
+    const h = cab.queixo - cab.topo;
+    const topo = (cab.topo - 0.4 * h) * K * D;
+    const ombro = (cab.queixo + 0.15 * h) * K * D;
+    const base = (cab.queixo + 0.9 * h) * K * D;
+    const meia = cab.largura * 1.2 * K * D;
+    const rt = this.make.renderTexture({ width: Math.ceil(2 * meia), height: Math.ceil(base - topo) }, false);
+    const boneco = desenharPersonagem(this, cfg, K * D).setPosition(meia - cab.cx * K * D, -topo);
+    rt.draw(boneco);
+    boneco.destroy();
+    // cinto: do ombro de tras ate o quadril da frente
+    const cinto = this.add.graphics();
+    cinto.lineStyle(5 * D, 0x3a3f47, 1).lineBetween(meia - 0.42 * cab.largura * K * D, ombro - topo, meia + 0.4 * cab.largura * K * D, base - topo);
+    rt.draw(cinto);
+    cinto.destroy();
+    return rt.setScale(1 / D).setOrigin(0.5, 0).setPosition(x, y - (ombro - topo) / D);
   }
 
   /** Dois botoes grandes: freio a esquerda, acelerar a direita. Da para segurar os dois. */
@@ -271,6 +321,24 @@ export class MotoMontanha extends Phaser.Scene {
       this.y = queda;
       return;
     }
+    // a roda da frente encosta no tronco quando o meio da moto esta a ~60px dele
+    const tronco = m.troncos.find((t) => (this.x < t - 60 && nx >= t - 60) || (this.x > t + 60 && nx <= t + 60));
+    if (tronco !== undefined) {
+      if (Math.abs(this.u) > LIMITE_TRONCO) {
+        this.perderVida('bateu');
+        return;
+      }
+      // devagar: a moto sobe no tronco e pula por cima
+      nota(440);
+      this.noAr = true;
+      // impulso minimo para passar inteira por cima, mesmo bem devagar
+      this.vx = (this.u < 0 ? -1 : 1) * Math.max(Math.abs(this.u), 260);
+      this.vy = -260;
+      this.omega = 0;
+      this.x = nx;
+      this.y = solo - 4;
+      return;
+    }
     this.x = nx;
     this.y = solo;
     // o angulo vem das duas rodas: segue o chao sem a roda afundar na crista
@@ -322,7 +390,7 @@ export class MotoMontanha extends Phaser.Scene {
     }
   }
 
-  private perderVida(motivo: 'capotou' | 'buraco') {
+  private perderVida(motivo: 'capotou' | 'buraco' | 'bateu') {
     this.parado = true;
     this.vidas -= 1;
     const c = this.coracoes[this.vidas];
@@ -334,7 +402,7 @@ export class MotoMontanha extends Phaser.Scene {
     this.tweens.add({ targets: this, y: this.y - 70, duration: 700, ease: 'Quad.easeOut' });
     this.tweens.add({
       targets: this.moto,
-      angle: this.moto.angle + (motivo === 'capotou' ? 200 : 40),
+      angle: this.moto.angle + (motivo === 'buraco' ? 40 : 200),
       alpha: 0.2,
       duration: 700,
     });
@@ -342,7 +410,7 @@ export class MotoMontanha extends Phaser.Scene {
       this.time.delayedCall(900, () => this.fim());
       return;
     }
-    fale(motivo === 'capotou' ? 'jogo_moto_capotou' : 'jogo_moto_buraco');
+    fale(motivo === 'capotou' ? 'jogo_moto_capotou' : motivo === 'bateu' ? 'jogo_moto_bateu' : 'jogo_moto_buraco');
     this.time.delayedCall(1400, () => this.recomecar(this.montanha.bandeiras[this.fase - 1] + 60));
   }
 
@@ -422,6 +490,22 @@ export class MotoMontanha extends Phaser.Scene {
       g.lineStyle(60, 0xb58d66, 1).strokePoints(pts.map((p) => ({ x: p.x, y: p.y + 40 })), false);
       g.lineStyle(22, 0x8fd16e, 1).strokePoints(pts.map((p) => ({ x: p.x, y: p.y + 6 })), false);
       g.lineStyle(4, 0x5f9e4a, 1).strokePoints(pts.map((p) => ({ x: p.x, y: p.y - 4 })), false);
+    }
+    // tronco no chao e, antes dele, a plaquinha amarela de "devagar"
+    for (const t of m.troncos) {
+      if (t < x0 - 260 || t > x1 + 100) continue;
+      const ty = m.chao(t);
+      g.fillStyle(0x8a5a3a, 1).fillRoundedRect(t - 40, ty - 30, 80, 30, 14);
+      g.lineStyle(3, 0x4a3428, 1).strokeRoundedRect(t - 40, ty - 30, 80, 30, 14);
+      g.fillStyle(0xd9b48a, 1).fillEllipse(t + 34, ty - 15, 14, 26);
+      g.lineStyle(2, 0x8a5a3a, 1).strokeEllipse(t + 34, ty - 15, 6, 12);
+      const px = t - 210;
+      const py = m.chao(px);
+      if (!Number.isFinite(py)) continue;
+      g.lineStyle(6, 0x6b4a32, 1).lineBetween(px, py, px, py - 110);
+      g.fillStyle(0xf7d14c, 1).fillTriangle(px - 34, py - 104, px + 34, py - 104, px, py - 162);
+      g.lineStyle(3, 0x4a3428, 1).strokeTriangle(px - 34, py - 104, px + 34, py - 104, px, py - 162);
+      g.fillStyle(0x4a3428, 1).fillRect(px - 3, py - 146, 6, 26).fillCircle(px, py - 113, 3.5);
     }
     // bandeira no comeco de cada fase: e ali que a moto volta
     for (const [i, bx] of m.bandeiras.entries()) {

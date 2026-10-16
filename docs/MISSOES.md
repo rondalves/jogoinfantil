@@ -94,7 +94,7 @@ gastam ficha, nao dao estrela e nao tem como errar.
 | 2 | Escola (livre) | O primeiro dia de aula | Jogo da memória |
 | 3 | Volta para Casa (paga) | A viagem da lua no carro | Corrida de kart |
 | 4 | Tarde (paga) | O brinquedo que queria brincar | Encaixe os blocos |
-| 5 | Janta (paga) | A sopa de estrelas | Moto na montanha |
+| 5 | Janta (paga) | A sopa de estrelas | Jipe na montanha |
 | 6 | Banho e Cama (paga) | A raposinha vai dormir | Quebra-cabeça |
 
 ---

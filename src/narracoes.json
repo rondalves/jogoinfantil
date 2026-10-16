@@ -156,7 +156,7 @@
     "local": "Joguinho de colorir, desenho todo pintado"
   },
   "jogo_moto": {
-    "texto": "Verde acelera, vermelho freia. Cuidado nas descidas e pule os buracos!",
+    "texto": "Verde acelera, vermelho freia. Viu a plaquinha amarela? Freie antes do tronco. E pule os buracos!",
     "local": "Joguinho da moto"
   },
   "jogo_moto_capotou": {
@@ -167,12 +167,16 @@
     "texto": "Opa, caiu no buraco! Vamos de novo, daqui da bandeira.",
     "local": "Joguinho da moto, perdeu uma vida"
   },
+  "jogo_moto_bateu": {
+    "texto": "Opa, rápido demais no tronco! Freie antes dele. Vamos de novo, daqui da bandeira.",
+    "local": "Jipe na montanha, bateu no tronco"
+  },
   "jogo_moto_fim": {
     "texto": "Que passeio! Quantas notinhas você pegou! Vamos de novo?",
     "local": "Joguinho da moto, acabaram as vidas"
   },
   "jogo_encaixe": {
-    "texto": "Toque para girar a peça e encaixe! Linha cheia some!",
+    "texto": "As setas andam, o verde gira e o amarelo derruba a peça. Linha cheia some!",
     "local": "Joguinho de encaixar"
   },
   "jogo_encaixe_encheu": {
