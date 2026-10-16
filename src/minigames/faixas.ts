@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { CONFIG } from '../config';
 import { narrador } from '../narrador';
 import { desenharPersonagem } from '../personagem';
+import { Volante } from './volante';
 import type { PersonagemCfg } from '../storage';
 import { cobrirTela, figura, nota, TELA } from '../ui';
 import type { ResultadoMiniGame } from './index';
@@ -126,13 +127,17 @@ export function correrFaixas(
     cena.tweens.add({ targets: seguem, x: FAIXAS[faixa], duration: 150 });
   };
 
-  cena.input.on('pointerdown', (p: Phaser.Input.Pointer) => irPara(p.x < W / 2 ? faixa - 1 : faixa + 1));
-  let ultimoGiro = 0;
+  // um instante depois: o toque que escolheu a pista ainda estava sendo entregue
+  // e virava "ir para a direita", e o kart ja saia puxado para um lado
+  cena.time.delayedCall(250, () =>
+    cena.input.on('pointerdown', (p: Phaser.Input.Pointer) => irPara(p.x < W / 2 ? faixa - 1 : faixa + 1)),
+  );
+  // o reto e o jeito que a crianca segura o celular: torto nao puxa sozinho
+  const volante = new Volante();
   const inclinar = (e: DeviceOrientationEvent) => {
-    const g = e.gamma ?? 0;
-    if (Math.abs(g) < 14 || cena.time.now - ultimoGiro < 320) return;
-    ultimoGiro = cena.time.now;
-    irPara(faixa + (g > 0 ? 1 : -1));
+    if (e.gamma === null) return;
+    const lado = volante.ler(e.gamma);
+    if (lado) irPara(faixa + lado);
   };
   window.addEventListener('deviceorientation', inclinar);
 
@@ -200,13 +205,13 @@ export function correrFaixas(
     const o = Phaser.Utils.Array.GetRandom(op.obstaculos);
     itens.push({ fig: pecaQueCai(cena, FAIXAS[onde], o.arte, o.emoji, true), faixa: onde, pontos: 0 });
   };
-  const semeador = cena.time.addEvent({ delay: 760, loop: true, callback: nascer });
+  // as pecas nascem mais depressa quando a pista anda mais: o espaco entre elas fica igual
+  let ateNascer = 0.76;
 
   const terminar = () => {
     if (acabou) return;
     acabou = true;
-    semeador.remove();
-    relogio.remove();
+    cena.events.off('update', atualizar);
     cena.input.off('pointerdown');
     window.removeEventListener('deviceorientation', inclinar);
     const bandeira = figura(cena, W / 2, 420, 'mg1_chegada', '\u{1F3C1}', 420).setDepth(45);
@@ -218,14 +223,21 @@ export function correrFaixas(
     cena.time.delayedCall(900, () => pronto({ pontos, concluido: true }));
   };
 
-  const relogio = cena.time.addEvent({
-    delay: 100,
-    loop: true,
-    callback: () => {
-      passado += 0.1;
-      if (freada > 0) freada -= 0.1;
-      const andar = freada > 0 ? velocidade * 0.35 : velocidade;
-      velocidade = Math.min(op.velocidade + 14, op.velocidade + passado / 8);
+  // a cada quadro, nao a cada 0,1 s: a pista corre lisa, sem andar aos saltos.
+  // `velocidade` continua em px a cada 0,1 s, como era: comeca mais calma e
+  // vai subindo devagar, sem parar, ate quase o dobro em uns dois minutos e meio
+  const atualizar = (_t: number, dtMs: number) => {
+    {
+      const dt = Math.min(dtMs, 50) / 1000;
+      passado += dt;
+      if (freada > 0) freada -= dt;
+      velocidade = Math.min(op.velocidade * 1.9, op.velocidade * 0.75 + passado * 0.2);
+      ateNascer -= dt;
+      if (ateNascer <= 0) {
+        nascer();
+        ateNascer = 0.76 * (op.velocidade / velocidade);
+      }
+      const andar = (freada > 0 ? velocidade * 0.35 : velocidade) * dt * 10;
 
       for (const l of listras) {
         l.y += andar;
@@ -275,6 +287,8 @@ export function correrFaixas(
       barra.fillRoundedRect(W - 250, 176, 220 * Math.min(1, passado / op.duracao), 28, 14);
 
       if (passado >= op.duracao) terminar();
-    },
-  });
+    }
+  };
+  cena.events.on('update', atualizar);
+  cena.events.once('shutdown', () => cena.events.off('update', atualizar));
 }

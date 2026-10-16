@@ -25,10 +25,10 @@
           "y": 760
         },
         {
-          "icone": "🚂",
-          "img": "m15_trem",
-          "texto": "Trenzinho",
-          "fala": "Trenzinho",
+          "icone": "🚗",
+          "img": "m15_carrinho",
+          "texto": "Carrinho",
+          "fala": "Carrinho",
           "x": 360,
           "y": 760
         },

@@ -737,7 +737,7 @@ Mundo 4 (Tarde) · cenario `bg_quarto_brincar`
 
 Toca em 3 de 3 figuras.
   - Bola
-  - Trenzinho
+  - Carrinho
   - Ursinho
 
 **2. Escolher entre opcoes**

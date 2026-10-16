@@ -291,7 +291,7 @@ m13_reforco.mp3;mascote;Germes da escola ficam lá fora!;Missao 13 - Chegar em c
 m14_intro.mp3;mascote;{nome}, deu tempo de brincar! Com o que você quer brincar?;Missao 14 - Brincar até a janta: abertura (raposinha)
 m14_mostrar.mp3;mascote;Toque num brinquedo e veja o que ele faz. Brincar junto é melhor ainda!;Missao 14 - Brincar até a janta: o personagem mostra
 m14_e1.mp3;adulto;Toque nos brinquedos e veja cada um acordar!;Missao 14 - Brincar até a janta: etapa 1 (tocar)
-nome_trenzinho.mp3;adulto;Trenzinho;Nome de objeto (dedo por cima)
+nome_carrinho.mp3;adulto;Carrinho;Nome de objeto (dedo por cima)
 m14_e2.mp3;adulto;Um amigo chegou e quer brincar. O que você faz?;Missao 14 - Brincar até a janta: etapa 2 (escolher_entre_opcoes)
 nome_dividir_o_brinquedo.mp3;adulto;Dividir o brinquedo;Nome de objeto (dedo por cima)
 nome_jogar_o_brinquedo_longe.mp3;adulto;Jogar o brinquedo longe;Nome de objeto (dedo por cima)
@@ -314,10 +314,10 @@ m15_reforco.mp3;mascote;Tarefa feita, cabeça leve!;Missao 15 - Lição de casa:
 m16_intro.mp3;mascote;Olha a bagunça, {nome}! Vamos guardar tudo?;Missao 16 - Guardar os brinquedos: abertura (raposinha)
 m16_mostrar.mp3;mascote;Cada brinquedo tem a sua caixa. E depois a gente procura os que sobraram!;Missao 16 - Guardar os brinquedos: o personagem mostra
 m16_e1.mp3;adulto;Leve cada brinquedo para a caixa.;Missao 16 - Guardar os brinquedos: etapa 1 (arrastar_para_alvo)
+nome_trenzinho.mp3;adulto;Trenzinho;Nome de objeto (dedo por cima)
 nome_boneca.mp3;adulto;Boneca;Nome de objeto (dedo por cima)
 nome_caixa_dos_brinquedos.mp3;adulto;Caixa dos brinquedos;Nome de objeto (dedo por cima)
 m16_e2.mp3;adulto;Procure os que ficaram no chão e toque neles.;Missao 16 - Guardar os brinquedos: etapa 2 (tocar)
-nome_carrinho.mp3;adulto;Carrinho;Nome de objeto (dedo por cima)
 nome_tambor.mp3;adulto;Tambor;Nome de objeto (dedo por cima)
 nome_piao.mp3;adulto;Pião;Nome de objeto (dedo por cima)
 m16_pnp.mp3;adulto;O que pode?;Missao 16 - Guardar os brinquedos: pode ou nao pode
