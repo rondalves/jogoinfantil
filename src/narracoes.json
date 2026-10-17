@@ -175,6 +175,10 @@
     "texto": "Que passeio! Quantas notinhas você pegou! Vamos de novo?",
     "local": "Joguinho da moto, acabaram as vidas"
   },
+  "historia_paga": {
+    "texto": "Você pode ajudar o desenvolvedor e liberar essas historinhas! Faça a compra no painel de configurações, na engrenagem do mapa.",
+    "local": "Historinhas: toque numa historinha com cadeado (da 7ª em diante)"
+  },
   "jogo_encaixe": {
     "texto": "As setas andam, o verde gira e o amarelo derruba a peça. Linha cheia some!",
     "local": "Joguinho de encaixar"

@@ -36,6 +36,12 @@ export const CONFIG = {
   /** historinhas planejadas: as que ainda nao existem aparecem numeradas, "em breve" */
   HISTORIAS_PREVISTAS: 20,
 
+  /**
+   * As primeiras historinhas da estante abrem uma por mundo fechado; da
+   * seguinte em diante, so com a compra unica (ate no beta).
+   */
+  HISTORIAS_LIVRES: 6,
+
   /** pagina publica da politica de privacidade (docs/privacidade.html no GitHub Pages) */
   URL_PRIVACIDADE: 'https://rondalves.github.io/jogoinfantil/privacidade.html',
 

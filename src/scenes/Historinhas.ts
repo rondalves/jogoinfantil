@@ -1,15 +1,33 @@
 import Phaser from 'phaser';
 import { abas, TOPO_ABAS } from '../abas';
 import { AUDIOS_HISTORIA } from '../assets';
+import { historiaPaga } from '../compras';
 import { CONFIG } from '../config';
 import { historiaAberta, porQueFechado } from '../desbloqueio';
 import { CANCAO_DE_NINAR } from '../melodias';
 import { musica, musicaDoMundo, musicaLigada } from '../musica';
+import { fale } from '../narracoes';
 import { narrador } from '../narrador';
 import { ativo, type Perfil } from '../storage';
 import { HISTORIAS, type Historia } from '../stories';
 import { TEMA } from '../theme';
-import { area, arredondada, botaoOuvir, carregarCapas, figura, fundo, irPara, nota, rolagem, TELA, titulo, tocarMelodia } from '../ui';
+import {
+  area,
+  arredondada,
+  balao,
+  botao,
+  botaoOuvir,
+  carregarCapas,
+  cobrirTela,
+  figura,
+  fundo,
+  irPara,
+  nota,
+  rolagem,
+  TELA,
+  titulo,
+  tocarMelodia,
+} from '../ui';
 
 const W = CONFIG.LARGURA;
 /** onde a lista comeca, logo abaixo do titulo */
@@ -75,16 +93,29 @@ export class Historinhas extends Phaser.Scene {
     this.arrastou = rolagem(this, lista, TOPO, TOPO_ABAS - 10, altura);
   }
 
-  /** Historinha que ainda vai ser gravada: so o numero, com "em breve" em cima. */
+  /** Historinha que ainda vai ser gravada: so o numero, com "em breve" em cima e o cadeado da compra. */
   private porVir(n: number, x: number, y: number, larg: number, alt: number) {
     const g = this.fundoCartao(x, y, larg, alt, 0.6);
-    return [
+    const partes: Phaser.GameObjects.GameObject[] = [
       g,
       this.add.text(x, y - alt / 2 + 30, 'em breve', { fontSize: '24px', color: '#8a8f96' }).setOrigin(0.5),
       this.add
-        .text(x, y + 14, String(n), { fontSize: '96px', color: '#b9bec4', fontStyle: 'bold' })
+        .text(x, y + 6, String(n), { fontSize: '96px', color: '#b9bec4', fontStyle: 'bold' })
         .setOrigin(0.5),
     ];
+    if (historiaPaga(n)) {
+      partes.push(this.add.text(x, y + alt / 2 - 40, '\u{1F512}', { fontSize: '36px' }).setOrigin(0.5));
+      partes.push(area(this, x, y, larg, alt).on('pointerup', () => this.arrastou() || this.avisoCompra()));
+    }
+    return partes;
+  }
+
+  /** Cadeado da compra: o recado e para o adulto, que compra no painel de configuracoes. */
+  private avisoCompra() {
+    const capa = this.add.container(0, 0).setDepth(100);
+    capa.add(cobrirTela(this, 0x000000, 0.45).setInteractive());
+    capa.add(balao(this, fale('historia_paga'), 560));
+    capa.add(botao(this, W / 2, 900, 'Ok', () => capa.destroy(), { largura: 360 }));
   }
 
   /** Cartao bem arredondado, com sombra macia embaixo e um fio claro na borda. */
@@ -98,6 +129,7 @@ export class Historinhas extends Phaser.Scene {
 
   private cartao(h: Historia, x: number, y: number, larg: number, alt: number) {
     const aberta = historiaAberta(this.p, h);
+    const paga = !aberta && historiaPaga(HISTORIAS.indexOf(h) + 1);
     const temAudio = !!AUDIOS_HISTORIA[h.audio];
 
     const g = this.fundoCartao(x, y, larg, alt, aberta ? 0.98 : 0.6);
@@ -133,6 +165,10 @@ export class Historinhas extends Phaser.Scene {
     // ao soltar, nao ao encostar: encostar para arrastar a lista nao pode abrir a historinha
     const z = area(this, x, y, larg, alt, undefined, fala).on('pointerup', () => {
       if (this.arrastou()) return;
+      if (paga) {
+        this.avisoCompra();
+        return;
+      }
       if (!aberta || !temAudio) {
         narrador.falar(fala);
         return;

@@ -1,6 +1,6 @@
 import { comAdulto, quemJoga } from './adulto';
-import { mundoPago } from './compras';
-import { MUNDOS } from './config';
+import { historiaPaga, mundoPago } from './compras';
+import { CONFIG, MUNDOS } from './config';
 import { mundoCompleto } from './missions';
 import type { Perfil } from './storage';
 import { HISTORIAS, type Historia } from './stories';
@@ -30,10 +30,7 @@ function abertos(p: Perfil): number[] {
   return mundosConcluidos(p).filter((id) => !mundoPago(id));
 }
 
-export const historiasLiberadas = (p: Perfil): Historia[] => {
-  const tem = abertos(p);
-  return HISTORIAS.filter((h) => tem.includes(h.mundo));
-};
+export const historiasLiberadas = (p: Perfil): Historia[] => HISTORIAS.filter((h) => historiaAberta(p, h));
 
 /** O joguinho do mundo abre quando a crianca fecha o mundo, como a historinha. */
 export const joguinhosLiberados = (p: Perfil): Joguinho[] => {
@@ -45,8 +42,15 @@ export const joguinhosLiberados = (p: Perfil): Joguinho[] => {
 export const joguinhosNovos = (p: Perfil): Joguinho[] =>
   joguinhosLiberados(p).filter((j) => !(p.joguinhosVistos ?? []).includes(j.id));
 
-/** Vale para o cartao na biblioteca: mostra colorido ou silhueta com cadeado. */
-export const historiaAberta = (p: Perfil, h: Historia) => abertos(p).includes(h.mundo);
+/**
+ * Vale para o cartao na biblioteca: mostra colorido ou silhueta com cadeado.
+ * As primeiras abrem com o mundo delas; as outras, com a compra.
+ */
+export function historiaAberta(p: Perfil, h: Historia) {
+  const n = HISTORIAS.indexOf(h) + 1;
+  if (n > CONFIG.HISTORIAS_LIVRES) return TESTE || !historiaPaga(n);
+  return abertos(p).includes(h.mundo);
+}
 export const joguinhoAberto = (p: Perfil, j: Joguinho) => abertos(p).includes(j.mundo);
 
 /** Texto do cadeado: ou falta fechar o mundo, ou falta a compra. */

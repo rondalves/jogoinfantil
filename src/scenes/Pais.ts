@@ -150,15 +150,16 @@ export class Pais extends Phaser.Scene {
   }
 
   /**
-   * A compra unica que abre os mundos de cima. Fica aqui dentro de proposito:
-   * preco e botao de comprar nao aparecem para a crianca em lugar nenhum.
+   * A compra unica que abre os mundos de cima e as historinhas da 7a em diante.
+   * Fica aqui dentro de proposito: preco e botao de comprar nao aparecem para
+   * a crianca em lugar nenhum.
    */
   private mundosCompletos() {
-    // com tudo livre (o teste na Play), nao existe o que comprar
-    if (CONFIG.MUNDOS_LIVRES >= MUNDOS.length || CONFIG.BETA_TUDO_ABERTO) return;
+    // no beta os mundos ja vem abertos: a compra fica so pelas historinhas
+    const pagos = CONFIG.BETA_TUDO_ABERTO ? [] : MUNDOS.filter((m) => m.id > CONFIG.MUNDOS_LIVRES).map((m) => m.id);
     if (temTudo()) {
       this.add
-        .text(W / 2, 265, '\u{2705} Mundos completos liberados', {
+        .text(W / 2, 265, '\u{2705} Tudo liberado: mundos e historinhas', {
           fontSize: '34px',
           color: '#3f7a52',
           fontStyle: 'bold',
@@ -178,12 +179,13 @@ export class Pais extends Phaser.Scene {
       recado.setText((await fn()) ? '' : falhou);
       if (temTudo()) irPara(this, 'Pais', { aberto: true });
     };
-    const pagos = MUNDOS.filter((m) => m.id > CONFIG.MUNDOS_LIVRES).map((m) => m.id);
     botao(
       this,
       W / 2,
       268,
-      `Abrir os mundos ${pagos.join(' e ')} — ${PRECO}`,
+      pagos.length
+        ? `Abrir os mundos ${pagos.join(' e ')} e as historinhas — ${PRECO}`
+        : `Liberar todas as historinhas — ${PRECO}`,
       () => void tentar(comprar, 'Não deu para concluir a compra.'),
       { largura: 600, cor: TEMA.sim, tamanhoTexto: 30, altura: 86 },
     );

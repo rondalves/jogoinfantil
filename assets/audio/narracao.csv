@@ -43,6 +43,7 @@ jogo_moto_capotou.mp3;adulto;Opa, capotou! Vamos de novo, daqui da bandeira.;Jog
 jogo_moto_buraco.mp3;adulto;Opa, caiu no buraco! Vamos de novo, daqui da bandeira.;Joguinho da moto, perdeu uma vida
 jogo_moto_bateu.mp3;adulto;Opa, rápido demais no tronco! Freie antes dele. Vamos de novo, daqui da bandeira.;Jipe na montanha, bateu no tronco
 jogo_moto_fim.mp3;adulto;Que passeio! Quantas notinhas você pegou! Vamos de novo?;Joguinho da moto, acabaram as vidas
+historia_paga.mp3;adulto;Você pode ajudar o desenvolvedor e liberar essas historinhas! Faça a compra no painel de configurações, na engrenagem do mapa.;Historinhas: toque numa historinha com cadeado (da 7ª em diante)
 jogo_encaixe.mp3;adulto;As setas andam, o verde gira e o amarelo derruba a peça. Linha cheia some!;Joguinho de encaixar
 jogo_encaixe_encheu.mp3;adulto;Encheu tudo! Vamos limpar e continuar!;Joguinho de encaixar, tabuleiro cheio
 missao_joguinho_novo.mp3;adulto;E abriu um joguinho novo! Ele está na aba Joguinhos.;Fim da missão que fecha o mundo

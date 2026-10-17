@@ -50,6 +50,9 @@ export function mundoPago(mundo: number) {
   return !CONFIG.BETA_TUDO_ABERTO && mundo > CONFIG.MUNDOS_LIVRES && !temTudo();
 }
 
+/** Historinha da estante (n = 1, 2, ...) que so abre com a compra, ate no beta. */
+export const historiaPaga = (n: number) => n > CONFIG.HISTORIAS_LIVRES && !temTudo();
+
 async function naLoja(acao: 'comprar' | 'restaurar'): Promise<boolean> {
   if (!lojaDisponivel()) return false;
   const { ok } = await Loja[acao]({ produto: PRODUTO }).catch(() => ({ ok: false }));
